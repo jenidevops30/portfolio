@@ -5,6 +5,7 @@
 </p>
 
 </div>
+
 ## About Me
 I’m Jeni Patel, a Cloud & DevOps engineer with 5+ years of experience building resilient infrastructure and reliable CI/CD practices. I specialize in designing and automating infrastructure on AWS (and multi-cloud), container orchestration with Kubernetes, and end-to-end pipeline delivery with Jenkins/GitHub Actions.
 
