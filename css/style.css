@@ -27,7 +27,11 @@
 }
 
 * {
+<<<<<<< HEAD
     margin: 0;
+=======
+    margin: auto;
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     padding: 0;
     box-sizing: border-box;
 }
@@ -35,7 +39,10 @@
 html {
     scroll-behavior: smooth;
     overflow-x: hidden;
+<<<<<<< HEAD
     width: 100%;
+=======
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
 }
 
 body {
@@ -44,8 +51,11 @@ body {
     color: var(--text-color);
     background-color: var(--bg-color);
     overflow-x: hidden;
+<<<<<<< HEAD
     width: 100%;
     -webkit-font-smoothing: antialiased;
+=======
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
 }
 
 /* Scrollbar */
@@ -68,6 +78,7 @@ body {
 
 .container {
     width: 100%;
+<<<<<<< HEAD
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 5%;
@@ -98,6 +109,11 @@ body {
     .terminal-window {
         min-height: 480px;
     }
+=======
+    max-width: none;
+    margin: 0 auto;
+    padding: 0 2%;
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
 }
 
 /* Text container for readable line lengths on widescreen */
@@ -118,6 +134,7 @@ h5 {
 /* Animations */
 .hidden-on-scroll {
     opacity: 0;
+<<<<<<< HEAD
     transform: translateY(20px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
@@ -125,6 +142,15 @@ h5 {
 .show-on-scroll {
     opacity: 1 !important;
     transform: translateY(0) !important;
+=======
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.show-on-scroll {
+    opacity: 1;
+    transform: translateY(0);
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
 }
 
 /* Header & Navigation */
@@ -194,11 +220,16 @@ nav a:hover {
 .hero {
     min-height: 100vh;
     display: flex;
+<<<<<<< HEAD
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
     padding: 80px 0;
+=======
+    align-items: center;
+    padding-top: 80px;
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     position: relative;
     overflow: hidden;
 }
@@ -231,7 +262,11 @@ nav a:hover {
 }
 
 .hero-profile-container {
+<<<<<<< HEAD
     margin: 0 auto 2rem;
+=======
+    margin-bottom: 2rem;
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     position: relative;
     width: fit-content;
 }
@@ -261,6 +296,7 @@ nav a:hover {
 }
 
 .hero-content h1 {
+<<<<<<< HEAD
     font-size: clamp(2.5rem, 10vw, 4.5rem);
     margin-bottom: 0.5rem;
     color: var(--text-color);
@@ -270,6 +306,16 @@ nav a:hover {
 
 .subtitle {
     font-size: clamp(1rem, 4vw, 1.5rem);
+=======
+    font-size: clamp(3rem, 8vw, 4.5rem);
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.subtitle {
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     color: var(--secondary-color);
     margin-bottom: 2rem;
     font-weight: 400;
@@ -285,9 +331,15 @@ nav a:hover {
 .badge {
     background-color: var(--primary-color-dim);
     color: var(--primary-color);
+<<<<<<< HEAD
     padding: 0.5rem 1rem;
     border-radius: 2rem;
     font-size: 0.85rem;
+=======
+    padding: 0.5rem 1.5rem;
+    border-radius: 2rem;
+    font-size: 1.3rem;
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     font-family: var(--font-mono);
     display: flex;
     align-items: center;
@@ -415,9 +467,13 @@ nav a:hover {
 
 /* Sections Global */
 section {
+<<<<<<< HEAD
     padding: clamp(30px, 8vw, 60px) 0 clamp(20px, 5vw, 40px);
     width: 100%;
     overflow-x: hidden;
+=======
+    padding: 60px 0 40px;
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
 }
 
 .section-title {
@@ -457,14 +513,24 @@ section {
 }
 
 .modern-card:hover {
+<<<<<<< HEAD
     transform: translateY(-8px);
     border-color: var(--primary-color);
     box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 20px var(--primary-color-dim);
+=======
+    transform: translateY(-5px);
+    border-color: var(--primary-color-dim);
+    box-shadow: 0 20px 30px -15px rgba(0, 0, 0, 0.7), 0 0 15px var(--primary-color-dim);
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
 }
 
 /* About Section */
 .about-text p {
+<<<<<<< HEAD
     font-size: clamp(1rem, 2.5vw, 1.15rem);
+=======
+    font-size: 1.1rem;
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     color: var(--text-color-secondary);
     line-height: 1.8;
 }
@@ -472,7 +538,11 @@ section {
 /* Experience Timeline */
 .experience-timeline {
     position: relative;
+<<<<<<< HEAD
     padding-left: clamp(1.5rem, 5vw, 3rem);
+=======
+    padding-left: 3rem;
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
 }
 
 .experience-timeline::before {
@@ -569,7 +639,11 @@ section {
 }
 
 .timeline-item li {
+<<<<<<< HEAD
     margin-bottom: 0.5rem;
+=======
+    margin-bottom: 0.8rem;
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     position: relative;
     padding-left: 1.5rem;
     color: var(--text-color-secondary);
@@ -603,7 +677,11 @@ img.inline-icon {
 /* Skills Grid */
 .skills-grid {
     display: grid;
+<<<<<<< HEAD
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+=======
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     gap: 2rem;
 }
 
@@ -657,10 +735,17 @@ img.inline-icon {
     flex-direction: column;
     align-items: center;
     background: var(--bg-color-lighter);
+<<<<<<< HEAD
     padding: 1rem;
     border-radius: 50%;
     width: clamp(70px, 15vw, 100px);
     height: clamp(70px, 15vw, 100px);
+=======
+    padding: 1.2rem;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     justify-content: center;
     border: 2px solid transparent;
     position: relative;
@@ -675,8 +760,13 @@ img.inline-icon {
 }
 
 .pipeline-node i {
+<<<<<<< HEAD
     font-size: clamp(1.2rem, 4vw, 2.2rem);
     margin-bottom: 0.3rem;
+=======
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     color: var(--text-color);
     transition: var(--transition);
 }
@@ -686,9 +776,15 @@ img.inline-icon {
 }
 
 .pipeline-node img {
+<<<<<<< HEAD
     height: clamp(1.2rem, 4vw, 2.2rem);
     width: auto;
     margin-bottom: 0.3rem;
+=======
+    height: 2.2rem;
+    width: auto;
+    margin-bottom: 0.5rem;
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     transition: var(--transition);
 }
 
@@ -854,7 +950,11 @@ img.inline-icon {
 /* Projects Grid */
 .projects-grid {
     display: grid;
+<<<<<<< HEAD
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+=======
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     gap: 2rem;
 }
 
@@ -1047,7 +1147,11 @@ img.top-icon[src*="logix"] {
 /* Footer */
 footer {
     text-align: center;
+<<<<<<< HEAD
     padding: 1rem;
+=======
+    padding: 2rem;
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     color: var(--text-color-secondary);
     font-family: var(--font-mono);
     font-size: 0.85rem;
@@ -1081,6 +1185,7 @@ footer {
     .hero-container {
         grid-template-columns: 1fr;
         text-align: center;
+<<<<<<< HEAD
         padding-top: 2rem;
         gap: 2rem;
     }
@@ -1094,6 +1199,9 @@ footer {
     .hero-profile-img {
         width: 180px;
         height: 180px;
+=======
+        padding-top: 4rem;
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     }
 
     .tech-badges {
@@ -1103,6 +1211,7 @@ footer {
     .pipeline-container {
         justify-content: flex-start;
     }
+<<<<<<< HEAD
 
     .terminal-window {
         max-width: 600px;
@@ -1119,6 +1228,13 @@ footer {
         display: block;
         position: relative;
         z-index: 1001;
+=======
+}
+
+@media (max-width: 768px) {
+    .nav-toggle-label {
+        display: block;
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     }
 
     .nav-links {
@@ -1126,6 +1242,7 @@ footer {
         top: 0;
         right: -100%;
         height: 100vh;
+<<<<<<< HEAD
         width: 70%;
         max-width: 300px;
         background: rgba(11, 14, 20, 0.98);
@@ -1146,18 +1263,31 @@ footer {
         opacity: 0;
         transform: translateX(20px);
         transition: all 0.3s ease;
+=======
+        width: 100%;
+        background-color: var(--nav-bg);
+        backdrop-filter: blur(15px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: var(--transition);
+        z-index: 999;
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     }
 
     .nav-toggle:checked~.nav-links {
         right: 0;
     }
 
+<<<<<<< HEAD
     .nav-toggle:checked~.nav-links li {
         opacity: 1;
         transform: translateX(0);
         transition-delay: calc(0.1s * var(--i));
     }
 
+=======
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     .nav-toggle:checked+.nav-toggle-label span:nth-child(1) {
         transform: rotate(45deg) translate(5px, 5px);
     }
@@ -1170,6 +1300,7 @@ footer {
         transform: rotate(-45deg) translate(7px, -6px);
     }
 
+<<<<<<< HEAD
     /* Prevent scrolling when menu is open */
     body:has(.nav-toggle:checked) {
         overflow: hidden;
@@ -1225,6 +1356,12 @@ footer {
         font-size: 0.85rem;
     }
 
+=======
+    .nav-toggle:checked~* {
+        overflow: hidden;
+    }
+
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     .experience-timeline {
         padding-left: 1.5rem;
     }
@@ -1247,6 +1384,7 @@ footer {
         flex-direction: column;
         align-items: center;
     }
+<<<<<<< HEAD
 
     .section-title::after {
         display: none;
@@ -1255,6 +1393,8 @@ footer {
     .section-title {
         font-size: 1.8rem;
     }
+=======
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
 }
 
 /* ============================================
@@ -1389,6 +1529,7 @@ footer {
 .badge img.aws-icon {
     height: 1.4rem;
     width: auto;
+<<<<<<< HEAD
 }
 
 /* Technical Skills Matrix */
@@ -1721,4 +1862,7 @@ footer {
     .terminal-window {
         max-width: 850px;
     }
+=======
+    filter: brightness(0) invert(1);
+>>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
 }
