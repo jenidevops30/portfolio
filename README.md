@@ -6,9 +6,9 @@
   
 
 <p align="center">
-  <img src="https://img.shields.io/badge/AWS?style=for-the-badge&logo=amazon-aws"/>
-  <img src="https://img.shields.io/badge/Docker?style=for-the-badge&logo=docker"/>
-  <img src="https://img.shields.io/badge/Kubernetes?style=for-the-badge&logo=kubernetes" />
+  <img src="https://img.shields.io/badge/Cloud-AWS?style=for-the-badge&logo=amazon-aws"/>
+  <img src="https://img.shields.io/badge/Tools-Docker?style=for-the-badge&logo=docker"/>
+  <img src="https://img.shields.io/badge/K8s-Kubernetes?style=for-the-badge&logo=kubernetes" />
   <img src="https://img.shields.io/badge/Jenkins?style=for-the-badge&logo=jenkins" />
 </p>
 
