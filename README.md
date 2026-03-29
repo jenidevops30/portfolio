@@ -6,7 +6,7 @@
   
 
 <p align="center">
-  <img src="https://img.shields.io/badge/AWS-black?style=for-the-badge&logo=amazon-aws"/>
+  <img src="https://img.shields.io/badge/Cloud-AWS?style=for-the-badge&logo=amazon-aws"/>
   <img src="https://img.shields.io/badge/Docker-black?style=for-the-badge&logo=docker"/>
   <img src="https://img.shields.io/badge/Kubernetes-black?style=for-the-badge&logo=kubernetes" />
   <img src="https://img.shields.io/badge/Jenkins-black?style=for-the-badge&logo=jenkins" />
