@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://i.postimg.cc/fTh3qVv1/Jeni-Patel-Cloud-Devops-Banner.png" alt="Jeni Patel - Cloud DevOps Engineer Banner" width="100%" />
+  <img src="1770306187096.jpeg" alt="Jeni Patel - Cloud Devops Engineer Banner" width="100%" />
 </p>
 
 # Welcome to My DevOps Portfolio
