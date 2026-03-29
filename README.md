@@ -2,14 +2,25 @@
   <img src="1770306187096.jpeg" alt="Jeni Patel - Cloud Devops Engineer Banner" width="100%" />
 </p>
 
-# Welcome to My DevOps Portfolio
+<p align="center">
+  <img src="https://img.shields.io/badge/Cloud-AWS-blue?style=for-the-badge&logo=amazon-aws" alt="AWS" />
+  <img src="https://img.shields.io/badge/Tools-Docker-blue?style=for-the-badge&logo=docker" alt="Docker" />
+  <img src="https://img.shields.io/badge/K8s-Kubernetes-blue?style=for-the-badge&logo=kubernetes" alt="Kubernetes" />
+  <img src="https://img.shields.io/badge/CICD-Jenkins-orange?style=for-the-badge&logo=jenkins" alt="Jenkins" />
+</p>
 
-👋 Hi, I’m Jeni Patel
+<p align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?size=28&width=900&duration=3000&color=00BFFF&background=00000000&center=true&vCenter=true&lines=Hello%20Dosto%20👋;Typing%20SVG%20Demo;Add%20like%20this" alt="Typing SVG" />
+</p>
 
 ## About Me
-- **👀 Interests:** DevOps, cloud computing, automation, CI/CD pipelines.
-- **🌱 Currently Learning:** Advanced DevOps practices and tools.
-- **💞️ Looking to Collaborate On:** DevOps projects, open-source contributions, infrastructure automation.
+I’m Jeni Patel, a Cloud & DevOps engineer with 5+ years of experience building resilient infrastructure and reliable CI/CD practices. I specialize in designing and automating infrastructure on AWS (and multi-cloud), container orchestration with Kubernetes, and end-to-end pipeline delivery with Jenkins/GitHub Actions.
+
+I enjoy solving delivery bottlenecks with infrastructure-as-code, implementing observability with Prometheus/Grafana, and contributing to open-source automation projects. My focus is on scalable, secure systems that empower teams to deploy faster with lower risk.
+
+- **👀 Interests:** Cloud native operations, automation, observability, platform engineering
+- **🌱 Currently Learning:** GitOps, Kubernetes operator development, serverless architecture patterns
+- **💞️ Looking to Collaborate On:** DevOps projects, open-source contributions, infrastructure automation
 - **📫 How to Reach Me:** pateljeni007.jp@gmail.com
 - **😄 Pronouns:** He/His
 - **⚡ Fun Fact:** I enjoy optimizing complex workflows and solving challenging infrastructure problems.
