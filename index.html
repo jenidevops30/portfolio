@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeni Patel - Cloud & DevOps Engineer</title>
+    <!-- Icons and Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="devicon-bash-plain"></i> JeniPatel<span class="highlight">.</span>DevOps
+            </div>
+            <input type="checkbox" id="nav-toggle" class="nav-toggle">
+            <label for="nav-toggle" class="nav-toggle-label">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <ul class="nav-links">
+                <li style="--i:1"><a href="#home">Home</a></li>
+                <li style="--i:2"><a href="#about">About</a></li>
+                <li style="--i:3"><a href="#experience">Experience</a></li>
+                <li style="--i:4"><a href="#architecture">Architecture</a></li>
+                <li style="--i:5"><a href="#skills">Skills</a></li>
+                <li style="--i:6"><a href="#projects">Projects</a></li>
+                <li style="--i:7"><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero terminal-hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="hero-profile-container">
+                    <img src="images/jeni-headshot.webp" alt="Jeni Patel" class="hero-profile-img">
+                </div>
+                <h1 class="glitch-text" data-text="Jeni Patel">Jeni Patel</h1>
+                <h2 class="subtitle">Cloud & DevOps Architect</h2>
+
+                <div class="tech-badges">
+                    <span class="badge"><img
+                            src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg"
+                            alt="AWS" class="aws-icon">AWS</span>
+                    <span class="badge"><i class="devicon-googlecloud-plain colored"></i> GCP</span>
+                    <span class="badge"><i class="devicon-docker-plain colored"></i> Docker</span>
+                    <span class="badge"><i class="devicon-kubernetes-plain colored"></i> Kubernetes</span>
+                    <span class="badge"><i class="devicon-terraform-plain colored"></i> Terraform</span>
+                </div>
+
+                <div class="hero-cta-group">
+                    <a href="#contact" class="cta-button"><i class="fas fa-terminal"></i> Initialize Contact_</a>
+                    <a href="#" class="cta-button cta-secondary"
+                        onclick="alert('Upload your resume PDF and link it here!'); return false;"><i
+                            class="fas fa-file-download"></i> Download CV</a>
+                </div>
+            </div>
+
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="close"></span>
+                        <span class="minimize"></span>
+                        <span class="maximize"></span>
+                    </div>
+                    <div class="terminal-title">bash - jeni@devops-server:~</div>
+                </div>
+                <div class="terminal-body" id="typewriter">
+                    <!-- Typing animation injected by JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="text-container">
+                <div class="about-content modern-card">
+                    <div class="about-text">
+                        <p>Strategic Cloud & DevOps Architect with 4+ years of expertise in building high-availability
+                            cloud infrastructure and automated CI/CD ecosystems. I specialize in architecting scalable,
+                            secure, and cost-efficient cloud environments that bridge the gap between development and
+                            operations. My approach focuses on Infrastructure as Code (IaC), robust observability, and
+                            continuous security integration. With a track record of successful production migrations and
+                            significant cost optimizations, I am dedicated to driving operational excellence through
+                            automation and reliability engineering.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="text-container">
+                <div class="experience-timeline">
+
+                    <div class="timeline-item modern-card">
+                        <div class="timeline-dot"><img
+                                src="https://media.licdn.com/dms/image/v2/C4D0BAQEObR1Ebumg1w/company-logo_200_200/company-logo_200_200/0/1656572032813/webcontriveindia_logo?e=2147483647&v=beta&t=BItBRzG2Rd_wXsqaEzW6W1WlAQ9VPacZNdWEM7ejsUM"
+                                alt="Webcontrive Logo" class="company-logo"></div>
+                        <h4>Webcontrive</h4>
+                        <h3>DevOps Engineer</h3>
+                        <p class="duration">November 2025 - Present</p>
+                        <ul>
+                            <li>Led the migration of production infrastructure from <i
+                                    class="devicon-digitalocean-original colored inline-icon"></i> DigitalOcean to <i
+                                    class="devicon-amazonwebservices-plain colored inline-icon bg-white-icon"></i> AWS,
+                                **reducing architectural overhead by 25%** and improving overall system reliability.
+                            </li>
+                            <li>Migrated the "Quickhunt" application using a two-tier architecture with CloudFront/S3
+                                (Frontend) and EC2/RDS (Backend), **achieving 99.95% availability**.</li>
+                            <li>Optimized application storage using Amazon S3, resulting in **35% faster asset
+                                retrieval** for global users.</li>
+                            <li>Successfully migrated wishlist.webcontrive.com (<i
+                                    class="devicon-react-original colored inline-icon"></i> React.js / <i
+                                    class="devicon-laravel-plain colored inline-icon"></i> Laravel) to AWS with ALB,
+                                ASG, and RDS, **enabling automated scaling** for peak traffic events.</li>
+                            <li>Configured Cloudflare WAF and security rules/bot protection, **mitigating over 10k
+                                monthly malicious requests** and securing production endpoints.</li>
+                            <li>Implemented pro-active monitoring using AWS CloudWatch, Lambda, and SNS integrated with
+                                Slack, **reducing Mean Time to Repair (MTTR) by 40%**.</li>
+                            <li>Managed AWS FinOps and resource optimization, **slashing infrastructure costs by
+                                30-40%** through right-sizing and spot instances.</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item modern-card">
+                        <div class="timeline-dot"><img
+                                src="https://media.licdn.com/dms/image/v2/C560BAQG4qupHkN_isg/company-logo_200_200/company-logo_200_200/0/1631335137135?e=2147483647&v=beta&t=ZR4FnuFNzjbs-RLPU_5CkwaVbSjvMSn_PGahzAv-Tsk"
+                                alt="OptimumBrew Logo" class="company-logo"></div>
+                        <h4>OptimumBrew Technology LLP</h4>
+                        <h3>AWS Engineer</h3>
+                        <p class="duration">April 2025 - October 2025</p>
+                        <ul>
+                            <li>Managed <i
+                                    class="devicon-amazonwebservices-plain colored inline-icon bg-white-icon"></i> AWS
+                                infrastructure supporting development environments, ensuring **uptime of 99.9%** for
+                                mission-critical builds.</li>
+                            <li>Optimized <i class="devicon-jenkins-line colored inline-icon"></i> Jenkins-based CI
+                                workflows for Android APK generation, **improving build speeds by 30%** via cached
+                                layers and workspace tuning.</li>
+                            <li>Implemented automated SonarQube quality gates, **reducing production bugs by 20%**
+                                through continuous vulnerability scanning and static analysis.</li>
+                            <li>Troubleshot and resolved Bitbucket CI/CD pipeline bottlenecks, **improving deployment
+                                frequency** for the engineering team.</li>
+                            <li>Created <i class="devicon-linux-plain inline-icon"></i> Linux RBAC automation scripts,
+                                **securing server access** for 30+ internal users.</li>
+                            <li>Architected a GPU-accelerated processing workflow using NVIDIA CUDA and FFmpeg on AWS
+                                G4dn instances, **increasing rendering efficiency by 50%**.</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item modern-card">
+                        <div class="timeline-dot"><img
+                                src="https://d3gv0jmljv77gc.cloudfront.net/frontend/assets/lbicon.png"
+                                alt="Logix Built Logo" class="company-logo"></div>
+                        <h4>LOGIX BUILT SOLUTIONS PVT.LTD.</h4>
+                        <h3>Sr. Server and Cloud Engineer</h3>
+                        <p class="duration">February 2022 - February 2025</p>
+                        <ul>
+                            <li>Architected multi-cloud infrastructure on AWS/GCP, **improving scalability by 60%** and
+                                reducing deployment lead time by **40%**.</li>
+                            <li>Deployed and managed ECS clusters for containerized workloads, **slashing resource
+                                wastage by 35%** through optimized task definitions and dynamic scaling.</li>
+                            <li>Engineered Sophos firewall security frameworks with advanced VPN configurations,
+                                **achieving zero unauthorized access incidents** over a 3-year period.</li>
+                            <li>Optimized VMware vSphere ESXi environments, resulting in **80% faster VM provisioning**
+                                and **40% improved compute utilization**.</li>
+                            <li>Standardized <i class="devicon-docker-plain colored inline-icon"></i> Docker
+                                orchestration across dev teams, **eliminating "it works on my machine" issues** and
+                                enhancing local development productivity.</li>
+                            <li>Implemented Terraform-based IaC for infrastructure provisioning, **ensuring 100%
+                                environment parity** between staging and production.</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item modern-card">
+                        <div class="timeline-dot"><img
+                                src="https://media.licdn.com/dms/image/v2/C560BAQG4qupHkN_isg/company-logo_200_200/company-logo_200_200/0/1631335137135?e=2147483647&v=beta&t=ZR4FnuFNzjbs-RLPU_5CkwaVbSjvMSn_PGahzAv-Tsk"
+                                alt="OptimumBrew Logo" class="company-logo"></div>
+                        <h4>OptimumBrew Technology LLP</h4>
+                        <h3>Network Engineer</h3>
+                        <p class="duration">January 2020 – January 2022</p>
+                        <ul>
+                            <li>Managed FortiGate Firewall and server infrastructure for 60+ users, implementing
+                                advanced
+                                security policies and achieving 99.9% uptime</li>
+                            <li>Engineered automated JFrog Artifactory backup solution using bash scripting, featuring
+                                incremental daily backups, retention policies, and automated email reporting</li>
+                            <li>Designed and implemented self-hosted <i
+                                    class="devicon-gitlab-plain colored inline-icon"></i> GitLab server with automated
+                                backup solutions and disaster recovery procedures (15-minute RTO)</li>
+                            <li>Deployed and managed self-hosted Zulip chat server for internal team communication (50+
+                                members)</li>
+                            <li>Architected NextCloud platform with automated backup routines, managing 500GB+ of
+                                business-critical data</li>
+                            <li>Deployed and configured Redmine project management system on cloud servers, implementing
+                                custom workflows</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item modern-card">
+                        <div class="timeline-dot"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <h4>Prakshal IT Academy</h4>
+                        <h3>IT Infrastructure Management Faculty</h3>
+                        <p class="duration">September 2017 – January 2020</p>
+                        <ul>
+                            <li>Conducted training sessions on hardware, networking, and cloud computing technologies
+                                for
+                                over 40 students (95% satisfaction rate)</li>
+                            <li>Delivered comprehensive hands-on training on AWS cloud services, virtualization
+                                technologies, and deployment strategies</li>
+                            <li>Introduced students to cloud architecture concepts, including scalability, high
+                                availability, and cost optimization principles</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item modern-card">
+                        <div class="timeline-dot"><i class="fas fa-tools"></i></div>
+                        <h4>D N K TECHNOLOGIES PVT LTD</h4>
+                        <h3>Network Engineer</h3>
+                        <p class="duration">January 2017 – August 2017</p>
+                        <ul>
+                            <li>Provided network support and troubleshooting, rapidly resolving connectivity and
+                                infrastructure issues</li>
+                            <li>Assisted in network setup and configuration, contributing to successful deployment
+                                project
+                                completions</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECION: CI/CD & ARCHITECTURE -->
+    <section id="architecture" class="architecture-section">
+        <div class="container">
+            <h2 class="section-title">DevOps Infrastructure & CI/CD</h2>
+
+            <div class="architecture-wrapper modern-card">
+                <h3>CI/CD Pipeline Flow</h3>
+                <div class="pipeline-container">
+                    <div class="pipeline-node"><i class="devicon-git-plain"></i><span>Commit</span></div>
+                    <div class="pipeline-line"></div>
+                    <div class="pipeline-node"><i class="devicon-gitlab-plain"></i><span>GitLab CI</span></div>
+                    <div class="pipeline-line"></div>
+                    <div class="pipeline-node"><i class="devicon-docker-plain"></i><span>Docker Build</span></div>
+                    <div class="pipeline-line"></div>
+                    <div class="pipeline-node"><i class="fas fa-vial"></i><span>Test</span></div>
+                    <div class="pipeline-line"></div>
+                    <div class="pipeline-node"><i class="devicon-kubernetes-plain"></i><span>Deploy</span></div>
+                    <div class="pipeline-line"></div>
+                    <div class="pipeline-node"><img
+                            src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg"
+                            alt="AWS"><span>AWS Prod</span>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 3rem;">Cloud Architecture</h3>
+                <div class="infra-diagram">
+                    <div class="infra-tier">
+                        <div class="infra-node"><i class="fas fa-users"></i><span>Users / Route53 DNS</span></div>
+                    </div>
+                    <div class="infra-arrow"><i class="fas fa-chevron-down"></i></div>
+                    <div class="infra-tier">
+                        <div class="infra-node delay-1"><i class="fas fa-network-wired"></i><span>Application Load
+                                Balancer</span></div>
+                    </div>
+                    <div class="infra-arrow"><i class="fas fa-chevron-down"></i></div>
+                    <div class="infra-tier">
+                        <div class="infra-node delay-2"><i class="devicon-docker-plain"></i><span>ECS Container Instance
+                                1</span></div>
+                        <div class="infra-node delay-3"><i class="devicon-docker-plain"></i><span>ECS Container Instance
+                                2</span></div>
+                    </div>
+                    <div class="infra-arrow"><i class="fas fa-chevron-down"></i></div>
+                    <div class="infra-tier">
+                        <div class="infra-node delay-4"><i class="devicon-mysql-plain"></i><span>RDS Database
+                                Master</span></div>
+                        <div class="infra-node delay-5"><i class="fas fa-database"></i><span>S3 Storage Backups</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Expertise</h2>
+
+            <!-- Technical Skills Matrix (Inspired by GitHub Profile README) -->
+            <div class="skills-matrix-container modern-card mb-12">
+                <h3 class="matrix-title"><i class="fas fa-th-list"></i> Core Technical Matrix</h3>
+                <div class="matrix-table-wrapper">
+                    <table class="matrix-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Primary Technologies & Tools</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="matrix-tag">Cloud</span></td>
+                                <td>AWS (EC2, S3, Lambda, VPC, RDS, EKS), GCP, Azure</td>
+                            </tr>
+                            <tr>
+                                <td><span class="matrix-tag">DevOps</span></td>
+                                <td>Terraform, Docker, Kubernetes, Helm, Ansible, GitHub Actions</td>
+                            </tr>
+                            <tr>
+                                <td><span class="matrix-tag">Security</span></td>
+                                <td>Sophos, FortiGate, WAF, SSL/TLS, RBAC, Security Auditing</td>
+                            </tr>
+                            <tr>
+                                <td><span class="matrix-tag">Automation</span></td>
+                                <td>Bash Scripting, Python, GitLab CI/CD, Jenkins, Cron</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="skills-grid">
+
+                <div class="skill-category modern-card">
+                    <h3><i class="devicon-git-plain colored"></i> DevOps & CI/CD</h3>
+                    <ul>
+                        <li><i class="devicon-docker-plain"></i> Docker & Container Orchestration</li>
+                        <li><i class="devicon-kubernetes-plain"></i> Kubernetes & Helm Charts</li>
+                        <li><i class="devicon-gitlab-plain"></i> GitLab CI/CD Pipeline Management</li>
+                        <li><i class="devicon-github-original"></i> GitHub Actions</li>
+                        <li><i class="devicon-ansible-plain"></i> Ansible Automation & Playbooks</li>
+                        <li><i class="fas fa-network-wired"></i> Multi-Environment Deployment</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category modern-card">
+                    <h3><img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg"
+                            alt="AWS" class="bg-white-icon" style="height: 1.5rem; width: auto; padding: 4px;"> Cloud
+                        Platforms</h3>
+                    <ul>
+                        <li><img src="images/ec2-icon.svg" alt="EC2" class="aws-icon"
+                                style="height: 1.2rem; vertical-align: middle; margin-right: 4px;">AWS EC2 / VPC / S3 /
+                            IAM / RDS / EKS</li>
+                        <li><i class="devicon-amazonwebservices-plain colored bg-white-icon"></i> AWS CloudFormation &
+                            CloudFront</li>
+                        <li><i class="devicon-googlecloud-plain"></i> GCP Compute Engine & Cloud Run</li>
+                        <li><i class="devicon-azure-plain"></i> Azure Services</li>
+                        <li><i class="devicon-terraform-plain"></i> Terraform / IaC Architecture</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category modern-card">
+                    <h3><i class="devicon-linux-plain"></i> Operating Systems</h3>
+                    <ul>
+                        <li><i class="devicon-redhat-plain"></i> Linux: Red Hat 7, Ubuntu, Debian</li>
+                        <li><i class="devicon-windows8-original"></i> Windows OS & Server Administration</li>
+                        <li><i class="fas fa-shield-alt"></i> Server Hardening & Optimization</li>
+                        <li><i class="fas fa-undo"></i> System Recovery Procedures</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category modern-card">
+                    <h3><i class="fas fa-server"></i> Infrastructure Mgmt</h3>
+                    <ul>
+                        <li><i class="devicon-nginx-original"></i> Load Balancing (Nginx)</li>
+                        <li><i class="fas fa-database"></i> Storage Management & Optimization</li>
+                        <li><i class="fas fa-tachometer-alt"></i> System Performance Tuning</li>
+                        <li><i class="fas fa-desktop"></i> Virtualization: VMware ESXi, Hyper-V</li>
+                        <li><i class="fas fa-sitemap"></i> High Availability & Failover Systems</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category modern-card">
+                    <h3><i class="fas fa-shield-alt"></i> Networking & Security</h3>
+                    <ul>
+                        <li><i class="fas fa-project-diagram"></i> TCP/IP, DNS, DHCP, HTTP/S, SMTP</li>
+                        <li><i class="fas fa-shield-virus"></i> Sophos & FortiGate Firewall</li>
+                        <li><i class="fas fa-key"></i> VPN Configuration & Management</li>
+                        <li><i class="fas fa-lock"></i> SSL/TLS Configuration</li>
+                        <li><i class="fas fa-eye"></i> Network Monitoring & Auditing</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category modern-card">
+                    <h3><i class="devicon-bash-plain"></i> Automation & Scripting</h3>
+                    <ul>
+                        <li><i class="devicon-bash-plain colored"></i> Bash / Shell Scripting & Automation</li>
+                        <li><i class="devicon-python-plain colored"></i> Python for DevOps & Automation</li>
+                        <li><i class="devicon-nodejs-plain colored"></i> Node.js & Next.js Ecosystem</li>
+                        <li><i class="fas fa-code"></i> YAML, JSON & HCL Configuration</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category modern-card learning-path">
+                    <h3><i class="fas fa-graduation-cap"></i> Ongoing Mastery</h3>
+                    <ul class="learning-list">
+                        <li>
+                            <div class="learning-header">
+                                <span><i class="fas fa-sync-alt"></i> GitOps: ArgoCD</span>
+                                <span class="learning-pct">70%</span>
+                            </div>
+                            <div class="learning-bar">
+                                <div class="learning-fill" style="width:70%"></div>
+                            </div>
+                            <span class="learning-date">Last practiced: Mar 2026</span>
+                        </li>
+                        <li>
+                            <div class="learning-header">
+                                <span><i class="fas fa-chart-line"></i> Observability: Prometheus & Grafana</span>
+                                <span class="learning-pct">65%</span>
+                            </div>
+                            <div class="learning-bar">
+                                <div class="learning-fill" style="width:65%"></div>
+                            </div>
+                            <span class="learning-date">Last practiced: Feb 2026</span>
+                        </li>
+                        <li>
+                            <div class="learning-header">
+                                <span><i class="fas fa-shield-alt"></i> DevSecOps: Snyk & Trivy</span>
+                                <span class="learning-pct">55%</span>
+                            </div>
+                            <div class="learning-bar">
+                                <div class="learning-fill" style="width:55%"></div>
+                            </div>
+                            <span class="learning-date">Last practiced: Jan 2026</span>
+                        </li>
+                        <li>
+                            <div class="learning-header">
+                                <span><i class="fas fa-microchip"></i> K8s Operators & Helm Chart Dev</span>
+                                <span class="learning-pct">50%</span>
+                            </div>
+                            <div class="learning-bar">
+                                <div class="learning-fill" style="width:50%"></div>
+                            </div>
+                            <span class="learning-date">In progress</span>
+                        </li>
+                        <li>
+                            <div class="learning-header">
+                                <span><i class="fas fa-award"></i> AWS SAA-C03 Certification</span>
+                                <span class="learning-pct in-progress-tag">In Progress</span>
+                            </div>
+                            <div class="learning-bar">
+                                <div class="learning-fill cert-fill" style="width:40%"></div>
+                            </div>
+                            <span class="learning-date">Target: Q2 2026</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- IaC Code Samples Section -->
+    <section id="iac-samples">
+        <div class="container">
+            <h2 class="section-title">Infrastructure as Code Samples</h2>
+            <div class="iac-grid">
+                <div class="iac-card modern-card">
+                    <div class="iac-card-header">
+                        <i class="devicon-terraform-plain colored"></i>
+                        <h3>AWS EC2 + ALB Module</h3>
+                        <span class="iac-lang-tag">HCL / Terraform</span>
+                    </div>
+                    <pre class="code-block"><code><span class="code-comment"># modules/ec2-alb/main.tf — Quickhunt Production</span>
+<span class="code-keyword">module</span> <span class="code-string">"ec2_alb"</span> {
+  source = <span class="code-string">"./modules/ec2-alb"</span>
+
+  instance_type    = <span class="code-string">"t3.medium"</span>
+  ami_id           = <span class="code-string">"ami-0c55b159cbfafe1f0"</span>
+  desired_capacity = <span class="code-number">2</span>
+  max_size         = <span class="code-number">5</span>
+  min_size         = <span class="code-number">1</span>
+
+  health_check_path = <span class="code-string">"/health"</span>
+  target_group_port = <span class="code-number">3000</span>
+
+  tags = {
+    Project     = <span class="code-string">"Quickhunt"</span>
+    Environment = <span class="code-string">"production"</span>
+    ManagedBy   = <span class="code-string">"Terraform"</span>
+  }
+}</code></pre>
+                </div>
+
+                <div class="iac-card modern-card">
+                    <div class="iac-card-header">
+                        <i class="devicon-bash-plain colored"></i>
+                        <h3>GitLab Backup Script</h3>
+                        <span class="iac-lang-tag">Bash</span>
+                    </div>
+                    <pre class="code-block"><code><span class="code-comment">#!/bin/bash</span>
+<span class="code-comment"># gitlab-backup.sh — incremental daily backup with alerts</span>
+
+BACKUP_DIR=<span class="code-string">"/mnt/backups/gitlab"</span>
+DATE=$(date +%Y%m%d_%H%M)
+RETAIN_DAYS=<span class="code-number">7</span>
+
+gitlab-backup create STRATEGY=copy
+
+<span class="code-keyword">if</span> [ $? -eq <span class="code-number">0</span> ]; then
+  aws s3 sync $BACKUP_DIR s3://company-backups/gitlab/ \
+    --storage-class STANDARD_IA
+  <span class="code-keyword">echo</span> <span class="code-string">"✓ Backup $DATE succeeded"</span> | \
+    mail -s <span class="code-string">"GitLab Backup OK"</span> ops@team.com
+<span class="code-keyword">else</span>
+  <span class="code-keyword">echo</span> <span class="code-string">"✗ Backup FAILED"</span> | \
+    mail -s <span class="code-string">"[ALERT] GitLab Backup Failed"</span> ops@team.com
+<span class="code-keyword">fi</span>
+
+find $BACKUP_DIR -mtime +$RETAIN_DAYS -delete</code></pre>
+                </div>
+
+                <div class="iac-card modern-card">
+                    <div class="iac-card-header">
+                        <i class="devicon-github-original"></i>
+                        <h3>GitHub Actions — Azure OIDC Deploy</h3>
+                        <span class="iac-lang-tag">YAML</span>
+                    </div>
+                    <pre class="code-block"><code><span class="code-comment"># .github/workflows/deploy.yml</span>
+<span class="code-keyword">on:</span>
+  push:
+    branches: [main]
+
+<span class="code-keyword">jobs:</span>
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Azure Login (OIDC)
+        uses: azure/login@v2
+        with:
+          client-id: <span class="code-string">${{ secrets.AZURE_CLIENT_ID }}</span>
+          tenant-id: <span class="code-string">${{ secrets.AZURE_TENANT_ID }}</span>
+          subscription-id: <span class="code-string">${{ secrets.AZURE_SUB_ID }}</span>
+
+            </div>
+        </div>
+    </section>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Infrastructure Projects</h2>
+            <div class="projects-grid">
+
+                <div class="project-card modern-card">
+                    <div class="project-header">
+                        <img src="images/quickhunt-logo.svg" alt="Quickhunt Logo" class="top-icon">
+                        <h3>Quickhunt</h3>
+                    </div>
+                    <p>Successfully migrated the "Quickhunt" application utilizing a robust two-tier AWS architecture
+                        automated with Terraform. The front-end (React.js) and back-end (Node.js) were gracefully hosted
+                        on EC2 instances, while the PostgreSQL database was migrated to run on highly-available AWS RDS.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="badge"><i class="devicon-terraform-plain colored"></i> Terraform</span>
+                        <span class="badge"><i class="devicon-react-original colored"></i> React</span>
+                        <span class="badge"><i class="devicon-nodejs-plain colored"></i> Node.js</span>
+                        <span class="badge"><img src="images/ec2-icon.svg" alt="EC2" class="aws-icon">AWS
+                            EC2</span>
+                        <span class="badge"><i class="devicon-amazonwebservices-plain colored bg-white-icon"></i> AWS
+                            RDS</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/jeniaws3095" target="_blank" class="project-link-btn"><i class="fab fa-github"></i> View Code</a>
+                        <span class="project-impact-tag"><i class="fas fa-arrow-up"></i> 99.95% Uptime</span>
+                    </div>
+                </div>
+
+                <div class="project-card modern-card">
+                    <div class="project-header">
+                        <img src="https://wc-wishlist.myshopify.com/cdn/shop/files/CLyD5I2Al_0CEAE_2.jpg" alt="AWS HA"
+                            class="top-icon bg-white-icon" style="padding: 5px;">
+                        <h3>Wishlist</h3>
+                    </div>
+                    <p>Architected and executed a seamless deployment of wishlist.webcontrive.com (React.js / Laravel)
+                        to AWS using Infrastructure as Code (Terraform). Implemented a highly available infrastructure
+                        leveraging EC2, RDS, ALB, and Auto Scaling Groups (ASG) along with AWS DMS for database
+                        migration.</p>
+                    <div class="tech-stack">
+                        <span class="badge"><i class="devicon-terraform-plain colored"></i> Terraform</span>
+                        <span class="badge"><i class="devicon-laravel-plain colored"></i> Laravel</span>
+                        <span class="badge"><i class="fas fa-server"></i> AWS ASG / ALB</span>
+                        <span class="badge"><i class="fas fa-database"></i> AWS DMS</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://wishlist.webcontrive.com" target="_blank" class="project-link-btn"><i class="fas fa-external-link-alt"></i> Live Site</a>
+                        <span class="project-impact-tag"><i class="fas fa-chart-line"></i> Auto-scaling Enabled</span>
+                    </div>
+                </div>
+
+                <div class="project-card modern-card">
+                    <div class="project-header">
+                        <img src="https://cdn.prod.website-files.com/68f3ace88abeb45efd68e250/68f3b681c54aab3bb2585314_Logo-omi-white.svg"
+                            alt="OMI Logo" class="top-icon">
+                        <h3>OMI.day - Web Platform Management</h3>
+                    </div>
+                    <p>Successfully managing and maintaining the omi.day web platform infrastructure. Implemented robust
+                        server configuration, security measures, and performance optimizations. Handled SSL/TLS
+                        configuration and regular maintenance.</p>
+                    <div class="tech-stack">
+                        <span class="badge"><i class="devicon-nginx-original"></i> Nginx</span>
+                        <span class="badge"><i class="fas fa-lock"></i> SSL/TLS</span>
+                        <span class="badge"><i class="fas fa-shield-alt"></i> Security</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://omi.day" target="_blank" class="project-link-btn"><i class="fas fa-external-link-alt"></i> Live Site</a>
+                        <span class="project-impact-tag"><i class="fas fa-shield-alt"></i> Zero Downtime</span>
+                    </div>
+                </div>
+
+                <div class="project-card modern-card">
+                    <div class="project-header">
+                        <img src="https://play-lh.googleusercontent.com/HGfRn4-F25QjCpfZtbvvlPZS_XSyXRodBT1Y3NHwW8oRsw0_cGE6yky0b78sVSlrXg=w240-h480-rw"
+                            alt="Face Swap Pro Logo" class="top-icon" style="border-radius: 8px;">
+                        <h3>Face Swap Pro: In-House AI Processing</h3>
+                    </div>
+                    <p>Architected an on-premises high-performance AI infrastructure on a dedicated GPU server.
+                        Established robust load balancing and monitoring for thousands of daily photo/video workloads.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="badge"><i class="devicon-python-plain"></i> Python</span>
+                        <span class="badge"><i class="devicon-fastapi-plain"></i> FastAPI</span>
+                        <span class="badge"><i class="fas fa-microchip"></i> GPU Engine</span>
+                        <span class="badge"><i class="devicon-linux-plain"></i> Linux</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/jeniaws3095" target="_blank" class="project-link-btn"><i class="fab fa-github"></i> View Code</a>
+                        <span class="project-impact-tag"><i class="fas fa-tachometer-alt"></i> 50% Faster Rendering</span>
+                    </div>
+                </div>
+
+                <div class="project-card modern-card">
+                    <div class="project-header">
+                        <img src="https://d3gv0jmljv77gc.cloudfront.net/frontend/assets/lbicon.png" alt="Logixbuilt"
+                            class="top-icon">
+                        <h3>Logixbuilt Company website</h3>
+                    </div>
+                    <p>Architected comprehensive company web infrastructure with multi-environment GitLab CI/CD
+                        pipelines (dev, staging, prod) with automated tracking, secure auth, and monitoring systems. 40%
+                        faster deployment cycles.</p>
+                    <div class="tech-stack">
+                        <span class="badge"><i class="devicon-nextjs-plain colored bg-white-icon"></i> Next.js</span>
+                        <span class="badge"><i class="devicon-gitlab-plain colored"></i> GitLab CI/CD</span>
+                        <span class="badge"><i
+                                class="devicon-amazonwebservices-plain-wordmark colored bg-white-icon"></i> AWS</span>
+                        <span class="badge"><i class="devicon-nodejs-plain colored"></i> Node.js</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://logixbuilt.com" target="_blank" class="project-link-btn"><i class="fas fa-external-link-alt"></i> Live Site</a>
+                        <span class="project-impact-tag"><i class="fas fa-rocket"></i> 40% Faster Deploys</span>
+                    </div>
+                </div>
+
+                <div class="project-card modern-card">
+                    <div class="project-header">
+                        <i class="devicon-gitlab-plain top-icon colored"></i>
+                        <h3>GitLab Self-Hosted Server</h3>
+                    </div>
+                    <p>Designed and deployed an in-house GitLab server for secure code storage. Developed custom bash
+                        scripts for automated backups including configs and data retention policies. Achieved 99.9%
+                        uptime.</p>
+                    <div class="tech-stack">
+                        <span class="badge"><i class="devicon-gitlab-plain"></i> GitLab CE</span>
+                        <span class="badge"><i class="devicon-bash-plain"></i> Bash</span>
+                        <span class="badge"><i class="fas fa-hdd"></i> Storage Config</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/jeniaws3095" target="_blank" class="project-link-btn"><i class="fab fa-github"></i> View Scripts</a>
+                        <span class="project-impact-tag"><i class="fas fa-clock"></i> 15-min RTO</span>
+                    </div>
+                </div>
+
+                <div class="project-card modern-card">
+                    <div class="project-header">
+                        <img src="https://www.vectorlogo.zone/logos/wordpress/wordpress-icon.svg" alt="WordPress"
+                            class="top-icon">
+                        <h3>AWS WordPress Deployment</h3>
+                    </div>
+                    <p>Architected professional WordPress platform on AWS EC2 for "Pandits Near Me". Implemented strong
+                        security measures, SSL/TLS configurations, and Apache optimizations for 24/7 availability.</p>
+                    <div class="tech-stack">
+                        <span class="badge"><img src="images/ec2-icon.svg" alt="EC2" class="aws-icon"
+                                style="height: 1.2rem; vertical-align: middle; margin-right: 4px;">AWS EC2</span>
+                        <span class="badge"><i class="devicon-wordpress-plain"></i> WordPress</span>
+                        <span class="badge"><i class="devicon-mysql-plain"></i> MySQL</span>
+                    </div>
+                    <div class="project-links">
+                        <span class="project-impact-tag"><i class="fas fa-check-circle"></i> 24/7 Availability</span>
+                    </div>
+                </div>
+
+                <div class="project-card modern-card">
+                    <div class="project-header">
+                        <i class="fas fa-database top-icon"></i>
+                        <h3>Enterprise Backup Solution</h3>
+                    </div>
+                    <p>Developed an automated backup system for critical business data (GitLab, MySQL, JFrog) using
+                        advanced scripting. Implemented monitoring, alerting, and DR procedures with a 99.99% success
+                        rate.</p>
+                    <div class="tech-stack">
+                        <span class="badge"><i class="devicon-bash-plain"></i> Bash Scripting</span>
+                        <span class="badge"><i class="fas fa-bell"></i> Alerts</span>
+                        <span class="badge"><i class="devicon-mysql-plain"></i> DB Backups</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/jeniaws3095" target="_blank" class="project-link-btn"><i class="fab fa-github"></i> View Scripts</a>
+                        <span class="project-impact-tag"><i class="fas fa-shield-alt"></i> 99.99% Success Rate</span>
+                    </div>
+                </div>
+
+                <div class="project-card modern-card">
+                    <div class="project-header">
+                        <i class="fas fa-coins top-icon text-green-500"></i>
+                        <h3>Cloud Cost Optimization (FinOps)</h3>
+                    </div>
+                    <p>Strategically optimized cloud infrastructure using robust FinOps practices. Implemented AWS
+                        Right-sizing and Spot Instance utilization, successfully reducing overall infrastructure costing
+                        by 30% to 40% by matching the right size instance types to workload demands.</p>
+                    <div class="tech-stack">
+                        <span class="badge"><img src="images/ec2-icon.svg" alt="EC2" class="aws-icon">AWS
+                            EC2</span>
+                        <span class="badge"><i class="fas fa-sliders-h"></i> Right-sizing</span>
+                        <span class="badge"><i class="fas fa-chart-line"></i> FinOps</span>
+                    </div>
+                    <div class="project-links">
+                        <span class="project-impact-tag"><i class="fas fa-dollar-sign"></i> 30–40% Cost Reduction</span>
+                    </div>
+                </div>
+
+                <div class="project-card modern-card">
+                    <div class="project-header">
+                        <i class="devicon-azure-plain colored top-icon"></i>
+                        <h3>Edu-Platform Azure Infrastructure</h3>
+                    </div>
+                    <p>Architected a secure, high-performance CI/CD pipeline for a global education platform.
+                        Implemented GitHub-to-Azure OIDC for passwordless authentication and optimized Node.js 22.x
+                        build environments with custom artifact bundling. Achieved 100% automated delivery to Azure App
+                        Service production slots with zero manual intervention.</p>
+                    <div class="tech-stack">
+                        <span class="badge"><i class="devicon-azure-plain colored"></i> Azure Web Apps</span>
+                        <span class="badge"><i class="devicon-github-original"></i> GitHub Actions</span>
+                        <span class="badge"><i class="fas fa-key"></i> OIDC Auth</span>
+                        <span class="badge"><i class="devicon-nodejs-plain colored"></i> Vite / Node.js</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/jeniaws3095" target="_blank" class="project-link-btn"><i class="fab fa-github"></i> View Pipeline</a>
+                        <span class="project-impact-tag"><i class="fas fa-infinity"></i> 100% Automated Delivery</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">GitHub Open Source Projects</h2>  
+            <div id="repos-container" class="projects-grid">
+                <!-- Repos injected here by JS -->
+                <p style="grid-column: 1/-1; text-align: center;">Fetching repositories from GitHub API...</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements">
+        <div class="container">
+            <h2 class="section-title">Achievements & Certifications</h2>
+            <div class="achievements-grid">
+                <div class="achievement-item modern-card">
+                    <h3><i class="fas fa-trophy"></i> Awards</h3>
+                    <ul>
+                        <li>Server / Cloud Support Dynamo at Logix Built Solutions Ltd. (October 2024)</li>
+                        <li>Technical Support Dynamo at Logix Built Solutions Ltd. (October 2023)</li>
+                        <li>Best Server Support Engineer at Logix Built Solutions Ltd (October 2022)</li>
+                    </ul>
+                </div>
+                <div class="achievement-item modern-card">
+                    <h3><i class="fas fa-certificate"></i> Certifications</h3>
+                    <ul>
+                        <li>DevOps Course - Intellipaat Software Solutions Pvt Ltd.</li>
+                        <li>Red Hat Certified System Administrator (RHCSA)</li>
+                        <li>Cloud Computing Expert Course - Prakshal IT Academy</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Me</h2>
+            <div class="contact-info">
+                <a href="tel:+918849742011" class="contact-item modern-card">
+                    <i class="fas fa-phone"></i>
+                    <p>+91 8849742011</p>
+                </a>
+                <a href="mailto:pateljeni007.jp@gmail.com" class="contact-item modern-card">
+                    <i class="fas fa-envelope"></i>
+                    <p>pateljeni007.jp@gmail.com</p>
+                </a>
+                <a href="https://maps.app.goo.gl/Rx6TrXRpA9ercbHx6" target="_blank" class="contact-item modern-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Surat, Gujarat, India</p>
+                </a>
+                <a href="https://www.linkedin.com/in/jeni-patel-devops-engg/" target="_blank"
+                    class="contact-item modern-card">
+                    <i class="fab fa-linkedin"></i>
+                    <p class="linkedin-username">Jeni Patel</p>
+                </a>
+                <a href="https://github.com/jeniaws3095" target="_blank" class="contact-item modern-card">
+                    <i class="fab fa-github"></i>
+                    <p class="github-username">jeniaws3095</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Jeni Patel Portfolio. Designed with DevOps aesthetics. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox Overlay for Architecture Diagram -->
+    <div class="lightbox-overlay" id="lightbox-overlay">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightbox-close" title="Close (Esc)">✕</button>
+            <div id="lightbox-body"></div>
+        </div>
+    </div>
+
+    <!-- Scripts for animations and logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            /* 1. Terminal Typing Effect */
+            const terminalBody = document.getElementById('typewriter');
+            const commands = [
+                { text: "terraform init -backend-config=prod.hcl && terraform apply --auto-approve", color: null },
+                { text: "✓ Quickhunt infra: 3 EC2 + RDS + CloudFront — DEPLOYED", color: "var(--primary-color)" },
+                { text: "aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization", color: null },
+                { text: "kubectl get pods -n wishlist-prod", color: null },
+                { text: "NAME                          READY   STATUS    RESTARTS   AGE", color: "var(--text-color-secondary)" },
+                { text: "wishlist-backend-7d9f8-xkp2   1/1     Running   0          2d", color: "var(--text-color-secondary)" },
+                { text: "aws ce get-cost-and-usage --time-period Start=2025-01-01,End=2025-03-01", color: null },
+                { text: "✓ FinOps result: $4,200 saved (38% reduction) via right-sizing + spot instances", color: "var(--primary-color)" },
+                { text: "✓ All systems operational. Pipeline: HEALTHY | Uptime: 99.97%", color: "var(--primary-color)" }
+            ];
+
+            let lineIndex = 0;
+
+            function startTyping() {
+                if (lineIndex < commands.length) {
+                    const cmd = commands[lineIndex];
+                    const isOutput = cmd.color !== null;
+
+                    if (isOutput) {
+                        // Output line — render instantly with color
+                        const div = document.createElement('div');
+                        div.style.color = cmd.color;
+                        div.style.paddingLeft = '1.5rem';
+                        div.style.marginBottom = '0.3rem';
+                        div.textContent = cmd.text;
+                        terminalBody.appendChild(div);
+                        lineIndex++;
+                        setTimeout(startTyping, 200);
+                    } else {
+                        // Command line — type it out
+                        const currentDiv = document.createElement('div');
+                        currentDiv.innerHTML = '<span class="prompt">jeni@devops:~$</span> <span class="typing"></span><span class="cursor blinking">_</span>';
+                        terminalBody.appendChild(currentDiv);
+
+                        const textToType = cmd.text;
+                        let charIndex = 0;
+
+                        function typeChar() {
+                            if (charIndex < textToType.length) {
+                                currentDiv.querySelector('.typing').textContent += textToType.charAt(charIndex);
+                                charIndex++;
+                                setTimeout(typeChar, 20 + Math.random() * 15);
+                            } else {
+                                const cursor = currentDiv.querySelector('.cursor');
+                                if (cursor) cursor.remove();
+                                lineIndex++;
+                                setTimeout(startTyping, 300);
+                            }
+                        }
+                        typeChar();
+                    }
+                } else {
+                    const finalDiv = document.createElement('div');
+                    finalDiv.innerHTML = '<span class="prompt">jeni@devops:~$</span> <span class="cursor blinking">_</span>';
+                    terminalBody.appendChild(finalDiv);
+                }
+            }
+
+            // Start typing effect slightly delayed
+            setTimeout(startTyping, 500);
+
+
+            /* 2. GitHub Repos Fetch */
+            const reposContainer = document.getElementById('repos-container');
+            const githubUsername = 'jeniaws3095'; // Fallback configured username 
+
+            fetch(`https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=6`)
+                .then(res => {
+                    if (!res.ok) throw new Error('API Error');
+                    return res.json();
+                })
+                .then(data => {
+                    if (data.length === 0) {
+                        reposContainer.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">No repositories found. Ensure your GitHub username has public repositories.</p>';
+                        return;
+                    }
+                    reposContainer.innerHTML = data.map(repo => `
+                        <div class="project-card modern-card github-repo-card">
+                            <div class="project-header">
+                                <i class="devicon-github-original top-icon colored"></i>
+                                <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
+                            </div>
+                            <p>${repo.description || 'No description provided.'}</p>
+                            <div class="tech-stack">
+                                ${repo.language ? `<span class="badge"><i class="fas fa-code"></i> ${repo.language}</span>` : ''}
+                                <span class="badge"><i class="fas fa-star"></i> ${repo.stargazers_count}</span>
+                                <span class="badge"><i class="fas fa-code-branch"></i> ${repo.forks_count}</span>
+                            </div>
+                        </div>
+                    `).join('');
+                })
+                .catch(err => {
+                    reposContainer.innerHTML = `<div class="project-card modern-card github-repo-card" style="grid-column: 1/-1; text-align: center;">
+                        <i class="devicon-github-original" style="font-size: 3rem; margin-bottom: 1rem; color: var(--primary-color);"></i>
+                        <h3>GitHub Connection</h3>
+                        <p>Configure your valid GitHub username in the index.html script block to auto-load your latest open-source repositories.</p>
+                    </div>`;
+                });
+
+            /* 3. Intersection Observer for scroll animations (fade in) */
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show-on-scroll');
+                    }
+                });
+            }, {
+                threshold: 0,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            // Target elements to animate
+            const animElements = document.querySelectorAll('section, .modern-card, .pipeline-node');
+            animElements.forEach(el => {
+                el.classList.add('hidden-on-scroll');
+                observer.observe(el);
+            });
+
+            /* 4. Lightbox for Architecture Diagram */
+            const archWrapper = document.querySelector('.architecture-wrapper');
+            const lightboxOverlay = document.getElementById('lightbox-overlay');
+            const lightboxBody = document.getElementById('lightbox-body');
+            const lightboxClose = document.getElementById('lightbox-close');
+
+            if (archWrapper && lightboxOverlay) {
+                archWrapper.addEventListener('click', () => {
+                    lightboxBody.innerHTML = archWrapper.innerHTML;
+                    lightboxOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+
+                lightboxClose.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    lightboxOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+
+                lightboxOverlay.addEventListener('click', (e) => {
+                    if (e.target === lightboxOverlay) {
+                        lightboxOverlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && lightboxOverlay.classList.contains('active')) {
+                        lightboxOverlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
