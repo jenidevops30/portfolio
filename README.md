@@ -3,18 +3,7 @@
 <p align="center">
   <img src="1770306187096.jpeg" alt="Jeni Patel - Cloud Devops Engineer Banner" width="100%" />
 </p>
-  
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Cloud-AWS?style=for-the-badge&logo=amazon-aws"/>
-  <img src="https://img.shields.io/badge/Docker-black?style=for-the-badge&logo=docker"/>
-  <img src="https://img.shields.io/badge/Kubernetes-black?style=for-the-badge&logo=kubernetes" />
-  <img src="https://img.shields.io/badge/Jenkins-black?style=for-the-badge&logo=jenkins" />
-</p>
-
-<!-- <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?size=28&width=900&duration=3000&color=00BFFF&background=00000000&center=true&vCenter=true&lines=Hello%20Dosto%20👋;Typing%20SVG%20Demo;Add%20like%20this" alt="Typing SVG" />
-</p> -->
 </div>
 ## About Me
 I’m Jeni Patel, a Cloud & DevOps engineer with 5+ years of experience building resilient infrastructure and reliable CI/CD practices. I specialize in designing and automating infrastructure on AWS (and multi-cloud), container orchestration with Kubernetes, and end-to-end pipeline delivery with Jenkins/GitHub Actions.
