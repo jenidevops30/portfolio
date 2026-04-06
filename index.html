@@ -19,7 +19,7 @@
     <header>
         <nav>
             <div class="logo">
-                <i class="devicon-bash-plain"></i> JeniPatel<span class="highlight">.</span>DevOps
+                <i class="devicon-bash-plain"></i> Jeni<span class="highlight">.</span>DevOps
             </div>
             <input type="checkbox" id="nav-toggle" class="nav-toggle">
             <label for="nav-toggle" class="nav-toggle-label">
@@ -614,9 +614,9 @@
                     <i class="fab fa-linkedin"></i>
                     <p class="linkedin-username">Jeni Patel</p>
                 </a>
-                <a href="https://github.com/jeniaws3095" target="_blank" class="contact-item modern-card">
+                <a href="https://github.com/jenidevops30" target="_blank" class="contact-item modern-card">
                     <i class="fab fa-github"></i>
-                    <p class="github-username">jeniaws3095</p>
+                    <p class="github-username">jenidevops30</p>
                 </a>
             </div>
         </div>
@@ -690,7 +690,7 @@
 
             /* 2. GitHub Repos Fetch */
             const reposContainer = document.getElementById('repos-container');
-            const githubUsername = 'jeniaws3095'; // Fallback configured username 
+            const githubUsername = 'jenidevops30'; // Fallback configured username 
 
             fetch(`https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=6`)
                 .then(res => {
@@ -700,30 +700,30 @@
                 .then(data => {
                     if (data.length === 0) {
                         reposContainer.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">No repositories found. Ensure your GitHub username has public repositories.</p>';
-                        return;
-                    }
-                    reposContainer.innerHTML = data.map(repo => `
-                        <div class="project-card modern-card github-repo-card">
-                            <div class="project-header">
-                                <i class="devicon-github-original top-icon colored"></i>
-                                <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
-                            </div>
-                            <p>${repo.description || 'No description provided.'}</p>
-                            <div class="tech-stack">
-                                ${repo.language ? `<span class="badge"><i class="fas fa-code"></i> ${repo.language}</span>` : ''}
-                                <span class="badge"><i class="fas fa-star"></i> ${repo.stargazers_count}</span>
-                                <span class="badge"><i class="fas fa-code-branch"></i> ${repo.forks_count}</span>
-                            </div>
+                    return;
+                }
+                reposContainer.innerHTML = data.map(repo => `
+                    <div class="project-card modern-card github-repo-card">
+                        <div class="project-header">
+                            <i class="devicon-github-original top-icon colored"></i>
+                            <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
                         </div>
-                    `).join('');
-                })
-                .catch(err => {
+                        <p>${repo.description || 'No description provided.'}</p>
+                        <div class="tech-stack">
+                            ${repo.language ? `<span class="badge"><i class="fas fa-code"></i> ${repo.language}</span>` : ''}
+                            <span class="badge"><i class="fas fa-star"></i> ${repo.stargazers_count}</span>
+                            <span class="badge"><i class="fas fa-code-branch"></i> ${repo.forks_count}</span>
+                        </div>
+                    </div>
+                `).join('');
+                    })
+                    .catch(err => {
                     reposContainer.innerHTML = `<div class="project-card modern-card github-repo-card" style="grid-column: 1/-1; text-align: center;">
-                        <i class="devicon-github-original" style="font-size: 3rem; margin-bottom: 1rem; color: var(--primary-color);"></i>
+                                <i class="devicon-github-original" style="font-size: 3rem; margin-bottom: 1rem; color: var(--primary-color);"></i>
                         <h3>GitHub Connection</h3>
                         <p>Configure your valid GitHub username in the index.html script block to auto-load your latest open-source repositories.</p>
-                    </div>`;
-                });
+                            </div>`;
+                    });
 
             /* 3. Intersection Observer for scroll animations (fade in) */
             const observer = new IntersectionObserver((entries) => {
