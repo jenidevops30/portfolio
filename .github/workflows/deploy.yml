@@ -1,4 +1,4 @@
-name: Deploy Portfolio to S3
+name: Deploy Portfolio to S3 + CloudFront
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to S3
+    name: Deploy to S3 & Invalidate CloudFront
     runs-on: ubuntu-latest
 
     steps:
@@ -33,10 +33,18 @@ jobs:
             --exclude "*.jpeg" \
             --exclude "*.jpg" \
             --delete
+          echo "✅ S3 sync complete → s3://jeni-portfolio"
 
-      # 4. (Optional) Invalidate CloudFront cache if you have a distribution
-      # - name: Invalidate CloudFront Cache
-      #   run: |
-      #     aws cloudfront create-invalidation \
-      #       --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
-      #       --paths "/*"
+      # 4. Invalidate CloudFront cache so changes go live immediately
+      - name: Invalidate CloudFront Cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*"
+          echo "✅ CloudFront cache invalidated → https://d3n8nd35qm5vvz.cloudfront.net"
+
+      # 5. Print live URL in the Actions log
+      - name: Deployment Summary
+        run: |
+          echo "🚀 Portfolio deployed successfully!"
+          echo "🌐 Live URL: https://d3n8nd35qm5vvz.cloudfront.net"
