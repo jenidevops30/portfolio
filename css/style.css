@@ -27,11 +27,7 @@
 }
 
 * {
-<<<<<<< HEAD
     margin: 0;
-=======
-    margin: auto;
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     padding: 0;
     box-sizing: border-box;
 }
@@ -39,10 +35,6 @@
 html {
     scroll-behavior: smooth;
     overflow-x: hidden;
-<<<<<<< HEAD
-    width: 100%;
-=======
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
 }
 
 body {
@@ -51,11 +43,6 @@ body {
     color: var(--text-color);
     background-color: var(--bg-color);
     overflow-x: hidden;
-<<<<<<< HEAD
-    width: 100%;
-    -webkit-font-smoothing: antialiased;
-=======
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
 }
 
 /* Scrollbar */
@@ -78,42 +65,9 @@ body {
 
 .container {
     width: 100%;
-<<<<<<< HEAD
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 5%;
-}
-
-@media (min-width: 1400px) {
-    .container {
-        max-width: 1600px;
-    }
-
-    .hero-profile-img {
-        width: 280px;
-        height: 280px;
-    }
-
-    .hero-content h1 {
-        font-size: 4rem;
-    }
-
-    .hero-content .subtitle {
-        font-size: 1.6rem;
-    }
-
-    .hero-content {
-        gap: 2.5rem;
-    }
-
-    .terminal-window {
-        min-height: 480px;
-    }
-=======
     max-width: none;
     margin: 0 auto;
     padding: 0 2%;
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
 }
 
 /* Text container for readable line lengths on widescreen */
@@ -134,15 +88,6 @@ h5 {
 /* Animations */
 .hidden-on-scroll {
     opacity: 0;
-<<<<<<< HEAD
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.show-on-scroll {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-=======
     transform: translateY(30px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
@@ -150,7 +95,6 @@ h5 {
 .show-on-scroll {
     opacity: 1;
     transform: translateY(0);
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
 }
 
 /* Header & Navigation */
@@ -220,16 +164,8 @@ nav a:hover {
 .hero {
     min-height: 100vh;
     display: flex;
-<<<<<<< HEAD
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 80px 0;
-=======
     align-items: center;
     padding-top: 80px;
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     position: relative;
     overflow: hidden;
 }
@@ -262,11 +198,7 @@ nav a:hover {
 }
 
 .hero-profile-container {
-<<<<<<< HEAD
-    margin: 0 auto 2rem;
-=======
     margin-bottom: 2rem;
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     position: relative;
     width: fit-content;
 }
@@ -296,17 +228,6 @@ nav a:hover {
 }
 
 .hero-content h1 {
-<<<<<<< HEAD
-    font-size: clamp(2.5rem, 10vw, 4.5rem);
-    margin-bottom: 0.5rem;
-    color: var(--text-color);
-    font-weight: 700;
-    text-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
-}
-
-.subtitle {
-    font-size: clamp(1rem, 4vw, 1.5rem);
-=======
     font-size: clamp(3rem, 8vw, 4.5rem);
     margin-bottom: 0.5rem;
     color: var(--text-color);
@@ -315,7 +236,6 @@ nav a:hover {
 
 .subtitle {
     font-size: clamp(1.1rem, 3vw, 1.5rem);
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     color: var(--secondary-color);
     margin-bottom: 2rem;
     font-weight: 400;
@@ -331,15 +251,9 @@ nav a:hover {
 .badge {
     background-color: var(--primary-color-dim);
     color: var(--primary-color);
-<<<<<<< HEAD
     padding: 0.5rem 1rem;
     border-radius: 2rem;
     font-size: 0.85rem;
-=======
-    padding: 0.5rem 1.5rem;
-    border-radius: 2rem;
-    font-size: 1.3rem;
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     font-family: var(--font-mono);
     display: flex;
     align-items: center;
@@ -467,13 +381,7 @@ nav a:hover {
 
 /* Sections Global */
 section {
-<<<<<<< HEAD
-    padding: clamp(30px, 8vw, 60px) 0 clamp(20px, 5vw, 40px);
-    width: 100%;
-    overflow-x: hidden;
-=======
     padding: 60px 0 40px;
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
 }
 
 .section-title {
@@ -513,24 +421,14 @@ section {
 }
 
 .modern-card:hover {
-<<<<<<< HEAD
-    transform: translateY(-8px);
-    border-color: var(--primary-color);
-    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 20px var(--primary-color-dim);
-=======
     transform: translateY(-5px);
     border-color: var(--primary-color-dim);
     box-shadow: 0 20px 30px -15px rgba(0, 0, 0, 0.7), 0 0 15px var(--primary-color-dim);
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
 }
 
 /* About Section */
 .about-text p {
-<<<<<<< HEAD
-    font-size: clamp(1rem, 2.5vw, 1.15rem);
-=======
     font-size: 1.1rem;
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     color: var(--text-color-secondary);
     line-height: 1.8;
 }
@@ -538,11 +436,7 @@ section {
 /* Experience Timeline */
 .experience-timeline {
     position: relative;
-<<<<<<< HEAD
-    padding-left: clamp(1.5rem, 5vw, 3rem);
-=======
     padding-left: 3rem;
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
 }
 
 .experience-timeline::before {
@@ -639,11 +533,7 @@ section {
 }
 
 .timeline-item li {
-<<<<<<< HEAD
-    margin-bottom: 0.5rem;
-=======
     margin-bottom: 0.8rem;
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     position: relative;
     padding-left: 1.5rem;
     color: var(--text-color-secondary);
@@ -677,11 +567,7 @@ img.inline-icon {
 /* Skills Grid */
 .skills-grid {
     display: grid;
-<<<<<<< HEAD
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
-=======
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     gap: 2rem;
 }
 
@@ -735,17 +621,10 @@ img.inline-icon {
     flex-direction: column;
     align-items: center;
     background: var(--bg-color-lighter);
-<<<<<<< HEAD
-    padding: 1rem;
-    border-radius: 50%;
-    width: clamp(70px, 15vw, 100px);
-    height: clamp(70px, 15vw, 100px);
-=======
     padding: 1.2rem;
     border-radius: 50%;
     width: 100px;
     height: 100px;
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     justify-content: center;
     border: 2px solid transparent;
     position: relative;
@@ -760,13 +639,8 @@ img.inline-icon {
 }
 
 .pipeline-node i {
-<<<<<<< HEAD
-    font-size: clamp(1.2rem, 4vw, 2.2rem);
-    margin-bottom: 0.3rem;
-=======
     font-size: 2.2rem;
     margin-bottom: 0.5rem;
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     color: var(--text-color);
     transition: var(--transition);
 }
@@ -776,15 +650,9 @@ img.inline-icon {
 }
 
 .pipeline-node img {
-<<<<<<< HEAD
-    height: clamp(1.2rem, 4vw, 2.2rem);
-    width: auto;
-    margin-bottom: 0.3rem;
-=======
     height: 2.2rem;
     width: auto;
     margin-bottom: 0.5rem;
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     transition: var(--transition);
 }
 
@@ -950,11 +818,7 @@ img.inline-icon {
 /* Projects Grid */
 .projects-grid {
     display: grid;
-<<<<<<< HEAD
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
-=======
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     gap: 2rem;
 }
 
@@ -1147,11 +1011,7 @@ img.top-icon[src*="logix"] {
 /* Footer */
 footer {
     text-align: center;
-<<<<<<< HEAD
-    padding: 1rem;
-=======
     padding: 2rem;
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     color: var(--text-color-secondary);
     font-family: var(--font-mono);
     font-size: 0.85rem;
@@ -1185,23 +1045,7 @@ footer {
     .hero-container {
         grid-template-columns: 1fr;
         text-align: center;
-<<<<<<< HEAD
-        padding-top: 2rem;
-        gap: 2rem;
-    }
-
-    .hero-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .hero-profile-img {
-        width: 180px;
-        height: 180px;
-=======
         padding-top: 4rem;
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     }
 
     .tech-badges {
@@ -1211,30 +1055,11 @@ footer {
     .pipeline-container {
         justify-content: flex-start;
     }
-<<<<<<< HEAD
-
-    .terminal-window {
-        max-width: 600px;
-        margin: 0 auto;
-    }
-}
-
-@media (max-width: 768px) {
-    nav {
-        padding: 0 5%;
-    }
-
-    .nav-toggle-label {
-        display: block;
-        position: relative;
-        z-index: 1001;
-=======
 }
 
 @media (max-width: 768px) {
     .nav-toggle-label {
         display: block;
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     }
 
     .nav-links {
@@ -1242,28 +1067,6 @@ footer {
         top: 0;
         right: -100%;
         height: 100vh;
-<<<<<<< HEAD
-        width: 70%;
-        max-width: 300px;
-        background: rgba(11, 14, 20, 0.98);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transition: right 0.4s cubic-bezier(0.77, 0.2, 0.05, 1);
-        z-index: 1000;
-        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
-        border-left: 1px solid rgba(0, 255, 204, 0.1);
-        padding: 2rem;
-    }
-
-    .nav-links li {
-        margin: 1.5rem 0;
-        opacity: 0;
-        transform: translateX(20px);
-        transition: all 0.3s ease;
-=======
         width: 100%;
         background-color: var(--nav-bg);
         backdrop-filter: blur(15px);
@@ -1272,22 +1075,12 @@ footer {
         align-items: center;
         transition: var(--transition);
         z-index: 999;
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     }
 
     .nav-toggle:checked~.nav-links {
         right: 0;
     }
 
-<<<<<<< HEAD
-    .nav-toggle:checked~.nav-links li {
-        opacity: 1;
-        transform: translateX(0);
-        transition-delay: calc(0.1s * var(--i));
-    }
-
-=======
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     .nav-toggle:checked+.nav-toggle-label span:nth-child(1) {
         transform: rotate(45deg) translate(5px, 5px);
     }
@@ -1300,68 +1093,10 @@ footer {
         transform: rotate(-45deg) translate(7px, -6px);
     }
 
-<<<<<<< HEAD
-    /* Prevent scrolling when menu is open */
-    body:has(.nav-toggle:checked) {
-        overflow: hidden;
-    }
-
-    .hero-profile-img {
-        width: 150px;
-        height: 150px;
-    }
-
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
-
-    .modern-card {
-        padding: 1rem;
-    }
-
-    .tech-badges {
-        gap: 0.4rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .badge {
-        padding: 0.35rem 0.7rem;
-        font-size: 0.75rem;
-    }
-
-    .project-card p {
-        margin-bottom: 1rem;
-    }
-
-    .project-header {
-        margin-bottom: 1rem;
-        gap: 0.8rem;
-    }
-
-    .section-title {
-        margin-bottom: 1.5rem;
-    }
-
-    .timeline-item {
-        margin-bottom: 1.5rem;
-    }
-
-    .subtitle {
-        font-size: 1.1rem;
-        margin-bottom: 1.2rem;
-    }
-
-    .terminal-body {
-        padding: 1rem;
-        font-size: 0.85rem;
-    }
-
-=======
     .nav-toggle:checked~* {
         overflow: hidden;
     }
 
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
     .experience-timeline {
         padding-left: 1.5rem;
     }
@@ -1384,17 +1119,6 @@ footer {
         flex-direction: column;
         align-items: center;
     }
-<<<<<<< HEAD
-
-    .section-title::after {
-        display: none;
-    }
-
-    .section-title {
-        font-size: 1.8rem;
-    }
-=======
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
 }
 
 /* ============================================
@@ -1488,7 +1212,6 @@ footer {
     from {
         opacity: 0;
     }
-
     to {
         opacity: 1;
     }
@@ -1529,340 +1252,5 @@ footer {
 .badge img.aws-icon {
     height: 1.4rem;
     width: auto;
-<<<<<<< HEAD
-}
-
-/* Technical Skills Matrix */
-.skills-matrix-container {
-    margin-bottom: 3rem;
-    padding: 2.5rem;
-}
-
-.matrix-title {
-    margin-bottom: 2rem;
-    font-size: 1.5rem;
-    color: var(--text-color);
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-}
-
-.matrix-title i {
-    color: var(--primary-color);
-}
-
-.matrix-table-wrapper {
-    overflow-x: auto;
-}
-
-.matrix-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.95rem;
-}
-
-.matrix-table th,
-.matrix-table td {
-    padding: 1.2rem;
-    text-align: left;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.matrix-table th {
-    color: var(--primary-color);
-    font-family: var(--font-mono);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 0.8rem;
-}
-
-.matrix-table td:first-child {
-    width: 150px;
-    font-weight: 700;
-    color: var(--text-color);
-}
-
-.matrix-tag {
-    background: var(--primary-color-dim);
-    color: var(--primary-color);
-    padding: 0.3rem 0.8rem;
-    border-radius: 4px;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    border: 1px solid rgba(0, 255, 204, 0.2);
-}
-
-.matrix-table tr:last-child td {
-    border-bottom: none;
-}
-
-.matrix-table tr:hover {
-    background: rgba(255, 255, 255, 0.02);
-}
-
-@media (max-width: 768px) {
-    .matrix-table td:first-child {
-        width: 100px;
-    }
-}
-
-/* ============================================
-   Hero CTA Group (dual buttons)
-   ============================================ */
-.hero-cta-group {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-}
-
-.cta-secondary {
-    background-color: transparent;
-    color: var(--text-color-secondary);
-    border-color: var(--bg-color-lighter);
-}
-
-.cta-secondary:hover {
-    color: var(--primary-color);
-    border-color: var(--primary-color);
-    background-color: var(--primary-color-dim);
-}
-
-/* ============================================
-   Project Links (GitHub / Live site buttons)
-   ============================================ */
-.project-links {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    margin-top: 1.2rem;
-    flex-wrap: wrap;
-}
-
-.project-link-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.45rem 1rem;
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--primary-color);
-    border: 1px solid rgba(0, 255, 204, 0.3);
-    border-radius: 6px;
-    text-decoration: none;
-    background: var(--primary-color-dim);
-    transition: var(--transition);
-}
-
-.project-link-btn:hover {
-    background: rgba(0, 255, 204, 0.2);
-    border-color: var(--primary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 255, 204, 0.15);
-}
-
-.project-impact-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--text-color-secondary);
-    padding: 0.4rem 0.8rem;
-    border: 1px solid var(--bg-color-lighter);
-    border-radius: 6px;
-    background: rgba(255, 255, 255, 0.02);
-}
-
-.project-impact-tag i {
-    color: var(--primary-color);
-    font-size: 0.7rem;
-}
-
-/* ============================================
-   Learning Progress Bars
-   ============================================ */
-.learning-list {
-    list-style: none;
-}
-
-.learning-list li {
-    margin-bottom: 1.2rem;
-    display: block !important;
-    transform: none !important;
-    padding-left: 0 !important;
-    color: var(--text-color-secondary) !important;
-}
-
-.learning-list li:hover {
-    transform: none !important;
-    color: var(--text-color-secondary) !important;
-}
-
-.learning-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.4rem;
-    font-size: 0.9rem;
-}
-
-.learning-header span:first-child {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--text-color-secondary);
-}
-
-.learning-header span:first-child i {
-    color: var(--primary-color);
-    width: 16px;
-}
-
-.learning-pct {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--primary-color);
-    font-weight: 600;
-}
-
-.in-progress-tag {
-    background: rgba(255, 189, 46, 0.15);
-    color: #ffbd2e !important;
-    padding: 0.15rem 0.5rem;
-    border-radius: 4px;
-    border: 1px solid rgba(255, 189, 46, 0.3);
-    font-size: 0.7rem !important;
-}
-
-.learning-bar {
-    width: 100%;
-    height: 5px;
-    background: var(--bg-color-lighter);
-    border-radius: 3px;
-    overflow: hidden;
-    margin-bottom: 0.3rem;
-}
-
-.learning-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--primary-color), rgba(0, 255, 204, 0.5));
-    border-radius: 3px;
-    transition: width 1s ease;
-}
-
-.cert-fill {
-    background: linear-gradient(90deg, #ffbd2e, rgba(255, 189, 46, 0.5));
-}
-
-.learning-date {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--text-color-secondary);
-    opacity: 0.6;
-}
-
-/* ============================================
-   IaC Code Samples Section
-   ============================================ */
-#iac-samples {
-    padding-bottom: 0;
-}
-
-.iac-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
-    gap: 2rem;
-}
-
-.iac-card {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-}
-
-.iac-card-header {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    margin-bottom: 1.2rem;
-    flex-wrap: wrap;
-}
-
-.iac-card-header i {
-    font-size: 1.8rem;
-    color: var(--primary-color);
-}
-
-.iac-card-header h3 {
-    font-size: 1rem;
-    color: var(--text-color);
-    flex: 1;
-}
-
-.iac-lang-tag {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    padding: 0.2rem 0.6rem;
-    border: 1px solid rgba(0, 255, 204, 0.25);
-    border-radius: 4px;
-    color: var(--primary-color);
-    background: var(--primary-color-dim);
-}
-
-.code-block {
-    background: #0d1117;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 8px;
-    padding: 1.2rem;
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    line-height: 1.7;
-    overflow-x: auto;
-    flex: 1;
-    color: #c9d1d9;
-    margin: 0;
-    white-space: pre;
-}
-
-.code-comment {
-    color: #8b949e;
-    font-style: italic;
-}
-
-.code-keyword {
-    color: #ff7b72;
-}
-
-.code-string {
-    color: #a5d6ff;
-}
-
-.code-number {
-    color: #79c0ff;
-}
-
-@media (max-width: 768px) {
-    .hero-cta-group {
-        justify-content: center;
-    }
-
-    .iac-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (min-width: 1200px) {
-    .hero-container {
-        gap: clamp(4rem, 8vw, 10rem);
-    }
-
-    .terminal-window {
-        max-width: 850px;
-    }
-=======
     filter: brightness(0) invert(1);
->>>>>>> c6bd18e (feat: initialize portfolio website with responsive layout and professional experience sections)
 }
