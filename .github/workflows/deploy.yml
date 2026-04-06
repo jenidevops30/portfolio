@@ -39,7 +39,7 @@ jobs:
       - name: Invalidate CloudFront Cache
         run: |
           aws cloudfront create-invalidation \
-            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --distribution-id E1P40QNZBIV4TP \
             --paths "/*"
           echo "✅ CloudFront cache invalidated → https://d3n8nd35qm5vvz.cloudfront.net"
 
