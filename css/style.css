@@ -253,7 +253,7 @@ nav a:hover {
     color: var(--primary-color);
     padding: 0.5rem 1rem;
     border-radius: 2rem;
-    font-size: 0.85rem;
+    font-size: 1.2rem;
     font-family: var(--font-mono);
     display: flex;
     align-items: center;
@@ -1212,6 +1212,7 @@ footer {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
