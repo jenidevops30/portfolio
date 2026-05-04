@@ -3,11 +3,11 @@ name: Deploy Portfolio to S3 + CloudFront
 on:
   push:
     branches:
-      - main
+      - v2
 
 jobs:
   deploy:
-    name: Deploy to S3 & Invalidate CloudFront
+    name: Build & Deploy
     runs-on: ubuntu-latest
 
     steps:
@@ -15,7 +15,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. Configure AWS credentials from GitHub Secrets
+      # 2. Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      # 3. Install dependencies and build
+      - name: Install & Build
+        run: |
+          npm ci
+          npm run build
+
+      # 4. Configure AWS credentials from GitHub Secrets
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -23,27 +36,21 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      # 3. Sync files to S3 (exclude .git, .github, README)
+      # 5. Sync build output (dist/) to S3
       - name: Deploy to S3
         run: |
-          aws s3 sync . s3://jeni-portfolio \
-            --exclude ".git/*" \
-            --exclude ".github/*" \
-            --exclude "README.md" \
-            --exclude "*.jpeg" \
-            --exclude "*.jpg" \
-            --delete
+          aws s3 sync dist/ s3://jeni-portfolio --delete
           echo "✅ S3 sync complete → s3://jeni-portfolio"
 
-      # 4. Invalidate CloudFront cache so changes go live immediately
+      # 6. Invalidate CloudFront cache
       - name: Invalidate CloudFront Cache
         run: |
           aws cloudfront create-invalidation \
             --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
             --paths "/*"
-          echo "✅ CloudFront cache invalidated → https://d3n8nd35qm5vvz.cloudfront.net"
+          echo "✅ CloudFront cache invalidated"
 
-      # 5. Print live URL in the Actions log
+      # 7. Print live URL
       - name: Deployment Summary
         run: |
           echo "🚀 Portfolio deployed successfully!"
