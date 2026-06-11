@@ -1724,7 +1724,7 @@ footer {
 }
 
 .terminal-header {
-  background: rgba(15, 23, 42, 0.95);
+  background: hsla(220, 20%, 5%, 0.5);
   padding: 10px 20px;
   display: flex;
   align-items: center;
@@ -1776,7 +1776,7 @@ footer {
 }
 
 .terminal-body {
-  background: rgba(10, 15, 30, 0.9);
+  background: transparent;
   padding: 20px;
   min-height: 380px;
   max-height: 480px;
