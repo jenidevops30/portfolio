@@ -4,7 +4,7 @@ const SkillCard = ({ name, category, icon_url }) => {
   return (
     <div className="skill-card">
       <div className="skill-icon">
-        <img src={icon_url} alt={name} />
+        <img src={icon_url} alt={name} loading="lazy" />
       </div>
       <div className="skill-name">{name}</div>
       <div className="skill-lvl">{category}</div>

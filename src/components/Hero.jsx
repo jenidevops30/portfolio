@@ -1,41 +1,117 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-const Hero = () => {
-  const scrollTo = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      window.scrollTo({
-        top: element.offsetTop - 60,
-        behavior: 'smooth',
-      });
-    }
-  };
+const Hero = ({ onNavigate }) => {
+  const [line1, setLine1] = useState('');
+  const [line2, setLine2] = useState('');
+  const [line3, setLine3] = useState('');
+  const [activeLine, setActiveLine] = useState(1); // 1, 2, 3, or null
+
+  useEffect(() => {
+    let isMounted = true;
+    const l1Text = 'Architecting';
+    const l2Text = 'Scalable Cloud';
+    const l3Text = 'Ecosystems';
+    const speed = 70; // ms per character
+
+    const type = async () => {
+      // Type Line 1
+      for (let i = 0; i <= l1Text.length; i++) {
+        if (!isMounted) return;
+        setLine1(l1Text.substring(0, i));
+        await new Promise((r) => setTimeout(r, speed));
+      }
+      if (!isMounted) return;
+      setActiveLine(2);
+
+      // Type Line 2
+      for (let i = 0; i <= l2Text.length; i++) {
+        if (!isMounted) return;
+        setLine2(l2Text.substring(0, i));
+        await new Promise((r) => setTimeout(r, speed));
+      }
+      if (!isMounted) return;
+      setActiveLine(3);
+
+      // Type Line 3
+      for (let i = 0; i <= l3Text.length; i++) {
+        if (!isMounted) return;
+        setLine3(l3Text.substring(0, i));
+        await new Promise((r) => setTimeout(r, speed));
+      }
+      if (!isMounted) return;
+      setActiveLine(null); // Finished
+    };
+
+    // Quick delay before starting typing
+    setTimeout(() => {
+      if (isMounted) type();
+    }, 500);
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const techIcons = [
+    { name: 'AWS', url: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg', id: 'aws-logo' },
+    { name: 'Terraform', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg' },
+    { name: 'Docker', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
+    { name: 'Linux', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' }
+  ];
 
   return (
     <section id="hero">
-      <div className="container">
-        <div className="hero-tag"><span></span> Open to new opportunities</div>
-        <h1 className="hero-title">Hi, I'm <span className="accent">Jeni Patel</span></h1>
-        <h1 className="hero-title"
-          style={{ fontSize: 'clamp(1.8rem,4vw,3rem)', fontWeight: 600, color: 'var(--muted)', WebkitTextFillColor: 'unset', background: 'none' }}>
-          Cloud & DevOps Architect</h1>
-        <p className="hero-sub">Cloud & DevOps Architect with 6+ years of experience transforming complex infrastructure into high-availability, automated CI/CD ecosystems that drive operational excellence.</p>
-        <div className="hero-btns">
-          <button className="btn-primary" onClick={() => scrollTo('projects')}>View My Work</button>
-          <button className="btn-outline" onClick={() => scrollTo('contact')}>Get In Touch</button>
+      <div className="container hero-container">
+        <div className="hero-content">
+          <div className="glass-terminal-panel">
+            <div className="hero-tag badge-pulse-animation" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(62, 201, 168, 0.1)', border: '1px solid rgba(62, 201, 168, 0.25)', borderRadius: '100px', padding: '6px 16px', fontSize: '0.82rem', color: 'var(--accent)', marginBottom: '1.5rem' }}>
+              <span className="live-dot" style={{ background: 'var(--accent)', boxShadow: '0 0 10px var(--accent)' }}></span>
+              Systems Online
+            </div>
+            
+            <h1 className="hero-title" style={{ minHeight: '180px', display: 'flex', flexDirection: 'column', gap: '0.5rem', lineHeight: '1.2' }}>
+              <span className={activeLine === 1 ? 'terminal-cursor' : ''}>{line1}</span>
+              <span className={`accent ${activeLine === 2 ? 'terminal-cursor' : ''}`}>{line2}</span>
+              <span className={activeLine === 3 ? 'terminal-cursor' : ''}>{line3}</span>
+            </h1>
+            
+            <p className="hero-sub" style={{ maxWidth: '100%', marginTop: '1.5rem', marginBottom: '2.5rem' }}>
+              DevOps Engineer &amp; SRE specializing in highly available Kubernetes architectures, immutable infrastructure as code, and zero-downtime automated deployment pipelines.
+            </p>
+            
+            <div className="hero-btns">
+              <button className="btn-primary" onClick={() => onNavigate('projects')}>View Infrastructure</button>
+              <button className="btn-outline" onClick={() => onNavigate('contact')}>Initialize Contact</button>
+              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-outline" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                <span>📄</span> Download Resume
+              </a>
+            </div>
+          </div>
+          <div className="hero-stats">
+            <div>
+              <div className="stat-num">9+</div>
+              <div className="stat-label">Years Experience</div>
+            </div>
+            <div>
+              <div className="stat-num">100+</div>
+              <div className="stat-label">Deployments Handled</div>
+            </div>
+            <div>
+              <div className="stat-num">99.99%</div>
+              <div className="stat-label">Availability Target</div>
+            </div>
+          </div>
         </div>
-        <div className="hero-stats">
-          <div>
-            <div className="stat-num">9+</div>
-            <div className="stat-label">Years Experience</div>
-          </div>
-          <div>
-            <div className="stat-num">100+</div>
-            <div className="stat-label">Deployments Handled</div>
-          </div>
-          <div>
-            <div className="stat-num">99.99%</div>
-            <div className="stat-label">Availability Target</div>
+
+        <div className="hero-visual">
+          <div className="tech-cloud">
+            {techIcons.map((icon, index) => (
+              <div key={index} className={`tech-icon-item item-${index}`} id={icon.id || ''}>
+                <img src={icon.url} alt={icon.name} />
+                <div className="icon-glow"></div>
+              </div>
+            ))}
+            <div className="cloud-center-glow"></div>
           </div>
         </div>
       </div>

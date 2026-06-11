@@ -10,11 +10,29 @@ const About = () => {
             <h2 className="section-title">Architecting scalable, secure, and cost-efficient cloud environments</h2>
             <p className="about-text">I specialize in building high-availability cloud infrastructure and automated CI/CD ecosystems that bridge the gap between development and operations. My approach focuses on Infrastructure as Code (IaC), robust observability, and continuous security integration.</p>
             <p className="about-text">With a track record of successful production migrations and significant cost optimizations, I am dedicated to driving operational excellence through automation and reliability engineering.</p>
-            <div className="highlight-chips">
-              <span className="chip">IaC Specialist</span>
-              <span className="chip">Cloud Migration</span>
-              <span className="chip">Cost Optimization</span>
-              <span className="chip">DevSecOps</span>
+            
+            <div className="specialization-grid">
+              <div className="spec-item">
+                <div className="spec-icon">🤖</div>
+                <div className="spec-info">
+                  <h3>AI Infrastructure</h3>
+                  <p>AIOps & GPU Orchestration</p>
+                </div>
+              </div>
+              <div className="spec-item">
+                <div className="spec-icon">💰</div>
+                <div className="spec-info">
+                  <h3>FinOps Elite</h3>
+                  <p>Cost Management & Savings</p>
+                </div>
+              </div>
+              <div className="spec-item">
+                <div className="spec-icon">⚡</div>
+                <div className="spec-info">
+                  <h3>Multi-Region DR</h3>
+                  <p>ap-south-1 & ap-south-2</p>
+                </div>
+              </div>
             </div>
           </div>
           <div className="about-img">

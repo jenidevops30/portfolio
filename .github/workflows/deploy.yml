@@ -39,8 +39,8 @@ jobs:
       # 5. Sync build output (dist/) to S3
       - name: Deploy to S3
         run: |
-          aws s3 sync dist/ s3://jeni-portfolio --delete
-          echo "✅ S3 sync complete → s3://jeni-portfolio"
+          aws s3 sync dist/ s3://${{ secrets.S3_BUCKET_NAME }} --delete
+          echo "✅ S3 sync complete → s3://${{ secrets.S3_BUCKET_NAME }}"
 
       # 6. Invalidate CloudFront cache
       - name: Invalidate CloudFront Cache
@@ -53,5 +53,6 @@ jobs:
       # 7. Print live URL
       - name: Deployment Summary
         run: |
-          echo "🚀 Portfolio deployed successfully!"
-          echo "🌐 Live URL: https://d3n8nd35qm5vvz.cloudfront.net"
+          echo "🚀 DevOps Portfolio deployed successfully!"
+          echo "🌐 Environment: Production (AWS S3 + CloudFront)"
+          echo "📊 Status: Live"
