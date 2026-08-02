@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import BlogCard from './BlogCard';
 import BlogModal from './BlogModal';
 

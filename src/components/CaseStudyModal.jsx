@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 const CaseStudyModal = ({ isOpen, onClose, project }) => {
   useEffect(() => {

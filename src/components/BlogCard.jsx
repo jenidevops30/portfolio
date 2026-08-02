@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import BlogModal from './BlogModal';
 
 const BlogCard = (post) => {
-  const { title, excerpt, date, read_time, tags, image, content } = post;
+  const { title, excerpt, date, read_time, tags, image } = post;
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (

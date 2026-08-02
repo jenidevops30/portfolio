@@ -1,4 +1,3 @@
-import React from 'react';
 
 const TimelineItem = ({ date, role, company, description }) => {
   return (

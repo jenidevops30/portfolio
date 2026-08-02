@@ -1,4 +1,3 @@
-import React from 'react';
 
 const SkillCard = ({ name, category, icon_url }) => {
   return (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const Hero = ({ onNavigate }) => {
   const [line1, setLine1] = useState('');

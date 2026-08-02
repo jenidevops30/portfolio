@@ -7,28 +7,29 @@ on:
 
 jobs:
   deploy:
-    name: Build & Deploy
+    name: Build & Deploy Portfolio
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout the repo
-      - name: Checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # 2. Setup Node.js
-      - name: Setup Node.js
+      - name: Setup Node.js (v22)
         uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: 'npm'
 
-      # 3. Install dependencies and build
-      - name: Install & Build
+      - name: Install Dependencies
         run: |
+          echo "📦 Installing npm dependencies..."
           npm ci
+
+      - name: Build React Application
+        run: |
+          echo "⚡ Compiling React app with Vite..."
           npm run build
 
-      # 4. Configure AWS credentials from GitHub Secrets
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -36,23 +37,24 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      # 5. Sync build output (dist/) to S3
       - name: Deploy to S3
         run: |
-          aws s3 sync dist/ s3://${{ secrets.S3_BUCKET_NAME }} --delete
-          echo "✅ S3 sync complete → s3://${{ secrets.S3_BUCKET_NAME }}"
+          echo "🚀 Syncing dist/ folder to S3 bucket (jeni-portfolio)..."
+          aws s3 sync dist/ s3://jeni-portfolio --delete
+          echo "✅ S3 sync complete → s3://jeni-portfolio"
 
-      # 6. Invalidate CloudFront cache
       - name: Invalidate CloudFront Cache
         run: |
+          echo "🔄 Invalidating CloudFront cache..."
           aws cloudfront create-invalidation \
             --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
             --paths "/*"
           echo "✅ CloudFront cache invalidated"
 
-      # 7. Print live URL
       - name: Deployment Summary
         run: |
-          echo "🚀 DevOps Portfolio deployed successfully!"
-          echo "🌐 Environment: Production (AWS S3 + CloudFront)"
-          echo "📊 Status: Live"
+          echo "=================================================="
+          echo "🚀 Portfolio deployed successfully!"
+          echo "🌐 Live URL: https://jenidevops.in"
+          echo "📦 Target S3: s3://jeni-portfolio"
+          echo "=================================================="
