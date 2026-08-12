@@ -321,10 +321,19 @@ export const PORTFOLIO_DATA = {
       company: "Webcontrive",
       date_range: "NOVEMBER 2025 – PRESENT",
       description: [
-        "Led the migration of production infrastructure from DigitalOcean to AWS, reducing architectural overhead by 25%.",
-        "Architected high-availability solutions across AWS Mumbai and Hyderabad regions for geo-resilient production workloads.",
-        "Successfully migrated wishlist.webcontrive.com to AWS with ALB, ASG, and RDS.",
-        "Implemented pro-active monitoring using AWS CloudWatch, Lambda, and SNS, reducing MTTR by 40%."
+        "Manage and maintain production Linux servers and web infrastructure, performing daily health checks and monitoring CPU, memory, disk utilization, and server availability.",
+        "Proactively troubleshoot and resolve server, application, networking, and service-related issues to maintain infrastructure reliability and application availability.",
+        "Review VAPT security findings and remediate server-level vulnerabilities by strengthening web-server configurations, including implementing missing HTTP security headers.",
+        "Implemented browser-based authentication for internal application routes, adding an additional access-control layer for sensitive endpoints.",
+        "Optimized AWS infrastructure by analyzing workload utilization and right-sizing EC2 and RDS resources, reducing monthly AWS costs from approximately <strong>$800 to $327 (~59% reduction)</strong>.",
+        "Migrated production EC2 workloads from <strong>c5.xlarge to c6g.xlarge (AWS Graviton/ARM64)</strong> and optimized Auto Scaling capacity from <strong>3 instances to 2</strong>, validating application compatibility and performance.",
+        "Diagnosed and resolved production <strong>HTTP 429 rate-limit errors</strong> after the infrastructure migration by identifying incorrect client-IP handling through Cloudflare's proxy.",
+        "Updated <strong>Apache2</strong> configuration to correctly restore the original client IP from Cloudflare-proxied requests, resolving the rate-limiting issue and restoring normal application traffic.",
+        "Configure and maintain <strong>Apache2</strong> web-server environments, including reverse proxy, routing, SSL/TLS, and application-facing configurations.",
+        "Manage AWS production infrastructure using <strong>Application Load Balancer (ALB), EC2 Auto Scaling Groups, AMIs, and Launch Templates</strong> to provide scalable and highly available application infrastructure.",
+        "Configure EC2 <strong>Launch Templates and User Data scripts</strong> to automatically bootstrap new instances and prepare the application environment when instances are launched by Auto Scaling.",
+        "Automated application synchronization during instance provisioning, updating the <strong>Laravel application from Git</strong> and synchronizing the <strong>admin application using rsync</strong>.",
+        "Designed the instance bootstrap process to ensure newly launched Auto Scaling instances are automatically brought to the required application state without manual configuration."
       ]
     },
     {
