@@ -316,21 +316,6 @@ export const PORTFOLIO_DATA = {
     { title: "Best Server Support Engineer", organization: "Logix Built Solutions Ltd.", date: "OCT 2022" }
   ],
   certifications: [
-    { 
-      title: "AWS Certified Solutions Architect – Associate (SAA-C03)", 
-      issuer: "Amazon Web Services",
-      status: "In Progress · Exam Scheduled"
-    },
-    { 
-      title: "AWS Certified Solutions Architect – Professional (SAP-C02)", 
-      issuer: "Amazon Web Services",
-      status: "Roadmap 2026"
-    },
-    {
-      title: "Kubernetes Certified Administrator (CKA)",
-      issuer: "Cloud Native Computing Foundation",
-      status: "Target: Oct 2026"
-    },
     { title: "Red Hat Certified System Administrator (RHCSA)", issuer: "Red Hat", status: "Certified" },
     { title: "DevOps Professional", issuer: "Intellipaat", status: "Certified" },
     { title: "Cloud Computing Course", issuer: "Prakshal IT Academy", status: "Certified" }

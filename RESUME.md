@@ -68,10 +68,6 @@ Results-driven **DevOps Engineer** with **6+ years of experience** designing, au
 ---
 
 ## 📜 Certifications & Credentials
-
-- 🟦 **AWS Certified Solutions Architect – Associate (SAA-C03)** – *In Progress (Exam Scheduled)*
-- 🟧 **AWS Certified Solutions Architect – Professional (SAP-C02)** – *Roadmap 2026*
-- 🟧 **Kubernetes Certified Administrator (CKA)** – *Target: Oct 2026*
 - 🟩 **Red Hat Certified System Administrator (RHCSA)** – *Certified*
 - 🟩 **DevOps Professional Certification** – *Intellipaat*
 - 🏆 **Server / Cloud Support Dynamo Award** (3x Winner: 2024, 2023, 2022) – *Logix Built Solutions*
