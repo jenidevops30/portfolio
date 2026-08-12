@@ -941,6 +941,11 @@ h1.hero-title .accent {
   font-weight: 700;
 }
 
+.tl-desc strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
 /* CONTACT SECTION */
 #contact {
   text-align: center;
