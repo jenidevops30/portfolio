@@ -153,6 +153,36 @@ function App() {
             </div>
           </section>
 
+          <section id="blogs">
+            <div className="container">
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '1.5rem', marginBottom: '3rem' }}>
+                <div>
+                  <div className="section-label">Engineering Insights</div>
+                  <h2 className="section-title" style={{ margin: 0 }}>Latest Articles &amp; Blueprints</h2>
+                </div>
+                <button 
+                  className="btn-outline" 
+                  style={{ padding: '10px 24px', borderRadius: '100px', fontSize: '0.88rem' }}
+                  onClick={() => { setCurrentView('blog'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                >
+                  Explore All Articles ({blogsList.length}) →
+                </button>
+              </div>
+              <div className="blogs-grid">
+                {blogsList.slice(0, 3).map((post, index) => (
+                  <div key={index} onClick={() => { setCurrentView('blog'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} style={{ cursor: 'pointer' }}>
+                    <ProjectCard 
+                      title={post.title}
+                      badge={post.read_time}
+                      description={post.excerpt}
+                      tags={post.tags}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
           <Contact />
         </>
       ) : (
