@@ -64,14 +64,9 @@ const Hero = ({ onNavigate }) => {
       <div className="container hero-container">
         <div className="hero-content">
           <div className="glass-terminal-panel">
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '1.5rem' }}>
-              <div className="hero-tag badge-pulse-animation" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(62, 201, 168, 0.1)', border: '1px solid rgba(62, 201, 168, 0.25)', borderRadius: '100px', padding: '6px 16px', fontSize: '0.82rem', color: 'var(--accent)' }}>
-                <span className="live-dot" style={{ background: 'var(--accent)', boxShadow: '0 0 10px var(--accent)' }}></span>
-                AWS DevOps Engineer · 9+ Yrs IT · 6+ Yrs Cloud
-              </div>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(255, 153, 0, 0.12)', border: '1px solid rgba(255, 153, 0, 0.4)', borderRadius: '100px', padding: '6px 16px', fontSize: '0.82rem', color: '#FF9900' }}>
-                🏗️ Aspiring AWS Community Builder · Oct 3 Community Day
-              </div>
+            <div className="hero-tag badge-pulse-animation" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(62, 201, 168, 0.1)', border: '1px solid rgba(62, 201, 168, 0.25)', borderRadius: '100px', padding: '6px 16px', fontSize: '0.82rem', color: 'var(--accent)', marginBottom: '1.5rem' }}>
+              <span className="live-dot" style={{ background: 'var(--accent)', boxShadow: '0 0 10px var(--accent)' }}></span>
+              AWS DevOps Engineer · 9+ Yrs IT · 6+ Yrs Cloud
             </div>
             
             <h1 className="hero-title" style={{ minHeight: '180px', display: 'flex', flexDirection: 'column', gap: '0.5rem', lineHeight: '1.2' }}>
