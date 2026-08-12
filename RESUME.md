@@ -61,6 +61,11 @@ Results-driven **DevOps Engineer** with **6+ years of experience** designing, au
 📅 *September 2017 – January 2020*
 - Trained 40+ engineering students on hardware, networking, AWS cloud computing fundamentals, Linux administration, and virtualization.
 
+### **Network Engineer** | *D N K Technologies Pvt. Ltd.*
+📅 *January 2017 – August 2017*
+- **Network Infrastructure Support:** Provided core network support and troubleshooting, resolving enterprise connectivity issues.
+- **Network Configuration & Deployment:** Assisted in network setup, switch/router configuration, and infrastructure rollouts.
+
 ---
 
 ## 🚀 Key Infrastructure Projects
