@@ -14,9 +14,30 @@ import { PORTFOLIO_DATA } from './data/portfolioData';
 import './App.css';
 
 function App() {
-  const [currentView, setCurrentView] = useState('home');
+  const [currentView, setCurrentView] = useState(() => {
+    const hash = window.location.hash.toLowerCase();
+    if (hash.includes('blog') || hash.includes('article') || hash.includes('slug')) {
+      return 'blog';
+    }
+    return 'home';
+  });
+
   const { skills, projects, experience, awards, certifications, currently_learning, blogs, production_challenges } = PORTFOLIO_DATA;
   const [blogsList, setBlogsList] = useState(blogs);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.toLowerCase();
+      if (hash.includes('blog') || hash.includes('article') || hash.includes('slug')) {
+        setCurrentView('blog');
+      } else if (hash === '#home' || hash === '' || hash === '#hero') {
+        setCurrentView('home');
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   return (
     <div className="App">

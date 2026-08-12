@@ -1,6 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import BlogCard from './BlogCard';
 import BlogModal from './BlogModal';
+
+const getSlug = (post) => {
+  if (post.slug) return post.slug;
+  return post.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+};
 
 const Blog = ({ posts, onAddBlog }) => {
   const [isWriting, setIsWriting] = useState(false);
@@ -17,6 +22,56 @@ const Blog = ({ posts, onAddBlog }) => {
     tags: '',
     content: ''
   });
+
+  // Sync active article with URL Hash (e.g., #blog?slug=automating-portfolio-deployment...)
+  useEffect(() => {
+    const parseHashSlug = () => {
+      const hash = window.location.hash;
+      let targetSlug = null;
+      if (hash.includes('slug=')) {
+        targetSlug = hash.split('slug=')[1]?.split('&')[0];
+      } else if (hash.includes('#blog/') || hash.includes('#article/')) {
+        targetSlug = hash.replace(/^#(blog|article)\//, '');
+      }
+
+      if (targetSlug) {
+        const found = posts.find(p => getSlug(p) === targetSlug.toLowerCase());
+        if (found) {
+          setActiveArticle(found);
+          document.title = `${found.title} | Jeni Patel Blog`;
+          return;
+        }
+      }
+    };
+
+    parseHashSlug();
+    window.addEventListener('hashchange', parseHashSlug);
+    return () => window.removeEventListener('hashchange', parseHashSlug);
+  }, [posts]);
+
+  const openArticle = (post) => {
+    setActiveArticle(post);
+    const slug = getSlug(post);
+    window.history.replaceState(null, '', `#blog?slug=${slug}`);
+    document.title = `${post.title} | Jeni Patel Blog`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const closeArticle = () => {
+    setActiveArticle(null);
+    window.history.replaceState(null, '', '#blog');
+    document.title = 'Jeni Patel | AWS DevOps Engineer & Cloud Architect';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleCopyLink = () => {
+    if (!activeArticle) return;
+    const slug = getSlug(activeArticle);
+    const fullUrl = `${window.location.origin}${window.location.pathname}#blog?slug=${slug}`;
+    navigator.clipboard.writeText(fullUrl);
+    setCopiedLink(true);
+    setTimeout(() => setCopiedLink(false), 2500);
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -35,7 +90,10 @@ const Blog = ({ posts, onAddBlog }) => {
       .map(p => p.trim())
       .filter(p => p.length > 0);
 
+    const titleSlug = formData.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
     const newBlog = {
+      slug: titleSlug || `post-${Date.now()}`,
       title: formData.title,
       excerpt: formData.excerpt,
       read_time: formData.readTime || '5 min read',
@@ -72,12 +130,6 @@ const Blog = ({ posts, onAddBlog }) => {
   const showFeatured = selectedTag === 'All' && searchQuery === '' && filteredPosts.length > 0;
   const featuredPost = showFeatured ? filteredPosts[0] : null;
   const displayPosts = showFeatured ? filteredPosts.slice(1) : filteredPosts;
-
-  const handleCopyLink = () => {
-    navigator.clipboard.writeText(window.location.href);
-    setCopiedLink(true);
-    setTimeout(() => setCopiedLink(false), 2500);
-  };
 
   // Helper to parse markdown-like bold/code in strings
   const parseInlineText = (text) => {
@@ -193,7 +245,7 @@ const Blog = ({ posts, onAddBlog }) => {
             {/* Top Navigation */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.5rem', flexWrap: 'wrap', gap: '1rem' }}>
               <button 
-                onClick={() => { setActiveArticle(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                onClick={closeArticle}
                 className="btn-outline"
                 style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 20px', borderRadius: '100px', fontSize: '0.88rem' }}
               >
@@ -206,7 +258,7 @@ const Blog = ({ posts, onAddBlog }) => {
                   className="btn-outline"
                   style={{ padding: '8px 16px', borderRadius: '100px', fontSize: '0.82rem', color: copiedLink ? 'var(--accent)' : 'var(--text-dim)' }}
                 >
-                  {copiedLink ? '✓ Link Copied!' : '🔗 Share Link'}
+                  {copiedLink ? '✓ Share Link Copied!' : '🔗 Share Link'}
                 </button>
               </div>
             </div>
@@ -261,7 +313,7 @@ const Blog = ({ posts, onAddBlog }) => {
               </div>
 
               <button 
-                onClick={() => { setActiveArticle(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                onClick={closeArticle}
                 className="btn-primary"
                 style={{ padding: '10px 24px', borderRadius: '12px', fontSize: '0.9rem' }}
               >
@@ -512,7 +564,7 @@ const Blog = ({ posts, onAddBlog }) => {
                         <button 
                           className="btn-primary" 
                           style={{ padding: '10px 24px', fontSize: '0.88rem', borderRadius: '8px' }}
-                          onClick={() => setActiveArticle(featuredPost)}
+                          onClick={() => openArticle(featuredPost)}
                         >
                           Read Full Guide →
                         </button>
@@ -525,7 +577,7 @@ const Blog = ({ posts, onAddBlog }) => {
                 {displayPosts.length > 0 ? (
                   <div className="blogs-grid">
                     {displayPosts.map((post, index) => (
-                      <div key={index} onClick={() => setActiveArticle(post)} style={{ cursor: 'pointer' }}>
+                      <div key={index} onClick={() => openArticle(post)} style={{ cursor: 'pointer' }}>
                         <BlogCard {...post} />
                       </div>
                     ))}

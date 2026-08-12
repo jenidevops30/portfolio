@@ -89,6 +89,7 @@ export const PORTFOLIO_DATA = {
   ],
   blogs: [
     {
+      slug: "automating-portfolio-deployment-with-github-actions-and-aws",
       title: "Automating Portfolio Deployment with GitHub Actions and AWS",
       excerpt: "A deep dive into building a production-grade CI/CD pipeline for static sites using S3, CloudFront, and secure IAM protocols.",
       date: "MAY 14, 2026",
@@ -192,6 +193,7 @@ export const PORTFOLIO_DATA = {
       ]
     },
     {
+      slug: "migrating-from-digitalocean-to-aws-zero-downtime-guide",
       title: "Migrating from DigitalOcean to AWS: A Zero-Downtime Guide",
       excerpt: "Lessons learned while moving production workloads to a more scalable AWS ecosystem using ALB, Auto Scaling, and AWS DMS.",
       date: "MAY 10, 2026",
@@ -227,6 +229,7 @@ export const PORTFOLIO_DATA = {
       ]
     },
     {
+      slug: "mastering-aws-cloudwatch-logs-to-actionable-alerts",
       title: "Mastering AWS CloudWatch: From Logs to Actionable Alerts",
       excerpt: "How to set up a pro-active monitoring system using CloudWatch Metric Filters, Alarms, Lambda, and SNS.",
       date: "APR 22, 2026",
@@ -257,6 +260,7 @@ export const PORTFOLIO_DATA = {
       ]
     },
     {
+      slug: "infrastructure-as-code-terraform-best-practices-for-teams",
       title: "Infrastructure as Code: Terraform Best Practices for Teams",
       excerpt: "How we achieved 100% environment parity and team collaboration safety using Terraform modules and GitHub Actions.",
       date: "MAR 15, 2026",
@@ -282,6 +286,7 @@ export const PORTFOLIO_DATA = {
       ]
     },
     {
+      slug: "gitops-on-aws-eks-with-argocd-helm-production-setup-guide",
       title: "GitOps on AWS EKS with ArgoCD & Helm: Production Setup Guide",
       excerpt: "A complete step-by-step guide to setting up automated declarative Kubernetes deployment pipelines using ArgoCD and Helm on AWS EKS.",
       date: "FEB 28, 2026",
