@@ -30,7 +30,7 @@ export const PORTFOLIO_DATA = {
       tags: ["Terraform", "CloudFront", "RDS", "ASG"],
       case_study: {
         problem: "Legacy application suffered from frequent downtime and manual scaling during traffic spikes on DigitalOcean.",
-        architecture: "Two-tier HA architecture with ALB, Auto Scaling Groups, and Multi-AZ RDS. Assets served via CloudFront + S3.",
+        architecture: "Two-tier HA architecture with ALB, Auto Scaling Groups, and RDS. Assets served via CloudFront + S3.",
         architecture_image: "/assets/projects/quickhunt-arch.png",
         workflow_image: "/assets/projects/quickhunt-cicd.png",
         challenges: "Zero-downtime database migration from on-prem to RDS and implementing SSL via ACM with proper routing.",
@@ -316,6 +316,21 @@ export const PORTFOLIO_DATA = {
     { title: "Best Server Support Engineer", organization: "Logix Built Solutions Ltd.", date: "OCT 2022" }
   ],
   certifications: [
+    { 
+      title: "AWS Certified Solutions Architect – Associate (SAA-C03)", 
+      issuer: "Amazon Web Services",
+      status: "In Progress · Exam Scheduled"
+    },
+    { 
+      title: "AWS Certified Solutions Architect – Professional (SAP-C02)", 
+      issuer: "Amazon Web Services",
+      status: "Roadmap 2026"
+    },
+    {
+      title: "Kubernetes Certified Administrator (CKA)",
+      issuer: "Cloud Native Computing Foundation",
+      status: "Target: Oct 2026"
+    },
     { title: "Red Hat Certified System Administrator (RHCSA)", issuer: "Red Hat", status: "Certified" },
     { title: "DevOps Professional", issuer: "Intellipaat", status: "Certified" },
     { title: "Cloud Computing Course", issuer: "Prakshal IT Academy", status: "Certified" }
