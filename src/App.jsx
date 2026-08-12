@@ -143,7 +143,8 @@ function App() {
                       <TimelineItem 
                         key={index} 
                         role={cert.title} 
-                        company={cert.issuer} 
+                        company={cert.issuer}
+                        date={cert.status || ''}
                       />
                     ))}
                   </div>

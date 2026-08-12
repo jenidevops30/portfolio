@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jeni Patel - Senior Cloud & DevOps Architect Resume</title>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --text: #1e293b;
+      --text-light: #475569;
+      --bg-subtle: #f8fafc;
+      --border: #e2e8f0;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      line-height: 1.5;
+      background-color: #f1f5f9;
+      padding: 2rem 1rem;
+    }
+    
+    .resume-container {
+      max-width: 850px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 2.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    header {
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-top: 0.2rem;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.8rem;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+
+    .contact-info a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .section {
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.15rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--primary-dark);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.3rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .summary {
+      font-size: 0.95rem;
+      color: var(--text-light);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 0.6rem 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .skill-item strong {
+      color: #0f172a;
+    }
+
+    .job {
+      margin-bottom: 1.2rem;
+    }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.3rem;
+    }
+
+    .job-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .company {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .date-range {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 1.2rem;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+
+    li {
+      margin-bottom: 0.3rem;
+    }
+
+    .project-item {
+      margin-bottom: 0.8rem;
+    }
+
+    .project-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #0f172a;
+    }
+
+    .tags {
+      font-size: 0.8rem;
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+      .resume-container {
+        box-shadow: none;
+        padding: 0;
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="resume-container">
+  <header>
+    <h1>Jeni Patel</h1>
+    <div class="subtitle">Senior Cloud & DevOps Architect</div>
+    <div class="contact-info">
+      <span>📍 Ahmedabad, India</span>
+      <span>🌐 <a href="https://jenidevops.in">jenidevops.in</a></span>
+      <span>🐙 <a href="https://github.com/jenidevops30">github.com/jenidevops30</a></span>
+      <span>✉️ <a href="https://jenidevops.in/#contact">Contact via Portfolio</a></span>
+    </div>
+  </header>
+
+  <div class="section">
+    <h2>Executive Summary</h2>
+    <p class="summary">
+      Results-driven <strong>Cloud & DevOps Architect</strong> with <strong>6+ years of experience</strong> designing, automating, and scaling high-availability cloud infrastructure across AWS, GCP, and Azure. Specialized in <strong>Terraform (IaC)</strong>, <strong>Kubernetes (EKS/ECS)</strong>, <strong>GitOps (ArgoCD)</strong>, <strong>Zero-Trust CI/CD</strong>, and <strong>FinOps Cost Optimization</strong>. Proven track record of maintaining 99.95%+ uptime, reducing cloud costs by 40%, and executing zero-downtime migrations.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>Core Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-item"><strong>Cloud Platforms:</strong> AWS (ALB, ASG, S3, CloudFront, RDS, EKS, ECS, DMS), GCP, Azure</div>
+      <div class="skill-item"><strong>IaC & Automation:</strong> Terraform, Ansible, CloudFormation, Helm</div>
+      <div class="skill-item"><strong>Containers & Orchestration:</strong> Docker, Kubernetes (K8s), ArgoCD (GitOps), Amazon ECS</div>
+      <div class="skill-item"><strong>CI/CD Pipelines:</strong> GitHub Actions, Jenkins, GitLab CI, OIDC Authentication</div>
+      <div class="skill-item"><strong>Observability:</strong> Prometheus, Grafana, AWS CloudWatch, Datadog</div>
+      <div class="skill-item"><strong>Security & Networking:</strong> Sophos & FortiGate Firewalls, IAM, VPC, Cloudflare WAF</div>
+      <div class="skill-item"><strong>OS & Scripting:</strong> Linux (RHEL, Ubuntu), Bash Shell, Python</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Professional Experience</h2>
+    
+    <div class="job">
+      <div class="job-header">
+        <div><span class="job-title">DevOps Engineer</span> – <span class="company">Webcontrive</span></div>
+        <div class="date-range">NOV 2025 – PRESENT</div>
+      </div>
+      <ul>
+        <li>Architected production workload migration from DigitalOcean to AWS multi-region infrastructure (AWS Mumbai & Hyderabad), cutting management overhead by 25%.</li>
+        <li>Implemented Terraform IaC deployment for wishlist.webcontrive.com with ALB, Auto Scaling Groups, and Multi-AZ Amazon RDS.</li>
+        <li>Established proactive monitoring using AWS CloudWatch, Lambda, and SNS integrated with Slack/PagerDuty, reducing MTTR by 40%.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div><span class="job-title">AWS Engineer</span> – <span class="company">OptimumBrew Technology LLP</span></div>
+        <div class="date-range">APR 2025 – OCT 2025</div>
+      </div>
+      <ul>
+        <li>Maintained mission-critical AWS cloud infrastructure with 99.9% availability across production services.</li>
+        <li>Optimized Jenkins CI pipelines for Android APK packaging, improving build speeds by 30%.</li>
+        <li>Integrated SonarQube static code analysis quality gates into deployment pipelines, reducing production bugs by 20%.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div><span class="job-title">Sr. Server and Cloud Engineer</span> – <span class="company">LOGIX BUILT SOLUTIONS PVT. LTD.</span></div>
+        <div class="date-range">FEB 2022 – FEB 2025</div>
+      </div>
+      <ul>
+        <li>Architected multi-cloud infrastructure on AWS/GCP, expanding scaling throughput by 60% and slashing deployment lead times by 40%.</li>
+        <li>Deployed and managed Amazon ECS clusters for containerized microservices, reducing compute waste by 35%.</li>
+        <li>Standardized Terraform IaC blueprints across team pipelines, ensuring 100% environment parity between Dev, Staging, and Production.</li>
+        <li>Managed VMware vSphere ESXi cluster environments (80% faster VM provisioning) and enterprise Sophos firewall security frameworks.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div><span class="job-title">Network Engineer</span> – <span class="company">OptimumBrew Technology LLP</span></div>
+        <div class="date-range">JAN 2020 – JAN 2022</div>
+      </div>
+      <ul>
+        <li>Managed FortiGate Firewall security policies and network infrastructure for 60+ users.</li>
+        <li>Designed and automated backup solutions for self-hosted GitLab, NextCloud (500GB+), Zulip Chat, and Redmine project servers.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Key Infrastructure Projects</h2>
+    <div class="project-item">
+      <div class="project-title">Quickhunt AWS Migration & Architecture <span class="tags">(AWS · Terraform · ALB · RDS)</span></div>
+      <ul>
+        <li>Migrated DigitalOcean setup to a two-tier AWS infrastructure with CloudFront, S3, ALB, and Multi-AZ RDS, achieving 99.95% availability.</li>
+      </ul>
+    </div>
+
+    <div class="project-item">
+      <div class="project-title">FinOps Cloud Cost Optimization <span class="tags">(AWS · Spot Instances · Cost Governance)</span></div>
+      <ul>
+        <li>Implemented multi-account AWS governance, spot instance worker pools, and cost anomaly alerts, reducing cloud spend by 30-40%.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Certifications & Awards</h2>
+    <ul>
+      <li><strong>Red Hat Certified System Administrator (RHCSA)</strong> – Red Hat</li>
+      <li><strong>DevOps Professional Certification</strong> – Intellipaat</li>
+      <li><strong>Server / Cloud Support Dynamo Award</strong> (3x Winner: 2024, 2023, 2022) – Logix Built Solutions</li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>

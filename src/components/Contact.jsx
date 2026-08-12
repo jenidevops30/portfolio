@@ -12,6 +12,7 @@ const Contact = () => {
           
           <div className="contact-links">
             <a href="mailto:pjeni3095@gmail.com" className="contact-link">📧 Email</a>
+            <a href="tel:+918849742011" className="contact-link">📞 +91 88497 42011</a>
             <a href="https://wa.me/918849742011" className="contact-link">💬 WhatsApp</a>
             <a href="https://github.com/jenidevops30" className="contact-link">🐙 GitHub</a>
             <a href="https://www.linkedin.com/in/jeni-patel-devops-engg/" className="contact-link">💼 LinkedIn</a>

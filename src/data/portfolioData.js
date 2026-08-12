@@ -316,9 +316,21 @@ export const PORTFOLIO_DATA = {
     { title: "Best Server Support Engineer", organization: "Logix Built Solutions Ltd.", date: "OCT 2022" }
   ],
   certifications: [
-    { title: "Red Hat Certified System Administrator (RHCSA)", issuer: "Red Hat" },
-    { title: "DevOps Professional", issuer: "Intellipaat" },
-    { title: "Cloud Computing Expert Course", issuer: "Prakshal IT Academy" }
+    { 
+      title: "AWS Certified Solutions Architect – Associate (SAA-C03)", 
+      issuer: "Amazon Web Services",
+      status: "In Progress · Exam Scheduled",
+      badge_url: "https://images.credly.com/size/340x340/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png"
+    },
+    { 
+      title: "AWS Certified Solutions Architect – Professional (SAP-C02)", 
+      issuer: "Amazon Web Services",
+      status: "Roadmap 2026",
+      badge_url: "https://images.credly.com/size/340x340/images/2d84e428-9078-49b6-a804-13c15383d0de/image.png"
+    },
+    { title: "Red Hat Certified System Administrator (RHCSA)", issuer: "Red Hat", status: "Certified" },
+    { title: "DevOps Professional", issuer: "Intellipaat", status: "Certified" },
+    { title: "Cloud Computing Expert Course", issuer: "Prakshal IT Academy", status: "Certified" }
   ]
 };
 

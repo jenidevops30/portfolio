@@ -64,9 +64,14 @@ const Hero = ({ onNavigate }) => {
       <div className="container hero-container">
         <div className="hero-content">
           <div className="glass-terminal-panel">
-            <div className="hero-tag badge-pulse-animation" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(62, 201, 168, 0.1)', border: '1px solid rgba(62, 201, 168, 0.25)', borderRadius: '100px', padding: '6px 16px', fontSize: '0.82rem', color: 'var(--accent)', marginBottom: '1.5rem' }}>
-              <span className="live-dot" style={{ background: 'var(--accent)', boxShadow: '0 0 10px var(--accent)' }}></span>
-              Systems Online
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '1.5rem' }}>
+              <div className="hero-tag badge-pulse-animation" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(62, 201, 168, 0.1)', border: '1px solid rgba(62, 201, 168, 0.25)', borderRadius: '100px', padding: '6px 16px', fontSize: '0.82rem', color: 'var(--accent)' }}>
+                <span className="live-dot" style={{ background: 'var(--accent)', boxShadow: '0 0 10px var(--accent)' }}></span>
+                AWS DevOps Engineer · 9+ Yrs IT · 6+ Yrs Cloud
+              </div>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(255, 153, 0, 0.12)', border: '1px solid rgba(255, 153, 0, 0.4)', borderRadius: '100px', padding: '6px 16px', fontSize: '0.82rem', color: '#FF9900' }}>
+                🏗️ Aspiring AWS Community Builder · Oct 3 Community Day
+              </div>
             </div>
             
             <h1 className="hero-title" style={{ minHeight: '180px', display: 'flex', flexDirection: 'column', gap: '0.5rem', lineHeight: '1.2' }}>
@@ -76,7 +81,7 @@ const Hero = ({ onNavigate }) => {
             </h1>
             
             <p className="hero-sub" style={{ maxWidth: '100%', marginTop: '1.5rem', marginBottom: '2.5rem' }}>
-              DevOps Engineer &amp; SRE specializing in highly available Kubernetes architectures, immutable infrastructure as code, and zero-downtime automated deployment pipelines.
+              AWS-focused DevOps Engineer with <strong>9+ years in IT</strong> and <strong>6+ years in Cloud &amp; DevOps</strong> — building highly available infrastructure, Kubernetes platforms, and zero-downtime CI/CD pipelines. Currently pursuing <strong>AWS SAA-C03</strong>.
             </p>
             
             <div className="hero-btns">
@@ -90,15 +95,15 @@ const Hero = ({ onNavigate }) => {
           <div className="hero-stats">
             <div>
               <div className="stat-num">9+</div>
-              <div className="stat-label">Years Experience</div>
+              <div className="stat-label">Years in IT</div>
             </div>
             <div>
-              <div className="stat-num">100+</div>
-              <div className="stat-label">Deployments Handled</div>
+              <div className="stat-num">6+</div>
+              <div className="stat-label">Years Cloud &amp; DevOps</div>
             </div>
             <div>
-              <div className="stat-num">99.99%</div>
-              <div className="stat-label">Availability Target</div>
+              <div className="stat-num">99.95%</div>
+              <div className="stat-label">Uptime Achieved</div>
             </div>
           </div>
         </div>
