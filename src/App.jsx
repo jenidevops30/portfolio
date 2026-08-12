@@ -190,16 +190,23 @@ function App() {
                 </button>
               </div>
               <div className="blogs-grid">
-                {blogsList.slice(0, 3).map((post, index) => (
-                  <div key={index} onClick={() => { setCurrentView('blog'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} style={{ cursor: 'pointer' }}>
-                    <ProjectCard 
-                      title={post.title}
-                      badge={post.read_time}
-                      description={post.excerpt}
-                      tags={post.tags}
-                    />
-                  </div>
-                ))}
+                {blogsList.slice(0, 3).map((post, index) => {
+                  const slug = post.slug || post.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                  return (
+                    <div key={index} onClick={() => { 
+                      window.location.hash = `#blog?slug=${slug}`;
+                      setCurrentView('blog'); 
+                      window.scrollTo({ top: 0, behavior: 'smooth' }); 
+                    }} style={{ cursor: 'pointer' }}>
+                      <ProjectCard 
+                        title={post.title}
+                        badge={post.read_time}
+                        description={post.excerpt}
+                        tags={post.tags}
+                      />
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </section>
