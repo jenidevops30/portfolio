@@ -117,6 +117,31 @@ const Hero = ({ onNavigate }) => {
 
         <div className="hero-visual">
           <div className="tech-cloud">
+            <div className="hero-avatar-wrapper" style={{
+              position: 'relative',
+              width: '190px',
+              height: '190px',
+              borderRadius: '50%',
+              padding: '4px',
+              background: 'linear-gradient(135deg, var(--accent) 0%, rgba(59, 130, 246, 0.6) 100%)',
+              boxShadow: '0 0 35px var(--accent-glow)',
+              zIndex: 3,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <img 
+                src="/jeni-headshot.webp" 
+                alt="Jeni Patel" 
+                style={{ 
+                  width: '100%', 
+                  height: '100%', 
+                  objectFit: 'cover', 
+                  borderRadius: '50%',
+                  background: 'var(--bg)'
+                }} 
+              />
+            </div>
             {techIcons.map((icon, index) => (
               <div key={index} className={`tech-icon-item item-${index}`} id={icon.id || ''}>
                 <img src={icon.url} alt={icon.name} />
