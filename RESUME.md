@@ -26,13 +26,16 @@ Results-driven **DevOps Engineer** with **6+ years of experience** designing, au
 
 ### **DevOps Engineer** | *Webcontrive*
 📅 *November 2025 – Present*
-- **FinOps & Cloud Cost Optimization:** Optimized AWS infrastructure by right-sizing EC2 and RDS resources, reducing monthly costs from **$800 to $327 (~59% reduction)**.
-- **Graviton ARM64 Migration:** Migrated production EC2 workloads from **c5.xlarge to c6g.xlarge (AWS Graviton/ARM64)** and optimized Auto Scaling capacity from **3 instances to 2**.
-- **High-Availability AWS Infrastructure:** Managed AWS infrastructure using **ALB, Auto Scaling Groups, Launch Templates, and Multi-AZ RDS**.
-- **Automated Bootstrapping:** Engineered zero-touch EC2 bootstrap scripts in Launch Templates to auto-pull **Laravel from Git** and sync the **admin panel via rsync**.
-- **Cloudflare & Apache2 Debugging:** Diagnosed & resolved production **HTTP 429 rate-limit errors** by updating **Apache2** configuration to accurately restore original client IPs from Cloudflare proxy.
-- **VAPT Security Remediation:** Remediated **VAPT security findings** by implementing missing HTTP security headers and browser-based authentication for sensitive internal routes.
-- **Linux Operations:** Managed production Linux servers, performing daily health checks, CPU/memory/disk monitoring, and proactive incident resolution.
+- **Production Server Management:** Manage and maintain production Linux servers and web infrastructure, performing daily health checks and monitoring CPU, memory, disk utilization, and server availability.
+- **Proactive Incident Resolution:** Proactively troubleshoot and resolve server, application, networking, and service-related issues to maintain infrastructure reliability and application availability.
+- **VAPT Vulnerability Remediation:** Review VAPT security findings and remediate server-level vulnerabilities by strengthening web-server configurations, including implementing missing HTTP security headers.
+- **Access Control Security:** Implemented browser-based authentication for internal application routes, adding an additional access-control layer for sensitive endpoints.
+- **FinOps & AWS Cost Optimization:** Optimized AWS infrastructure by analyzing workload utilization and right-sizing EC2 and RDS resources, reducing monthly AWS costs from approximately **$800 to $327 (~59% reduction)**.
+- **Graviton Migration & Capacity Optimization:** Migrated production EC2 workloads from **c5.xlarge to c6g.xlarge (AWS Graviton/ARM64)** and optimized Auto Scaling capacity from **3 instances to 2**, validating application compatibility and performance.
+- **Cloudflare & Rate Limiting Fix:** Diagnosed and resolved production **HTTP 429 rate-limit errors** after infrastructure migration by identifying incorrect client-IP handling through Cloudflare proxy.
+- **Apache2 Configuration:** Updated **Apache2** configuration to correctly restore original client IP from Cloudflare-proxied requests, resolving rate-limiting issues and configuring reverse proxy, routing, and SSL/TLS.
+- **High-Availability AWS Infrastructure:** Manage AWS production infrastructure using **Application Load Balancer (ALB), EC2 Auto Scaling Groups, AMIs, and Launch Templates** for scalable and resilient applications.
+- **Automated Bootstrapping & Deployment:** Configure EC2 Launch Templates and User Data scripts to automatically bootstrap new instances, synchronizing the **Laravel application from Git** and the **admin application using rsync**.
 
 ### **AWS Engineer** | *OptimumBrew Technology LLP*
 📅 *April 2025 – October 2025*

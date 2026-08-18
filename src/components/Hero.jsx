@@ -11,7 +11,7 @@ const Hero = ({ onNavigate }) => {
     let isMounted = true;
     const l1Text = 'AWS Cloud & DevOps Engineer';
     const l2Text = 'Architecting Scalable, Secure Cloud Solutions';
-    const l3Text = '6+ Years AWS | Kubernetes | Terraform Expert';
+    const l3Text = '6+ Years AWS | CI/CD | Terraform Expert';
     const l4Text = 'Currently at Webcontrive';
     const speed = 45; // ms per character — slightly faster for longer lines
 
