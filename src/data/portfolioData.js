@@ -32,8 +32,8 @@ export const PORTFOLIO_DATA = {
     cell1: {
       id: "aws-ecosystem",
       title: "AWS Cloud Ecosystem",
-      badge: "SAA-C03 Candidate",
-      highlight: "AWS Solutions Architect – Associate (SAA-C03) Candidate",
+      badge: "AWS Solutions Architect",
+      highlight: "AWS Cloud Architecture & Solutions",
       description: "Production architectural mastery across compute, auto-scaling, storage, high-availability databases, and CDN acceleration.",
       services: [
         "Application Load Balancer (ALB)",

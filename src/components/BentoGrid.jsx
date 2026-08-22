@@ -30,7 +30,7 @@ const BentoGrid = () => {
               <h3 className="bento-title">{cell1.title}</h3>
               <p className="bento-desc">{cell1.description}</p>
 
-              {/* SAA-C03 Candidate Highlight Banner */}
+              {/* AWS Cloud Architecture & Solutions Banner */}
               <div className="bento-highlight-banner">
                 <Award size={18} color="var(--primary-accent)" />
                 <span>{cell1.highlight}</span>
