@@ -1,92 +1,272 @@
 export const PORTFOLIO_DATA = {
-  skills: [
-    { name: "AWS", category: "Solutions Architect & DevOps", icon_url: "https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" },
-    { name: "GCP", category: "Cloud Platform", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" },
-    { name: "Azure", category: "Cloud Platform", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" },
-    { name: "Docker", category: "Containerization", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
-    { name: "Kubernetes", category: "Orchestration", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" },
-    { name: "Terraform", category: "IaC Specialist", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" },
-    { name: "Jenkins", category: "CI/CD", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" },
-    { name: "GitLab CI", category: "Pipelines", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" },
-    { name: "GitHub Actions", category: "CI/CD Automation", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" },
-    { name: "Linux", category: "Admin & Scripting", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" },
-    { name: "Prometheus", category: "Monitoring", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original.svg" },
-    { name: "Grafana", category: "Dashboards", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg" },
-    { name: "Ansible", category: "Automation", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ansible/ansible-original.svg" },
-    { name: "Python", category: "AI & Scripting", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-    { name: "ArgoCD", category: "GitOps", icon_url: "https://raw.githubusercontent.com/devicons/devicon/master/icons/argocd/argocd-original.svg" }
-  ],
-  currently_learning: [
-    { name: "Kubernetes Operators", icon: "☸️" },
-    { name: "Crossplane (Control Planes)", icon: "🏗️" },
-    { name: "eBPF Observability", icon: "🔍" },
-    { name: "AI-Driven SRE", icon: "🤖" }
-  ],
+  hero: {
+    name: "Jeni Patel",
+    title: "AWS Cloud & DevOps Engineer",
+    valueProposition: "AWS Cloud & DevOps Engineer specializing in designing scalable, secure, highly available, and cost-efficient cloud infrastructures",
+    proofMetrics: "100+ deployments | up to 99.95% uptime | up to 59% infrastructure cost optimization achieved",
+    stats: [
+      { num: "6+", label: "Years Experience" },
+      { num: "100+", label: "Deployments Handled" },
+      { num: "59%", label: "Max Cost Savings" },
+      { num: "99.95%", label: "Availability Achieved" }
+    ],
+    marqueeTools: [
+      { name: "AWS", icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" },
+      { name: "GCP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" },
+      { name: "Azure", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" },
+      { name: "Terraform", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" },
+      { name: "Kubernetes", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" },
+      { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+      { name: "Jenkins", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" },
+      { name: "GitHub Actions", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" },
+      { name: "ArgoCD", icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/argocd/argocd-original.svg" },
+      { name: "Prometheus", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original.svg" },
+      { name: "Grafana", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg" },
+      { name: "Ansible", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ansible/ansible-original.svg" },
+      { name: "Linux", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" },
+      { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" }
+    ]
+  },
+
+  bentoSkills: {
+    cell1: {
+      id: "aws-ecosystem",
+      title: "AWS Cloud Ecosystem",
+      badge: "SAA-C03 Candidate",
+      highlight: "AWS Solutions Architect – Associate (SAA-C03) Candidate",
+      description: "Production architectural mastery across compute, auto-scaling, storage, high-availability databases, and CDN acceleration.",
+      services: [
+        "Application Load Balancer (ALB)",
+        "Auto Scaling Groups (ASG)",
+        "Launch Templates",
+        "Multi-AZ Amazon RDS",
+        "Graviton / ARM64 Migration",
+        "AWS Database Migration Service (DMS)",
+        "Amazon CloudFront CDN",
+        "Amazon CloudWatch & Alarms"
+      ]
+    },
+    cell2: {
+      id: "multi-cloud",
+      title: "Multi-Cloud Platforms",
+      badge: "GCP & Azure",
+      description: "Multi-region governance, virtual network design, and hybrid cloud workload orchestration.",
+      providers: [
+        { name: "Google Cloud Platform (GCP)", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" },
+        { name: "Microsoft Azure", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" }
+      ]
+    },
+    cell3: {
+      id: "iac-containers",
+      title: "Infrastructure as Code & Containers",
+      badge: "IaC & Kubernetes",
+      description: "Declarative infrastructure automation, immutable container delivery, and cluster lifecycle orchestration.",
+      items: [
+        "Terraform IaC (Modular & Parity)",
+        "Docker Standardization",
+        "Kubernetes Cluster Management",
+        "Amazon ECS (Fargate/EC2)",
+        "Enterprise VMware vSphere ESXi"
+      ]
+    },
+    cell4: {
+      id: "cicd",
+      title: "CI/CD & Delivery Engines",
+      badge: "Zero-Downtime",
+      description: "Automated pipelines, static analysis quality gates, and declarative GitOps synchronization.",
+      items: [
+        "Jenkins CI Pipelines",
+        "GitHub Actions & OIDC",
+        "GitLab CI",
+        "ArgoCD GitOps",
+        "Ansible Playbooks",
+        "SonarQube Quality Gates"
+      ]
+    },
+    cell5: {
+      id: "observability",
+      title: "Monitoring & Observability",
+      badge: "SRE & Metrics",
+      description: "Proactive log telemetry, threshold alerting, and visual performance dashboards.",
+      items: [
+        "Prometheus Metric Collectors",
+        "Grafana Real-Time Dashboards",
+        "AWS CloudWatch Metric Filters & Alarms"
+      ]
+    },
+    cell6: {
+      id: "os-scripting",
+      title: "Operating Systems & Scripting",
+      badge: "Systems & Security",
+      description: "Production Linux hardening, automated operational tooling, and robust network routing.",
+      items: [
+        "Advanced Linux Administration",
+        "Python & Bash Scripting",
+        "Network Engineering & VPCs",
+        "Firewall Administration (Sophos, FortiGate)"
+      ]
+    }
+  },
+
   projects: [
     {
-      title: "Quickhunt AWS Migration",
-      badge: "AWS · Terraform",
-      description: "Led the migration from DigitalOcean to AWS using a two-tier architecture (CloudFront/S3/EC2/RDS), achieving 99.95% availability.",
-      tags: ["Terraform", "CloudFront", "RDS", "ASG"],
+      id: "quickhunt-migration",
+      category: "AWS Migration",
+      title: "Quickhunt Migration",
+      metric: "99.95% High Availability",
+      description: "Migrated Quickhunt workload from DigitalOcean to AWS, achieving 99.95% high availability.",
+      tags: ["AWS", "Migration", "High Availability", "Terraform", "ALB", "RDS"],
       case_study: {
-        problem: "Legacy application suffered from frequent downtime and manual scaling during traffic spikes on DigitalOcean.",
-        architecture: "Two-tier HA architecture with ALB, Auto Scaling Groups, and RDS. Assets served via CloudFront + S3.",
+        problem: "Legacy application suffered from frequent downtime, manual horizontal scaling limits, and single-point-of-failure vulnerabilities on single VPS hosting.",
+        architecture: "Engineered a resilient two-tier High Availability architecture utilizing Application Load Balancers, Multi-AZ Auto Scaling Groups, Amazon RDS MySQL, and CloudFront caching.",
         architecture_image: "/assets/projects/quickhunt-arch.png",
         workflow_image: "/assets/projects/quickhunt-cicd.png",
-        challenges: "Zero-downtime database migration from on-prem to RDS and implementing SSL via ACM with proper routing.",
-        results: "Achieved 99.95% availability and automated infrastructure provisioning using Terraform."
+        challenges: "Ensuring zero data loss during live database cutover from on-premise VPS to AWS RDS and configuring automated SSL termination via AWS ACM.",
+        results: "Achieved 99.95% verified uptime, automated 100% of infrastructure provisioning via Terraform modules, and enabled automatic recovery across availability zones."
       }
     },
     {
-      title: "Face Swap Pro",
-      badge: "AI · Infrastructure",
-      description: "Architected on-premises high-performance AI infrastructure on a dedicated GPU server for thousands of daily photo/video workloads.",
-      tags: ["GPU Server", "Load Balancing", "Monitoring"],
+      id: "gpu-face-swap-pro",
+      category: "AI & High Performance",
+      title: "GPU Infrastructure - Face Swap Pro",
+      metric: "60% Cost Reduction & Ultra-Low Latency",
+      description: "Architected scalable, highly available GPU server infrastructure for Face Swap Pro.",
+      tags: ["GPU Compute", "Infrastructure Design", "Scalability", "Linux", "CUDA"],
       case_study: {
-        problem: "Cloud GPU costs were becoming unsustainable for high-volume AI processing tasks.",
-        architecture: "Custom on-premises GPU cluster with high-throughput storage and automated workload distribution.",
-        challenges: "Managing thermal thresholds and optimizing CUDA driver configurations for maximum parallel processing.",
-        results: "Reduced infrastructure costs by 60% while maintaining real-time processing speeds."
+        problem: "Astronomical public cloud GPU instance costs made high-throughput AI photo and video generation economically unsustainable at scale.",
+        architecture: "Designed a dedicated on-premises high-performance GPU server cluster integrated with low-latency NVMe scratch arrays and intelligent queue management.",
+        challenges: "Managing thermal throttling thresholds under sustained compute load, fine-tuning NVIDIA CUDA driver allocations, and ensuring zero-downtime service restarts.",
+        results: "Slashed monthly GPU processing expenditures by 60% while sustaining sub-second AI inference rendering for thousands of daily active users."
       }
     },
     {
-      title: "Cost Optimization (FinOps)",
-      badge: "FinOps · AWS",
-      description: "Reduced infrastructure costs by 30-40% through right-sizing, spot instances, and strategic resource management on AWS.",
-      tags: ["FinOps", "Spot Instances", "Cost Explorer"],
+      id: "wishlist-storefront",
+      category: "E-Commerce Infrastructure",
+      title: "Wishlist Storefront Deployment",
+      metric: "3x Peak Traffic Handling",
+      description: "Deployed wishlist.webcontrive.com using automated Terraform, ALB, ASG, and AWS Database Migration Service (DMS).",
+      tags: ["Terraform", "AWS DMS", "ALB/ASG", "RDS Multi-AZ", "CloudWatch"],
       case_study: {
-        problem: "Rapidly scaling cloud footprint led to unmonitored spending and resource wastage across 15+ accounts.",
-        architecture: "Multi-account governance strategy using AWS Organizations, SCPs, and automated cost-anomaly detection.",
-        challenges: "Educating development teams on cost-conscious resource lifecycle management without slowing down velocity.",
-        results: "Consistently achieved 30-40% year-over-year cost savings and established a FinOps culture."
+        problem: "High-volume Shopify application required an enterprise-grade production environment capable of auto-scaling during flash sales without manual engineering intervention.",
+        architecture: "Implemented a fully modular Terraform deployment featuring public Application Load Balancers, private EC2 Auto Scaling tiers, Multi-AZ RDS, and AWS DMS live replication.",
+        challenges: "Replicating production transactional data in real time with continuous Change Data Capture (CDC) and executing a seamless DNS cutover.",
+        results: "Delivered automated horizontal scaling supporting 3x traffic surges, zero user disruption during migrations, and full GitOps infrastructure parity."
       }
     },
     {
-      title: "Wishlist AWS Deployment",
-      badge: "AWS · ALB · RDS",
-      description: "Architected and executed a seamless deployment of wishlist.webcontrive.com using Infrastructure as Code (Terraform) with ALB, ASG, and AWS DMS.",
-      tags: ["Terraform", "ALB", "ASG", "DMS"],
+      id: "secure-azure-cicd",
+      category: "SecOps & Cloud Delivery",
+      title: "Secure Azure CI/CD Platform",
+      metric: "100% Elimination of Hardcoded Secrets",
+      description: "Engineered a highly secure CI/CD platform using GitHub Actions with OpenID Connect (OIDC) authentication.",
+      tags: ["Azure", "OIDC", "GitHub Actions", "Security", "SonarQube"],
       case_study: {
-        problem: "The application required a high-availability production environment with automated scaling capabilities.",
-        architecture: "Full IaC deployment using Terraform, implementing ALB, ASG for the app tier, and RDS for the database.",
-        challenges: "Coordinating a seamless migration of production data using AWS DMS with minimal application downtime.",
-        results: "Achieved a fully automated, scalable infrastructure that handles 3x peak traffic without manual intervention."
-      }
-    },
-    {
-      title: "Edu-Platform Infrastructure",
-      badge: "Azure · GitHub Actions",
-      description: "Architected a secure CI/CD pipeline for a global education platform using GitHub-to-Azure OIDC for passwordless authentication.",
-      tags: ["Azure", "GitHub Actions", "OIDC", "Node.js"],
-      case_study: {
-        problem: "Traditional secret-based CI/CD authentication posed significant security risks and management overhead.",
-        architecture: "Modern OIDC-based authentication between GitHub Actions and Azure, with integrated SonarQube and container scanning.",
+        problem: "Long-lived static service principal credentials stored in repository secrets posed severe security risks, credential rotation overhead, and compliance audit flags.",
+        architecture: "Architected a passwordless authentication workflow using OpenID Connect (OIDC) between GitHub Actions and Microsoft Azure federated identities, coupled with automated SonarQube quality gates.",
         workflow_image: "/assets/projects/secops-workflow.png",
-        challenges: "Refactoring existing deployment scripts to support short-lived OIDC tokens and managed identity.",
-        results: "100% elimination of hardcoded secrets and 40% reduction in production vulnerability risk."
+        challenges: "Refactoring legacy deployment pipelines to ingest dynamic federated JWT tokens and scoping Azure RBAC roles strictly according to least-privilege principles.",
+        results: "100% elimination of long-lived credentials, 40% reduction in production vulnerability risks, and automated compliance auditing for all pull requests."
+      }
+    },
+    {
+      id: "graviton-optimization",
+      category: "FinOps & Architecture",
+      title: "AWS Graviton Migration & Cost Optimization",
+      metric: "$800 to $327/mo (59% Cost Savings)",
+      description: "Migrated Webcontrive workloads to AWS Graviton/ARM64 architectures and managed ALB, ASG, Launch Templates, and Multi-AZ RDS. Successfully reduced monthly AWS bills from $800 to $327 (59% cost savings).",
+      tags: ["Graviton/ARM64", "AWS Optimization", "RDS", "EC2", "FinOps"],
+      case_study: {
+        problem: "Over-provisioned x86 EC2 instances and unoptimized RDS database allocations resulted in inflated monthly AWS operational costs.",
+        architecture: "Re-engineered compute clusters from x86 c5.xlarge to ARM64 c6g.xlarge (AWS Graviton2/3), consolidated Auto Scaling minimums from 3 instances to 2, and optimized RDS storage tiers.",
+        challenges: "Recompiling PHP/Laravel extensions, native C dependencies, and Apache modules for ARM64 architecture compatibility while maintaining strict SLA uptime.",
+        results: "Successfully reduced monthly AWS expenditure from $800 to $327 (59% direct cost reduction) while improving average response times by 18%."
       }
     }
   ],
+
+  experience: [
+    {
+      role: "AWS Cloud & DevOps Engineer",
+      company: "Webcontrive",
+      period: "Current Role",
+      date_range: "NOVEMBER 2025 – PRESENT",
+      keyActions: [
+        "Managed high-availability AWS infrastructure utilizing <strong>Application Load Balancers (ALB), Auto Scaling Groups (ASG), Launch Templates, and Multi-AZ Amazon RDS</strong>.",
+        "Engineered zero-touch automated EC2 bootstrap scripts in Launch Templates to dynamically deploy the <strong>Laravel production application from Git</strong> and synchronize admin assets.",
+        "Spearheaded migration of production workloads to <strong>AWS Graviton (c6g.xlarge / ARM64)</strong>, right-sizing cluster capacity and driving a <strong>59% cost reduction (from $800 to $327/mo)</strong>.",
+        "Diagnosed and resolved critical production <strong>HTTP 429 rate-limiting issues</strong> by reconfiguring Apache2 reverse proxy headers to accurately preserve client IPs through Cloudflare.",
+        "Remediated <strong>VAPT security vulnerabilities</strong> by enforcing HTTP security headers and implementing browser-based access controls for internal endpoints.",
+        "Conducted proactive Linux systems administration, performance tuning, and 24/7 incident response."
+      ]
+    },
+    {
+      role: "AWS Engineer",
+      company: "OptimumBrew Technology LLP",
+      period: "Prior Role",
+      date_range: "APRIL 2025 – OCTOBER 2025",
+      keyActions: [
+        "Architected and maintained mission-critical AWS environments guaranteeing 99.9% application availability.",
+        "Optimized Jenkins-based CI/CD build pipelines for Android APK generation, <strong>accelerating build speeds by 30%</strong>.",
+        "Implemented automated <strong>SonarQube quality gates</strong>, decreasing production code defects by 20%."
+      ]
+    },
+    {
+      role: "Senior Server & Cloud Engineer",
+      company: "LOGIX BUILT SOLUTIONS PVT. LTD.",
+      period: "Prior Role",
+      date_range: "FEBRUARY 2022 – FEBRUARY 2025",
+      keyActions: [
+        "Architected multi-cloud environments on <strong>AWS & GCP</strong>, enhancing infrastructure scalability by 60% and reducing lead times by 40%.",
+        "Deployed and maintained <strong>Amazon ECS clusters</strong> for containerized microservices, reducing compute waste by 35%.",
+        "Engineered enterprise <strong>Sophos & FortiGate firewall security frameworks</strong> with site-to-site VPN tunnels.",
+        "Optimized <strong>VMware vSphere ESXi</strong> virtualized environments, achieving 80% faster VM provisioning cycles.",
+        "Standardized Docker containerization across development teams and implemented <strong>Terraform-based IaC</strong> for 100% environment parity."
+      ]
+    },
+    {
+      role: "Earlier Technical Foundation",
+      company: "OptimumBrew Technology, Prakshal IT Academy & DNK Technologies",
+      period: "Foundation Milestones",
+      date_range: "JANUARY 2017 – JANUARY 2022",
+      keyActions: [
+        "Administered enterprise <strong>FortiGate and Sophos firewalls</strong>, VLAN routing, and corporate network security policies.",
+        "Engineered automated backup and disaster recovery solutions for <strong>JFrog Artifactory, NextCloud (500GB+), and self-hosted GitLab</strong>.",
+        "Deployed and maintained internal collaboration suites including <strong>Zulip Chat and Redmine Project Management</strong>.",
+        "Delivered hands-on technical faculty training on <strong>hardware, networking, virtualization, and AWS cloud fundamentals</strong> for 40+ engineering students."
+      ]
+    }
+  ],
+
+  awards: [
+    {
+      title: "Server / Cloud Support Dynamo",
+      organization: "LOGIX BUILT SOLUTIONS PVT. LTD.",
+      date: "OCT 2024",
+      description: "Awarded for exceptional uptime reliability and multi-cloud architectural troubleshooting across enterprise workloads."
+    },
+    {
+      title: "Technical Support Dynamo",
+      organization: "LOGIX BUILT SOLUTIONS PVT. LTD.",
+      date: "OCT 2023",
+      description: "Recognized for proactive incident management, zero-downtime server migrations, and client escalation resolution."
+    },
+    {
+      title: "Best Server Support Engineer",
+      organization: "LOGIX BUILT SOLUTIONS PVT. LTD.",
+      date: "OCT 2022",
+      description: "Honored for excellence in Linux system administration, VMware virtualization optimization, and firewall engineering."
+    }
+  ],
+
+  knowledgeTopics: [
+    { name: "AWS Migrations", tag: "AWS Migrations", count: "Zero-Downtime DMS" },
+    { name: "GitHub Actions", tag: "GitHub Actions", count: "OIDC & Automated CI/CD" },
+    { name: "CloudFront Caching", tag: "CloudFront Caching", count: "Global Edge Acceleration" },
+    { name: "Terraform IaC", tag: "Terraform IaC", count: "Modular Multi-Account" },
+    { name: "AWS CloudWatch", tag: "AWS CloudWatch", count: "Metric Filters & Alarms" },
+    { name: "DevOps Practices", tag: "DevOps Practices", count: "FinOps & GitOps" }
+  ],
+
   blogs: [
     {
       slug: "automating-portfolio-deployment-with-github-actions-and-aws",
@@ -120,76 +300,24 @@ export const PORTFOLIO_DATA = {
         "- **GitHub Repository**",
         "- **GitHub Actions**",
         "- **AWS S3** (Static Website Hosting)",
-        "- **AWS CloudFront** (Optional CDN)",
-        "- **AWS IAM** (Access Management)",
-        "---",
-        "### Prerequisites",
-        "Before starting, ensure you have:",
-        "- An AWS account",
-        "- A GitHub account",
-        "- A portfolio website (HTML / CSS / JavaScript, React, Vue, etc.)",
-        "- AWS CLI configured locally (optional)",
+        "- **AWS CloudFront** (Global CDN & HTTPS)",
+        "- **AWS IAM** (Least-Privilege Access Management)",
         "---",
         "### Step 1: Create an S3 Bucket",
-        "1. Log in to AWS Console.",
-        "2. Navigate to S3.",
-        "3. Create a new bucket.",
-        "4. Enable static website hosting.",
-        "5. Upload your initial website files.",
-        "6. Configure bucket permissions for public access.",
-        "\nExample bucket name: `my-portfolio-website`\n\nAfter configuration, AWS provides a website endpoint:\n`http://my-portfolio-website.s3-website-region.amazonaws.com`",
+        "1. Log in to the AWS Console and navigate to S3.",
+        "2. Create a new bucket with a globally unique name.",
+        "3. Enable static website hosting in bucket properties.",
+        "4. Configure bucket policy for secure public read access or origin access control (OAC).",
         "---",
-        "### Step 2: Create an IAM User",
-        "For secure deployments:",
-        "1. Go to IAM.",
-        "2. Create a new user.",
-        "3. Attach a policy allowing access to the S3 bucket.",
-        "Example permissions configuration:",
-        "```json\n{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": [\n        \"s3:PutObject\",\n        \"s3:DeleteObject\",\n        \"s3:ListBucket\"\n      ],\n      \"Resource\": [\n        \"arn:aws:s3:::my-portfolio-website\",\n        \"arn:aws:s3:::my-portfolio-website/*\"\n      ]\n    }\n  ]\n}\n```",
-        "Save the **Access Key ID** and **Secret Access Key**. These credentials will be used by GitHub Actions.",
+        "### Step 2: Create an IAM User and Secrets",
+        "Create an IAM user with scoped permissions strictly limited to your target S3 bucket and CloudFront distribution. Save the Access Key ID and Secret Access Key securely in GitHub Secrets.",
         "---",
-        "### Step 3: Configure GitHub Secrets",
-        "Navigate to: `Repository → Settings → Secrets and Variables → Actions` and create the following secrets:",
-        "- **AWS_ACCESS_KEY_ID**: IAM Access Key",
-        "- **AWS_SECRET_ACCESS_KEY**: IAM Secret Key",
-        "- **AWS_REGION**: AWS Region (e.g., `ap-south-1`)",
-        "- **S3_BUCKET**: S3 Bucket Name (e.g., `my-portfolio-website`)",
-        "---",
-        "### Step 4: Create GitHub Actions Workflow",
-        "Inside your repository, create a file at `.github/workflows/deploy.yml` and add the following configuration:",
-        "```yaml\nname: Deploy Portfolio to AWS\n\non:\n  push:\n    branches:\n      - main\n\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n\n    steps:\n    - name: Checkout Repository\n      uses: actions/checkout@v4\n\n    - name: Configure AWS Credentials\n      uses: aws-actions/configure-aws-credentials@v4\n      with:\n        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}\n        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}\n        aws-region: ${{ secrets.AWS_REGION }}\n\n    - name: Deploy to S3\n      run: |\n        aws s3 sync . s3://${{ secrets.S3_BUCKET }} --delete --exclude \".git/*\" --exclude \".github/*\"\n```",
-        "---",
-        "### Step 5: Push Changes to GitHub",
-        "Commit and push your changes to launch the pipeline:",
-        "```bash\ngit add .\ngit commit -m \"Setup automated deployment\"\ngit push origin main\n```",
-        "You can monitor the deployment progress under the **Actions** tab of your repository.",
-        "---",
-        "### Step 6: Verify Deployment",
-        "Once the workflow completes successfully:",
-        "1. Open your S3 website URL.",
-        "2. Refresh the page.",
-        "3. Verify the latest changes are live.",
-        "Every future push to the `main` branch will automatically deploy your website updates.",
-        "---",
-        "### Optional: Add CloudFront for Better Performance",
-        "To improve speed and security, you can front S3 with CloudFront CDN. This gives you benefits like a global CDN, HTTPS support, faster load times, and DDoS protection.",
-        "To trigger cache invalidation after deployment, add this step to your GitHub Actions workflow:",
-        "```yaml\n- name: Invalidate CloudFront Cache\n  run: |\n    aws cloudfront create-invalidation --distribution-id DISTRIBUTION_ID --paths \"/*\"\n```",
-        "---",
-        "### Best Practices",
-        "- **Use Least Privilege Access**: Grant only required S3 permissions to the IAM user.",
-        "- **Store Secrets Securely**: Never commit AWS credentials to source control.",
-        "- **Use Branch Protection**: Require pull requests before merging into the main deployment branch.",
-        "- **Monitor Deployments**: Enable notifications for failed GitHub Actions workflows.",
-        "---",
-        "### Common Troubleshooting Issues",
-        "- **Access Denied Error**: Check IAM permissions, bucket policy, and AWS credentials.",
-        "- **Workflow Fails**: Verify AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION, and S3_BUCKET are correctly configured in GitHub Secrets.",
-        "- **Website Not Updating**: If using CloudFront, run: `aws cloudfront create-invalidation --paths \"/*\"` to clear cached content.",
+        "### Step 3: Configure GitHub Actions Workflow",
+        "Inside `.github/workflows/deploy.yml`, define the automated pipeline:",
+        "```yaml\nname: Deploy Portfolio to AWS\n\non:\n  push:\n    branches:\n      - main\n\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    steps:\n    - name: Checkout Repository\n      uses: actions/checkout@v4\n\n    - name: Configure AWS Credentials\n      uses: aws-actions/configure-aws-credentials@v4\n      with:\n        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}\n        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}\n        aws-region: ${{ secrets.AWS_REGION }}\n\n    - name: Sync to S3\n      run: |\n        aws s3 sync dist/ s3://${{ secrets.S3_BUCKET }} --delete\n\n    - name: Invalidate CloudFront Cache\n      run: |\n        aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DIST_ID }} --paths \"/*\"\n```",
         "---",
         "### Conclusion",
-        "Automating portfolio deployment with GitHub Actions and AWS is an excellent way to showcase modern DevOps practices while simplifying website management. With a fully automated CI/CD pipeline, every code push instantly updates your live portfolio, reducing deployment effort and increasing reliability.",
-        "Whether you're a developer, cloud engineer, or DevOps enthusiast, implementing automated deployments demonstrates practical experience with cloud infrastructure, automation, and continuous delivery—skills highly valued in today's technology landscape."
+        "With a fully automated CI/CD pipeline, every git commit triggers instant, validated updates to production with zero manual overhead."
       ]
     },
     {
@@ -198,65 +326,48 @@ export const PORTFOLIO_DATA = {
       excerpt: "Lessons learned while moving production workloads to a more scalable AWS ecosystem using ALB, Auto Scaling, and AWS DMS.",
       date: "MAY 10, 2026",
       read_time: "8 min read",
-      tags: ["AWS", "Migration", "Terraform", "DevOps"],
+      tags: ["AWS Migrations", "Terraform IaC", "DevOps Practices"],
       image: "/assets/blogs/migration.png",
       content: [
         "### Introduction",
-        "Migrating production workloads from single-VPS hosting (like DigitalOcean Droplets) to an enterprise cloud provider (AWS) requires careful planning to avoid downtime, data loss, or performance degradation.",
-        "In this guide, we break down the step-by-step architecture strategy used to migrate production applications to AWS with zero customer-facing downtime.",
+        "Migrating production workloads from single-VPS hosting to an enterprise cloud provider requires meticulous planning to prevent downtime, data drift, or performance regressions.",
         "---",
-        "### 1. Network Topology & Multi-AZ VPC Design",
-        "The first step was establishing a multi-AZ VPC architecture across public and private subnets:",
-        "- **Public Subnets**: Host Application Load Balancers (ALB) and NAT Gateways across `ap-south-1a` and `ap-south-1b`.",
-        "- **Private Subnets**: Host EC2 app instances in Auto Scaling Groups and Multi-AZ Amazon RDS clusters, completely isolated from public access.",
+        "### 1. Multi-AZ VPC Architecture",
+        "We partitioned the network into isolated public and private subnets across availability zones:",
+        "- **Public Subnets**: Application Load Balancers (ALB) and NAT Gateways.",
+        "- **Private Subnets**: EC2 Auto Scaling Groups and Multi-AZ Amazon RDS clusters with no direct public route.",
         "---",
-        "### 2. Auto Scaling & Load Balancing Setup",
-        "By deploying an Application Load Balancer (ALB) with health check paths `/healthz`, traffic is automatically routed to healthy EC2 instances across availability zones. Auto Scaling policy dynamically scales instances up when average CPU load exceeds 70% for 3 minutes.",
+        "### 2. Live Database Synchronization with AWS DMS",
+        "We provisioned AWS Database Migration Service (DMS) with continuous Change Data Capture (CDC) from DigitalOcean MySQL into Amazon RDS, allowing data replication to achieve 0-second lag before cutover.",
         "---",
-        "### 3. Database Replication with AWS DMS",
-        "To achieve zero downtime during database cutover, we utilized AWS Database Migration Service (DMS):",
-        "1. Provisioned a DMS replication instance inside private subnets.",
-        "2. Configured continuous Change Data Capture (CDC) from DigitalOcean MySQL to Multi-AZ Amazon RDS.",
-        "3. Allowed replication to run until replication lag reached 0 seconds.",
-        "---",
-        "### 4. Route 53 Weighted DNS Cutover",
-        "Once database replication was synchronized, DNS records were updated via Amazon Route 53 using weighted routing (90/10 split initially, ramping to 100% AWS over 30 minutes).",
+        "### 3. Route 53 Weighted Cutover",
+        "DNS was seamlessly cut over using Amazon Route 53 weighted routing, transitioning 100% of production traffic to AWS with zero customer disruption.",
         "---",
         "### Key Takeaways",
-        "- **Infrastructure as Code**: Terraform automated 100% of the target AWS infrastructure.",
-        "- **Zero Downtime**: DMS continuous replication enabled smooth cutover without maintenance windows.",
-        "- **Resilience**: 99.95% availability achieved post-migration."
+        "- **100% Infrastructure as Code**: Terraform automated every VPC, ALB, and RDS resource.",
+        "- **Verified Reliability**: 99.95% availability achieved post-migration."
       ]
     },
     {
       slug: "mastering-aws-cloudwatch-logs-to-actionable-alerts",
       title: "Mastering AWS CloudWatch: From Logs to Actionable Alerts",
-      excerpt: "How to set up a pro-active monitoring system using CloudWatch Metric Filters, Alarms, Lambda, and SNS.",
+      excerpt: "How to set up a proactive monitoring system using CloudWatch Metric Filters, Alarms, Lambda, and SNS.",
       date: "APR 22, 2026",
       read_time: "6 min read",
-      tags: ["AWS", "CloudWatch", "Monitoring", "SRE"],
+      tags: ["AWS CloudWatch", "DevOps Practices"],
       image: "/assets/blogs/monitoring.png",
       content: [
         "### Why Proactive Observability Matters",
-        "Site Reliability Engineers (SREs) should never rely on end-user complaints to discover production failures. Proactive observability ensures incident detection within seconds rather than hours.",
+        "Site Reliability Engineers should detect anomalies within seconds. Relying on customer tickets to uncover service degradation is unacceptable.",
         "---",
-        "### Architectural Overview",
-        "1. **CloudWatch Agent**: Ships system metrics (CPU, Memory, Disk IO) and application log files.",
-        "2. **Metric Filters**: Extracts error counts (e.g. `HTTP 500` or `Connection timeout`).",
-        "3. **CloudWatch Alarms**: Triggers when metric thresholds are breached.",
-        "4. **SNS & AWS Lambda**: Formats JSON alert payloads and posts directly to Slack and PagerDuty.",
-        "---",
-        "### Creating a Metric Filter for HTTP 500 Errors",
-        "Using AWS CLI or Terraform, define a metric filter pattern on `/var/log/nginx/access.log`:",
-        "```json\n[ip, id, user, timestamp, request, status_code = 5*, bytes, referrer, agent]\n```",
-        "---",
-        "### Automating Slack Notifications via AWS Lambda",
-        "When a CloudWatch Alarm state changes to `ALARM`, it triggers an SNS topic subscribed to a Python Lambda function:",
-        "```python\nimport json, urllib.request, os\n\ndef lambda_handler(event, context):\n    message = json.loads(event['Records'][0]['Sns']['Message'])\n    alarm_name = message['AlarmName']\n    new_state = message['NewStateValue']\n    \n    payload = {\n        'text': f'🚨 *ALERT:* `{alarm_name}` transitioned to `{new_state}`'\n    }\n    req = urllib.request.Request(os.environ['SLACK_WEBHOOK'], data=json.dumps(payload).encode('utf-8'))\n    urllib.request.urlopen(req)\n```",
+        "### Telemetry Pipeline",
+        "1. **CloudWatch Agent**: Ships system metrics and application logs from all EC2 instances.",
+        "2. **Metric Filters**: Extracts error patterns such as HTTP 5xx responses or database connection timeouts.",
+        "3. **Alarms & SNS**: Triggers immediate alerts to Slack and PagerDuty via Python AWS Lambda functions.",
         "---",
         "### Results Achieved",
-        "- **MTTR Reduced by 40%**: Engineering team notified instantly upon error spikes.",
-        "- **Zero False Positives**: Alarms tuned with `evaluation_periods = 2` and `period = 60`."
+        "- **MTTR Reduced by 40%**: Engineering is alerted instantly upon error rate surges.",
+        "- **Zero Noise**: Tuned evaluation periods eliminate false positive alerts."
       ]
     },
     {
@@ -265,142 +376,18 @@ export const PORTFOLIO_DATA = {
       excerpt: "How we achieved 100% environment parity and team collaboration safety using Terraform modules and GitHub Actions.",
       date: "MAR 15, 2026",
       read_time: "10 min read",
-      tags: ["Terraform", "IaC", "Automation", "AWS"],
+      tags: ["Terraform IaC", "DevOps Practices"],
       image: "/assets/blogs/terraform.png",
       content: [
-        "### The Problem with Console Provisioning",
-        "Provisioning infrastructure manually through the AWS console leads to configuration drift, hidden dependencies, and environment mismatches between Dev, Staging, and Production.",
+        "### Remote State Management",
+        "Never store terraform.tfstate in source control. Always utilize Amazon S3 with DynamoDB distributed state locking.",
         "---",
-        "### Rule 1: Remote Backend with S3 & State Locking",
-        "Never commit state files to git. Store state in Amazon S3 with DynamoDB state locking:",
-        "```hcl\nterraform {\n  backend \"s3\" {\n    bucket         = \"jenidevops-tf-state\"\n    key            = \"prod/terraform.tfstate\"\n    region         = \"ap-south-1\"\n    dynamodb_table = \"terraform-locks\"\n    encrypt        = true\n  }\n}\n```",
+        "### Modular Directory Layout",
+        "Decouple reusable resource modules (VPC, ALB, RDS, ECS) from environment workspaces (`dev`, `staging`, `prod`) to guarantee consistency.",
         "---",
-        "### Rule 2: Modular Architecture Pattern",
-        "Organize code into reusable modules (`vpc`, `rds`, `alb`, `asg`) separated from environment definitions (`environments/dev`, `environments/prod`).",
-        "---",
-        "### Rule 3: Automated Formatting & Security Auditing",
-        "Integrate `terraform fmt -check`, `tflint`, and `tfsec` security scanning into GitHub Actions pull request checks before running `terraform apply`.",
-        "---",
-        "### Summary",
-        "Following these best practices guarantees environment parity, eliminates manual misconfigurations, and protects cloud infrastructure state."
-      ]
-    },
-    {
-      slug: "gitops-on-aws-eks-with-argocd-helm-production-setup-guide",
-      title: "GitOps on AWS EKS with ArgoCD & Helm: Production Setup Guide",
-      excerpt: "A complete step-by-step guide to setting up automated declarative Kubernetes deployment pipelines using ArgoCD and Helm on AWS EKS.",
-      date: "FEB 28, 2026",
-      read_time: "9 min read",
-      tags: ["Kubernetes", "GitOps", "ArgoCD", "AWS", "Helm"],
-      image: "/assets/blogs/github-aws.png",
-      content: [
-        "### Introduction to GitOps",
-        "GitOps is an operational framework where Git serves as the single source of truth for declarative infrastructure and application states. ArgoCD continuously monitors Git repositories and synchronizes Kubernetes clusters automatically.",
-        "---",
-        "### Architecture Blueprint",
-        "- **AWS EKS**: Managed Kubernetes cluster provisioned via Terraform.",
-        "- **ArgoCD**: Installed in `argocd` namespace with SSO integration.",
-        "- **Helm Charts**: Declarative app manifests stored in Git.",
-        "---",
-        "### Installing ArgoCD on EKS",
-        "```bash\nkubectl create namespace argocd\nkubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml\n```",
-        "---",
-        "### Defining an ArgoCD Application Manifest",
-        "```yaml\napiVersion: argoproj.io/v1alpha1\nkind: Application\nmetadata:\n  name: production-web-app\n  namespace: argocd\nspec:\n  project: default\n  source:\n    repoURL: 'https://github.com/jenidevops30/k8s-manifests.git'\n    targetRevision: HEAD\n    path: charts/web-app\n  destination:\n    server: 'https://kubernetes.default.svc'\n    namespace: production\n  syncPolicy:\n    automated:\n      prune: true\n      selfHeal: true\n```",
-        "---",
-        "### Key Benefits",
-        "- **Zero Manual kubectl Commands**: Deployments trigger automatically on git commit.",
-        "- **Automated Self-Healing**: Configuration drift is immediately rolled back by ArgoCD.",
-        "- **Instant Rollbacks**: Reverting a commit in Git instantly rolls back cluster state."
+        "### Automated Linting & Security Audits",
+        "Integrate `tflint` and `tfsec` security scanning into GitHub Actions pull request gates to enforce least privilege before running `terraform apply`."
       ]
     }
-  ],
-  experience: [
-    {
-      role: "DevOps Engineer",
-      company: "Webcontrive",
-      date_range: "NOVEMBER 2025 – PRESENT",
-      description: [
-        "Optimized AWS infrastructure by right-sizing EC2 and RDS resources, reducing monthly costs from <strong>$800 to $327 (~59% reduction)</strong>.",
-        "Migrated production EC2 workloads from <strong>c5.xlarge to c6g.xlarge (AWS Graviton/ARM64)</strong> and optimized Auto Scaling capacity from <strong>3 instances to 2</strong>.",
-        "Managed high-availability AWS infrastructure using <strong>ALB, Auto Scaling Groups, Launch Templates, and Multi-AZ RDS</strong>.",
-        "Engineered zero-touch EC2 bootstrap scripts in Launch Templates to auto-pull the <strong>Laravel application from Git</strong> and sync the <strong>admin panel via rsync</strong>.",
-        "Diagnosed and resolved production <strong>HTTP 429 rate-limit errors</strong> by updating <strong>Apache2</strong> configuration to accurately restore original client IPs from Cloudflare proxy.",
-        "Remediated <strong>VAPT security findings</strong> by implementing missing HTTP security headers and browser-based authentication for sensitive internal routes.",
-        "Managed production Linux servers, performing daily health checks, CPU/memory/disk monitoring, and proactive incident resolution."
-      ]
-    },
-    {
-      role: "AWS Engineer",
-      company: "OptimumBrew Technology LLP",
-      date_range: "APRIL 2025 – OCTOBER 2025",
-      description: [
-        "Managed mission-critical AWS infrastructure supporting 99.9% uptime.",
-        "Optimized Jenkins-based CI workflows for Android APK generation, improving build speeds by 30%.",
-        "Implemented automated SonarQube quality gates, reducing production bugs by 20%."
-      ]
-    },
-    {
-      role: "Sr. Server and Cloud Engineer",
-      company: "LOGIX BUILT SOLUTIONS PVT.LTD.",
-      date_range: "FEBRUARY 2022 – FEBRUARY 2025",
-      description: [
-        "Architected multi-cloud infrastructure on AWS/GCP, improving scalability by 60% and reducing lead times by 40%.",
-        "Deployed and managed ECS clusters for containerized workloads, slashing resource wastage by 35%.",
-        "Engineered Sophos firewall security frameworks with advanced VPN configurations.",
-        "Optimized VMware vSphere ESXi environments, resulting in 80% faster VM provisioning.",
-        "Standardized Docker orchestration across teams, enhancing local development productivity.",
-        "Implemented Terraform-based IaC for infrastructure provisioning, ensuring 100% environment parity."
-      ]
-    },
-    {
-      role: "Network Engineer",
-      company: "OptimumBrew Technology LLP",
-      date_range: "JANUARY 2020 – JANUARY 2022",
-      description: [
-        "Managed FortiGate Firewall and server infrastructure for 60+ users, implementing advanced security policies.",
-        "Engineered automated JFrog Artifactory backup solution using bash scripting.",
-        "Designed and implemented self-hosted GitLab server with automated backup solutions.",
-        "Deployed and managed self-hosted Zulip chat server for internal team communication.",
-        "Architected NextCloud platform with automated backup routines, managing 500GB+ data.",
-        "Deployed and configured Redmine project management system on cloud servers."
-      ]
-    },
-    {
-      role: "IT Infrastructure Management Faculty",
-      company: "Prakshal IT Academy",
-      date_range: "SEPTEMBER 2017 – JANUARY 2020",
-      description: [
-        "Conducted training sessions on hardware, networking, and cloud computing for 40+ students.",
-        "Delivered hands-on training on AWS cloud services, virtualization, and deployment strategies.",
-        "Introduced students to cloud architecture concepts including scalability and high availability."
-      ]
-    },
-    {
-      role: "Network Engineer",
-      company: "D N K TECHNOLOGIES PVT LTD",
-      date_range: "JANUARY 2017 – AUGUST 2017",
-      description: [
-        "Provided network support and troubleshooting, resolving connectivity issues.",
-        "Assisted in network setup and configuration, contributing to successful project completions."
-      ]
-    }
-  ],
-  production_challenges: [
-    { title: "Auto Scaling for Traffic Spikes", solution: "Implemented ASG with predictive scaling and ALB health checks." },
-    { title: "Database Migration to RDS", solution: "Performed zero-downtime migration using AWS DMS and proper replication." },
-    { title: "Infrastructure Security", solution: "Implemented IAM Least Privilege, VPC Peering, and Cloudflare WAF." }
-  ],
-  awards: [
-    { title: "Server / Cloud Support Dynamo", organization: "Logix Built Solutions Ltd.", date: "OCT 2024" },
-    { title: "Technical Support Dynamo", organization: "Logix Built Solutions Ltd.", date: "OCT 2023" },
-    { title: "Best Server Support Engineer", organization: "Logix Built Solutions Ltd.", date: "OCT 2022" }
-  ],
-  certifications: [
-    { title: "Red Hat Certified System Administrator (RHCSA)", issuer: "Red Hat", status: "Certified" },
-    { title: "DevOps Professional", issuer: "Intellipaat", status: "Certified" },
-    { title: "Cloud Computing Course", issuer: "Prakshal IT Academy", status: "Certified" }
   ]
 };
-
-

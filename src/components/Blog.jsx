@@ -23,6 +23,15 @@ const Blog = ({ posts, onAddBlog }) => {
     content: ''
   });
 
+  // Sync document title with active article
+  useEffect(() => {
+    if (activeArticle) {
+      document.title = `${activeArticle.title} | Jeni Patel Blog`;
+    } else {
+      document.title = 'Jeni Patel | AWS Cloud & DevOps Engineer';
+    }
+  }, [activeArticle]);
+
   // Sync active article with URL Hash (e.g., #blog?slug=automating-portfolio-deployment...)
   useEffect(() => {
     const parseHashSlug = () => {
@@ -38,7 +47,6 @@ const Blog = ({ posts, onAddBlog }) => {
         const found = posts.find(p => getSlug(p) === targetSlug.toLowerCase());
         if (found) {
           setActiveArticle(found);
-          document.title = `${found.title} | Jeni Patel Blog`;
           return;
         }
       }
@@ -53,14 +61,12 @@ const Blog = ({ posts, onAddBlog }) => {
     setActiveArticle(post);
     const slug = getSlug(post);
     window.history.replaceState(null, '', `#blog?slug=${slug}`);
-    document.title = `${post.title} | Jeni Patel Blog`;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const closeArticle = () => {
     setActiveArticle(null);
     window.history.replaceState(null, '', '#blog');
-    document.title = 'Jeni Patel | AWS DevOps Engineer & Cloud Architect';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 

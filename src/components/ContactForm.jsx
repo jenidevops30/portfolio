@@ -1,29 +1,80 @@
 import { useState, useRef } from 'react';
-
-// EmailJS sends real emails — set your credentials in .env (see .env.example)
-// Free tier: 200 emails/month — https://emailjs.com
+import { Send, AlertCircle, CheckCircle2, Loader2 } from 'lucide-react';
 
 const ContactForm = () => {
   const formRef = useRef();
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    projectType: 'AWS Cloud Architecture',
+    budgetUrgency: 'Standard Timeline (2-4 weeks)',
+    message: ''
+  });
+
+  const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('IDLE'); // IDLE | SENDING | SUCCESS | ERROR
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = 'Full name is required';
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = 'Corporate email address is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = 'Please provide details about your project or inquiry';
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = 'Message must be at least 10 characters';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: '' }));
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) return;
+
     setStatus('SENDING');
 
     const serviceId  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
     const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
     const publicKey  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-    // If env vars not configured yet, open email client as reliable fallback
+    // If EmailJS env vars not configured yet, use mailto fallback
     if (!serviceId || !templateId || !publicKey) {
-      const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
-      const body    = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`);
+      const subject = encodeURIComponent(`Portfolio Inquiry: ${formData.projectType} from ${formData.name}`);
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\n` +
+        `Corporate Email: ${formData.email}\n` +
+        `Project Type: ${formData.projectType}\n` +
+        `Timeline / Budget: ${formData.budgetUrgency}\n\n` +
+        `Message:\n${formData.message}`
+      );
       window.open(`mailto:pjeni3095@gmail.com?subject=${subject}&body=${body}`, '_blank');
       setStatus('SUCCESS');
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setStatus('IDLE'), 5000);
+      setFormData({
+        name: '',
+        email: '',
+        projectType: 'AWS Cloud Architecture',
+        budgetUrgency: 'Standard Timeline (2-4 weeks)',
+        message: ''
+      });
+      setTimeout(() => setStatus('IDLE'), 6000);
       return;
     }
 
@@ -31,79 +82,164 @@ const ContactForm = () => {
       const emailjs = await import('@emailjs/browser');
       await emailjs.sendForm(serviceId, templateId, formRef.current, { publicKey });
       setStatus('SUCCESS');
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setStatus('IDLE'), 5000);
+      setFormData({
+        name: '',
+        email: '',
+        projectType: 'AWS Cloud Architecture',
+        budgetUrgency: 'Standard Timeline (2-4 weeks)',
+        message: ''
+      });
+      setTimeout(() => setStatus('IDLE'), 6000);
     } catch (err) {
       console.error('EmailJS error:', err);
       setStatus('ERROR');
-      setTimeout(() => setStatus('IDLE'), 6000);
+      setTimeout(() => setStatus('IDLE'), 7000);
     }
   };
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
   return (
-    <div className="modern-form-container">
-      <form ref={formRef} onSubmit={handleSubmit} className="modern-contact-form">
-        <div className="form-group">
-          <label htmlFor="name">Full Name</label>
+    <div className="contact-card-wrapper">
+      <form ref={formRef} onSubmit={handleSubmit} className="contact-form-layout" noValidate>
+        {/* Name Field */}
+        <div className="form-group-item">
+          <label htmlFor="contact-name">Full Name *</label>
           <input
             type="text"
-            id="name"
+            id="contact-name"
             name="name"
             value={formData.name}
             onChange={handleChange}
-            placeholder="Enter your name"
+            placeholder="e.g. Alex Morgan"
+            className={errors.name ? 'input-error' : ''}
+            aria-invalid={errors.name ? 'true' : 'false'}
+            aria-describedby={errors.name ? 'name-error' : undefined}
             required
           />
+          {errors.name && (
+            <div id="name-error" className="field-error-msg" role="alert">
+              <AlertCircle size={14} />
+              <span>{errors.name}</span>
+            </div>
+          )}
         </div>
-        <div className="form-group">
-          <label htmlFor="email">Email Address</label>
+
+        {/* Corporate Email Field */}
+        <div className="form-group-item">
+          <label htmlFor="contact-email">Corporate Email Address *</label>
           <input
             type="email"
-            id="email"
+            id="contact-email"
             name="email"
             value={formData.email}
             onChange={handleChange}
-            placeholder="email@example.com"
+            placeholder="alex@company.com"
+            className={errors.email ? 'input-error' : ''}
+            aria-invalid={errors.email ? 'true' : 'false'}
+            aria-describedby={errors.email ? 'email-error' : undefined}
             required
           />
+          {errors.email && (
+            <div id="email-error" className="field-error-msg" role="alert">
+              <AlertCircle size={14} />
+              <span>{errors.email}</span>
+            </div>
+          )}
         </div>
-        <div className="form-group">
-          <label htmlFor="message">Your Message</label>
+
+        {/* 2-Column: Project Type Dropdown & Timeline/Budget */}
+        <div className="form-grid-2col">
+          <div className="form-group-item">
+            <label htmlFor="contact-project-type">Project Type</label>
+            <select
+              id="contact-project-type"
+              name="projectType"
+              value={formData.projectType}
+              onChange={handleChange}
+            >
+              <option value="AWS Cloud Architecture">AWS Cloud Architecture &amp; Migration</option>
+              <option value="DevOps & CI/CD Pipelines">DevOps &amp; CI/CD Pipeline Automation</option>
+              <option value="Kubernetes / Docker Orchestration">Kubernetes &amp; Container Platforms</option>
+              <option value="FinOps & Cost Optimization">FinOps &amp; Cloud Cost Optimization</option>
+              <option value="Full-Time / Contract Consulting">Contract / Full-Time Consulting</option>
+            </select>
+          </div>
+
+          <div className="form-group-item">
+            <label htmlFor="contact-budget-urgency">Budget / Urgency</label>
+            <select
+              id="contact-budget-urgency"
+              name="budgetUrgency"
+              value={formData.budgetUrgency}
+              onChange={handleChange}
+            >
+              <option value="Immediate / Critical (1-2 weeks)">Immediate / Critical (1-2 weeks)</option>
+              <option value="Standard Timeline (2-4 weeks)">Standard Timeline (2-4 weeks)</option>
+              <option value="Planning Phase (1-2 months)">Planning Phase (1-2 months)</option>
+              <option value="Advisory / Consultation">Advisory / Consultation</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Message Field */}
+        <div className="form-group-item">
+          <label htmlFor="contact-message">Message / Project Scope *</label>
           <textarea
-            id="message"
+            id="contact-message"
             name="message"
             value={formData.message}
             onChange={handleChange}
-            placeholder="How can I help you?"
+            placeholder="Describe your infrastructure goals, existing cloud stack, or project requirements..."
+            className={errors.message ? 'input-error' : ''}
+            aria-invalid={errors.message ? 'true' : 'false'}
+            aria-describedby={errors.message ? 'message-error' : undefined}
             rows="5"
             required
-          ></textarea>
+          />
+          {errors.message && (
+            <div id="message-error" className="field-error-msg" role="alert">
+              <AlertCircle size={14} />
+              <span>{errors.message}</span>
+            </div>
+          )}
         </div>
 
+        {/* Primary CTA Button */}
         <button
           type="submit"
-          className={`submit-btn ${status === 'SENDING' ? 'loading' : ''}`}
+          className="btn btn-primary btn-contact-submit"
           disabled={status === 'SENDING'}
+          id="contact-submit-button"
         >
-          {status === 'SENDING' ? 'Sending...' : 'Send Message'}
-          <span className="btn-glow"></span>
+          {status === 'SENDING' ? (
+            <>
+              <Loader2 size={18} className="spin-animation" />
+              <span>Transmitting Message...</span>
+            </>
+          ) : (
+            <>
+              <span>Send Message</span>
+              <Send size={16} />
+            </>
+          )}
         </button>
 
+        {/* Feedback Alerts */}
         {status === 'SUCCESS' && (
-          <div className="form-status success">
-            ✅ Message sent! I&apos;ll get back to you soon.
+          <div className="form-feedback-alert success" role="status">
+            <CheckCircle2 size={18} />
+            <span>Thank you! Your message has been dispatched. Jeni will respond within 24 hours.</span>
           </div>
         )}
+
         {status === 'ERROR' && (
-          <div className="form-status error">
-            ❌ Failed to send. Email me directly at{' '}
-            <a href="mailto:pjeni3095@gmail.com" style={{ color: 'var(--accent)' }}>
-              pjeni3095@gmail.com
-            </a>
+          <div className="form-feedback-alert error" role="alert">
+            <AlertCircle size={18} />
+            <span>
+              Could not complete automated delivery. Please email directly at{' '}
+              <a href="mailto:pjeni3095@gmail.com" style={{ color: '#FFFFFF', textDecoration: 'underline' }}>
+                pjeni3095@gmail.com
+              </a>.
+            </span>
           </div>
         )}
       </form>

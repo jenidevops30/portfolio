@@ -1,155 +1,157 @@
-import { useState, useEffect } from 'react';
+import { ArrowRight, BookOpen, Download, CheckCircle2 } from 'lucide-react';
+import { PORTFOLIO_DATA } from '../data/portfolioData';
 
 const Hero = ({ onNavigate }) => {
-  const [line1, setLine1] = useState('');
-  const [line2, setLine2] = useState('');
-  const [line3, setLine3] = useState('');
-  const [line4, setLine4] = useState('');
-  const [activeLine, setActiveLine] = useState(1); // 1, 2, 3, 4, or null
-
-  useEffect(() => {
-    let isMounted = true;
-    const l1Text = 'AWS Cloud & DevOps Engineer';
-    const l2Text = 'Architecting Scalable, Secure Cloud Solutions';
-    const l3Text = '6+ Years AWS | CI/CD | Terraform Expert';
-    const l4Text = 'Currently at Webcontrive';
-    const speed = 45; // ms per character — slightly faster for longer lines
-
-    const type = async () => {
-      // Type Line 1
-      for (let i = 0; i <= l1Text.length; i++) {
-        if (!isMounted) return;
-        setLine1(l1Text.substring(0, i));
-        await new Promise((r) => setTimeout(r, speed));
-      }
-      if (!isMounted) return;
-      setActiveLine(2);
-
-      // Type Line 2
-      for (let i = 0; i <= l2Text.length; i++) {
-        if (!isMounted) return;
-        setLine2(l2Text.substring(0, i));
-        await new Promise((r) => setTimeout(r, speed));
-      }
-      if (!isMounted) return;
-      setActiveLine(3);
-
-      // Type Line 3
-      for (let i = 0; i <= l3Text.length; i++) {
-        if (!isMounted) return;
-        setLine3(l3Text.substring(0, i));
-        await new Promise((r) => setTimeout(r, speed));
-      }
-      if (!isMounted) return;
-      setActiveLine(4);
-
-      // Type Line 4
-      for (let i = 0; i <= l4Text.length; i++) {
-        if (!isMounted) return;
-        setLine4(l4Text.substring(0, i));
-        await new Promise((r) => setTimeout(r, speed));
-      }
-      if (!isMounted) return;
-      setActiveLine(null); // Finished
-    };
-
-    // Quick delay before starting typing
-    setTimeout(() => {
-      if (isMounted) type();
-    }, 500);
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-
-  const techIcons = [
-    { name: 'AWS', url: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg', id: 'aws-logo' },
-    { name: 'Terraform', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg' },
-    { name: 'Docker', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
-    { name: 'Linux', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' }
-  ];
+  const { hero } = PORTFOLIO_DATA;
 
   return (
-    <section id="hero">
-      <div className="container hero-container">
-        <div className="hero-content">
-          <div className="glass-terminal-panel">
-            <div className="hero-tag badge-pulse-animation" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(62, 201, 168, 0.1)', border: '1px solid rgba(62, 201, 168, 0.25)', borderRadius: '100px', padding: '6px 16px', fontSize: '0.82rem', color: 'var(--accent)', marginBottom: '1.5rem' }}>
-              <span className="live-dot" style={{ background: 'var(--accent)', boxShadow: '0 0 10px var(--accent)' }}></span>
-              AWS DevOps Engineer · 6+ Years Experience
+    <section id="hero" className="hero-section">
+      <div className="container">
+        <div className="hero-grid">
+          {/* Left Column: Value Proposition & CTAs */}
+          <div className="hero-content-col">
+            <div className="hero-badge-container">
+              <div className="hero-status-pill">
+                <span className="pulse-dot"></span>
+                <span>Available for Cloud Architecture &amp; DevOps Contracts</span>
+              </div>
             </div>
-            
-            <h1 className="hero-title" style={{ minHeight: '220px', display: 'flex', flexDirection: 'column', gap: '0.35rem', lineHeight: '1.25' }}>
-              <span style={{ fontSize: '0.72em', color: 'var(--accent)' }} className={activeLine === 1 ? 'terminal-cursor' : ''}>{line1}</span>
-              <span style={{ fontSize: '0.85em' }} className={activeLine === 2 ? 'terminal-cursor' : ''}>{line2}</span>
-              <span style={{ fontSize: '0.68em', color: 'var(--text-dim)' }} className={activeLine === 3 ? 'terminal-cursor' : ''}>{line3}</span>
-              <span style={{ fontSize: '0.58em', color: 'var(--muted)', fontWeight: 500 }} className={activeLine === 4 ? 'terminal-cursor' : ''}>{line4}</span>
+
+            <h1 className="hero-h1">
+              Building Scalable, Resilient <br />
+              <span className="hero-gradient-text">Cloud Infrastructure</span>
             </h1>
-            
-            <p className="hero-sub" style={{ maxWidth: '100%', marginTop: '1.5rem', marginBottom: '2.5rem' }}>
-              AWS-focused DevOps Engineer with <strong>6+ years of experience</strong> building highly available cloud infrastructure, Kubernetes platforms, and zero-downtime CI/CD pipelines. Currently pursuing <strong>AWS SAA-C03</strong>.
+
+            <p className="hero-value-prop">
+              {hero.valueProposition}
             </p>
-            
-            <div className="hero-btns">
-              <button className="btn-primary" onClick={() => onNavigate('projects')}>View Infrastructure</button>
-              <button className="btn-outline" onClick={() => onNavigate('contact')}>Initialize Contact</button>
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-outline" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-                <span>📄</span> Download Resume
+
+            <div className="hero-proof-metrics">
+              {hero.proofMetrics}
+            </div>
+
+            {/* Action Group */}
+            <div className="hero-action-group">
+              <button 
+                className="btn btn-primary"
+                onClick={() => onNavigate('projects')}
+                id="hero-cta-view-projects"
+              >
+                <span>View Projects</span>
+                <ArrowRight size={18} />
+              </button>
+
+              <button 
+                className="btn btn-secondary"
+                onClick={() => onNavigate('articles')}
+                id="hero-cta-read-articles"
+              >
+                <BookOpen size={18} />
+                <span>Read Articles</span>
+              </button>
+
+              <a 
+                href="/resume.pdf" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="btn btn-ghost"
+                id="hero-cta-download-resume"
+              >
+                <Download size={18} />
+                <span>Resume</span>
               </a>
             </div>
           </div>
-          <div className="hero-stats">
-            <div>
-              <div className="stat-num">6+</div>
-              <div className="stat-label">Years Experience</div>
-            </div>
-            <div>
-              <div className="stat-num">100+</div>
-              <div className="stat-label">Deployments Handled</div>
-            </div>
-            <div>
-              <div className="stat-num">99.95%</div>
-              <div className="stat-label">Uptime Achieved</div>
+
+          {/* Right Column: 3D-Styled Glowing Cloud Architecture Visualization */}
+          <div className="hero-visual-col">
+            <div className="hero-visual-card">
+              <div className="cloud-viz-container">
+                {/* Center Avatar Hub */}
+                <div className="cloud-core-avatar">
+                  <img 
+                    src="/jeni-headshot.webp" 
+                    alt="Jeni Patel - AWS Cloud & DevOps Engineer" 
+                    loading="eager"
+                  />
+                </div>
+
+                {/* Floating Orbiting Infrastructure Nodes */}
+                <div className="cloud-orbit-node node-aws" title="AWS Cloud Infrastructure">
+                  <img 
+                    src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" 
+                    alt="AWS" 
+                  />
+                </div>
+
+                <div className="cloud-orbit-node node-tf" title="Terraform Infrastructure as Code">
+                  <img 
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" 
+                    alt="Terraform" 
+                  />
+                </div>
+
+                <div className="cloud-orbit-node node-k8s" title="Kubernetes Orchestration">
+                  <img 
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" 
+                    alt="Kubernetes" 
+                  />
+                </div>
+
+                <div className="cloud-orbit-node node-docker" title="Docker Containerization">
+                  <img 
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" 
+                    alt="Docker" 
+                  />
+                </div>
+
+                <div className="cloud-orbit-node node-cicd" title="CI/CD Pipelines (GitHub Actions & Jenkins)">
+                  <img 
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" 
+                    alt="GitHub Actions" 
+                  />
+                </div>
+
+                <div className="cloud-orbit-node node-mon" title="Observability (Prometheus & Grafana)">
+                  <img 
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg" 
+                    alt="Grafana" 
+                  />
+                </div>
+              </div>
+
+              {/* Infrastructure Status Banner */}
+              <div className="cloud-status-bar">
+                <div className="cloud-status-indicator">
+                  <CheckCircle2 size={16} />
+                  <span>AWS Multi-AZ Active</span>
+                </div>
+                <div>99.95% Target SLA</div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="hero-visual">
-          <div className="tech-cloud">
-            <div className="hero-avatar-wrapper" style={{
-              position: 'relative',
-              width: '190px',
-              height: '190px',
-              borderRadius: '50%',
-              padding: '4px',
-              background: 'linear-gradient(135deg, var(--accent) 0%, rgba(59, 130, 246, 0.6) 100%)',
-              boxShadow: '0 0 35px var(--accent-glow)',
-              zIndex: 3,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>
-              <img 
-                src="/jeni-headshot.webp" 
-                alt="Jeni Patel" 
-                style={{ 
-                  width: '100%', 
-                  height: '100%', 
-                  objectFit: 'cover', 
-                  borderRadius: '50%',
-                  background: 'var(--bg)'
-                }} 
-              />
+        {/* Lower Strip: Interactive Metrics Block */}
+        <div className="metrics-block-grid">
+          {hero.stats.map((stat, idx) => (
+            <div key={idx} className="metric-card">
+              <div className="metric-value">{stat.num}</div>
+              <div className="metric-title">{stat.label}</div>
             </div>
-            {techIcons.map((icon, index) => (
-              <div key={index} className={`tech-icon-item item-${index}`} id={icon.id || ''}>
-                <img src={icon.url} alt={icon.name} />
-                <div className="icon-glow"></div>
-              </div>
-            ))}
-            <div className="cloud-center-glow"></div>
-          </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Scrolling Marquee of Tools / Skills */}
+      <div className="marquee-strip-container" style={{ marginTop: 'var(--space-48)' }}>
+        <div className="marquee-track">
+          {[...hero.marqueeTools, ...hero.marqueeTools].map((tool, idx) => (
+            <div key={idx} className="marquee-item">
+              <img src={tool.icon} alt={tool.name} loading="lazy" />
+              <span>{tool.name}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>

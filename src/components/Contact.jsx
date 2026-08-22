@@ -1,22 +1,55 @@
 import ContactForm from './ContactForm';
+import { Mail } from 'lucide-react';
+
+const GithubIcon = ({ size = 16, className = "" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+    <path d="M9 18c-4.51 2-5-2-7-2" />
+  </svg>
+);
+
+const LinkedinIcon = ({ size = 16, className = "" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect width="4" height="12" x="2" y="9" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+);
 
 const Contact = () => {
   return (
-    <section id="contact">
+    <section id="contact" className="contact-section" aria-labelledby="contact-heading">
       <div className="container">
-        <div className="section-label">Contact</div>
-        <h2 className="section-title">Let's Work Together</h2>
+        <div className="section-header" style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto var(--space-48)' }}>
+          <div className="section-label">Get in Touch</div>
+          <h2 id="contact-heading" className="section-title">Start a Cloud Project or Consultation</h2>
+          <p className="section-subtitle" style={{ margin: 'var(--space-8) auto 0' }}>
+            Have a cloud migration, architecture audit, or CI/CD automation requirement? Send a message below to initiate discussion.
+          </p>
+        </div>
         
-        <div className="contact-card">
-          <ContactForm />
-          
-          <div className="contact-links">
-            <a href="mailto:pjeni3095@gmail.com" className="contact-link">📧 Email</a>
-            <a href="tel:+918849742011" className="contact-link">📞 +91 88497 42011</a>
-            <a href="https://wa.me/918849742011" className="contact-link">💬 WhatsApp</a>
-            <a href="https://github.com/jenidevops30" className="contact-link">🐙 GitHub</a>
-            <a href="https://www.linkedin.com/in/jeni-patel-devops-engg/" className="contact-link">💼 LinkedIn</a>
-          </div>
+        <ContactForm />
+
+        {/* Quick Contact Badges Strip */}
+        <div style={{ 
+          display: 'flex', 
+          justifyContent: 'center', 
+          flexWrap: 'wrap', 
+          gap: 'var(--space-16)', 
+          marginTop: 'var(--space-48)' 
+        }}>
+          <a href="mailto:pjeni3095@gmail.com" className="btn btn-ghost" style={{ fontSize: '13px' }}>
+            <Mail size={16} color="var(--primary-accent)" />
+            <span>pjeni3095@gmail.com</span>
+          </a>
+          <a href="https://www.linkedin.com/in/jeni-patel-devops-engg/" target="_blank" rel="noopener noreferrer" className="btn btn-ghost" style={{ fontSize: '13px' }}>
+            <LinkedinIcon size={16} />
+            <span>LinkedIn Profile</span>
+          </a>
+          <a href="https://github.com/jenidevops30" target="_blank" rel="noopener noreferrer" className="btn btn-ghost" style={{ fontSize: '13px' }}>
+            <GithubIcon size={16} />
+            <span>GitHub Repositories</span>
+          </a>
         </div>
       </div>
     </section>

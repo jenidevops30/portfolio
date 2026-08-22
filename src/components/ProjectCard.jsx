@@ -1,42 +1,45 @@
-import { useState } from 'react';
-import CaseStudyModal from './CaseStudyModal';
+import { ArrowRight } from 'lucide-react';
 
-const ProjectCard = (project) => {
-  const { title, badge, description, tags, github_url, case_study } = project;
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
+const ProjectCard = ({ 
+  category, 
+  title, 
+  metric, 
+  description, 
+  tags = [], 
+  onSelect 
+}) => {
   return (
-    <>
-      <div className="project-card">
-        <div className="project-badge">{badge}</div>
-        <div className="project-title">{title}</div>
-        <div className="project-desc">{description}</div>
-        <div className="project-tags">
-          {tags.map((tag, index) => (
-            <span key={index} className="project-tag">{tag}</span>
-          ))}
+    <article className="project-card-blueprint">
+      <div>
+        <div className="project-card-top">
+          {category && <span className="project-category-tag">{category}</span>}
+          {metric && <span className="project-metric-badge">{metric}</span>}
         </div>
-        <div className="project-actions">
-          {case_study && (
-            <button className="btn-case-study" onClick={() => setIsModalOpen(true)}>
-              View Case Study
-            </button>
-          )}
-          {github_url && (
-            <a href={github_url} target="_blank" rel="noopener noreferrer" className="github-link">
-              GitHub
-            </a>
-          )}
-        </div>
+
+        <h3 className="project-title">{title}</h3>
+        <p className="project-desc">{description}</p>
       </div>
-      {case_study && (
-        <CaseStudyModal 
-          isOpen={isModalOpen} 
-          onClose={() => setIsModalOpen(false)} 
-          project={project} 
-        />
-      )}
-    </>
+
+      <div>
+        {tags.length > 0 && (
+          <div className="project-tags-row">
+            {tags.map((tag, idx) => (
+              <span key={idx} className="project-tech-tag">{tag}</span>
+            ))}
+          </div>
+        )}
+
+        <button 
+          type="button"
+          className="project-action-link"
+          onClick={onSelect}
+          aria-label={`Read case study for ${title}`}
+        >
+          <span>Read Case Study</span>
+          <ArrowRight size={15} />
+        </button>
+      </div>
+    </article>
   );
 };
 

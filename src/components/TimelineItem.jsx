@@ -1,23 +1,27 @@
+const TimelineItem = ({ role, company, period, date_range, keyActions = [] }) => {
+  const isCurrent = period === 'Current Role' || date_range?.includes('PRESENT');
 
-const TimelineItem = ({ date, role, company, description }) => {
   return (
-    <div className="tl-item">
-      {date && <div className="tl-date">{date}</div>}
-      <div className="tl-role">{role}</div>
-      <div className="tl-company">{company}</div>
-      {description && (
-        <div className="tl-desc">
-          {Array.isArray(description) ? (
-            <ul>
-              {description.map((item, index) => (
-                <li key={index} dangerouslySetInnerHTML={{ __html: item }}></li>
-              ))}
-            </ul>
-          ) : (
-            <p>{description}</p>
-          )}
+    <div className={`timeline-entry ${isCurrent ? 'current' : ''}`}>
+      <div className="timeline-node" aria-hidden="true"></div>
+      
+      <div className="timeline-card">
+        <div className="timeline-top">
+          <div>
+            <h3 className="timeline-role">{role}</h3>
+            <div className="timeline-company">{company}</div>
+          </div>
+          <span className="timeline-date">{date_range}</span>
         </div>
-      )}
+
+        {keyActions && keyActions.length > 0 && (
+          <ul className="timeline-actions-list">
+            {keyActions.map((action, idx) => (
+              <li key={idx} dangerouslySetInnerHTML={{ __html: action }} />
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 };
