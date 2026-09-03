@@ -76,8 +76,23 @@ jobs:
             --paths "/*"
           echo "✅ CloudFront cache invalidated → https://d3n8nd35qm5vvz.cloudfront.net"
 
-      # 5. Print live URL in the Actions log
+      # 9. Create GitHub Release with semantic-release
+      - name: Create GitHub Release
+        uses: cycjimmy/semantic-release-action@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          semantic_version: 24
+          branches: |
+            [
+              'main',
+              {name: 'develop', prerelease: true}
+            ]
+        continue-on-error: true
+
+      # 10. Print deployment summary
       - name: Deployment Summary
         run: |
           echo "🚀 Portfolio deployed successfully!"
-          echo "🌐 Live URL: https://d3n8nd35qm5vvz.cloudfront.net"
+          echo "🌐 Live URL: https://jenidevops.in"
+          echo "📦 Release: Check GitHub Releases tab for version history"

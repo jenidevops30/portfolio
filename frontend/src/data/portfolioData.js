@@ -14,8 +14,8 @@ export const skills = [
   { name: "Nginx", category: "Load Balancing", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" },
   { name: "Prometheus", category: "Monitoring", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original.svg" },
   { name: "Grafana", category: "Dashboards", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg" },
-  { name: "Ansible", category: "Automation", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ansible/ansible-original.svg" },
-  { name: "Bash", category: "Scripting", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg", invert: true },
+  { name: "Ansible", category: "Automation", icon_url: "https://cdn.jsdelivr.dev/gh/devicons/devicon/icons/ansible/ansible-original.svg" },
+  { name: "Bash", category: "Scripting", icon_url: "https://cdn.jsdelivr.dev/gh/devicons/devicon/icons/bash/bash-original.svg", invert: true },
   { name: "ArgoCD", category: "GitOps", icon_url: "https://raw.githubusercontent.com/devicons/devicon/master/icons/argocd/argocd-original.svg" },
 ];
 
@@ -33,7 +33,7 @@ export const pipeline = [
 export const infraTiers = [
   [{ label: "Route 53 DNS" }],
   [{ label: "Application Load Balancer" }],
-  [{ label: "ECS / EC2 Instance A" }, { label: "ECS / EC2 Instance B" }],
+  [{ label: "EC2 / EC2 Instance A" }, { label: "EC2 / EC2 Instance B" }],
   [{ label: "RDS (Multi-AZ)" }, { label: "S3 Backups" }],
 ];
 
@@ -113,6 +113,124 @@ export const projects = [
     description: "Deployed a production WordPress platform on AWS EC2 with hardened security, SSL/TLS, and Apache tuning for 24/7 availability.",
     tags: ["AWS EC2", "WordPress", "MySQL"],
   },
+
+  // NEW TIER 1 PROJECTS
+  {
+    title: "Shopify Production Infrastructure on AWS",
+    badge: "AWS · Tier 1 · Professional",
+    description: "Production AWS infrastructure for Laravel/PHP e-commerce applications managing EC2 fleet with Auto Scaling, Application Load Balancer traffic routing, RDS MariaDB clusters, VPC networking, and Cloudflare integration. Achieved 99.95% uptime over 6-month production period with 3 incident-induced outages auto-resolved via ASG health check recovery.",
+    tags: ["AWS", "EC2", "ALB", "ASG", "Launch Templates", "RDS", "VPC", "Route 53", "Cloudflare", "Laravel", "PHP", "Apache", "MariaDB"],
+    links: {
+      repo: "https://github.com/jenidevops30/infrastructure-portfolio",
+      live: "https://jenidevops.in"
+    },
+    cicd: {
+      enabled: true,
+      badgeUrl: "https://img.shields.io/badge/Uptime%2099.95%25--brightgreen"
+    }
+  },
+  {
+    title: "AWS Cost Optimization & FinOps",
+    badge: "AWS · FinOps · Tier 1",
+    description: "Comprehensive cost optimization initiative reducing monthly infrastructure from $813.43 to $327.07 (~59.8% reduction) through EC2 right-sizing, scheduled Auto Scaling Group scaling (off-peak instance reduction), RDS parameter tuning, EBS snapshot lifecycle policies, and NAT gateway consolidation. Maintained zero degradation in application performance or availability throughout the optimization period.",
+    tags: ["AWS", "FinOps", "Cost Optimization", "EC2", "RDS", "ASG", "CloudWatch", "FinOps"],
+    links: {
+      repo: "https://github.com/jenidevops30/infrastructure-portfolio",
+      live: "https://jenidevops.in"
+    },
+    cicd: {
+      enabled: true,
+      badgeUrl: "https://img.shields.io/badge/Cost%20Reduction%2059.8%25--brightgreen"
+    }
+  },
+  {
+    title: "AWS Security & VAPT Remediation",
+    badge: "AWS · Security · Tier 1",
+    description: "Comprehensive VAPT assessment and remediation of production AWS infrastructure identifying 12 security findings (3 critical, 5 high, 4 medium) across network, application, and configuration layers. Remediated critical vulnerabilities including public SSH access, missing ALB security headers, and Shopify Admin endpoint exposure. Achieved AWS Security Hub score improvement from 'basic' to 'intermediate' posture and zero successful security incidents in 6 months following remediation.",
+    tags: ["AWS", "Security", "VAPT", "WAF", "IAM", "Cloudflare", "Compliance"],
+    links: {
+      repo: "https://github.com/jenidevops30/infrastructure-portfolio",
+      live: "https://jenidevops.in"
+    },
+    cicd: {
+      enabled: true,
+      badgeUrl: "https://img.shields.io/badge/Findings%20Remediated%2012--brightgreen"
+    }
+  },
+
+  // NEW TIER 2 PROJECTS
+  {
+    title: "Production CI/CD Pipeline with Jenkins",
+    badge: "Jenkins · Tier 2 · Professional",
+    description: "Designed and implemented automated CI/CD pipeline for PHP/Laravel application (Git → Jenkins → Build/Test → SonarQube → Deploy → Health Check). Increased deployment frequency from every 2-3 weeks to multiple per week, reduced deployment time from 45 minutes to 10 minutes, and decreased deployment failure rate from 15% to 3% (80% improvement). Integrated SonarQube quality gates to prevent defect leakage to production.",
+    tags: ["Jenkins", "Groovy", "CI/CD", "SonarQube", "PHP", "Docker", "Automation"],
+    links: {
+      repo: "https://github.com/jenidevops30/infrastructure-portfolio",
+      live: "https://jenidevops.in"
+    },
+    cicd: {
+      enabled: true,
+      badgeUrl: "https://img.shields.io/badge/Deployment%20Frequency%2010x--brightgreen"
+    }
+  },
+  {
+    title: "AWS GPU Infrastructure for Media Processing",
+    badge: "AWS · GPU · Tier 2",
+    description: "GPU-accelerated media processing infrastructure using EC2 g4dn.xlarge instances (NVIDIA T4 GPU with NVENC hardware acceleration) running Python transcoding scripts. Reduced processing time for 10-minute videos from 45 minutes to 4 minutes (91% reduction), cut cost per video from $1.50 to $0.45 (70% reduction), and achieved 95% Spot instance interruption success rate through checkpointing implementation. Hybrid On-Demand + Spot pricing model balanced reliability and cost.",
+    tags: ["AWS", "GPU", "NVIDIA", "CUDA", "FFmpeg", "Python", "Media Processing", "Spot Instances"],
+    links: {
+      repo: "https://github.com/jenidevops30/infrastructure-portfolio",
+      live: "https://jenidevops.in"
+    },
+    cicd: {
+      enabled: true,
+      badgeUrl: "https://img.shields.io/badge/Processing%20Time%2091%25%20Reduction--brightgreen"
+    }
+  },
+  {
+    title: "Dockerized Application & CI/CD — tenty.xyz",
+    badge: "Docker · Tier 2 · Independent",
+    description: "Independent Docker containerization project demonstrating multi-stage builds, docker-compose orchestration, and container best practices for PHP/Laravel application. Reduced Docker image size from 500+MB to ~120MB (75% reduction), cut deployment time from 10 minutes to 2 minutes (80% reduction), and achieved near-100% environment parity between local development and production. Fixed production restart loop, local environment drift, and build cache staleness incidents through systematic debugging and Dockerfile optimization.",
+    tags: ["Docker", "Containerization", "PHP", "Laravel", "Dockerfile", "docker-compose", "Multi-stage Build"],
+    links: {
+      repo: "https://github.com/jenidevops30/infrastructure-portfolio",
+      live: "https://jenidevops.in"
+    },
+    cicd: {
+      enabled: true,
+      badgeUrl: "https://img.shields.io/badge/Image%20Size%2075%25%20Reduction--brightgreen"
+    }
+  },
+
+  // NEW TIER 3 PROJECTS
+  {
+    title: "AWS Infrastructure Automation with Terraform",
+    badge: "Terraform · Tier 3 · Independent",
+    description: "Infrastructure-as-Code project automating AWS provisioning across dev/staging/prod environments using Terraform modules, workspaces, and remote backend (S3 + DynamoDB state locking). Eliminated configuration drift between environments, reduced infrastructure provisioning time from 2-3 hours to 15 minutes (87% reduction), decreased environment promotion time from 1 day to 30 minutes (83% reduction), and reduced configuration duplication by ~70% through module reuse. Added automated drift detection via `terraform plan -refresh-only` and pre-commit hooks with `terraform validate`.",
+    tags: ["Terraform", "IaC", "AWS", "Modules", "Workspaces", "S3", "DynamoDB", "Drift Detection"],
+    links: {
+      repo: "https://github.com/jenidevops30/infrastructure-portfolio",
+      live: "https://jenidevops.in"
+    },
+    cicd: {
+      enabled: true,
+      badgeUrl: "https://img.shields.io/badge/Provisioning%2015%20min%20vs%203hr--brightgreen"
+    }
+  },
+  {
+    title: "Production Monitoring & Incident Response",
+    badge: "Reliability · Tier 3 · Methodology",
+    description: "Systematic incident response methodology (Detection → Investigation → Root Cause → Resolution → Validation → Prevention) applied across 12+ production incidents. Reduced mean time to detection (MTTD) from 30 minutes to 5 minutes (83% reduction) through improved CloudWatch alarming and log monitoring. Reduced mean time to resolution (MTTR) from 25 minutes to 8 minutes (68% reduction) through systematic root cause analysis. Achieved 70% reduction in incident recurrence over 6-month period through runbook updates, alarm refinement, and automated testing. Documented 12+ incident reports with timelines, root causes, resolutions, and prevention measures in team knowledge base.",
+    tags: ["Monitoring", "Incident Response", "Reliability", "CloudWatch", "SNS", "Root Cause Analysis", "MTTR", "MTTD"],
+    links: {
+      repo: "https://github.com/jenidevops30/infrastructure-portfolio",
+      live: "https://jenidevops.in"
+    },
+    cicd: {
+      enabled: true,
+      badgeUrl: "https://img.shields.io/badge/MTTR%2025m%208m%2068%25--brightgreen"
+    }
+  },
 ];
 
 export const experience = [
@@ -148,7 +266,7 @@ export const experience = [
   {
     role: "Sr. Server and Cloud Engineer",
     company: "Logix Built Solutions Pvt. Ltd.",
-    logo_url: "https://d3gv0jmljv77gc.cloudfront.net/frontend/assets/lbicon.png",
+    logo_url: "d3gv0jmljv77gc.cloudfront.net/frontend/assets/lbicon.png",
     date_range: "FEBRUARY 2022 – FEBRUARY 2025",
     description: [
       "Architected multi-cloud infrastructure on AWS/GCP, improving scalability by 60% and cutting deployment lead time by 40%.",
@@ -162,7 +280,6 @@ export const experience = [
   {
     role: "Network Engineer",
     company: "OptimumBrew Technology LLP",
-    logo_url: "https://media.licdn.com/dms/image/v2/C560BAQG4qupHkN_isg/company-logo_200_200/company-logo_200_200/0/1631335137135?e=2147483647&v=beta&t=ZR4FnuFNzjbs-RLPU_5CkwaVbSjvMSn_PGahzAv-Tsk",
     date_range: "JANUARY 2020 – JANUARY 2022",
     description: [
       "Managed FortiGate firewall and server infrastructure for 60+ users, achieving 99.9% uptime.",

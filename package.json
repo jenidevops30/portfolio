@@ -1,0 +1,36 @@
+{
+  "name": "jenidevops-portfolio",
+  "version": "1.0.0",
+  "description": "DevOps Portfolio - Professional infrastructure, CI/CD, and performance monitoring",
+  "type": "module",
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "preview": "cd frontend && npm run preview",
+    "lint": "cd frontend && npm run lint",
+    "semantic-release": "semantic-release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jenidevops30/portfolio.git"
+  },
+  "keywords": [
+    "devops",
+    "portfolio",
+    "terraform",
+    "ci-cd",
+    "aws",
+    "kubernetes"
+  ],
+  "author": "Jeni Patel",
+  "license": "MIT",
+  "devDependencies": {
+    "@semantic-release/commit-analyzer": "^12.0.0",
+    "@semantic-release/github": "^10.0.0",
+    "@semantic-release/release-notes-generator": "^14.0.0",
+    "semantic-release": "^24.0.0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}
