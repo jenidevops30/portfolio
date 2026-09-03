@@ -1,4 +1,3 @@
-import React from 'react';
 
 const ProjectCard = ({ title, badge, description, tags }) => {
   return (

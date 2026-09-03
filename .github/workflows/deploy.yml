@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to S3 & Invalidate CloudFront
+    name: Build, Deploy to S3 & Invalidate CloudFront
     runs-on: ubuntu-latest
 
     steps:
@@ -15,7 +15,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. Configure AWS credentials from GitHub Secrets
+      # 2. Set up Node for the Vite build
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      # 3. Install deps and build the React/Vite app
+      - name: Install & Build
+        working-directory: frontend
+        run: |
+          npm ci
+          npm run build
+
+      # 4. Configure AWS credentials from GitHub Secrets
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -23,16 +38,10 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      # 3. Sync files to S3 (exclude .git, .github, README)
+      # 5. Sync the built app (frontend/dist) to S3
       - name: Deploy to S3
         run: |
-          aws s3 sync . s3://jeni-portfolio \
-            --exclude ".git/*" \
-            --exclude ".github/*" \
-            --exclude "README.md" \
-            --exclude "*.jpeg" \
-            --exclude "*.jpg" \
-            --delete
+          aws s3 sync frontend/dist s3://jeni-portfolio --delete
           echo "✅ S3 sync complete → s3://jeni-portfolio"
 
       # 4. Invalidate CloudFront cache so changes go live immediately
