@@ -38,6 +38,16 @@ This document explains the automated build, test, and deployment pipeline that p
           │        ├─► index-*.css (3.41 KB gzip)
           │        └─► index-*.js (69.74 KB gzip)
           │
+          ├─► Step 5b: Security Scan (Snyk)
+          │        └─► Check npm dependencies for vulnerabilities
+          │        └─► Fail if high-severity vulns found
+          │        └─► Results: npm audit + Snyk report
+          │
+          ├─► Step 5c: Performance Audit (Lighthouse CI)
+          │        └─► Test: Performance, Accessibility, Best Practices, SEO
+          │        └─► Thresholds: 85+ performance, 90+ accessibility, 90+ SEO
+          │        └─► Results: JSON report + temporary public URL
+          │
           ├─► Step 6: Configure AWS Credentials
           │        └─► aws-actions/configure-aws-credentials@v4
           │        └─► Uses GitHub Secrets (AWS_ACCESS_KEY_ID, etc.)
@@ -57,6 +67,37 @@ This document explains the automated build, test, and deployment pipeline that p
     │  (via CloudFront + Route 53 DNS)     │
     └──────────────────────────────────────┘
 ```
+
+## 🔒 Security & Performance Gates
+
+### **Snyk Dependency Scanning**
+Automatically scans npm dependencies for known vulnerabilities:
+- ✅ Checks every npm install
+- ✅ Fails if high-severity vulnerabilities found
+- ✅ Provides remediation guidance (upgrade path)
+- ✅ Blocks deployment of unsafe code
+
+**Setup**: Add `SNYK_TOKEN` to GitHub Secrets (from Snyk.io)
+
+### **Lighthouse CI Performance Testing**
+Tests the built site for performance, accessibility, and SEO:
+- ✅ **Performance**: Tracks Core Web Vitals, load times
+- ✅ **Accessibility**: WCAG 2.1 compliance checks
+- ✅ **Best Practices**: Security, deprecated APIs, etc.
+- ✅ **SEO**: Meta tags, mobile-friendly, crawlability
+- ✅ **Thresholds**: Fails if scores drop below 85%
+
+**Thresholds** (from `lighthouserc.json`):
+```json
+{
+  "performance": 85,
+  "accessibility": 90,
+  "best-practices": 85,
+  "seo": 90
+}
+```
+
+---
 
 ## 📋 Workflow File
 
@@ -124,6 +165,7 @@ For the workflow to deploy successfully, add these secrets to your GitHub reposi
 | `AWS_SECRET_ACCESS_KEY` | AWS IAM user secret key | `wJal...` |
 | `AWS_REGION` | AWS region where S3/CloudFront live | `us-east-1` |
 | `CLOUDFRONT_DISTRIBUTION_ID` | CloudFront distribution ID | `E1ABC...` |
+| `SNYK_TOKEN` | Snyk API token for security scanning | (from Snyk.io dashboard) |
 
 ### How to Get These Values:
 
@@ -141,6 +183,13 @@ For the workflow to deploy successfully, add these secrets to your GitHub reposi
    - AWS CloudFront Console
    - Find your distribution
    - Copy the Distribution ID (e.g., `E1ABCD1234E5F6G`)
+
+4. **SNYK_TOKEN**:
+   - Go to [Snyk.io](https://snyk.io) and sign up (free tier available)
+   - Settings > API Token
+   - Copy the token
+   - Add to GitHub Secrets as `SNYK_TOKEN`
+   - **Note**: Snyk free tier allows scanning public repos
 
 ## 🚀 How to Deploy
 

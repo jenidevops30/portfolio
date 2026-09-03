@@ -30,6 +30,30 @@ jobs:
           npm ci
           npm run build
 
+      # 3b. Lint code (quality gate)
+      - name: ESLint Code Quality
+        working-directory: frontend
+        run: npm run lint
+        continue-on-error: false
+
+      # 3c. Security scan - Check for vulnerable dependencies
+      - name: Security Scan - Snyk Dependencies
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high frontend/
+        continue-on-error: true
+
+      # 3d. Performance audit - Lighthouse CI
+      - name: Performance Audit - Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v11
+        with:
+          configPath: './lighthouserc.json'
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+        continue-on-error: true
+
       # 4. Configure AWS credentials from GitHub Secrets
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
