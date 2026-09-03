@@ -39,6 +39,21 @@ export const infraTiers = [
 
 export const projects = [
   {
+    title: "jenidevops.in — Portfolio Site (CI/CD Case Study)",
+    badge: "React · GitHub Actions · AWS",
+    description: "This portfolio! Redesigned for enterprise SaaS aesthetics (Datadog/Vercel style). Showcases end-to-end DevOps: React/Vite app, automated GitHub Actions build, S3 deployment, and CloudFront CDN. Features live CI/CD status badge and automated cache invalidation.",
+    tags: ["React", "Vite", "GitHub Actions", "S3", "CloudFront"],
+    links: {
+      repo: "https://github.com/jenidevops30/portfolio",
+      live: "https://jenidevops.in",
+      workflow: "https://github.com/jenidevops30/portfolio/actions/workflows/deploy.yml"
+    },
+    cicd: {
+      enabled: true,
+      badgeUrl: "https://github.com/jenidevops30/portfolio/actions/workflows/deploy.yml/badge.svg"
+    }
+  },
+  {
     title: "Quickhunt — DigitalOcean to AWS Migration",
     badge: "AWS · Terraform",
     description: "Led the migration from DigitalOcean to a two-tier AWS architecture — CloudFront/S3 for the frontend, EC2/RDS for the backend — achieving 99.95% availability.",
