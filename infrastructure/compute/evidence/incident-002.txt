@@ -1,0 +1,112 @@
+================================================================================
+INCIDENT REPORT: #002
+================================================================================
+Incident ID:    INCIDENT-002
+Severity:       MEDIUM
+Component:      ROUTING / WEB TIER / APPLICATION
+Target:         devops-portfolio-lab-ec2 (i-018cd545f3d84df7a)
+Public IP:      54.236.188.6
+Reported Date:  2026-09-08
+
+--------------------------------------------------------------------------------
+1. SYMPTOM
+--------------------------------------------------------------------------------
+External HTTP requests to application routes (such as /health) failed with
+404 Not Found, despite EC2 compute and security group TCP/80 ingress being verified.
+
+$ curl -i http://54.236.188.6/health
+HTTP/1.1 404 Not Found
+Server: nginx/1.24.0 (Ubuntu)
+Date: Tue, 08 Sep 2026 17:25:47 GMT
+Content-Type: text/html
+Content-Length: 162
+Connection: keep-alive
+
+<html>
+<head><title>404 Not Found</title></head>
+<body>
+<center><h1>404 Not Found</h1></center>
+<hr><center>nginx/1.24.0 (Ubuntu)</center>
+</body>
+</html>
+
+--------------------------------------------------------------------------------
+2. INVESTIGATION
+--------------------------------------------------------------------------------
+- Layer 3/4 (Network):
+  * Security group sg-03f12b9cef27c86ac allows 0.0.0.0/0 on TCP/80.
+  * Public IP 54.236.188.6 routes through Internet Gateway igw-00539e8d92ec84a83.
+  * TCP port 80 handshake succeeds.
+
+- Layer 7 (Web Server):
+  * Nginx service status: active (running) on EC2.
+  * Nginx configuration inspection in /etc/nginx/sites-enabled/default showed:
+      root /var/www/html;
+      location / {
+          try_files $uri $uri/ =404;
+      }
+  * Nginx served static files from /var/www/html instead of proxying traffic.
+
+- Application Layer:
+  * Node.js portfolio application repository cloned at /home/ubuntu/portfolio/app.
+  * Node runtime verified: Node v24.x active.
+  * Application direct test on loopback:
+      $ curl -i http://localhost:3000/health
+      HTTP/1.1 200 OK
+      {"status":"healthy","application":"personal-devops-portfolio"}
+  * Application functional but isolated behind default Nginx web root.
+
+--------------------------------------------------------------------------------
+3. ROOT CAUSE
+--------------------------------------------------------------------------------
+Nginx web server was installed with default distribution configuration serving
+static files from /var/www/html. No reverse proxy directive (proxy_pass) was
+configured to bridge incoming public requests on port 80 to the Node.js application
+process listening on localhost:3000.
+
+--------------------------------------------------------------------------------
+4. REMEDIATION
+--------------------------------------------------------------------------------
+Configured reverse proxy upstream in Nginx configuration:
+
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    server_name _;
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+
+Executed validation:
+$ sudo nginx -t
+$ sudo systemctl reload nginx
+
+Configured Node.js application as systemd service (portfolio.service) to ensure
+persistent daemon lifecycle across reboots.
+
+--------------------------------------------------------------------------------
+5. VALIDATION & EVIDENCE
+--------------------------------------------------------------------------------
+Post-remediation test:
+$ curl -i http://54.236.188.6/health
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+{"status":"healthy","application":"personal-devops-portfolio"}
+
+--------------------------------------------------------------------------------
+6. ENGINEERING LESSON
+--------------------------------------------------------------------------------
+A cloud server responding with HTTP 200 at the root is not evidence of application
+readiness. The web server layer and application layer must be verified end-to-end
+with application-specific health contracts.
+================================================================================

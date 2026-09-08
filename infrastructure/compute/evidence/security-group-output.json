@@ -1,0 +1,78 @@
+{
+    "SecurityGroups": [
+        {
+            "GroupId": "sg-03f12b9cef27c86ac",
+            "IpPermissionsEgress": [
+                {
+                    "IpProtocol": "-1",
+                    "UserIdGroupPairs": [],
+                    "IpRanges": [
+                        {
+                            "Description": "Allow outbound traffic",
+                            "CidrIp": "0.0.0.0/0"
+                        }
+                    ],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": []
+                }
+            ],
+            "Tags": [
+                {
+                    "Key": "Owner",
+                    "Value": "Jeni"
+                },
+                {
+                    "Key": "ManagedBy",
+                    "Value": "Terraform"
+                },
+                {
+                    "Key": "Project",
+                    "Value": "devops-portfolio"
+                },
+                {
+                    "Key": "Environment",
+                    "Value": "lab"
+                },
+                {
+                    "Key": "Name",
+                    "Value": "devops-portfolio-lab-ec2-sg"
+                }
+            ],
+            "VpcId": "vpc-0ce0a69d025788f7a",
+            "SecurityGroupArn": "arn:aws:ec2:us-east-1:390151765180:security-group/sg-03f12b9cef27c86ac",
+            "OwnerId": "390151765180",
+            "GroupName": "devops-portfolio-lab-ec2-sg",
+            "Description": "Security group for portfolio EC2 instance",
+            "IpPermissions": [
+                {
+                    "IpProtocol": "tcp",
+                    "FromPort": 80,
+                    "ToPort": 80,
+                    "UserIdGroupPairs": [],
+                    "IpRanges": [
+                        {
+                            "Description": "HTTP",
+                            "CidrIp": "0.0.0.0/0"
+                        }
+                    ],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": []
+                },
+                {
+                    "IpProtocol": "tcp",
+                    "FromPort": 22,
+                    "ToPort": 22,
+                    "UserIdGroupPairs": [],
+                    "IpRanges": [
+                        {
+                            "Description": "SSH from administrator",
+                            "CidrIp": "49.36.91.47/32"
+                        }
+                    ],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": []
+                }
+            ]
+        }
+    ]
+}
