@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="AWS Production Platform case study by Jeni Patel."
+    >
+
+    <title>AWS Production Platform | Jeni Patel</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link
+      rel="stylesheet"
+      href="/css/case-study.css"
+    />
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <nav class="container navigation">
+
+        <a href="/" class="logo">
+            Jeni Patel
+        </a>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/#projects">Projects</a>
+            <a href="/#experience">Experience</a>
+            <a href="/#contact">Contact</a>
+        </div>
+
+    </nav>
+
+</header>
+
+
+<main>
+
+<section class="project-hero">
+
+    <div class="container">
+
+        <p class="section-label">
+            PROJECT 01
+        </p>
+
+        <p class="project-status">
+            ● BUILDING
+        </p>
+
+        <h1>
+            AWS Production Platform
+        </h1>
+
+        <p class="project-intro">
+
+            A production-style AWS platform designed to
+            demonstrate secure networking, high availability,
+            load balancing, monitoring, automation and
+            failure recovery.
+
+        </p>
+
+        <div class="tags">
+
+            <span>AWS</span>
+            <span>Terraform</span>
+            <span>ALB</span>
+            <span>Auto Scaling</span>
+            <span>RDS</span>
+            <span>CloudWatch</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="container">
+
+        <p class="section-label">
+            OBJECTIVE
+        </p>
+
+        <h2>
+            Build infrastructure that can be operated,
+            tested and recovered.
+        </h2>
+
+        <p class="section-description">
+
+            The goal is not simply to deploy an application.
+            The platform will be deliberately tested under
+            failure conditions to understand how each layer
+            behaves and how incidents can be diagnosed.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="section section-alt">
+
+    <div class="container">
+
+        <p class="section-label">
+            ARCHITECTURE
+        </p>
+
+        <h2>
+            Production-style AWS architecture
+        </h2>
+
+        <pre class="architecture">
+Internet
+   │
+   ▼
+Cloudflare
+   │
+   ▼
+AWS ALB
+   │
+   ├── EC2-A
+   │
+   └── EC2-B
+          │
+          ▼
+         RDS
+        </pre>
+
+        <p class="section-description">
+
+            The architecture will be implemented progressively,
+            beginning with the AWS networking foundation and
+            application deployment.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="container">
+
+        <p class="section-label">
+            ENGINEERING AREAS
+        </p>
+
+        <div class="project-detail-grid">
+
+            <article class="skill-card">
+
+                <h3>Networking</h3>
+
+                <p>
+                    VPC, subnets, routing and
+                    security boundaries.
+                </p>
+
+            </article>
+
+
+            <article class="skill-card">
+
+                <h3>Compute</h3>
+
+                <p>
+                    Linux application servers,
+                    EC2 and Auto Scaling.
+                </p>
+
+            </article>
+
+
+            <article class="skill-card">
+
+                <h3>Load Balancing</h3>
+
+                <p>
+                    ALB, target groups and
+                    health checks.
+                </p>
+
+            </article>
+
+
+            <article class="skill-card">
+
+                <h3>Database</h3>
+
+                <p>
+                    Private RDS architecture and
+                    controlled database access.
+                </p>
+
+            </article>
+
+
+            <article class="skill-card">
+
+                <h3>Observability</h3>
+
+                <p>
+                    Metrics, logs, alarms and
+                    operational troubleshooting.
+                </p>
+
+            </article>
+
+
+            <article class="skill-card">
+
+                <h3>Reliability</h3>
+
+                <p>
+                    Failure testing, recovery and
+                    availability analysis.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section section-alt">
+
+    <div class="container">
+
+        <p class="section-label">
+            FAILURE LAB
+        </p>
+
+        <h2>
+            Build → Break → Troubleshoot
+        </h2>
+
+        <div class="incident-list">
+
+            <div>
+                <strong>01 — EC2 Failure</strong>
+                <p>
+                    Terminate an application instance and
+                    observe recovery behavior.
+                </p>
+            </div>
+
+            <div>
+                <strong>02 — Health Check Failure</strong>
+                <p>
+                    Break the application health endpoint
+                    and investigate target health.
+                </p>
+            </div>
+
+            <div>
+                <strong>03 — ALB 502</strong>
+                <p>
+                    Investigate failures between the load
+                    balancer and application.
+                </p>
+            </div>
+
+            <div>
+                <strong>04 — Database Connectivity</strong>
+                <p>
+                    Diagnose security-group and database
+                    connectivity problems.
+                </p>
+            </div>
+
+            <div>
+                <strong>05 — High CPU</strong>
+                <p>
+                    Generate controlled load and investigate
+                    resource saturation.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="container">
+
+        <p class="section-label">
+            STATUS
+        </p>
+
+        <h2>
+            Currently building
+        </h2>
+
+        <p class="section-description">
+
+            This project is being developed progressively.
+            Infrastructure, monitoring, failure testing and
+            implementation evidence will be added as each
+            stage is completed.
+
+        </p>
+
+        <a href="/" class="button primary">
+            ← Back to Portfolio
+        </a>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <div class="container">
+
+        <p>
+            © 2026 Jeni Patel
+        </p>
+
+        <p>
+            DevOps • AWS • Infrastructure • Reliability
+        </p>
+
+    </div>
+
+</footer>
+
+</body>
+
+</html>

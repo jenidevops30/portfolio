@@ -1,0 +1,252 @@
+.case-study {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+
+.case-hero {
+  max-width: 800px;
+  margin-bottom: 80px;
+}
+
+.eyebrow,
+.section-heading,
+.day-number,
+.incident-meta,
+.root-cause > span {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+}
+
+.case-hero h1 {
+  font-size: clamp(42px, 7vw, 76px);
+  line-height: 0.95;
+  margin: 20px 0;
+}
+
+.case-status {
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.case-description {
+  font-size: 20px;
+  line-height: 1.6;
+  max-width: 700px;
+}
+
+.section-heading {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 14px;
+  margin-bottom: 30px;
+}
+
+.progress-section,
+.architecture-section,
+.timeline-section,
+.incident-section,
+.evidence-section,
+.lesson-section {
+  margin-top: 80px;
+}
+
+.progress-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.progress-item {
+  border: 1px solid #ddd;
+  padding: 16px;
+  display: flex;
+  gap: 12px;
+}
+
+.progress-item.completed span:first-child {
+  font-weight: 700;
+}
+
+.progress-item.planned {
+  opacity: 0.5;
+}
+
+.architecture-card {
+  border: 1px solid #ddd;
+  padding: 40px;
+  text-align: center;
+}
+
+.architecture-node {
+  border: 1px solid #222;
+  padding: 16px;
+  margin: 0 auto;
+  max-width: 260px;
+}
+
+.architecture-node.large {
+  max-width: 400px;
+}
+
+.architecture-arrow {
+  padding: 12px;
+}
+
+.architecture-columns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.subnet-card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-top: 12px;
+}
+
+.subnet-card.private {
+  background: #fafafa;
+}
+
+.architecture-note {
+  color: #666;
+  margin-top: 15px;
+}
+
+.day-card,
+.incident-card {
+  border: 1px solid #ddd;
+  padding: 32px;
+  margin-bottom: 20px;
+}
+
+.day-card.planned {
+  opacity: 0.6;
+}
+
+.day-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.day-header h2 {
+  margin: 8px 0 0;
+  font-size: 28px;
+}
+
+.day-status {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+}
+
+.day-summary {
+  line-height: 1.7;
+  color: #555;
+  margin: 24px 0;
+}
+
+.day-sections {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.day-section {
+  border-top: 1px solid #eee;
+  padding-top: 18px;
+}
+
+.day-section h3,
+.incident-card h3 {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.day-section p {
+  line-height: 1.6;
+  color: #555;
+}
+
+.incident-meta {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.incident-card h2 {
+  font-size: 32px;
+}
+
+.incident-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-top: 30px;
+}
+
+pre {
+  background: #f7f7f7;
+  padding: 20px;
+  overflow-x: auto;
+}
+
+.root-cause {
+  border-left: 3px solid #111;
+  padding: 20px;
+  margin-top: 30px;
+  background: #fafafa;
+}
+
+.evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.evidence-card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.evidence-card strong {
+  font-size: 12px;
+}
+
+.evidence-card span {
+  color: #555;
+}
+
+.lesson-section blockquote {
+  margin: 0;
+  padding: 32px;
+  border: 1px solid #ddd;
+  font-size: 24px;
+  line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+  .progress-grid,
+  .architecture-columns,
+  .day-sections,
+  .incident-grid,
+  .evidence-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .day-header {
+    flex-direction: column;
+  }
+
+  .case-study {
+    padding: 50px 18px;
+  }
+}

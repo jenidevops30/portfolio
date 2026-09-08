@@ -1,0 +1,10 @@
+app_subnet_az1_id = "subnet-0fbed20af0fcde41b"
+app_subnet_az2_id = "subnet-0ce90005c57ee95c2"
+availability_zones = [
+  "us-east-1a",
+  "us-east-1b",
+]
+db_subnet_az1_id = "subnet-09b302e46e8cfba1f"
+db_subnet_az2_id = "subnet-0d091091b2e76f014"
+vpc_cidr = "10.0.0.0/16"
+vpc_id = "vpc-0ce0a69d025788f7a"

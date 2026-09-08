@@ -1,0 +1,26 @@
+[
+    [
+        "rtb-09da4d6bece065522",
+        [
+            [
+                "10.0.0.0/16",
+                "local"
+            ],
+            [
+                "0.0.0.0/0",
+                "igw-00539e8d92ec84a83"
+            ]
+        ],
+        "devops-portfolio-lab-public-rt"
+    ],
+    [
+        "rtb-01418d8bf40c3c8d6",
+        [
+            [
+                "10.0.0.0/16",
+                "local"
+            ]
+        ],
+        "devops-portfolio-lab-database-rt"
+    ]
+]
