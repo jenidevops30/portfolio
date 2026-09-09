@@ -590,6 +590,73 @@ Server: nginx/1.24.0 (Ubuntu)</code></pre>
     <article class="incident-card">
 
       <div class="incident-meta">
+        <span>INCIDENT #003</span>
+        <span>HIGH</span>
+        <span>LOAD BALANCING / SECURITY GROUP / NETWORK TIERING</span>
+      </div>
+
+      <h2>ALB 502 Bad Gateway / Unhealthy Target Group</h2>
+
+      <div class="incident-grid">
+
+        <div>
+          <h3>Symptom</h3>
+
+          <pre><code>$ curl -i http://devops-portfolio-lab-alb-891893207.us-east-1.elb.amazonaws.com/health
+
+HTTP/1.1 502 Bad Gateway
+Server: awselb/2.0
+Content-Length: 0</code></pre>
+        </div>
+
+        <div>
+          <h3>Investigation</h3>
+
+          <ul>
+            <li>ALB provisioned in public subnets across <code>us-east-1a</code> and <code>us-east-1b</code></li>
+            <li>Direct curl to EC2 instance on port 80 succeeded: <code>200 OK</code></li>
+            <li>Target Group showed target status: <code>unhealthy</code> (Health checks failed)</li>
+            <li>ALB access logs confirmed <code>502</code> responses to clients</li>
+            <li>EC2 security group allowed ingress only from administrator IP, missing rule for ALB security group</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="root-cause">
+
+        <span>ROOT CAUSE</span>
+
+        <p>
+          The EC2 security group did not permit inbound HTTP traffic from the ALB security group (<code>sg-01458968cdedf7043</code>). ALB health check probes on port 80 were dropped by the EC2 firewall, preventing the load balancer from establishing a TCP handshake with backend instances.
+        </p>
+
+      </div>
+
+      <div class="remediation">
+
+        <h3>Remediation</h3>
+
+        <pre><code>resource "aws_security_group_rule" "ec2_from_alb" {
+  type                     = "ingress"
+  from_port                = 80
+  to_port                  = 80
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.alb.id
+  security_group_id        = var.ec2_security_group_id
+}</code></pre>
+
+        <p>
+          Implemented security group tiering in Terraform by adding an explicit ingress rule allowing TCP/80 exclusively from the ALB security group. Once applied, targets transitioned to <code>healthy</code> within two evaluation cycles, and the ALB returned <code>200 OK</code> on all routes.
+        </p>
+
+      </div>
+
+    </article>
+
+    <article class="incident-card">
+
+      <div class="incident-meta">
         <span>INCIDENT #004</span>
         <span>COMPUTE</span>
         <span>RECOVERY</span>
@@ -843,6 +910,11 @@ Health check passed</code></pre>
       <div class="evidence-card">
         <strong>E014</strong>
         <span>ALB End-to-End Routing</span>
+      </div>
+
+      <div class="evidence-card">
+        <strong>E015</strong>
+        <span>Incident #003 Report (ALB Security Group Tiering)</span>
       </div>
 
     </div>

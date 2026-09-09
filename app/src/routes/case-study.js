@@ -159,6 +159,11 @@ const days = [
           "Verified instance i-08b963ba04b701a81 reached healthy state in target group af96725dc44a51fd via AWS ELBv2 API.",
       },
       {
+        title: "Incident #003",
+        content:
+          "ALB returned 502 Bad Gateway due to missing security group tiering rule. Remediated by adding an ingress rule allowing TCP/80 exclusively from the ALB security group.",
+      },
+      {
         title: "End-to-End Traffic Verification",
         content:
           "Confirmed HTTP 200 responses for /health, /ready, and portfolio UI via ALB DNS name (devops-portfolio-lab-alb-960839588.us-east-1.elb.amazonaws.com).",
