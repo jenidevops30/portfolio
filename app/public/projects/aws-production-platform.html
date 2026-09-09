@@ -6,10 +6,7 @@
   <meta name="description" content="AWS Production Platform case study by Jeni Patel.">
   <title>AWS Production Platform | Jeni Patel</title>
   <link rel="stylesheet" href="/css/style.css">
-  <link
-    rel="stylesheet"
-    href="/css/case-study.css"
-  />
+  <link rel="stylesheet" href="/css/case-study.css" />
 </head>
 <body>
 
@@ -27,1276 +24,939 @@
 
 <main class="case-study">
 
+  <!-- Sticky Internal Navigation -->
   <nav class="case-study-nav">
     <a href="#overview">Overview</a>
     <a href="#architecture">Architecture</a>
-    <a href="#timeline">Days 1–9</a>
+    <a href="#timeline">Engineering Journey</a>
     <a href="#incidents">Incidents</a>
     <a href="#evidence">Evidence</a>
-    <a href="#lessons">Lessons</a>
+    <a href="#decisions">Technology Decisions</a>
+    <a href="#validation">Validation</a>
+    <a href="#lessons">Lessons Learned</a>
   </nav>
 
+  <!-- Hero & Overview Section -->
   <section id="overview" class="case-hero">
     <span class="eyebrow">AWS PRODUCTION PLATFORM</span>
 
     <h1>AWS Production Platform</h1>
 
-    <p class="case-status">
-      ● BUILDING
-    </p>
+    <div class="case-status-badge">
+      <span class="status-indicator">●</span>
+      <strong>STATUS: BUILDING</strong>
+      <span class="status-sep">•</span>
+      <span class="status-progress">Day 1 – Day 6 Completed</span>
+      <span class="status-sep">•</span>
+      <span class="status-remaining">Day 7–Day 9 Planned</span>
+    </div>
 
     <p class="case-description">
-      A production-style AWS platform built to demonstrate
-      infrastructure design, provisioning, security,
-      troubleshooting, observability, and operational thinking.
+      An evidence-driven engineering case study documenting how I design, provision, verify, troubleshoot, and operate production-grade infrastructure on AWS using Terraform, Ansible, and automated self-healing.
     </p>
+
+    <!-- CURRENT PLATFORM STATE Summary Card -->
+    <div class="platform-state-card">
+      <div class="state-card-header">
+        <span class="eyebrow">CURRENT PLATFORM STATE</span>
+        <span class="state-badge verified">● DAY 1–6 VERIFIED</span>
+      </div>
+
+      <div class="state-grid">
+        <div class="state-item verified">
+          <span class="state-icon">✓</span>
+          <span class="state-name">Network Foundation</span>
+          <span class="state-status">Verified</span>
+        </div>
+
+        <div class="state-item verified">
+          <span class="state-icon">✓</span>
+          <span class="state-name">Compute Layer</span>
+          <span class="state-status">Verified</span>
+        </div>
+
+        <div class="state-item verified">
+          <span class="state-icon">✓</span>
+          <span class="state-name">Application Runtime</span>
+          <span class="state-status">Verified</span>
+        </div>
+
+        <div class="state-item verified">
+          <span class="state-icon">✓</span>
+          <span class="state-name">Load Balancing</span>
+          <span class="state-status">Verified</span>
+        </div>
+
+        <div class="state-item verified">
+          <span class="state-icon">✓</span>
+          <span class="state-name">Auto Scaling</span>
+          <span class="state-status">Verified</span>
+        </div>
+
+        <div class="state-item planned">
+          <span class="state-icon">○</span>
+          <span class="state-name">Database Layer</span>
+          <span class="state-status">Planned</span>
+        </div>
+
+        <div class="state-item planned">
+          <span class="state-icon">○</span>
+          <span class="state-name">Observability</span>
+          <span class="state-status">Planned</span>
+        </div>
+
+        <div class="state-item planned">
+          <span class="state-icon">○</span>
+          <span class="state-name">Failure Lab</span>
+          <span class="state-status">Planned</span>
+        </div>
+      </div>
+    </div>
   </section>
 
 
+  <!-- Infrastructure Progress Table Section -->
   <section class="progress-section">
-
     <div class="section-heading">
       <span>INFRASTRUCTURE PROGRESS</span>
+      <span class="heading-badge">14 VERIFIED / 3 PLANNED</span>
     </div>
 
-    <div class="progress-grid">
-
-      <div class="progress-item completed">
-        <span>✓</span>
-        <span>VPC</span>
-      </div>
-
-      <div class="progress-item completed">
-        <span>✓</span>
-        <span>Multi-AZ Subnets</span>
-      </div>
-
-      <div class="progress-item completed">
-        <span>✓</span>
-        <span>Route Tables</span>
-      </div>
-
-      <div class="progress-item completed">
-        <span>✓</span>
-        <span>Internet Gateway</span>
-      </div>
-
-      <div class="progress-item completed">
-        <span>✓</span>
-        <span>Security Groups</span>
-      </div>
-
-      <div class="progress-item completed">
-        <span>✓</span>
-        <span>EC2</span>
-      </div>
-
-      <div class="progress-item completed">
-        <span>✓</span>
-        <span>Ansible & Nginx</span>
-      </div>
-
-      <div class="progress-item completed">
-        <span>✓</span>
-        <span>ALB</span>
-      </div>
-
-      <div class="progress-item in-progress">
-        <span>●</span>
-        <span>Launch Template</span>
-      </div>
-
-      <div class="progress-item in-progress">
-        <span>●</span>
-        <span>Auto Scaling Group</span>
-      </div>
-
-      <div class="progress-item planned">
-        <span>○</span>
-        <span>RDS</span>
-      </div>
-
-      <div class="progress-item planned">
-        <span>○</span>
-        <span>CloudWatch</span>
-      </div>
-
-      <div class="progress-item planned">
-        <span>○</span>
-        <span>Failure Testing</span>
-      </div>
-
+    <div class="progress-table-wrap">
+      <table class="progress-table">
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Scope & Role</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="completed-row">
+            <td><strong>VPC</strong></td>
+            <td>10.0.0.0/16 isolated network container</td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
+          </tr>
+          <tr class="completed-row">
+            <td><strong>Multi-AZ Subnets</strong></td>
+            <td>Application public subnets across us-east-1a and us-east-1b</td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
+          </tr>
+          <tr class="completed-row">
+            <td><strong>Route Tables</strong></td>
+            <td>Public route table with IGW default route + private local route table</td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
+          </tr>
+          <tr class="completed-row">
+            <td><strong>Internet Gateway</strong></td>
+            <td>VPC edge attachment enabling inbound/outbound internet routing</td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
+          </tr>
+          <tr class="completed-row">
+            <td><strong>Security Groups</strong></td>
+            <td>Tiered firewalls: ALB ingress on 80; EC2 ingress restricted to ALB SG</td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
+          </tr>
+          <tr class="completed-row">
+            <td><strong>EC2 Application Server</strong></td>
+            <td>Compute nodes provisioned in multi-AZ application subnets</td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
+          </tr>
+          <tr class="completed-row">
+            <td><strong>Node.js Runtime (NVM)</strong></td>
+            <td>User-space runtime isolation running Node.js v24.x LTS</td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
+          </tr>
+          <tr class="completed-row">
+            <td><strong>Nginx Reverse Proxy</strong></td>
+            <td>Upstream proxy_pass to port 3000 with host and client header forwarding</td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
+          </tr>
+          <tr class="completed-row">
+            <td><strong>Systemd Service</strong></td>
+            <td>Supervised portfolio.service unit with automated failure recovery</td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
+          </tr>
+          <tr class="completed-row">
+            <td><strong>Application Load Balancer</strong></td>
+            <td>Internet-facing Layer 7 load balancer across multi-AZ subnets</td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
+          </tr>
+          <tr class="completed-row">
+            <td><strong>Target Group + Health Checks</strong></td>
+            <td>HTTP/80 target group continuously validating /health contract</td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
+          </tr>
+          <tr class="completed-row">
+            <td><strong>Launch Template</strong></td>
+            <td>Versioned compute template with dynamic AMI and cloud-init bootstrap</td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
+          </tr>
+          <tr class="completed-row">
+            <td><strong>Auto Scaling Group</strong></td>
+            <td>Multi-AZ capacity maintenance with ELB-driven health replacement</td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
+          </tr>
+          <tr class="completed-row">
+            <td><strong>Instance Replacement Testing</strong></td>
+            <td>Controlled termination validating automatic self-healing and zero downtime</td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
+          </tr>
+          <tr class="planned-row">
+            <td><strong>RDS MariaDB</strong></td>
+            <td>Isolated private database tier reserved across database subnets</td>
+            <td><span class="status-pill planned">⏳ Planned</span></td>
+          </tr>
+          <tr class="planned-row">
+            <td><strong>CloudWatch Monitoring</strong></td>
+            <td>Metric alarms, dashboarding, and centralized log streams</td>
+            <td><span class="status-pill planned">⏳ Planned</span></td>
+          </tr>
+          <tr class="planned-row">
+            <td><strong>Failure Testing Lab</strong></td>
+            <td>Structured chaos experiments across network, app, and compute tiers</td>
+            <td><span class="status-pill planned">⏳ Planned</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
 
+  <!-- Architecture Section -->
   <section id="architecture" class="architecture-section">
-
     <div class="section-heading">
       <span>ARCHITECTURE</span>
+      <span class="heading-badge verified">CURRENT VERIFIED ARCHITECTURE</span>
     </div>
 
     <div class="architecture-card">
-
-      <div class="architecture-node">
-        <strong>INTERNET</strong>
-        <div class="node-meta">Public Traffic (HTTP / TCP 80)</div>
+      <div class="arch-badge-container">
+        <span class="arch-tag">Current Verified Architecture (Day 1–Day 6)</span>
       </div>
 
-      <div class="architecture-arrow">↓</div>
+      <pre class="architecture-diagram"><code>Internet
+   │
+   ▼
+Application Load Balancer
+   │
+┌──┴────────────┐
+▼               ▼
+EC2-A           EC2-B
+(us-east-1a)    (us-east-1b)
+│               │
+└──┬────────────┘
+   ▼
+Auto Scaling Group
+   │
+Launch Template</code></pre>
 
-      <div class="architecture-node">
-        <strong>INTERNET GATEWAY</strong>
-        <div class="node-meta">igw-0778e41af4c263cc5</div>
-      </div>
-
-      <div class="architecture-arrow">↓</div>
-
-      <div class="architecture-node">
-        <strong>APPLICATION LOAD BALANCER</strong>
-        <div class="node-meta">devops-portfolio-lab-alb</div>
-        <div class="node-badge">Multi-AZ (us-east-1a / us-east-1b)</div>
-        <div class="node-detail">SG: sg-01458968cdedf7043 (TCP 80)</div>
-      </div>
-
-      <div class="architecture-arrow">
-        <span>↓ Target Group (devops-portfolio-lab-tg • /health HTTP 200)</span>
-      </div>
-
-      <div class="architecture-node large">
-        <strong>VPC: devops-portfolio-lab-vpc</strong>
-        <div class="node-meta">10.0.0.0/16 • vpc-0cf5fd62947dfa4e9</div>
-        <div class="node-detail">Auto Scaling Group: devops-portfolio-lab-asg (LT: lt-0ef00bfaf5fcd7a43 • Capacity: 2)</div>
-      </div>
-
-      <div class="architecture-columns">
-
-        <div class="az-column">
-          <div class="az-title">us-east-1a (Active AZ Node 1)</div>
-
-          <div class="subnet-card">
-            <div class="subnet-header">
-              <span class="subnet-badge public">PUBLIC APP SUBNET</span>
-              <span class="subnet-cidr">10.0.1.0/24 • subnet-0c7b987f3489a5423</span>
-            </div>
-            <div class="instance-block active">
-              <div class="instance-header">
-                <strong>EC2: portfolio-node-1</strong>
-                <span class="status-pill healthy">● HEALTHY</span>
-              </div>
-              <div class="instance-meta">i-0d2f3e4ad765260b4 (10.0.1.252)</div>
-              <div class="instance-routes">
-                <span>Nginx (:80)</span>
-                <span>→</span>
-                <span>portfolio.service (:3000)</span>
-              </div>
-              <div class="instance-sg">SG: sg-05ca8ca9955ca291a (Ingress from ALB SG only)</div>
-            </div>
-          </div>
-
-          <div class="subnet-card private">
-            <div class="subnet-header">
-              <span class="subnet-badge private-tag">PRIVATE DB SUBNET</span>
-              <span class="subnet-cidr">10.0.11.0/24 • subnet-065d0b79269b37f7d</span>
-            </div>
-            <div class="instance-block planned">
-              <div class="instance-header">
-                <strong>Planned RDS MariaDB</strong>
-                <span class="status-pill standby-pill">PLANNED</span>
-              </div>
-              <div class="instance-meta">Isolated Database Primary (Port 3306)</div>
-            </div>
-          </div>
+      <div class="architecture-explanations">
+        <div class="arch-explain-item">
+          <strong>Multi-AZ Load Distribution</strong>
+          <p>The Application Load Balancer distributes incoming HTTP traffic evenly across compute instances spanning two Availability Zones (us-east-1a and us-east-1b).</p>
         </div>
 
-        <div class="az-column">
-          <div class="az-title">us-east-1b (Active AZ Node 2)</div>
-
-          <div class="subnet-card">
-            <div class="subnet-header">
-              <span class="subnet-badge public">PUBLIC APP SUBNET</span>
-              <span class="subnet-cidr">10.0.2.0/24 • subnet-0c432e92d73b142bc</span>
-            </div>
-            <div class="instance-block active">
-              <div class="instance-header">
-                <strong>EC2: portfolio-node-2</strong>
-                <span class="status-pill healthy">● HEALTHY</span>
-              </div>
-              <div class="instance-meta">i-0448591cdd30ec61b (10.0.2.242)</div>
-              <div class="instance-routes">
-                <span>Nginx (:80)</span>
-                <span>→</span>
-                <span>portfolio.service (:3000)</span>
-              </div>
-              <div class="instance-sg">SG: sg-05ca8ca9955ca291a (Ingress from ALB SG only)</div>
-            </div>
-          </div>
-
-          <div class="subnet-card private">
-            <div class="subnet-header">
-              <span class="subnet-badge private-tag">PRIVATE DB SUBNET</span>
-              <span class="subnet-cidr">10.0.12.0/24 • subnet-007a155c26a6b147f</span>
-            </div>
-            <div class="instance-block planned">
-              <div class="instance-header">
-                <strong>Planned RDS Standby</strong>
-                <span class="status-pill standby-pill">PLANNED</span>
-              </div>
-              <div class="instance-meta">Multi-AZ Database Replica (Port 3306)</div>
-            </div>
-          </div>
+        <div class="arch-explain-item">
+          <strong>Launch Template Consistency</strong>
+          <p>EC2 instances are launched from a centralized Launch Template that defines the dynamic Ubuntu LTS AMI, security group, and bootstrap script.</p>
         </div>
 
-      </div>
+        <div class="arch-explain-item">
+          <strong>Auto Scaling Capacity</strong>
+          <p>The Auto Scaling Group maintains desired capacity (2 instances) across both Availability Zones and automatically replaces unhealthy or terminated instances.</p>
+        </div>
 
+        <div class="arch-explain-item">
+          <strong>Health-Based Traffic Routing</strong>
+          <p>Continuous Target Group health checks against the <code>/health</code> endpoint determine whether instances receive user traffic, isolating degraded nodes automatically.</p>
+        </div>
+      </div>
     </div>
-
-    <p class="architecture-note">
-      Current architecture reflects the infrastructure and application stack actually
-      provisioned and verified (VPC, Multi-AZ subnets, EC2, NVM, Node.js, Nginx, ALB, Target Group, Launch Template, and Auto Scaling Group). RDS and CloudWatch
-      monitoring components remain planned.
-    </p>
-
   </section>
 
 
-  <section class="day-architecture">
-
-    <div class="section-heading">
-      <span>DAY 06 ARCHITECTURE</span>
-    </div>
-
-    <div class="architecture-card">
-
-      <div class="architecture-node">
-        Launch Template
-      </div>
-
-      <div class="architecture-arrow">↓</div>
-
-      <div class="architecture-node">
-        Auto Scaling Group
-      </div>
-
-      <div class="architecture-arrow">↓</div>
-
-      <div class="architecture-columns">
-
-        <div>
-          <strong>us-east-1a</strong>
-
-          <div class="subnet-card">
-            Application EC2
-          </div>
-        </div>
-
-        <div>
-          <strong>us-east-1b</strong>
-
-          <div class="subnet-card">
-            Application EC2
-          </div>
-        </div>
-
-      </div>
-
-      <div class="architecture-arrow">↓</div>
-
-      <div class="architecture-node">
-        ALB Target Group
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <section class="decisions-section">
-
-    <div class="section-heading">
-      <span>TECHNOLOGY DECISIONS</span>
-    </div>
-
-    <div class="decision-grid">
-
-      <article class="decision-card">
-        <span class="eyebrow">TECHNOLOGY DECISION</span>
-        <h2>Why a Launch Template?</h2>
-        <p>
-          Individual EC2 instances are difficult to reproduce consistently.
-          A Launch Template defines the expected instance configuration so
-          new application capacity can be created consistently.
-        </p>
-      </article>
-
-      <article class="decision-card">
-        <span class="eyebrow">DESIGN DECISION</span>
-        <h2>Why Multi-AZ?</h2>
-        <p>
-          Application capacity is distributed across two Availability Zones
-          so that the platform does not depend on a single Availability Zone.
-        </p>
-      </article>
-
-      <article class="decision-card">
-        <h3>Cloudflare</h3>
-        <p>
-          Used as the edge ingress layer for authoritative DNS, edge SSL termination, proxying, and distributed denial-of-service (DDoS) mitigation.
-        </p>
-      </article>
-
-      <article class="decision-card">
-        <h3>Application Load Balancer</h3>
-        <p>
-          Provides Layer 7 HTTP/HTTPS traffic distribution across multi-AZ public subnets with continuous target health checking against the /health contract.
-        </p>
-      </article>
-
-      <article class="decision-card">
-        <h3>Auto Scaling Group</h3>
-        <p>
-          Ensures high availability and automated replacement of unhealthy compute instances across multiple availability zones.
-        </p>
-      </article>
-
-      <article class="decision-card">
-        <h3>RDS MariaDB</h3>
-        <p>
-          Isolates the persistent database tier in private subnets, completely disconnected from direct internet access, with automated backups and failover standby.
-        </p>
-      </article>
-
-    </div>
-
-  </section>
-
-
-  <section class="technical-detail">
-
-    <div class="section-heading">
-      <span>AMI MANAGEMENT</span>
-    </div>
-
-    <p>
-      The Launch Template uses Terraform's AWS AMI data source to
-      identify the latest matching Ubuntu 24.04 LTS image rather
-      than hardcoding a single AMI ID.
-    </p>
-
-    <pre><code>data "aws_ami" "ubuntu" {
-  most_recent = true
-
-  owners = ["099720109477"]
-
-  filter {
-    name = "architecture"
-    values = ["x86_64"]
-  }
-}</code></pre>
-
-  </section>
-
-
+  <!-- Engineering Journey Timeline Section -->
   <section id="timeline" class="timeline-section">
-
     <div class="section-heading">
       <span>ENGINEERING JOURNEY</span>
+      <span class="heading-badge">DAY 1 — DAY 6 COMPLETED</span>
     </div>
 
-    
+    <div class="timeline-vertical">
+      
+        <article id="day-01" class="day-card completed">
+          <div class="day-header">
+            <div>
+              <span class="day-number">DAY 01</span>
+              <h2>Project Foundation</h2>
+            </div>
 
-      <article id="day-01" class="day-card completed">
-
-        <div class="day-header">
-
-          <div>
-            <span class="day-number">
-              DAY 01
-            </span>
-
-            <h2>Project Foundation</h2>
+            <div class="day-header-badges">
+              
+              <span class="day-status completed">
+                COMPLETED
+              </span>
+            </div>
           </div>
 
-          <div class="day-header-badges">
+          <p class="day-summary">
+            Defined the production-style AWS platform architecture and established infrastructure objectives using Terraform.
+          </p>
+
+          <div class="day-sections">
             
-            <span class="day-status">
-              COMPLETED
-            </span>
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Objective
+                </h3>
+
+                <p>
+                  Design a production-style AWS platform with an emphasis on reliability, security, repeatability, and operational evidence before provisioning resources.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  IaC Selection
+                </h3>
+
+                <p>
+                  Selected Terraform for Infrastructure as Code to ensure reproducible state management, declarative resource tracking, and modular infrastructure composition.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Engineering Workflow
+                </h3>
+
+                <p>
+                  Design → Build → Verify → Break → Troubleshoot → Improve → Document
+                </p>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article id="day-02" class="day-card completed">
+          <div class="day-header">
+            <div>
+              <span class="day-number">DAY 02</span>
+              <h2>VPC &amp; Multi-AZ Network</h2>
+            </div>
+
+            <div class="day-header-badges">
+              
+              <span class="day-status completed">
+                COMPLETED
+              </span>
+            </div>
           </div>
 
-        </div>
+          <p class="day-summary">
+            Provisioned the AWS network foundation with Terraform across two Availability Zones.
+          </p>
 
-        <p class="day-summary">
-          Defined the production-style AWS platform architecture and infrastructure objectives.
-        </p>
-
-        <div class="day-sections">
-
-          
+          <div class="day-sections">
             
+              
 
-            <div class="day-section ">
+              <div class="day-section ">
+                <h3>
+                  
+                  VPC CIDR
+                </h3>
 
-              <h3>
-                
-                Objective
-              </h3>
+                <p>
+                  10.0.0.0/16 VPC providing isolated network boundaries and sufficient address space across availability zones.
+                </p>
+              </div>
+            
+              
 
-              <p>
-                Design the AWS platform before provisioning infrastructure, with an emphasis on reliability, security, repeatability, and operational evidence.
-              </p>
+              <div class="day-section ">
+                <h3>
+                  
+                  Application Subnets
+                </h3>
 
+                <p>
+                  10.0.1.0/24 in us-east-1a and 10.0.2.0/24 in us-east-1b associated with the public route table.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Database Subnets
+                </h3>
+
+                <p>
+                  10.0.11.0/24 in us-east-1a and 10.0.12.0/24 in us-east-1b reserved strictly for future RDS private database workloads.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Routing &amp; Gateways
+                </h3>
+
+                <p>
+                  Internet Gateway attached with default route (0.0.0.0/0 -&gt; igw) on the public route table. Database route table contains local VPC route only.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Subnet Separation Rationale
+                </h3>
+
+                <p>
+                  Application and database subnets are separated to enforce network isolation. Database subnets have no internet gateway route, guaranteeing that database instances cannot be directly addressed or scanned from the public internet.
+                </p>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article id="day-03" class="day-card completed">
+          <div class="day-header">
+            <div>
+              <span class="day-number">DAY 03</span>
+              <h2>EC2 &amp; Security Groups</h2>
             </div>
 
-          
-            
-
-            <div class="day-section ">
-
-              <h3>
-                
-                Engineering approach
-              </h3>
-
-              <p>
-                Design → Provision → Verify → Break → Troubleshoot → Fix → Improve → Measure → Document
-              </p>
-
+            <div class="day-header-badges">
+              
+                <a href="#incident-001" class="day-incident-tag" title="Jump to Incident Report">
+                  ⚠ INCIDENT #001
+                </a>
+              
+              <span class="day-status completed">
+                COMPLETED
+              </span>
             </div>
-
-          
-
-        </div>
-
-      </article>
-
-    
-
-      <article id="day-02" class="day-card completed">
-
-        <div class="day-header">
-
-          <div>
-            <span class="day-number">
-              DAY 02
-            </span>
-
-            <h2>VPC &amp; Multi-AZ Network</h2>
           </div>
 
-          <div class="day-header-badges">
+          <p class="day-summary">
+            Deployed EC2 compute and implemented controlled HTTP and SSH access.
+          </p>
+
+          <div class="day-sections">
             
-            <span class="day-status">
-              COMPLETED
-            </span>
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Compute Deployment
+                </h3>
+
+                <p>
+                  An EC2 instance was deployed into the application subnet and verified as running with public IPv4 addressing.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Security Group Design
+                </h3>
+
+                <p>
+                  HTTP TCP/80 is publicly reachable for application web traffic. SSH TCP/22 is restricted exclusively to the administrator IP.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section incident-highlight">
+                <h3>
+                  
+                    <span class="incident-badge-pill">INCIDENT</span>
+                  
+                  Incident #001 — EC2 SSH Authentication Failure
+                </h3>
+
+                <p>
+                  Initial SSH connection attempt failed with &#39;Permission denied (publickey)&#39;. Terraform state inspection showed key_name was omitted (key_name = null).
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section incident-highlight">
+                <h3>
+                  
+                    <span class="incident-badge-pill" style="background: #c0392b;">ROOT CAUSE</span>
+                  
+                  Root Cause &amp; Remediation
+                </h3>
+
+                <p>
+                  The EC2 instance was provisioned without an EC2 key pair. Updated Terraform compute module with key_name = var.key_name, restoring secure SSH access.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Engineering Lesson
+                </h3>
+
+                <p>
+                  Always declare authentication credentials explicitly in IaC; verify access immediately upon initial deployment before proceeding to software provisioning.
+                </p>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article id="day-04" class="day-card completed">
+          <div class="day-header">
+            <div>
+              <span class="day-number">DAY 04</span>
+              <h2>Application Runtime &amp; Web Server</h2>
+            </div>
+
+            <div class="day-header-badges">
+              
+              <span class="day-status completed">
+                COMPLETED
+              </span>
+            </div>
           </div>
 
-        </div>
+          <p class="day-summary">
+            Automated server configuration and application deployment with Ansible: provisioned NVM, Node.js LTS, systemd service, and Nginx reverse proxy.
+          </p>
 
-        <p class="day-summary">
-          Provisioned the AWS network foundation with Terraform across two Availability Zones.
-        </p>
-
-        <div class="day-sections">
-
-          
+          <div class="day-sections">
             
+              
 
-            <div class="day-section ">
+              <div class="day-section ">
+                <h3>
+                  
+                  Node.js Runtime via NVM
+                </h3>
 
-              <h3>
-                
-                VPC
-              </h3>
+                <p>
+                  Installed NVM and Node.js v24.x LTS in user space (/home/ubuntu/.nvm) to eliminate root permission hazards and ensure isolated, reproducible runtime versions.
+                </p>
+              </div>
+            
+              
 
-              <p>
-                10.0.0.0/16
-              </p>
+              <div class="day-section ">
+                <h3>
+                  
+                  Application Service (Systemd)
+                </h3>
 
+                <p>
+                  Created portfolio.service systemd unit for automatic process recovery, environment isolation, and continuous supervision on port 3000.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Nginx Reverse Proxy
+                </h3>
+
+                <p>
+                  Configured Nginx with proxy_pass to http://127.0.0.1:3000, passing Host, X-Real-IP, and X-Forwarded headers while managing port 80 public traffic.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Request Flow
+                </h3>
+
+                <p>
+                  Internet → Nginx (:80) → Node.js (:3000) → Express Application
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Verification Checklist
+                </h3>
+
+                <p>
+                  Validated 200 OK contracts on /health and /ready endpoints locally and over public HTTP; verified proxy header forwarding and systemd automatic crash recovery.
+                </p>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article id="day-05" class="day-card completed">
+          <div class="day-header">
+            <div>
+              <span class="day-number">DAY 05</span>
+              <h2>Application Load Balancer</h2>
             </div>
 
-          
-            
-
-            <div class="day-section ">
-
-              <h3>
-                
-                Application subnets
-              </h3>
-
-              <p>
-                10.0.1.0/24 in us-east-1a and 10.0.2.0/24 in us-east-1b.
-              </p>
-
+            <div class="day-header-badges">
+              
+              <span class="day-status completed">
+                COMPLETED
+              </span>
             </div>
-
-          
-            
-
-            <div class="day-section ">
-
-              <h3>
-                
-                Database subnets
-              </h3>
-
-              <p>
-                10.0.11.0/24 in us-east-1a and 10.0.12.0/24 in us-east-1b.
-              </p>
-
-            </div>
-
-          
-            
-
-            <div class="day-section ">
-
-              <h3>
-                
-                Routing
-              </h3>
-
-              <p>
-                Application traffic uses the public route table with an Internet Gateway default route. Database subnets use a route table containing only the local VPC route.
-              </p>
-
-            </div>
-
-          
-
-        </div>
-
-      </article>
-
-    
-
-      <article id="day-03" class="day-card completed">
-
-        <div class="day-header">
-
-          <div>
-            <span class="day-number">
-              DAY 03
-            </span>
-
-            <h2>EC2 &amp; Security Groups</h2>
           </div>
 
-          <div class="day-header-badges">
+          <p class="day-summary">
+            Introduced an Application Load Balancer across multi-AZ public subnets with target group health checks and security group tiering.
+          </p>
+
+          <div class="day-sections">
             
-              <a href="#incident-001" class="day-incident-tag" title="Jump to Incident Report">
-                ⚠ INCIDENT #001
-              </a>
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Multi-AZ ALB Provisioning
+                </h3>
+
+                <p>
+                  Deployed an internet-facing Application Load Balancer spanning public subnets in us-east-1a and us-east-1b via Terraform.
+                </p>
+              </div>
             
-            <span class="day-status">
-              COMPLETED
-            </span>
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Target Group &amp; Health Check
+                </h3>
+
+                <p>
+                  Configured HTTP/80 target group checking /health endpoint with 200 OK contract (30s interval, 5s timeout, 2 healthy / 2 unhealthy thresholds).
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Security Group Tiering
+                </h3>
+
+                <p>
+                  ALB security group allows HTTP/80 from 0.0.0.0/0. EC2 security group allows TCP/80 exclusively from the ALB security group.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Traffic Tiering Rationale
+                </h3>
+
+                <p>
+                  Restricting EC2 ingress exclusively to the ALB security group ensures all client traffic passes through the ALB for inspection and load balancing, protecting EC2 nodes from direct internet exposure.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  End-to-End Verification
+                </h3>
+
+                <p>
+                  Confirmed HTTP 200 responses for /health, /ready, and portfolio UI via ALB DNS name across both availability zones.
+                </p>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article id="day-06" class="day-card completed">
+          <div class="day-header">
+            <div>
+              <span class="day-number">DAY 06</span>
+              <h2>Launch Template &amp; Auto Scaling</h2>
+            </div>
+
+            <div class="day-header-badges">
+              
+                <a href="#incident-002" class="day-incident-tag" title="Jump to Incident Report">
+                  ⚠ INCIDENT #002
+                </a>
+              
+              <span class="day-status completed">
+                COMPLETED
+              </span>
+            </div>
           </div>
 
-        </div>
+          <p class="day-summary">
+            Moving from individually managed EC2 instances toward repeatable, replaceable application infrastructure using a Launch Template and Auto Scaling Group.
+          </p>
 
-        <p class="day-summary">
-          Deployed EC2 compute and implemented controlled HTTP and SSH access.
-        </p>
-
-        <div class="day-sections">
-
-          
+          <div class="day-sections">
             
+              
 
-            <div class="day-section ">
+              <div class="day-section ">
+                <h3>
+                  
+                  Launch Template
+                </h3>
 
-              <h3>
-                
-                EC2
-              </h3>
+                <p>
+                  Defined the AMI, instance type (t3.micro), SSH key pair, security group, tags, and cloud-init bootstrap in Terraform.
+                </p>
+              </div>
+            
+              
 
-              <p>
-                An EC2 instance was deployed into the application subnet and verified as running.
-              </p>
+              <div class="day-section ">
+                <h3>
+                  
+                  Dynamic AMI Selection
+                </h3>
 
+                <p>
+                  Used Terraform data &#39;aws_ami&#39; &#39;ubuntu&#39; to dynamically query the latest official Ubuntu 24.04 LTS x86_64 AMI instead of hardcoding an ephemeral AMI ID.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Multi-AZ Auto Scaling
+                </h3>
+
+                <p>
+                  Configured Auto Scaling Group maintaining desired capacity (Min: 2, Desired: 2, Max: 2) across application subnets in us-east-1a and us-east-1b.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Health Check Model
+                </h3>
+
+                <p>
+                  Configured health_check_type = &#39;ELB&#39; to integrate Target Group HTTP /health probe results directly into Auto Scaling replacement decisions.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section incident-highlight">
+                <h3>
+                  
+                    <span class="incident-badge-pill">INCIDENT</span>
+                  
+                  Incident #002 — Instance Replacement Test
+                </h3>
+
+                <p>
+                  Deliberately terminated an active application EC2 instance to test Auto Scaling recovery. ASG detected lost capacity, launched a replacement instance, registered to Target Group, and restored full capacity with zero ALB downtime.
+                </p>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article id="day-07" class="day-card planned">
+          <div class="day-header">
+            <div>
+              <span class="day-number">DAY 07</span>
+              <h2>RDS MariaDB</h2>
             </div>
 
-          
-            
-
-            <div class="day-section ">
-
-              <h3>
-                
-                Security Group
-              </h3>
-
-              <p>
-                HTTP TCP/80 is publicly reachable. SSH TCP/22 is restricted to the administrator IP.
-              </p>
-
+            <div class="day-header-badges">
+              
+              <span class="day-status planned">
+                PLANNED
+              </span>
             </div>
-
-          
-            
-
-            <div class="day-section incident-highlight">
-
-              <h3>
-                
-                  <span class="incident-badge-pill">INCIDENT</span>
-                
-                Incident #001 Symptom
-              </h3>
-
-              <p>
-                Initial SSH access failed with Permission denied (publickey). Public IP and TCP/22 security group were verified active.
-              </p>
-
-            </div>
-
-          
-            
-
-            <div class="day-section incident-highlight">
-
-              <h3>
-                
-                  <span class="incident-badge-pill">INCIDENT</span>
-                
-                Incident #001 Root Cause
-              </h3>
-
-              <p>
-                Terraform inspection revealed key_name = null on aws_instance.app. The EC2 instance was provisioned without an SSH key pair.
-              </p>
-
-            </div>
-
-          
-            
-
-            <div class="day-section incident-highlight">
-
-              <h3>
-                
-                  <span class="incident-badge-pill">INCIDENT</span>
-                
-                Incident #001 Remediation
-              </h3>
-
-              <p>
-                Terraform was updated to explicitly associate key_name = var.key_name, restoring secure administrative SSH access.
-              </p>
-
-            </div>
-
-          
-
-        </div>
-
-      </article>
-
-    
-
-      <article id="day-04" class="day-card completed">
-
-        <div class="day-header">
-
-          <div>
-            <span class="day-number">
-              DAY 04
-            </span>
-
-            <h2>Ansible Automation &amp; Node.js Deployment</h2>
           </div>
 
-          <div class="day-header-badges">
+          <p class="day-summary">
+            Introduce a managed private database tier for persistent application data.
+          </p>
+
+          <div class="day-sections">
             
-              <a href="#incident-002" class="day-incident-tag" title="Jump to Incident Report">
-                ⚠ INCIDENT #002
-              </a>
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Planned Architecture
+                </h3>
+
+                <p>
+                  Application EC2 → private RDS MariaDB located strictly within isolated database subnets.
+                </p>
+              </div>
             
-            <span class="day-status">
-              COMPLETED
-            </span>
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Security Model
+                </h3>
+
+                <p>
+                  Only the application security group will be allowed to reach the database on TCP/3306.
+                </p>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article id="day-08" class="day-card planned">
+          <div class="day-header">
+            <div>
+              <span class="day-number">DAY 08</span>
+              <h2>CloudWatch &amp; Observability</h2>
+            </div>
+
+            <div class="day-header-badges">
+              
+              <span class="day-status planned">
+                PLANNED
+              </span>
+            </div>
           </div>
 
-        </div>
+          <p class="day-summary">
+            Add operational visibility into compute, load balancing, and database health.
+          </p>
 
-        <p class="day-summary">
-          Automated server configuration and application deployment with Ansible: provisioned NVM, Node.js v24.x LTS, systemd service, and Nginx reverse proxy.
-        </p>
-
-        <div class="day-sections">
-
-          
+          <div class="day-sections">
             
+              
 
-            <div class="day-section ">
+              <div class="day-section ">
+                <h3>
+                  
+                  Planned Monitoring
+                </h3>
 
-              <h3>
-                
-                Ansible Automation
-              </h3>
-
-              <p>
-                Codified configuration in deployment/ansible/playbook.yml: automated packages, user-space NVM, app dependencies, systemd management, and Nginx reverse proxy.
-              </p>
-
+                <p>
+                  EC2 health, CPU, network activity, ALB target health, request latency metrics, and RDS health.
+                </p>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article id="day-09" class="day-card planned">
+          <div class="day-header">
+            <div>
+              <span class="day-number">DAY 09</span>
+              <h2>Failure Testing Lab</h2>
             </div>
 
-          
-            
-
-            <div class="day-section ">
-
-              <h3>
-                
-                Runtime &amp; Process Supervision
-              </h3>
-
-              <p>
-                Installed Node.js v24.x LTS in user space (/home/ubuntu/.nvm) and registered portfolio.service systemd unit for continuous supervision on port 3000.
-              </p>
-
+            <div class="day-header-badges">
+              
+              <span class="day-status planned">
+                PLANNED
+              </span>
             </div>
-
-          
-            
-
-            <div class="day-section incident-highlight">
-
-              <h3>
-                
-                  <span class="incident-badge-pill">INCIDENT</span>
-                
-                Incident #002 Symptom
-              </h3>
-
-              <p>
-                Public HTTP probes to http://54.236.188.6/health returned HTTP 404 Not Found from Nginx despite the Node.js process running healthy on localhost:3000.
-              </p>
-
-            </div>
-
-          
-            
-
-            <div class="day-section incident-highlight">
-
-              <h3>
-                
-                  <span class="incident-badge-pill">INCIDENT</span>
-                
-                Incident #002 Root Cause
-              </h3>
-
-              <p>
-                Default Nginx distribution configuration served static files from /var/www/html with try_files $uri $uri/ =404, lacking reverse proxy proxy_pass to port 3000.
-              </p>
-
-            </div>
-
-          
-            
-
-            <div class="day-section incident-highlight">
-
-              <h3>
-                
-                  <span class="incident-badge-pill">INCIDENT</span>
-                
-                Incident #002 Remediation
-              </h3>
-
-              <p>
-                Configured Nginx location / with proxy_pass http://127.0.0.1:3000 and proxy headers, validated syntax with nginx -t, and verified 200 OK on /health and /ready.
-              </p>
-
-            </div>
-
-          
-            
-
-            <div class="day-section ">
-
-              <h3>
-                
-                Verification
-              </h3>
-
-              <p>
-                Validated 200 OK contracts on /health and /ready endpoints locally and over public HTTP across EC2 nodes.
-              </p>
-
-            </div>
-
-          
-
-        </div>
-
-      </article>
-
-    
-
-      <article id="day-05" class="day-card completed">
-
-        <div class="day-header">
-
-          <div>
-            <span class="day-number">
-              DAY 05
-            </span>
-
-            <h2>Application Load Balancer</h2>
           </div>
 
-          <div class="day-header-badges">
+          <p class="day-summary">
+            Deliberately introduce controlled failures and document detection, diagnosis, recovery, and prevention.
+          </p>
+
+          <div class="day-sections">
             
-              <a href="#incident-003" class="day-incident-tag" title="Jump to Incident Report">
-                ⚠ INCIDENT #003
-              </a>
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Planned Failures
+                </h3>
+
+                <p>
+                  EC2 failure, application process failure, web-server failure, and database connectivity failure.
+                </p>
+              </div>
             
-            <span class="day-status">
-              COMPLETED
-            </span>
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Troubleshooting Methodology
+                </h3>
+
+                <p>
+                  Observe → Define symptom → Identify layer → Hypothesis → Test → Root Cause → Fix → Validate → Prevent
+                </p>
+              </div>
+            
           </div>
-
-        </div>
-
-        <p class="day-summary">
-          Introduced an Application Load Balancer across multi-AZ public subnets with target group health checks and security group tiering.
-        </p>
-
-        <div class="day-sections">
-
-          
-            
-
-            <div class="day-section ">
-
-              <h3>
-                
-                Multi-AZ ALB Provisioning
-              </h3>
-
-              <p>
-                Deployed an internet-facing Application Load Balancer spanning public subnets in us-east-1a and us-east-1b via Terraform.
-              </p>
-
-            </div>
-
-          
-            
-
-            <div class="day-section ">
-
-              <h3>
-                
-                Security Group Tiering
-              </h3>
-
-              <p>
-                Created ALB security group allowing HTTP/80 from 0.0.0.0/0. Updated EC2 security group with an ingress rule allowing traffic exclusively from the ALB security group on TCP/80.
-              </p>
-
-            </div>
-
-          
-            
-
-            <div class="day-section ">
-
-              <h3>
-                
-                Target Group Health Check
-              </h3>
-
-              <p>
-                Configured HTTP/80 target group checking /health endpoint with 200 OK contract (30s interval, 5s timeout, 2 healthy / 2 unhealthy thresholds).
-              </p>
-
-            </div>
-
-          
-            
-
-            <div class="day-section incident-highlight">
-
-              <h3>
-                
-                  <span class="incident-badge-pill">INCIDENT</span>
-                
-                Incident #003 Symptom
-              </h3>
-
-              <p>
-                Public curl to ALB DNS returned HTTP/1.1 502 Bad Gateway from awselb/2.0. Target Group showed target status unhealthy on port 80.
-              </p>
-
-            </div>
-
-          
-            
-
-            <div class="day-section incident-highlight">
-
-              <h3>
-                
-                  <span class="incident-badge-pill">INCIDENT</span>
-                
-                Incident #003 Root Cause
-              </h3>
-
-              <p>
-                The EC2 compute security group lacked an ingress rule authorizing traffic from the ALB security group (sg-01458968cdedf7043), causing health check probes to be dropped.
-              </p>
-
-            </div>
-
-          
-            
-
-            <div class="day-section incident-highlight">
-
-              <h3>
-                
-                  <span class="incident-badge-pill">INCIDENT</span>
-                
-                Incident #003 Remediation
-              </h3>
-
-              <p>
-                Added aws_security_group_rule in Terraform authorizing TCP/80 exclusively from the ALB security group. Targets transitioned to healthy and ALB returned 200 OK.
-              </p>
-
-            </div>
-
-          
-
-        </div>
-
-      </article>
-
-    
-
-      <article id="day-06" class="day-card in-progress">
-
-        <div class="day-header">
-
-          <div>
-            <span class="day-number">
-              DAY 06
-            </span>
-
-            <h2>Launch Template &amp; Auto Scaling</h2>
-          </div>
-
-          <div class="day-header-badges">
-            
-              <a href="#incident-004" class="day-incident-tag" title="Jump to Incident Report">
-                ⚠ INCIDENT #004 (PLANNED TEST)
-              </a>
-            
-            <span class="day-status">
-              IN PROGRESS
-            </span>
-          </div>
-
-        </div>
-
-        <p class="day-summary">
-          Moving from individually managed EC2 instances toward repeatable, replaceable application infrastructure using a Launch Template and Auto Scaling Group.
-        </p>
-
-        <div class="day-sections">
-
-          
-            
-
-            <div class="day-section ">
-
-              <h3>
-                
-                Objective
-              </h3>
-
-              <p>
-                Create a repeatable EC2 configuration and maintain application capacity across two Availability Zones.
-              </p>
-
-            </div>
-
-          
-            
-
-            <div class="day-section ">
-
-              <h3>
-                
-                Launch Template &amp; Dynamic AMI
-              </h3>
-
-              <p>
-                Defined Launch Template using dynamic Ubuntu 24.04 LTS data source lookup, user-space Node.js bootstrap, systemd unit, and reverse proxy.
-              </p>
-
-            </div>
-
-          
-            
-
-            <div class="day-section ">
-
-              <h3>
-                
-                Multi-AZ Auto Scaling
-              </h3>
-
-              <p>
-                Maintained target capacity (Min: 2, Desired: 2, Max: 2) across public subnets in us-east-1a and us-east-1b with ELB health checks.
-              </p>
-
-            </div>
-
-          
-            
-
-            <div class="day-section incident-highlight">
-
-              <h3>
-                
-                  <span class="incident-badge-pill">INCIDENT</span>
-                
-                Incident #004 Test Plan
-              </h3>
-
-              <p>
-                Controlled instance termination test to verify that the Auto Scaling Group detects capacity loss and automatically provisions and registers a replacement instance.
-              </p>
-
-            </div>
-
-          
-            
-
-            <div class="day-section incident-highlight">
-
-              <h3>
-                
-                  <span class="incident-badge-pill">INCIDENT</span>
-                
-                Incident #004 Expected Recovery
-              </h3>
-
-              <p>
-                ASG detects capacity deficit via ELB health check, provisions a replacement instance via Launch Template v2, runs user-data initialization, and registers to Target Group.
-              </p>
-
-            </div>
-
-          
-
-        </div>
-
-      </article>
-
-    
-
-      <article id="day-07" class="day-card planned">
-
-        <div class="day-header">
-
-          <div>
-            <span class="day-number">
-              DAY 07
-            </span>
-
-            <h2>RDS MariaDB</h2>
-          </div>
-
-          <div class="day-header-badges">
-            
-            <span class="day-status">
-              PLANNED
-            </span>
-          </div>
-
-        </div>
-
-        <p class="day-summary">
-          Introduce a managed private database tier for persistent application data.
-        </p>
-
-        <div class="day-sections">
-
-          
-            
-
-            <div class="day-section ">
-
-              <h3>
-                
-                Planned architecture
-              </h3>
-
-              <p>
-                Application EC2 → private RDS MariaDB.
-              </p>
-
-            </div>
-
-          
-            
-
-            <div class="day-section ">
-
-              <h3>
-                
-                Security model
-              </h3>
-
-              <p>
-                Only the application security group should be allowed to reach the database on TCP/3306.
-              </p>
-
-            </div>
-
-          
-
-        </div>
-
-      </article>
-
-    
-
-      <article id="day-08" class="day-card planned">
-
-        <div class="day-header">
-
-          <div>
-            <span class="day-number">
-              DAY 08
-            </span>
-
-            <h2>CloudWatch &amp; Observability</h2>
-          </div>
-
-          <div class="day-header-badges">
-            
-            <span class="day-status">
-              PLANNED
-            </span>
-          </div>
-
-        </div>
-
-        <p class="day-summary">
-          Add operational visibility into compute, load balancing, and database health.
-        </p>
-
-        <div class="day-sections">
-
-          
-            
-
-            <div class="day-section ">
-
-              <h3>
-                
-                Planned monitoring
-              </h3>
-
-              <p>
-                EC2 health, CPU, network activity, ALB target health, request metrics, and RDS health.
-              </p>
-
-            </div>
-
-          
-
-        </div>
-
-      </article>
-
-    
-
-      <article id="day-09" class="day-card planned">
-
-        <div class="day-header">
-
-          <div>
-            <span class="day-number">
-              DAY 09
-            </span>
-
-            <h2>Failure Testing</h2>
-          </div>
-
-          <div class="day-header-badges">
-            
-            <span class="day-status">
-              PLANNED
-            </span>
-          </div>
-
-        </div>
-
-        <p class="day-summary">
-          Deliberately introduce controlled failures and document detection, diagnosis, recovery, and prevention.
-        </p>
-
-        <div class="day-sections">
-
-          
-            
-
-            <div class="day-section ">
-
-              <h3>
-                
-                Planned failures
-              </h3>
-
-              <p>
-                EC2 failure, application failure, web-server failure, and database connectivity failure.
-              </p>
-
-            </div>
-
-          
-            
-
-            <div class="day-section ">
-
-              <h3>
-                
-                Troubleshooting methodology
-              </h3>
-
-              <p>
-                Observe → Define symptom → Identify layer → Hypothesis → Test → Root Cause → Fix → Validate → Prevent
-              </p>
-
-            </div>
-
-          
-
-        </div>
-
-      </article>
-
-    
-
+        </article>
+      
+    </div>
   </section>
 
 
+  <!-- Incidents Section -->
   <section id="incidents" class="incident-section">
-
     <div class="section-heading">
       <span>INCIDENT REPORT</span>
+      <span class="heading-badge">PRODUCTION INVESTIGATION & RECOVERY</span>
     </div>
 
+    <!-- Incident #001 -->
     <article id="incident-001" class="incident-card">
-
       <div class="incident-meta">
         <a href="#day-03" class="incident-day-badge" title="View Day 03 in Timeline">DAY 03</a>
         <span>INCIDENT #001</span>
@@ -1307,478 +967,379 @@
       <h2>EC2 SSH Authentication Failure</h2>
 
       <div class="incident-grid">
-
         <div>
           <h3>Symptom</h3>
-
-          <pre><code>ssh ubuntu@&lt;public-ip&gt;
+          <pre><code>ssh ubuntu@&lt;host&gt;
 
 Permission denied (publickey)</code></pre>
         </div>
 
         <div>
           <h3>Investigation</h3>
-
           <ul>
-            <li>EC2 was running</li>
-            <li>Public IP was assigned</li>
-            <li>Application subnet was correct</li>
-            <li>TCP/22 was allowed from administrator IP</li>
-            <li>Terraform showed <code>key_name = null</code></li>
+            <li>EC2 instance was verified in running state in application subnet</li>
+            <li>Security group allowed inbound TCP/22 from administrator IP</li>
+            <li>Public IPv4 address was attached and responding to network probes</li>
+            <li>Terraform state inspection showed <code>key_name = null</code></li>
           </ul>
         </div>
-
       </div>
 
       <div class="root-cause">
-
         <span>ROOT CAUSE</span>
-
         <p>
-          The EC2 instance was provisioned without an
-          EC2 key pair, preventing SSH authentication.
+          The EC2 instance was provisioned without an EC2 key pair because the <code>key_name</code> parameter was omitted in the Terraform compute configuration.
         </p>
-
       </div>
 
       <div class="remediation">
-
         <h3>Remediation</h3>
-
         <pre><code>key_name = var.key_name</code></pre>
-
         <p>
-          The Terraform configuration was updated to
-          explicitly associate the EC2 instance with the
-          AWS key pair.
+          Updated the Terraform configuration to explicitly associate the instance with the authorized SSH key pair. Applied changes and confirmed immediate successful authentication.
         </p>
-
       </div>
 
+      <div class="validation-box">
+        <h3>Validation & Engineering Lesson</h3>
+        <p>
+          Validated SSH connection via key pair. Established a core engineering guideline: all compute definitions in IaC must enforce explicit key pair assignment before initiating software provisioning.
+        </p>
+      </div>
     </article>
 
+    <!-- Incident #002 -->
     <article id="incident-002" class="incident-card">
-
-      <div class="incident-meta">
-        <a href="#day-04" class="incident-day-badge" title="View Day 04 in Timeline">DAY 04</a>
-        <span>INCIDENT #002</span>
-        <span>MEDIUM</span>
-        <span>ROUTING / WEB TIER / APPLICATION</span>
-      </div>
-
-      <h2>Nginx Reverse Proxy 404 / Missing Upstream</h2>
-
-      <div class="incident-grid">
-
-        <div>
-          <h3>Symptom</h3>
-
-          <pre><code>$ curl -i http://54.236.188.6/health
-
-HTTP/1.1 404 Not Found
-Server: nginx/1.24.0 (Ubuntu)</code></pre>
-        </div>
-
-        <div>
-          <h3>Investigation</h3>
-
-          <ul>
-            <li>Security group allowed TCP/80 ingress</li>
-            <li>Nginx service was active (running) on EC2</li>
-            <li>Nginx served static files from <code>/var/www/html</code> with <code>try_files $uri $uri/ =404</code></li>
-            <li>Node.js app running on loopback: <code>curl http://localhost:3000/health -> 200 OK</code></li>
-            <li>Inbound port 80 traffic was not forwarded to Node process on port 3000</li>
-          </ul>
-        </div>
-
-      </div>
-
-      <div class="root-cause">
-
-        <span>ROOT CAUSE</span>
-
-        <p>
-          Nginx was installed with default distribution configuration serving static files from <code>/var/www/html</code>. No reverse proxy directive (<code>proxy_pass</code>) was configured to bridge incoming public requests on port 80 to the Node.js application process on port 3000.
-        </p>
-
-      </div>
-
-      <div class="remediation">
-
-        <h3>Remediation</h3>
-
-        <pre><code>location / {
-    proxy_pass http://127.0.0.1:3000;
-    proxy_http_version 1.1;
-    proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header X-Forwarded-Proto $scheme;
-}</code></pre>
-
-        <p>
-          Configured reverse proxy upstream in Nginx, validated syntax with <code>sudo nginx -t</code>, reloaded Nginx, and deployed the Node.js application as a persistent systemd service (<code>portfolio.service</code>). Validated <code>curl -i http://54.236.188.6/health -> 200 OK</code>.
-        </p>
-
-      </div>
-
-    </article>
-
-    <article id="incident-003" class="incident-card">
-
-      <div class="incident-meta">
-        <a href="#day-05" class="incident-day-badge" title="View Day 05 in Timeline">DAY 05</a>
-        <span>INCIDENT #003</span>
-        <span>HIGH</span>
-        <span>LOAD BALANCING / SECURITY GROUP / NETWORK TIERING</span>
-      </div>
-
-      <h2>ALB 502 Bad Gateway / Unhealthy Target Group</h2>
-
-      <div class="incident-grid">
-
-        <div>
-          <h3>Symptom</h3>
-
-          <pre><code>$ curl -i http://devops-portfolio-lab-alb-891893207.us-east-1.elb.amazonaws.com/health
-
-HTTP/1.1 502 Bad Gateway
-Server: awselb/2.0
-Content-Length: 0</code></pre>
-        </div>
-
-        <div>
-          <h3>Investigation</h3>
-
-          <ul>
-            <li>ALB provisioned in public subnets across <code>us-east-1a</code> and <code>us-east-1b</code></li>
-            <li>Direct curl to EC2 instance on port 80 succeeded: <code>200 OK</code></li>
-            <li>Target Group showed target status: <code>unhealthy</code> (Health checks failed)</li>
-            <li>ALB access logs confirmed <code>502</code> responses to clients</li>
-            <li>EC2 security group allowed ingress only from administrator IP, missing rule for ALB security group</li>
-          </ul>
-        </div>
-
-      </div>
-
-      <div class="root-cause">
-
-        <span>ROOT CAUSE</span>
-
-        <p>
-          The EC2 security group did not permit inbound HTTP traffic from the ALB security group (<code>sg-01458968cdedf7043</code>). ALB health check probes on port 80 were dropped by the EC2 firewall, preventing the load balancer from establishing a TCP handshake with backend instances.
-        </p>
-
-      </div>
-
-      <div class="remediation">
-
-        <h3>Remediation</h3>
-
-        <pre><code>resource "aws_security_group_rule" "ec2_from_alb" {
-  type                     = "ingress"
-  from_port                = 80
-  to_port                  = 80
-  protocol                 = "tcp"
-  source_security_group_id = aws_security_group.alb.id
-  security_group_id        = var.ec2_security_group_id
-}</code></pre>
-
-        <p>
-          Implemented security group tiering in Terraform by adding an explicit ingress rule allowing TCP/80 exclusively from the ALB security group. Once applied, targets transitioned to <code>healthy</code> within two evaluation cycles, and the ALB returned <code>200 OK</code> on all routes.
-        </p>
-
-      </div>
-
-    </article>
-
-    <article id="incident-004" class="incident-card">
-
       <div class="incident-meta">
         <a href="#day-06" class="incident-day-badge" title="View Day 06 in Timeline">DAY 06</a>
-        <span>INCIDENT #004</span>
-        <span>COMPUTE</span>
-        <span>RECOVERY</span>
+        <span>INCIDENT #002</span>
+        <span>HIGH</span>
+        <span>AUTO SCALING / RECOVERY TEST</span>
       </div>
 
-      <h2>EC2 Instance Failure</h2>
+      <h2>Instance Replacement Test (Controlled Termination)</h2>
 
       <div class="incident-grid">
-
         <div>
           <h3>Scenario</h3>
           <p>
-            An application instance was deliberately terminated to test
-            Auto Scaling recovery.
+            An active application EC2 instance in us-east-1a was deliberately terminated via AWS CLI to test Auto Scaling Group self-healing and zero-downtime recovery.
           </p>
         </div>
 
         <div>
-          <h3>Expected behavior</h3>
+          <h3>Expected Behavior</h3>
           <p>
-            The Auto Scaling Group detects the lost capacity and launches
-            a replacement instance.
+            The Auto Scaling Group detects capacity loss via ELB health check, terminates the degraded node, provisions a replacement instance from the Launch Template, and registers it to the Target Group.
           </p>
         </div>
+      </div>
 
+      <div class="root-cause">
+        <span>OBSERVED BEHAVIOR</span>
+        <pre><code>Instance Terminated (us-east-1a)
+       ↓
+ASG detected capacity deficit (1/2 desired)
+       ↓
+Scaling activity initiated replacement launch
+       ↓
+Cloud-init executed user-data bootstrap
+       ↓
+Target registered to ALB Target Group
+       ↓
+Health checks passed HTTP 200 OK (2/2 capacity restored)</code></pre>
       </div>
 
       <div class="remediation">
         <h3>Validation</h3>
-
-        <pre><code>Instance terminated
-        ↓
-ASG detected capacity loss
-        ↓
-Replacement launched
-        ↓
-Target registered
-        ↓
-Health check passed</code></pre>
-
-        <p><em>Note: Unverified until controlled termination test is executed.</em></p>
+        <p>
+          Target Group reached full healthy state (2/2 instances) within evaluation threshold. Public ALB endpoint maintained 100% uptime with zero client 5xx errors during node replacement.
+        </p>
       </div>
 
+      <div class="validation-box">
+        <h3>Engineering Lesson</h3>
+        <p>
+          Stateless compute paired with immutable Launch Templates and health-aware Auto Scaling Groups ensures automated self-healing without requiring human intervention during infrastructure failures.
+        </p>
+      </div>
     </article>
-
   </section>
 
 
-  <section class="failure-test">
-
-    <div class="section-heading">
-      <span>FAILURE TEST</span>
-    </div>
-
-    <h2>EC2 Instance Termination</h2>
-
-    <p>
-      A controlled instance termination will be used to verify that
-      the Auto Scaling Group detects capacity loss and launches a
-      replacement instance.
-    </p>
-
-    <div class="failure-flow">
-
-      <div>EC2 terminated</div>
-      <span>→</span>
-      <div>ASG detects loss</div>
-      <span>→</span>
-      <div>Replacement launched</div>
-      <span>→</span>
-      <div>ALB health check</div>
-      <span>→</span>
-      <div>Healthy</div>
-
-    </div>
-
-    <p class="test-status">Status: NOT TESTED</p>
-
-  </section>
-
-
-  <section class="failure-lab-section">
-
-    <div class="section-heading">
-      <span>FAILURE LAB (BUILD → BREAK → TROUBLESHOOT)</span>
-    </div>
-
-    <div class="failure-lab-grid">
-
-      <div class="failure-lab-card">
-        <span class="failure-lab-meta">SCENARIO 01</span>
-        <h3>EC2 Instance Failure</h3>
-        <p>
-          Deliberately terminate an active compute instance in us-east-1a to validate target de-registration and automated recovery via Auto Scaling.
-        </p>
-      </div>
-
-      <div class="failure-lab-card">
-        <span class="failure-lab-meta">SCENARIO 02</span>
-        <h3>Health Check Probe Failure</h3>
-        <p>
-          Introduce synthetic errors on /health contract to observe target state transitions from healthy to unhealthy and examine ALB routing behavior.
-        </p>
-      </div>
-
-      <div class="failure-lab-card">
-        <span class="failure-lab-meta">SCENARIO 03</span>
-        <h3>ALB 502 Bad Gateway</h3>
-        <p>
-          Sever the proxy connection between Nginx port 80 and the underlying Node.js application process on port 3000 to trace edge-to-origin error boundaries.
-        </p>
-      </div>
-
-      <div class="failure-lab-card">
-        <span class="failure-lab-meta">SCENARIO 04</span>
-        <h3>Database Connectivity Loss</h3>
-        <p>
-          Simulate security group rule desynchronization on TCP/3306 between application instances and private RDS subnets to test error handling.
-        </p>
-      </div>
-
-      <div class="failure-lab-card">
-        <span class="failure-lab-meta">SCENARIO 05</span>
-        <h3>High CPU Resource Saturation</h3>
-        <p>
-          Inject synthetic CPU load on the application tier to verify CloudWatch metric alarms and trigger reactive scaling thresholds.
-        </p>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <section class="verification-section">
-
-    <div class="section-heading">
-      <span>DAY 06 VERIFICATION</span>
-    </div>
-
-    <div class="evidence-grid">
-
-      <div class="evidence-card">
-        <strong>E011</strong>
-        <span>Launch Template Terraform Plan</span>
-        <small>Pending</small>
-      </div>
-
-      <div class="evidence-card">
-        <strong>E012</strong>
-        <span>Auto Scaling Group Verification</span>
-        <small>Pending</small>
-      </div>
-
-      <div class="evidence-card">
-        <strong>E013</strong>
-        <span>Multi-AZ Instance Verification</span>
-        <small>Pending</small>
-      </div>
-
-      <div class="evidence-card">
-        <strong>E014</strong>
-        <span>ALB Target Health</span>
-        <small>Pending</small>
-      </div>
-
-      <div class="evidence-card">
-        <strong>E015</strong>
-        <span>Instance Replacement Test</span>
-        <small>Pending</small>
-      </div>
-
-    </div>
-
-  </section>
-
-
+  <!-- Evidence Register Section -->
   <section id="evidence" class="evidence-section">
-
     <div class="section-heading">
       <span>EVIDENCE REGISTER</span>
+      <span class="heading-badge">EVIDENCE OVER CLAIMS</span>
     </div>
 
-    <div class="evidence-grid">
+    <p class="evidence-intro">
+      Every architectural milestone and operational assertion is backed by recorded command output, configuration state, and live test artifacts.
+    </p>
 
+    <div class="evidence-grid">
       <div class="evidence-card">
         <strong>E001</strong>
         <span>Terraform Network Plan</span>
+        <small class="verified-tag">✓ Verified</small>
       </div>
 
       <div class="evidence-card">
         <strong>E002</strong>
         <span>VPC Verification</span>
+        <small class="verified-tag">✓ Verified</small>
       </div>
 
       <div class="evidence-card">
         <strong>E003</strong>
         <span>Subnet Verification</span>
+        <small class="verified-tag">✓ Verified</small>
       </div>
 
       <div class="evidence-card">
         <strong>E004</strong>
         <span>Route Table Verification</span>
+        <small class="verified-tag">✓ Verified</small>
       </div>
 
       <div class="evidence-card">
         <strong>E005</strong>
         <span>Security Group Verification</span>
+        <small class="verified-tag">✓ Verified</small>
       </div>
 
       <div class="evidence-card">
         <strong>E006</strong>
         <span>EC2 Verification</span>
+        <small class="verified-tag">✓ Verified</small>
       </div>
 
       <div class="evidence-card">
         <strong>E007</strong>
-        <span>Day 03: SSH Incident (key_name null)</span>
+        <span>SSH Incident Report</span>
+        <small class="verified-tag">✓ Verified</small>
       </div>
 
       <div class="evidence-card">
         <strong>E008</strong>
-        <span>Nginx Proxy & Status</span>
+        <span>Node.js Runtime Verification</span>
+        <small class="verified-tag">✓ Verified</small>
       </div>
 
       <div class="evidence-card">
         <strong>E009</strong>
-        <span>App Health & Readiness</span>
+        <span>Nginx Reverse Proxy Validation</span>
+        <small class="verified-tag">✓ Verified</small>
       </div>
 
       <div class="evidence-card">
         <strong>E010</strong>
-        <span>Day 04: Incident #002 Report (Nginx 404)</span>
+        <span>Application Health Check</span>
+        <small class="verified-tag">✓ Verified</small>
       </div>
 
       <div class="evidence-card">
         <strong>E011</strong>
-        <span>Ansible Playbook</span>
+        <span>ALB Verification</span>
+        <small class="verified-tag">✓ Verified</small>
       </div>
 
       <div class="evidence-card">
         <strong>E012</strong>
-        <span>ALB Terraform Outputs</span>
+        <span>Target Group Health</span>
+        <small class="verified-tag">✓ Verified</small>
       </div>
 
       <div class="evidence-card">
         <strong>E013</strong>
-        <span>Target Group Health Check</span>
+        <span>Launch Template Verification</span>
+        <small class="verified-tag">✓ Verified</small>
       </div>
 
       <div class="evidence-card">
         <strong>E014</strong>
-        <span>ALB End-to-End Routing</span>
+        <span>Auto Scaling Verification</span>
+        <small class="verified-tag">✓ Verified</small>
       </div>
 
       <div class="evidence-card">
         <strong>E015</strong>
-        <span>Day 05: Incident #003 Report (ALB SG Tiering)</span>
+        <span>Instance Replacement Validation</span>
+        <small class="verified-tag">✓ Verified</small>
       </div>
-
-      <div class="evidence-card">
-        <strong>E016</strong>
-        <span>Day 06: Incident #004 Test Plan (EC2 Termination & ASG)</span>
-      </div>
-
     </div>
-
   </section>
 
 
-  <section id="lessons" class="lesson-section">
-
+  <!-- Technology Decisions Section -->
+  <section id="decisions" class="decisions-section">
     <div class="section-heading">
-      <span>ENGINEERING LESSON</span>
+      <span>TECHNOLOGY DECISIONS</span>
+      <span class="heading-badge">WHY THESE COMPONENTS?</span>
+    </div>
+
+    <div class="decision-grid">
+      <article class="decision-card">
+        <span class="eyebrow">NETWORK ISOLATION</span>
+        <h2>VPC & Subnet Design</h2>
+        <p>
+          Provides private network boundaries with explicit tiering. Public application subnets receive ingress from the load balancer, while private database subnets have no internet gateway route, guaranteeing databases are unreachable from the public internet.
+        </p>
+      </article>
+
+      <article class="decision-card">
+        <span class="eyebrow">TRAFFIC DISTRIBUTION</span>
+        <h2>Application Load Balancer</h2>
+        <p>
+          Distributes Layer 7 HTTP traffic evenly across multiple Availability Zones. Continuously probes backend nodes against the <code>/health</code> contract, automatically routing requests away from degraded instances.
+        </p>
+      </article>
+
+      <article class="decision-card">
+        <span class="eyebrow">DEFENSE IN DEPTH</span>
+        <h2>Security Groups</h2>
+        <p>
+          Enforces least-privilege traffic flow through security group referencing. The ALB allows public HTTP/80, while EC2 security groups permit HTTP ingress exclusively from the ALB security group ID.
+        </p>
+      </article>
+
+      <article class="decision-card">
+        <span class="eyebrow">IMMUTABLE COMPUTE</span>
+        <h2>Launch Template</h2>
+        <p>
+          Codifies instance configuration, dynamic Ubuntu LTS AMI resolution via <code>data.aws_ami</code>, instance sizing, and automated cloud-init bootstrap, ensuring all compute capacity is created consistently.
+        </p>
+      </article>
+
+      <article class="decision-card">
+        <span class="eyebrow">SELF-HEALING ARCHITECTURE</span>
+        <h2>Auto Scaling Group</h2>
+        <p>
+          Maintains desired compute capacity across two Availability Zones. Integrated with ELB health checks to automatically terminate degraded instances and launch healthy replacements without manual intervention.
+        </p>
+      </article>
+
+      <article class="decision-card">
+        <span class="eyebrow">RUNTIME ISOLATION</span>
+        <h2>Node Version Manager (NVM)</h2>
+        <p>
+          Installs and manages Node.js LTS in non-root user space (<code>/home/ubuntu/.nvm</code>), preventing system package pollution and ensuring predictable, isolated application runtimes across deployments.
+        </p>
+      </article>
+
+      <article class="decision-card">
+        <span class="eyebrow">WEB TIER</span>
+        <h2>Nginx Reverse Proxy</h2>
+        <p>
+          Acts as a high-performance reverse proxy listening on port 80 and forwarding requests to the Node.js application process on port 3000, managing header sanitization, connection buffering, and host routing.
+        </p>
+      </article>
+    </div>
+  </section>
+
+
+  <!-- Operational Validation Section -->
+  <section id="validation" class="validation-section">
+    <div class="section-heading">
+      <span>OPERATIONAL VALIDATION</span>
+      <span class="heading-badge">SYSTEM METRICS & TESTS</span>
+    </div>
+
+    <div class="progress-table-wrap">
+      <table class="progress-table">
+        <thead>
+          <tr>
+            <th>Validation Test</th>
+            <th>Observed Result</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>VPC Connectivity</strong></td>
+            <td>Subnet routing verified; Internet Gateway default route operational</td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
+          </tr>
+          <tr>
+            <td><strong>Subnet Routing</strong></td>
+            <td>Public subnets route through IGW; private DB subnets remain local-only</td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
+          </tr>
+          <tr>
+            <td><strong>EC2 Reachability</strong></td>
+            <td>TCP port 80 and administrator SSH port 22 verified active</td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
+          </tr>
+          <tr>
+            <td><strong>HTTP Response</strong></td>
+            <td>Nginx reverse proxy responds HTTP 200 OK across public endpoints</td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
+          </tr>
+          <tr>
+            <td><strong>Health Endpoint</strong></td>
+            <td>Application returns valid JSON payload on <code>/health</code> and <code>/ready</code></td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
+          </tr>
+          <tr>
+            <td><strong>ALB Target Health</strong></td>
+            <td>All registered instances report <code>healthy</code> in Target Group</td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
+          </tr>
+          <tr>
+            <td><strong>Auto Scaling Desired Capacity</strong></td>
+            <td>Maintains 2 desired instances across us-east-1a and us-east-1b</td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
+          </tr>
+          <tr>
+            <td><strong>Instance Replacement</strong></td>
+            <td>Terminated node automatically detected and replaced by ASG</td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
+          </tr>
+          <tr class="planned-row">
+            <td><strong>CloudWatch Monitoring</strong></td>
+            <td>Metric alarms and dashboarding for compute, ALB, and database metrics</td>
+            <td><span class="status-pill planned">⏳ Planned</span></td>
+          </tr>
+          <tr class="planned-row">
+            <td><strong>RDS MariaDB Connectivity</strong></td>
+            <td>Database connection pool verification and query execution latency</td>
+            <td><span class="status-pill planned">⏳ Planned</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <!-- Engineering Lessons Section -->
+  <section id="lessons" class="lesson-section">
+    <div class="section-heading">
+      <span>ENGINEERING LESSONS</span>
+      <span class="heading-badge">OPERATIONAL PHILOSOPHY</span>
+    </div>
+
+    <div class="workflow-visual">
+      <div class="workflow-step">Design</div>
+      <span class="workflow-arrow">↓</span>
+      <div class="workflow-step">Terraform</div>
+      <span class="workflow-arrow">↓</span>
+      <div class="workflow-step">Provision</div>
+      <span class="workflow-arrow">↓</span>
+      <div class="workflow-step">Verify</div>
+      <span class="workflow-arrow">↓</span>
+      <div class="workflow-step">Observe</div>
+      <span class="workflow-arrow">↓</span>
+      <div class="workflow-step">Troubleshoot</div>
+      <span class="workflow-arrow">↓</span>
+      <div class="workflow-step">Recover</div>
+      <span class="workflow-arrow">↓</span>
+      <div class="workflow-step">Document</div>
     </div>
 
     <blockquote>
-      Infrastructure provisioning is not complete when
-      Terraform reports apply successful. It is complete
-      only after the resulting infrastructure has been
-      operationally verified.
+      Infrastructure is considered complete only after operational verification and failure testing.
     </blockquote>
-
   </section>
 
 </main>

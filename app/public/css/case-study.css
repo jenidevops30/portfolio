@@ -531,7 +531,9 @@ pre {
   .incident-grid,
   .evidence-grid,
   .decision-grid,
-  .failure-lab-grid {
+  .failure-lab-grid,
+  .state-grid,
+  .architecture-explanations {
     grid-template-columns: 1fr;
   }
 
@@ -544,12 +546,17 @@ pre {
   }
 }
 
-/* --- Case Study Navigation --- */
+/* --- Sticky Case Study Navigation --- */
 .case-study-nav {
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(8px);
+  z-index: 100;
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
-  padding: 14px 0;
+  padding: 16px 0;
   margin-bottom: 40px;
   border-bottom: 1px solid #ddd;
 }
@@ -558,7 +565,7 @@ pre {
   color: #555;
   text-decoration: none;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   transition: color 0.2s ease;
@@ -569,15 +576,244 @@ pre {
   text-decoration: underline;
 }
 
-/* --- Progress and Day Card States --- */
-.progress-item.in-progress {
+/* --- Status Badge & Platform State Card --- */
+.case-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  padding: 8px 16px;
+  background: #fbfbfb;
+  border: 1px solid #ddd;
+  margin-bottom: 24px;
+}
+
+.status-indicator {
+  color: #27ae60;
+  font-size: 12px;
+}
+
+.status-sep {
+  color: #bbb;
+}
+
+.status-progress {
+  font-weight: 600;
+  color: #111;
+}
+
+.status-remaining {
+  color: #777;
+}
+
+.platform-state-card {
+  border: 1px solid #ddd;
+  background: #fafafa;
+  padding: 24px;
+  margin-top: 36px;
+}
+
+.state-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 12px;
+}
+
+.state-badge.verified {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #27ae60;
+  background: rgba(39, 174, 96, 0.1);
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.state-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.state-item {
+  border: 1px solid #e5e5e5;
+  background: #fff;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.state-item.verified {
   border-left: 3px solid #111;
 }
 
-.day-card.in-progress {
-  border-left: 3px solid #111;
+.state-item.planned {
+  opacity: 0.55;
+  border-left: 3px solid #bbb;
 }
 
+.state-icon {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.state-item.verified .state-icon {
+  color: #27ae60;
+}
+
+.state-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #222;
+}
+
+.state-status {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #777;
+}
+
+/* --- Progress & Validation Table --- */
+.heading-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border: 1px solid #ddd;
+  background: #fafafa;
+  color: #555;
+}
+
+.heading-badge.verified {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+.progress-table-wrap {
+  overflow-x: auto;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+.progress-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  text-align: left;
+}
+
+.progress-table th {
+  background: #f7f7f7;
+  padding: 14px 18px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-bottom: 1px solid #ddd;
+}
+
+.progress-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+
+.progress-table tr:last-child td {
+  border-bottom: none;
+}
+
+.progress-table tr.planned-row {
+  opacity: 0.6;
+}
+
+.status-pill {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.status-pill.verified {
+  background: rgba(39, 174, 96, 0.1);
+  color: #1e8449;
+  border: 1px solid rgba(39, 174, 96, 0.25);
+}
+
+.status-pill.planned {
+  background: #f5f5f5;
+  color: #777;
+  border: 1px solid #ddd;
+}
+
+/* --- Architecture Diagram & Explanations --- */
+.arch-badge-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 14px;
+}
+
+.arch-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  background: #111;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.architecture-diagram {
+  background: #111;
+  color: #f1f1f1;
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 30px;
+  text-align: left;
+  border-radius: 4px;
+  margin: 16px 0 24px;
+  overflow-x: auto;
+}
+
+.architecture-explanations {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  text-align: left;
+  margin-top: 24px;
+}
+
+.arch-explain-item {
+  border: 1px solid #eee;
+  padding: 18px;
+  background: #fafafa;
+}
+
+.arch-explain-item strong {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.arch-explain-item p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555;
+  margin: 0;
+}
+
+/* --- Timeline & Incident Card States --- */
 .day-card.completed {
   border-left: 3px solid #222;
 }
@@ -586,32 +822,52 @@ pre {
   opacity: 0.55;
 }
 
-/* --- Day Architecture, Technical Detail & Failure Flows --- */
-.day-architecture,
-.technical-detail,
-.failure-test {
-  margin-top: 50px;
+.validation-box {
+  margin-top: 24px;
+  border-top: 1px solid #eee;
+  padding-top: 18px;
 }
 
-.failure-flow {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin: 20px 0;
-  font-family: monospace;
+.validation-box h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.validation-box p {
+  color: #555;
   font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
 }
 
-.failure-flow div {
-  padding: 8px 14px;
-  background: #f8f9fa;
+.verified-tag {
+  color: #27ae60 !important;
+  font-weight: 700 !important;
+}
+
+/* --- Workflow Visual --- */
+.workflow-visual {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  background: #fafafa;
+  padding: 20px;
   border: 1px solid #ddd;
 }
 
-.test-status {
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  margin-top: 14px;
+.workflow-step {
+  padding: 8px 14px;
+  background: #111;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-radius: 3px;
+}
+
+.workflow-arrow {
+  color: #888;
+  font-weight: 700;
 }
