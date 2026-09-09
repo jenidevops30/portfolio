@@ -417,9 +417,16 @@
             <h2><%= day.title %></h2>
           </div>
 
-          <span class="day-status">
-            <%= day.label %>
-          </span>
+          <div class="day-header-badges">
+            <% if (day.incident) { %>
+              <span class="day-incident-tag">
+                ⚠ <%= day.incident %>
+              </span>
+            <% } %>
+            <span class="day-status">
+              <%= day.label %>
+            </span>
+          </div>
 
         </div>
 
@@ -431,9 +438,12 @@
 
           <% day.sections.forEach(section => { %>
 
-            <div class="day-section">
+            <div class="day-section <%= section.title.toLowerCase().includes('incident') ? 'incident-highlight' : '' %>">
 
               <h3>
+                <% if (section.title.toLowerCase().includes('incident')) { %>
+                  <span class="incident-badge-pill">INCIDENT</span>
+                <% } %>
                 <%= section.title %>
               </h3>
 

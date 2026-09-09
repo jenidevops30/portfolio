@@ -58,6 +58,7 @@ const days = [
     title: "EC2 & Security Groups",
     status: "completed",
     label: "COMPLETED",
+    incident: "INCIDENT #001",
     summary:
       "Deployed EC2 compute and implemented controlled HTTP and SSH access.",
     sections: [
@@ -94,6 +95,7 @@ const days = [
     title: "Ansible Automation & Node.js Deployment",
     status: "completed",
     label: "COMPLETED",
+    incident: "INCIDENT #002",
     summary:
       "Automated server configuration and application deployment with Ansible: provisioned NVM, Node.js v24.x LTS, systemd service, and Nginx reverse proxy.",
     sections: [
@@ -135,6 +137,7 @@ const days = [
     title: "Application Load Balancer",
     status: "completed",
     label: "COMPLETED",
+    incident: "INCIDENT #003",
     summary:
       "Introduced an Application Load Balancer across multi-AZ public subnets with target group health checks and security group tiering.",
     sections: [
@@ -176,6 +179,7 @@ const days = [
     title: "Launch Template & Auto Scaling",
     status: "in-progress",
     label: "IN PROGRESS",
+    incident: "INCIDENT #004 (PLANNED TEST)",
     summary:
       "Moving from individually managed EC2 instances toward repeatable, replaceable application infrastructure using a Launch Template and Auto Scaling Group.",
 
@@ -214,6 +218,12 @@ const days = [
         title: "Health",
         content:
           "Use ALB target health as part of the instance health model."
+      },
+
+      {
+        title: "Incident #004 (Failure Test)",
+        content:
+          "Controlled instance termination test to verify that the Auto Scaling Group detects capacity loss and automatically provisions and registers a replacement instance."
       }
     ]
   },
