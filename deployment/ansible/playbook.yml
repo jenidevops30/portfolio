@@ -1,0 +1,224 @@
+---
+- name: "Day 4: Deploy Portfolio Application with Node.js, NVM, Nginx, and Systemd"
+  hosts: webservers
+  become: true
+  vars:
+    app_user: ubuntu
+    app_group: ubuntu
+    app_dir: /home/ubuntu/portfolio/app
+    app_repo: "https://github.com/jenidevops30/portfolio.git"
+    app_branch: "v3"
+    app_port: 3000
+    nvm_version: "v0.40.1"
+    node_version: "24"
+    nvm_dir: "/home/{{ app_user }}/.nvm"
+
+  tasks:
+    - name: Update apt cache and install base packages
+      apt:
+        name:
+          - curl
+          - git
+          - build-essential
+          - nginx
+          - ca-certificates
+        state: present
+        update_cache: yes
+
+    - name: Download NVM installer script
+      get_url:
+        url: "https://raw.githubusercontent.com/nvm-sh/nvm/{{ nvm_version }}/install.sh"
+        dest: "/tmp/install_nvm.sh"
+        mode: "0755"
+
+    - name: Install NVM as application user
+      become_user: "{{ app_user }}"
+      command: "bash /tmp/install_nvm.sh"
+      args:
+        creates: "{{ nvm_dir }}/nvm.sh"
+
+    - name: Install Node.js LTS via NVM
+      become_user: "{{ app_user }}"
+      shell: |
+        source {{ nvm_dir }}/nvm.sh
+        nvm install {{ node_version }}
+        nvm alias default {{ node_version }}
+      args:
+        executable: /bin/bash
+      register: nvm_install
+      changed_when: "'is already installed' not in nvm_install.stderr and 'is already installed' not in nvm_install.stdout"
+
+    - name: Locate installed Node.js binary path
+      become_user: "{{ app_user }}"
+      shell: |
+        source {{ nvm_dir }}/nvm.sh
+        which node
+      args:
+        executable: /bin/bash
+      register: node_path
+      changed_when: false
+
+    - name: Locate installed NPM binary path
+      become_user: "{{ app_user }}"
+      shell: |
+        source {{ nvm_dir }}/nvm.sh
+        which npm
+      args:
+        executable: /bin/bash
+      register: npm_path
+      changed_when: false
+
+    - name: Ensure application root directory exists
+      file:
+        path: "/home/{{ app_user }}/portfolio"
+        state: directory
+        owner: "{{ app_user }}"
+        group: "{{ app_group }}"
+        mode: "0755"
+
+    - name: Clone or update portfolio repository
+      become_user: "{{ app_user }}"
+      git:
+        repo: "{{ app_repo }}"
+        dest: "/home/{{ app_user }}/portfolio"
+        version: "{{ app_branch }}"
+        force: yes
+      ignore_errors: yes
+      register: git_clone
+
+    - name: Install application production dependencies
+      become_user: "{{ app_user }}"
+      shell: |
+        source {{ nvm_dir }}/nvm.sh
+        npm install --omit=dev
+      args:
+        chdir: "{{ app_dir }}"
+        executable: /bin/bash
+      when: git_clone is succeeded
+
+    - name: Deploy systemd service unit for portfolio application
+      copy:
+        dest: /etc/systemd/system/portfolio.service
+        owner: root
+        group: root
+        mode: "0644"
+        content: |
+          [Unit]
+          Description=DevOps Portfolio Application (Node.js/Express)
+          After=network.target
+
+          [Service]
+          Type=simple
+          User={{ app_user }}
+          WorkingDirectory={{ app_dir }}
+          Environment=NODE_ENV=production
+          Environment=PORT={{ app_port }}
+          Environment=PATH={{ node_path.stdout | dirname }}:/usr/local/bin:/usr/bin:/bin
+          ExecStart={{ node_path.stdout }} {{ app_dir }}/src/server.js
+          Restart=always
+          RestartSec=5
+          StandardOutput=journal
+          StandardError=journal
+          SyslogIdentifier=portfolio-app
+
+          [Install]
+          WantedBy=multi-user.target
+      notify:
+        - Reload systemd
+        - Restart portfolio service
+
+    - name: Configure Nginx reverse proxy (Remediating Incident #002)
+      copy:
+        dest: /etc/nginx/sites-available/portfolio
+        owner: root
+        group: root
+        mode: "0644"
+        content: |
+          server {
+              listen 80 default_server;
+              listen [::]:80 default_server;
+              server_name _;
+
+              location / {
+                  proxy_pass http://127.0.0.1:{{ app_port }};
+                  proxy_http_version 1.1;
+                  proxy_set_header Upgrade $http_upgrade;
+                  proxy_set_header Connection "upgrade";
+                  proxy_set_header Host $host;
+                  proxy_cache_bypass $http_upgrade;
+                  proxy_set_header X-Real-IP $remote_addr;
+                  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                  proxy_set_header X-Forwarded-Proto $scheme;
+              }
+          }
+      notify:
+        - Test nginx configuration
+        - Reload nginx
+
+    - name: Disable default Nginx configuration
+      file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+      notify:
+        - Reload nginx
+
+    - name: Enable portfolio Nginx site
+      file:
+        src: /etc/nginx/sites-available/portfolio
+        dest: /etc/nginx/sites-enabled/portfolio
+        state: link
+      notify:
+        - Reload nginx
+
+    - name: Flush handlers to ensure services are reloaded before validation
+      meta: flush_handlers
+
+    - name: Verify application service is running
+      systemd:
+        name: portfolio
+        state: started
+        enabled: yes
+
+    - name: Verify Nginx service is running
+      systemd:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Validate local loopback health check (port 3000)
+      uri:
+        url: "http://127.0.0.1:{{ app_port }}/health"
+        status_code: 200
+        return_content: yes
+      register: loopback_health
+      retries: 5
+      delay: 2
+      until: loopback_health.status == 200
+
+    - name: Validate Nginx reverse proxy health check (port 80)
+      uri:
+        url: "http://127.0.0.1/health"
+        status_code: 200
+        return_content: yes
+      register: proxy_health
+      retries: 5
+      delay: 2
+      until: proxy_health.status == 200
+
+  handlers:
+    - name: Reload systemd
+      systemd:
+        daemon_reload: yes
+
+    - name: Restart portfolio service
+      systemd:
+        name: portfolio
+        state: restarted
+
+    - name: Test nginx configuration
+      command: nginx -t
+
+    - name: Reload nginx
+      systemd:
+        name: nginx
+        state: reloaded

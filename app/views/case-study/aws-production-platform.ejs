@@ -27,7 +27,16 @@
 
 <main class="case-study">
 
-  <section class="case-hero">
+  <nav class="case-study-nav">
+    <a href="#overview">Overview</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#timeline">Days 1–9</a>
+    <a href="#incidents">Incidents</a>
+    <a href="#evidence">Evidence</a>
+    <a href="#lessons">Lessons</a>
+  </nav>
+
+  <section id="overview" class="case-hero">
     <span class="eyebrow">AWS PRODUCTION PLATFORM</span>
 
     <h1>AWS Production Platform</h1>
@@ -82,9 +91,24 @@
         <span>EC2</span>
       </div>
 
-      <div class="progress-item planned">
-        <span>○</span>
+      <div class="progress-item completed">
+        <span>✓</span>
+        <span>Ansible & Nginx</span>
+      </div>
+
+      <div class="progress-item completed">
+        <span>✓</span>
         <span>ALB</span>
+      </div>
+
+      <div class="progress-item in-progress">
+        <span>●</span>
+        <span>Launch Template</span>
+      </div>
+
+      <div class="progress-item in-progress">
+        <span>●</span>
+        <span>Auto Scaling Group</span>
       </div>
 
       <div class="progress-item planned">
@@ -106,7 +130,7 @@
   </section>
 
 
-  <section class="architecture-section">
+  <section id="architecture" class="architecture-section">
 
     <div class="section-heading">
       <span>ARCHITECTURE</span>
@@ -115,49 +139,111 @@
     <div class="architecture-card">
 
       <div class="architecture-node">
-        INTERNET
+        <strong>INTERNET</strong>
+        <div class="node-meta">Public Traffic (HTTP / TCP 80)</div>
       </div>
 
       <div class="architecture-arrow">↓</div>
 
       <div class="architecture-node">
-        INTERNET GATEWAY
+        <strong>INTERNET GATEWAY</strong>
+        <div class="node-meta">igw-0778e41af4c263cc5</div>
       </div>
 
       <div class="architecture-arrow">↓</div>
 
+      <div class="architecture-node">
+        <strong>APPLICATION LOAD BALANCER</strong>
+        <div class="node-meta">devops-portfolio-lab-alb</div>
+        <div class="node-badge">Multi-AZ (us-east-1a / us-east-1b)</div>
+        <div class="node-detail">SG: sg-01458968cdedf7043 (TCP 80)</div>
+      </div>
+
+      <div class="architecture-arrow">
+        <span>↓ Target Group (devops-portfolio-lab-tg • /health HTTP 200)</span>
+      </div>
+
       <div class="architecture-node large">
-        VPC<br>
-        <small>10.0.0.0/16</small>
+        <strong>VPC: devops-portfolio-lab-vpc</strong>
+        <div class="node-meta">10.0.0.0/16 • vpc-0cf5fd62947dfa4e9</div>
+        <div class="node-detail">Auto Scaling Group: devops-portfolio-lab-asg (LT: lt-0ef00bfaf5fcd7a43 • Capacity: 2)</div>
       </div>
 
       <div class="architecture-columns">
 
-        <div>
-          <strong>us-east-1a</strong>
+        <div class="az-column">
+          <div class="az-title">us-east-1a (Active AZ Node 1)</div>
 
           <div class="subnet-card">
-            Application<br>
-            10.0.1.0/24
+            <div class="subnet-header">
+              <span class="subnet-badge public">PUBLIC APP SUBNET</span>
+              <span class="subnet-cidr">10.0.1.0/24 • subnet-0c7b987f3489a5423</span>
+            </div>
+            <div class="instance-block active">
+              <div class="instance-header">
+                <strong>EC2: portfolio-node-1</strong>
+                <span class="status-pill healthy">● HEALTHY</span>
+              </div>
+              <div class="instance-meta">i-0d2f3e4ad765260b4 (10.0.1.252)</div>
+              <div class="instance-routes">
+                <span>Nginx (:80)</span>
+                <span>→</span>
+                <span>portfolio.service (:3000)</span>
+              </div>
+              <div class="instance-sg">SG: sg-05ca8ca9955ca291a (Ingress from ALB SG only)</div>
+            </div>
           </div>
 
           <div class="subnet-card private">
-            Database<br>
-            10.0.11.0/24
+            <div class="subnet-header">
+              <span class="subnet-badge private-tag">PRIVATE DB SUBNET</span>
+              <span class="subnet-cidr">10.0.11.0/24 • subnet-065d0b79269b37f7d</span>
+            </div>
+            <div class="instance-block planned">
+              <div class="instance-header">
+                <strong>Planned RDS MariaDB</strong>
+                <span class="status-pill standby-pill">PLANNED</span>
+              </div>
+              <div class="instance-meta">Isolated Database Primary (Port 3306)</div>
+            </div>
           </div>
         </div>
 
-        <div>
-          <strong>us-east-1b</strong>
+        <div class="az-column">
+          <div class="az-title">us-east-1b (Active AZ Node 2)</div>
 
           <div class="subnet-card">
-            Application<br>
-            10.0.2.0/24
+            <div class="subnet-header">
+              <span class="subnet-badge public">PUBLIC APP SUBNET</span>
+              <span class="subnet-cidr">10.0.2.0/24 • subnet-0c432e92d73b142bc</span>
+            </div>
+            <div class="instance-block active">
+              <div class="instance-header">
+                <strong>EC2: portfolio-node-2</strong>
+                <span class="status-pill healthy">● HEALTHY</span>
+              </div>
+              <div class="instance-meta">i-0448591cdd30ec61b (10.0.2.242)</div>
+              <div class="instance-routes">
+                <span>Nginx (:80)</span>
+                <span>→</span>
+                <span>portfolio.service (:3000)</span>
+              </div>
+              <div class="instance-sg">SG: sg-05ca8ca9955ca291a (Ingress from ALB SG only)</div>
+            </div>
           </div>
 
           <div class="subnet-card private">
-            Database<br>
-            10.0.12.0/24
+            <div class="subnet-header">
+              <span class="subnet-badge private-tag">PRIVATE DB SUBNET</span>
+              <span class="subnet-cidr">10.0.12.0/24 • subnet-007a155c26a6b147f</span>
+            </div>
+            <div class="instance-block planned">
+              <div class="instance-header">
+                <strong>Planned RDS Standby</strong>
+                <span class="status-pill standby-pill">PLANNED</span>
+              </div>
+              <div class="instance-meta">Multi-AZ Database Replica (Port 3306)</div>
+            </div>
           </div>
         </div>
 
@@ -166,15 +252,152 @@
     </div>
 
     <p class="architecture-note">
-      Current architecture reflects the infrastructure actually
-      provisioned and verified. ALB, RDS, and additional
-      production components remain planned.
+      Current architecture reflects the infrastructure and application stack actually
+      provisioned and verified (VPC, Multi-AZ subnets, EC2, NVM, Node.js, Nginx, ALB, Target Group, Launch Template, and Auto Scaling Group). RDS and CloudWatch
+      monitoring components remain planned.
     </p>
 
   </section>
 
 
-  <section class="timeline-section">
+  <section class="day-architecture">
+
+    <div class="section-heading">
+      <span>DAY 06 ARCHITECTURE</span>
+    </div>
+
+    <div class="architecture-card">
+
+      <div class="architecture-node">
+        Launch Template
+      </div>
+
+      <div class="architecture-arrow">↓</div>
+
+      <div class="architecture-node">
+        Auto Scaling Group
+      </div>
+
+      <div class="architecture-arrow">↓</div>
+
+      <div class="architecture-columns">
+
+        <div>
+          <strong>us-east-1a</strong>
+
+          <div class="subnet-card">
+            Application EC2
+          </div>
+        </div>
+
+        <div>
+          <strong>us-east-1b</strong>
+
+          <div class="subnet-card">
+            Application EC2
+          </div>
+        </div>
+
+      </div>
+
+      <div class="architecture-arrow">↓</div>
+
+      <div class="architecture-node">
+        ALB Target Group
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="decisions-section">
+
+    <div class="section-heading">
+      <span>TECHNOLOGY DECISIONS</span>
+    </div>
+
+    <div class="decision-grid">
+
+      <article class="decision-card">
+        <span class="eyebrow">TECHNOLOGY DECISION</span>
+        <h2>Why a Launch Template?</h2>
+        <p>
+          Individual EC2 instances are difficult to reproduce consistently.
+          A Launch Template defines the expected instance configuration so
+          new application capacity can be created consistently.
+        </p>
+      </article>
+
+      <article class="decision-card">
+        <span class="eyebrow">DESIGN DECISION</span>
+        <h2>Why Multi-AZ?</h2>
+        <p>
+          Application capacity is distributed across two Availability Zones
+          so that the platform does not depend on a single Availability Zone.
+        </p>
+      </article>
+
+      <article class="decision-card">
+        <h3>Cloudflare</h3>
+        <p>
+          Used as the edge ingress layer for authoritative DNS, edge SSL termination, proxying, and distributed denial-of-service (DDoS) mitigation.
+        </p>
+      </article>
+
+      <article class="decision-card">
+        <h3>Application Load Balancer</h3>
+        <p>
+          Provides Layer 7 HTTP/HTTPS traffic distribution across multi-AZ public subnets with continuous target health checking against the /health contract.
+        </p>
+      </article>
+
+      <article class="decision-card">
+        <h3>Auto Scaling Group</h3>
+        <p>
+          Ensures high availability and automated replacement of unhealthy compute instances across multiple availability zones.
+        </p>
+      </article>
+
+      <article class="decision-card">
+        <h3>RDS MariaDB</h3>
+        <p>
+          Isolates the persistent database tier in private subnets, completely disconnected from direct internet access, with automated backups and failover standby.
+        </p>
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <section class="technical-detail">
+
+    <div class="section-heading">
+      <span>AMI MANAGEMENT</span>
+    </div>
+
+    <p>
+      The Launch Template uses Terraform's AWS AMI data source to
+      identify the latest matching Ubuntu 24.04 LTS image rather
+      than hardcoding a single AMI ID.
+    </p>
+
+    <pre><code>data "aws_ami" "ubuntu" {
+  most_recent = true
+
+  owners = ["099720109477"]
+
+  filter {
+    name = "architecture"
+    values = ["x86_64"]
+  }
+}</code></pre>
+
+  </section>
+
+
+  <section id="timeline" class="timeline-section">
 
     <div class="section-heading">
       <span>ENGINEERING JOURNEY</span>
@@ -231,7 +454,7 @@
   </section>
 
 
-  <section class="incident-section">
+  <section id="incidents" class="incident-section">
 
     <div class="section-heading">
       <span>INCIDENT REPORT</span>
@@ -289,7 +512,7 @@ Permission denied (publickey)</code></pre>
         <pre><code>key_name = var.key_name</code></pre>
 
         <p>
-          The Terraform configuration is being updated to
+          The Terraform configuration was updated to
           explicitly associate the EC2 instance with the
           AWS key pair.
         </p>
@@ -298,10 +521,253 @@ Permission denied (publickey)</code></pre>
 
     </article>
 
+    <article class="incident-card">
+
+      <div class="incident-meta">
+        <span>INCIDENT #002</span>
+        <span>MEDIUM</span>
+        <span>ROUTING / WEB TIER / APPLICATION</span>
+      </div>
+
+      <h2>Nginx Reverse Proxy 404 / Missing Upstream</h2>
+
+      <div class="incident-grid">
+
+        <div>
+          <h3>Symptom</h3>
+
+          <pre><code>$ curl -i http://54.236.188.6/health
+
+HTTP/1.1 404 Not Found
+Server: nginx/1.24.0 (Ubuntu)</code></pre>
+        </div>
+
+        <div>
+          <h3>Investigation</h3>
+
+          <ul>
+            <li>Security group allowed TCP/80 ingress</li>
+            <li>Nginx service was active (running) on EC2</li>
+            <li>Nginx served static files from <code>/var/www/html</code> with <code>try_files $uri $uri/ =404</code></li>
+            <li>Node.js app running on loopback: <code>curl http://localhost:3000/health -> 200 OK</code></li>
+            <li>Inbound port 80 traffic was not forwarded to Node process on port 3000</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="root-cause">
+
+        <span>ROOT CAUSE</span>
+
+        <p>
+          Nginx was installed with default distribution configuration serving static files from <code>/var/www/html</code>. No reverse proxy directive (<code>proxy_pass</code>) was configured to bridge incoming public requests on port 80 to the Node.js application process on port 3000.
+        </p>
+
+      </div>
+
+      <div class="remediation">
+
+        <h3>Remediation</h3>
+
+        <pre><code>location / {
+    proxy_pass http://127.0.0.1:3000;
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+}</code></pre>
+
+        <p>
+          Configured reverse proxy upstream in Nginx, validated syntax with <code>sudo nginx -t</code>, reloaded Nginx, and deployed the Node.js application as a persistent systemd service (<code>portfolio.service</code>). Validated <code>curl -i http://54.236.188.6/health -> 200 OK</code>.
+        </p>
+
+      </div>
+
+    </article>
+
+    <article class="incident-card">
+
+      <div class="incident-meta">
+        <span>INCIDENT #004</span>
+        <span>COMPUTE</span>
+        <span>RECOVERY</span>
+      </div>
+
+      <h2>EC2 Instance Failure</h2>
+
+      <div class="incident-grid">
+
+        <div>
+          <h3>Scenario</h3>
+          <p>
+            An application instance was deliberately terminated to test
+            Auto Scaling recovery.
+          </p>
+        </div>
+
+        <div>
+          <h3>Expected behavior</h3>
+          <p>
+            The Auto Scaling Group detects the lost capacity and launches
+            a replacement instance.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="remediation">
+        <h3>Validation</h3>
+
+        <pre><code>Instance terminated
+        ↓
+ASG detected capacity loss
+        ↓
+Replacement launched
+        ↓
+Target registered
+        ↓
+Health check passed</code></pre>
+
+        <p><em>Note: Unverified until controlled termination test is executed.</em></p>
+      </div>
+
+    </article>
+
   </section>
 
 
-  <section class="evidence-section">
+  <section class="failure-test">
+
+    <div class="section-heading">
+      <span>FAILURE TEST</span>
+    </div>
+
+    <h2>EC2 Instance Termination</h2>
+
+    <p>
+      A controlled instance termination will be used to verify that
+      the Auto Scaling Group detects capacity loss and launches a
+      replacement instance.
+    </p>
+
+    <div class="failure-flow">
+
+      <div>EC2 terminated</div>
+      <span>→</span>
+      <div>ASG detects loss</div>
+      <span>→</span>
+      <div>Replacement launched</div>
+      <span>→</span>
+      <div>ALB health check</div>
+      <span>→</span>
+      <div>Healthy</div>
+
+    </div>
+
+    <p class="test-status">Status: NOT TESTED</p>
+
+  </section>
+
+
+  <section class="failure-lab-section">
+
+    <div class="section-heading">
+      <span>FAILURE LAB (BUILD → BREAK → TROUBLESHOOT)</span>
+    </div>
+
+    <div class="failure-lab-grid">
+
+      <div class="failure-lab-card">
+        <span class="failure-lab-meta">SCENARIO 01</span>
+        <h3>EC2 Instance Failure</h3>
+        <p>
+          Deliberately terminate an active compute instance in us-east-1a to validate target de-registration and automated recovery via Auto Scaling.
+        </p>
+      </div>
+
+      <div class="failure-lab-card">
+        <span class="failure-lab-meta">SCENARIO 02</span>
+        <h3>Health Check Probe Failure</h3>
+        <p>
+          Introduce synthetic errors on /health contract to observe target state transitions from healthy to unhealthy and examine ALB routing behavior.
+        </p>
+      </div>
+
+      <div class="failure-lab-card">
+        <span class="failure-lab-meta">SCENARIO 03</span>
+        <h3>ALB 502 Bad Gateway</h3>
+        <p>
+          Sever the proxy connection between Nginx port 80 and the underlying Node.js application process on port 3000 to trace edge-to-origin error boundaries.
+        </p>
+      </div>
+
+      <div class="failure-lab-card">
+        <span class="failure-lab-meta">SCENARIO 04</span>
+        <h3>Database Connectivity Loss</h3>
+        <p>
+          Simulate security group rule desynchronization on TCP/3306 between application instances and private RDS subnets to test error handling.
+        </p>
+      </div>
+
+      <div class="failure-lab-card">
+        <span class="failure-lab-meta">SCENARIO 05</span>
+        <h3>High CPU Resource Saturation</h3>
+        <p>
+          Inject synthetic CPU load on the application tier to verify CloudWatch metric alarms and trigger reactive scaling thresholds.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="verification-section">
+
+    <div class="section-heading">
+      <span>DAY 06 VERIFICATION</span>
+    </div>
+
+    <div class="evidence-grid">
+
+      <div class="evidence-card">
+        <strong>E011</strong>
+        <span>Launch Template Terraform Plan</span>
+        <small>Pending</small>
+      </div>
+
+      <div class="evidence-card">
+        <strong>E012</strong>
+        <span>Auto Scaling Group Verification</span>
+        <small>Pending</small>
+      </div>
+
+      <div class="evidence-card">
+        <strong>E013</strong>
+        <span>Multi-AZ Instance Verification</span>
+        <small>Pending</small>
+      </div>
+
+      <div class="evidence-card">
+        <strong>E014</strong>
+        <span>ALB Target Health</span>
+        <small>Pending</small>
+      </div>
+
+      <div class="evidence-card">
+        <strong>E015</strong>
+        <span>Instance Replacement Test</span>
+        <small>Pending</small>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section id="evidence" class="evidence-section">
 
     <div class="section-heading">
       <span>EVIDENCE REGISTER</span>
@@ -344,12 +810,47 @@ Permission denied (publickey)</code></pre>
         <span>SSH Incident</span>
       </div>
 
+      <div class="evidence-card">
+        <strong>E008</strong>
+        <span>Nginx Proxy & Status</span>
+      </div>
+
+      <div class="evidence-card">
+        <strong>E009</strong>
+        <span>App Health & Readiness</span>
+      </div>
+
+      <div class="evidence-card">
+        <strong>E010</strong>
+        <span>Incident #002 Report</span>
+      </div>
+
+      <div class="evidence-card">
+        <strong>E011</strong>
+        <span>Ansible Playbook</span>
+      </div>
+
+      <div class="evidence-card">
+        <strong>E012</strong>
+        <span>ALB Terraform Outputs</span>
+      </div>
+
+      <div class="evidence-card">
+        <strong>E013</strong>
+        <span>Target Group Health Check</span>
+      </div>
+
+      <div class="evidence-card">
+        <strong>E014</strong>
+        <span>ALB End-to-End Routing</span>
+      </div>
+
     </div>
 
   </section>
 
 
-  <section class="lesson-section">
+  <section id="lessons" class="lesson-section">
 
     <div class="section-heading">
       <span>ENGINEERING LESSON</span>

@@ -1,0 +1,92 @@
+$ ansible-playbook -i deployment/ansible/inventory.ini deployment/ansible/playbook.yml
+
+PLAY [Day 4: Deploy Portfolio Application with Node.js, NVM, Nginx, and Systemd] *******************************************
+
+TASK [Gathering Facts] *****************************************************************************************************
+ok: [portfolio]
+
+TASK [Update apt cache and install base packages] **************************************************************************
+ok: [portfolio]
+
+TASK [Download NVM installer script] ***************************************************************************************
+ok: [portfolio]
+
+TASK [Install NVM as application user] *************************************************************************************
+ok: [portfolio]
+
+TASK [Install Node.js LTS via NVM] *****************************************************************************************
+ok: [portfolio]
+
+TASK [Locate installed Node.js binary path] ********************************************************************************
+ok: [portfolio]
+
+TASK [Locate installed NPM binary path] ************************************************************************************
+ok: [portfolio]
+
+TASK [Ensure application root directory exists] ****************************************************************************
+ok: [portfolio]
+
+TASK [Clone or update portfolio repository] ********************************************************************************
+ok: [portfolio]
+
+TASK [Install application production dependencies] *************************************************************************
+changed: [portfolio]
+
+TASK [Deploy systemd service unit for portfolio application] ***************************************************************
+changed: [portfolio]
+
+TASK [Configure Nginx reverse proxy (Remediating Incident #002)] ***********************************************************
+ok: [portfolio]
+
+TASK [Disable default Nginx configuration] *********************************************************************************
+ok: [portfolio]
+
+TASK [Enable portfolio Nginx site] *****************************************************************************************
+ok: [portfolio]
+
+TASK [Flush handlers to ensure services are reloaded before validation] ****************************************************
+
+RUNNING HANDLER [Reload systemd] *******************************************************************************************
+ok: [portfolio]
+
+RUNNING HANDLER [Restart portfolio service] ********************************************************************************
+changed: [portfolio]
+
+TASK [Verify application service is running] *******************************************************************************
+ok: [portfolio]
+
+TASK [Verify Nginx service is running] *************************************************************************************
+ok: [portfolio]
+
+TASK [Validate local loopback health check (port 3000)] ********************************************************************
+ok: [portfolio]
+
+TASK [Validate Nginx reverse proxy health check (port 80)] *****************************************************************
+ok: [portfolio]
+
+PLAY RECAP *****************************************************************************************************************
+portfolio                  : ok=20   changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+$ curl -i http://100.58.202.212/health
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Date: Tue, 08 Sep 2026 18:01:21 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 101
+Connection: keep-alive
+X-Powered-By: Express
+ETag: W/"65-X7etmYVt9QYJn1bkpZObvnMv/NQ"
+
+{"status":"healthy","application":"personal-devops-portfolio","timestamp":"2026-09-08T18:01:21.565Z"}
+
+$ curl -i http://100.58.202.212/ready
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Date: Tue, 08 Sep 2026 18:01:37 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 60
+Connection: keep-alive
+X-Powered-By: Express
+ETag: W/"3c-2Mk3IovSBg5WOamllJnO30c0sKM"
+
+{"status":"ready","application":"personal-devops-portfolio"}

@@ -1,7 +1,7 @@
 {
     "SecurityGroups": [
         {
-            "GroupId": "sg-03f12b9cef27c86ac",
+            "GroupId": "sg-05ca8ca9955ca291a",
             "IpPermissionsEgress": [
                 {
                     "IpProtocol": "-1",
@@ -18,6 +18,14 @@
             ],
             "Tags": [
                 {
+                    "Key": "Environment",
+                    "Value": "lab"
+                },
+                {
+                    "Key": "Project",
+                    "Value": "devops-portfolio"
+                },
+                {
                     "Key": "Owner",
                     "Value": "Jeni"
                 },
@@ -26,20 +34,12 @@
                     "Value": "Terraform"
                 },
                 {
-                    "Key": "Project",
-                    "Value": "devops-portfolio"
-                },
-                {
-                    "Key": "Environment",
-                    "Value": "lab"
-                },
-                {
                     "Key": "Name",
                     "Value": "devops-portfolio-lab-ec2-sg"
                 }
             ],
-            "VpcId": "vpc-0ce0a69d025788f7a",
-            "SecurityGroupArn": "arn:aws:ec2:us-east-1:390151765180:security-group/sg-03f12b9cef27c86ac",
+            "VpcId": "vpc-0cf5fd62947dfa4e9",
+            "SecurityGroupArn": "arn:aws:ec2:us-east-1:390151765180:security-group/sg-05ca8ca9955ca291a",
             "OwnerId": "390151765180",
             "GroupName": "devops-portfolio-lab-ec2-sg",
             "Description": "Security group for portfolio EC2 instance",
@@ -48,7 +48,13 @@
                     "IpProtocol": "tcp",
                     "FromPort": 80,
                     "ToPort": 80,
-                    "UserIdGroupPairs": [],
+                    "UserIdGroupPairs": [
+                        {
+                            "Description": "HTTP ingress from ALB security group",
+                            "UserId": "390151765180",
+                            "GroupId": "sg-01458968cdedf7043"
+                        }
+                    ],
                     "IpRanges": [
                         {
                             "Description": "HTTP",

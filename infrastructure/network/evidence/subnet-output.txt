@@ -1,8 +1,159 @@
-------------------------------------------------------------------------------------
-|                                  DescribeSubnets                                 |
-+---------------------------+-------------+---------------+--------+---------------+
-|  subnet-09b302e46e8cfba1f |  us-east-1a |  10.0.11.0/24 |  False |  database     |
-|  subnet-0ce90005c57ee95c2 |  us-east-1b |  10.0.2.0/24  |  True  |  application  |
-|  subnet-0fbed20af0fcde41b |  us-east-1a |  10.0.1.0/24  |  True  |  application  |
-|  subnet-0d091091b2e76f014 |  us-east-1b |  10.0.12.0/24 |  False |  database     |
-+---------------------------+-------------+---------------+--------+---------------+
+---------------------------------------------------------------------------------------------------------
+|                                            DescribeSubnets                                            |
++-------------------------------------------------------------------------------------------------------+
+||                                               Subnets                                               ||
+|+------------------------------+----------------------------------------------------------------------+|
+||  AssignIpv6AddressOnCreation |  False                                                               ||
+||  AvailabilityZone            |  us-east-1b                                                          ||
+||  AvailabilityZoneId          |  use1-az4                                                            ||
+||  AvailableIpAddressCount     |  247                                                                 ||
+||  CidrBlock                   |  10.0.2.0/24                                                         ||
+||  DefaultForAz                |  False                                                               ||
+||  EnableDns64                 |  False                                                               ||
+||  Ipv6Native                  |  False                                                               ||
+||  MapCustomerOwnedIpOnLaunch  |  False                                                               ||
+||  MapPublicIpOnLaunch         |  True                                                                ||
+||  OwnerId                     |  390151765180                                                        ||
+||  State                       |  available                                                           ||
+||  SubnetArn                   |  arn:aws:ec2:us-east-1:390151765180:subnet/subnet-0c432e92d73b142bc  ||
+||  SubnetId                    |  subnet-0c432e92d73b142bc                                            ||
+||  VpcId                       |  vpc-0cf5fd62947dfa4e9                                               ||
+|+------------------------------+----------------------------------------------------------------------+|
+|||                                      BlockPublicAccessStates                                      |||
+||+-------------------------------------------------------------------------------+-------------------+||
+|||  InternetGatewayBlockMode                                                     |  off              |||
+||+-------------------------------------------------------------------------------+-------------------+||
+|||                                   PrivateDnsNameOptionsOnLaunch                                   |||
+||+---------------------------------------------------------------------------+-----------------------+||
+|||  EnableResourceNameDnsAAAARecord                                          |  False                |||
+|||  EnableResourceNameDnsARecord                                             |  False                |||
+|||  HostnameType                                                             |  ip-name              |||
+||+---------------------------------------------------------------------------+-----------------------+||
+|||                                               Tags                                                |||
+||+------------------------------+--------------------------------------------------------------------+||
+|||              Key             |                               Value                                |||
+||+------------------------------+--------------------------------------------------------------------+||
+|||  Name                        |  devops-portfolio-lab-app-az2                                      |||
+|||  Environment                 |  lab                                                               |||
+|||  Project                     |  devops-portfolio                                                  |||
+|||  Owner                       |  Jeni                                                              |||
+|||  Tier                        |  application                                                       |||
+|||  ManagedBy                   |  Terraform                                                         |||
+||+------------------------------+--------------------------------------------------------------------+||
+||                                               Subnets                                               ||
+|+------------------------------+----------------------------------------------------------------------+|
+||  AssignIpv6AddressOnCreation |  False                                                               ||
+||  AvailabilityZone            |  us-east-1a                                                          ||
+||  AvailabilityZoneId          |  use1-az2                                                            ||
+||  AvailableIpAddressCount     |  251                                                                 ||
+||  CidrBlock                   |  10.0.11.0/24                                                        ||
+||  DefaultForAz                |  False                                                               ||
+||  EnableDns64                 |  False                                                               ||
+||  Ipv6Native                  |  False                                                               ||
+||  MapCustomerOwnedIpOnLaunch  |  False                                                               ||
+||  MapPublicIpOnLaunch         |  False                                                               ||
+||  OwnerId                     |  390151765180                                                        ||
+||  State                       |  available                                                           ||
+||  SubnetArn                   |  arn:aws:ec2:us-east-1:390151765180:subnet/subnet-065d0b79269b37f7d  ||
+||  SubnetId                    |  subnet-065d0b79269b37f7d                                            ||
+||  VpcId                       |  vpc-0cf5fd62947dfa4e9                                               ||
+|+------------------------------+----------------------------------------------------------------------+|
+|||                                      BlockPublicAccessStates                                      |||
+||+-------------------------------------------------------------------------------+-------------------+||
+|||  InternetGatewayBlockMode                                                     |  off              |||
+||+-------------------------------------------------------------------------------+-------------------+||
+|||                                   PrivateDnsNameOptionsOnLaunch                                   |||
+||+---------------------------------------------------------------------------+-----------------------+||
+|||  EnableResourceNameDnsAAAARecord                                          |  False                |||
+|||  EnableResourceNameDnsARecord                                             |  False                |||
+|||  HostnameType                                                             |  ip-name              |||
+||+---------------------------------------------------------------------------+-----------------------+||
+|||                                               Tags                                                |||
+||+-------------------------------+-------------------------------------------------------------------+||
+|||              Key              |                               Value                               |||
+||+-------------------------------+-------------------------------------------------------------------+||
+|||  Name                         |  devops-portfolio-lab-db-az1                                      |||
+|||  Environment                  |  lab                                                              |||
+|||  Owner                        |  Jeni                                                             |||
+|||  Tier                         |  database                                                         |||
+|||  Project                      |  devops-portfolio                                                 |||
+|||  ManagedBy                    |  Terraform                                                        |||
+||+-------------------------------+-------------------------------------------------------------------+||
+||                                               Subnets                                               ||
+|+------------------------------+----------------------------------------------------------------------+|
+||  AssignIpv6AddressOnCreation |  False                                                               ||
+||  AvailabilityZone            |  us-east-1a                                                          ||
+||  AvailabilityZoneId          |  use1-az2                                                            ||
+||  AvailableIpAddressCount     |  247                                                                 ||
+||  CidrBlock                   |  10.0.1.0/24                                                         ||
+||  DefaultForAz                |  False                                                               ||
+||  EnableDns64                 |  False                                                               ||
+||  Ipv6Native                  |  False                                                               ||
+||  MapCustomerOwnedIpOnLaunch  |  False                                                               ||
+||  MapPublicIpOnLaunch         |  True                                                                ||
+||  OwnerId                     |  390151765180                                                        ||
+||  State                       |  available                                                           ||
+||  SubnetArn                   |  arn:aws:ec2:us-east-1:390151765180:subnet/subnet-0c7b987f3489a5423  ||
+||  SubnetId                    |  subnet-0c7b987f3489a5423                                            ||
+||  VpcId                       |  vpc-0cf5fd62947dfa4e9                                               ||
+|+------------------------------+----------------------------------------------------------------------+|
+|||                                      BlockPublicAccessStates                                      |||
+||+-------------------------------------------------------------------------------+-------------------+||
+|||  InternetGatewayBlockMode                                                     |  off              |||
+||+-------------------------------------------------------------------------------+-------------------+||
+|||                                   PrivateDnsNameOptionsOnLaunch                                   |||
+||+---------------------------------------------------------------------------+-----------------------+||
+|||  EnableResourceNameDnsAAAARecord                                          |  False                |||
+|||  EnableResourceNameDnsARecord                                             |  False                |||
+|||  HostnameType                                                             |  ip-name              |||
+||+---------------------------------------------------------------------------+-----------------------+||
+|||                                               Tags                                                |||
+||+------------------------------+--------------------------------------------------------------------+||
+|||              Key             |                               Value                                |||
+||+------------------------------+--------------------------------------------------------------------+||
+|||  Name                        |  devops-portfolio-lab-app-az1                                      |||
+|||  Project                     |  devops-portfolio                                                  |||
+|||  Owner                       |  Jeni                                                              |||
+|||  Tier                        |  application                                                       |||
+|||  Environment                 |  lab                                                               |||
+|||  ManagedBy                   |  Terraform                                                         |||
+||+------------------------------+--------------------------------------------------------------------+||
+||                                               Subnets                                               ||
+|+------------------------------+----------------------------------------------------------------------+|
+||  AssignIpv6AddressOnCreation |  False                                                               ||
+||  AvailabilityZone            |  us-east-1b                                                          ||
+||  AvailabilityZoneId          |  use1-az4                                                            ||
+||  AvailableIpAddressCount     |  251                                                                 ||
+||  CidrBlock                   |  10.0.12.0/24                                                        ||
+||  DefaultForAz                |  False                                                               ||
+||  EnableDns64                 |  False                                                               ||
+||  Ipv6Native                  |  False                                                               ||
+||  MapCustomerOwnedIpOnLaunch  |  False                                                               ||
+||  MapPublicIpOnLaunch         |  False                                                               ||
+||  OwnerId                     |  390151765180                                                        ||
+||  State                       |  available                                                           ||
+||  SubnetArn                   |  arn:aws:ec2:us-east-1:390151765180:subnet/subnet-007a155c26a6b147f  ||
+||  SubnetId                    |  subnet-007a155c26a6b147f                                            ||
+||  VpcId                       |  vpc-0cf5fd62947dfa4e9                                               ||
+|+------------------------------+----------------------------------------------------------------------+|
+|||                                      BlockPublicAccessStates                                      |||
+||+-------------------------------------------------------------------------------+-------------------+||
+|||  InternetGatewayBlockMode                                                     |  off              |||
+||+-------------------------------------------------------------------------------+-------------------+||
+|||                                   PrivateDnsNameOptionsOnLaunch                                   |||
+||+---------------------------------------------------------------------------+-----------------------+||
+|||  EnableResourceNameDnsAAAARecord                                          |  False                |||
+|||  EnableResourceNameDnsARecord                                             |  False                |||
+|||  HostnameType                                                             |  ip-name              |||
+||+---------------------------------------------------------------------------+-----------------------+||
+|||                                               Tags                                                |||
+||+-------------------------------+-------------------------------------------------------------------+||
+|||              Key              |                               Value                               |||
+||+-------------------------------+-------------------------------------------------------------------+||
+|||  Environment                  |  lab                                                              |||
+|||  ManagedBy                    |  Terraform                                                        |||
+|||  Owner                        |  Jeni                                                             |||
+|||  Tier                         |  database                                                         |||
+|||  Project                      |  devops-portfolio                                                 |||
+|||  Name                         |  devops-portfolio-lab-db-az2                                      |||
+||+-------------------------------+-------------------------------------------------------------------+||

@@ -58,12 +58,13 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "portfolio" {
+  count         = length(var.app_subnet_ids)
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "t4g.micro"
+  instance_type = var.instance_type
   
   key_name = var.key_name
 
-  subnet_id = var.app_subnet_id
+  subnet_id = var.app_subnet_ids[count.index]
 
   vpc_security_group_ids = [
     aws_security_group.ec2.id
@@ -80,7 +81,7 @@ resource "aws_instance" "portfolio" {
               systemctl start nginx
 
               echo "<h1>AWS Production Platform</h1>" > /var/www/html/index.html
-              echo "<p>EC2 deployment successful.</p>" >> /var/www/html/index.html
+              echo "<p>EC2 deployment successful on node ${count.index + 1}.</p>" >> /var/www/html/index.html
               EOF
 
   root_block_device {
@@ -89,7 +90,7 @@ resource "aws_instance" "portfolio" {
   }
 
   tags = {
-    Name        = "${var.project_name}-${var.environment}-ec2"
+    Name        = "${var.project_name}-${var.environment}-ec2-${count.index + 1}"
     Project     = var.project_name
     Environment = var.environment
     ManagedBy   = "Terraform"

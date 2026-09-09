@@ -40,6 +40,9 @@
   border-bottom: 1px solid #ddd;
   padding-bottom: 14px;
   margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .progress-section,
@@ -108,6 +111,147 @@
 
 .subnet-card.private {
   background: #fafafa;
+}
+
+.node-meta {
+  font-size: 11px;
+  color: #666;
+  margin-top: 4px;
+}
+
+.node-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 2px 6px;
+  border: 1px solid #999;
+  margin-top: 6px;
+}
+
+.node-detail {
+  font-size: 11px;
+  color: #333;
+  margin-top: 4px;
+  font-family: monospace;
+}
+
+.architecture-arrow span {
+  display: inline-block;
+  font-size: 11px;
+  color: #666;
+  font-family: monospace;
+}
+
+.az-column {
+  text-align: left;
+}
+
+.az-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 4px;
+}
+
+.subnet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 11px;
+}
+
+.subnet-badge {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  font-size: 10px;
+}
+
+.subnet-badge.public {
+  color: #111;
+}
+
+.subnet-badge.private-tag {
+  color: #777;
+}
+
+.subnet-cidr {
+  font-family: monospace;
+  color: #555;
+  font-size: 11px;
+}
+
+.instance-block {
+  border: 1px solid #e0e0e0;
+  padding: 12px;
+  background: #fff;
+  margin-top: 8px;
+}
+
+.instance-block.active {
+  border-color: #222;
+}
+
+.instance-block.standby {
+  border-style: dashed;
+  background: #fafafa;
+}
+
+.instance-block.planned {
+  border-style: dashed;
+  background: #fdfdfd;
+  opacity: 0.7;
+}
+
+.instance-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-pill {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 2px 6px;
+  border: 1px solid #222;
+}
+
+.status-pill.healthy {
+  background: #111;
+  color: #fff;
+}
+
+.status-pill.standby-pill {
+  border-color: #999;
+  color: #666;
+}
+
+.instance-meta {
+  font-family: monospace;
+  font-size: 11px;
+  color: #666;
+  margin-top: 4px;
+}
+
+.instance-routes {
+  font-size: 11px;
+  color: #333;
+  margin-top: 6px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.instance-sg {
+  font-size: 10px;
+  color: #777;
+  font-family: monospace;
+  margin-top: 4px;
 }
 
 .architecture-note {
@@ -225,6 +369,78 @@ pre {
   color: #555;
 }
 
+.decision-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.decision-card {
+  border: 1px solid #ddd;
+  padding: 24px;
+}
+
+.decision-card h2 {
+  font-size: 20px;
+  margin: 8px 0 12px;
+}
+
+.decision-card h3 {
+  margin-top: 0;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.evidence-card small {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: #777;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+.decision-card p {
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+  font-size: 14px;
+}
+
+.failure-lab-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.failure-lab-card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.failure-lab-meta {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: #111;
+}
+
+.failure-lab-card h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.failure-lab-card p {
+  margin: 0;
+  color: #555;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
 .lesson-section blockquote {
   margin: 0;
   padding: 32px;
@@ -238,7 +454,9 @@ pre {
   .architecture-columns,
   .day-sections,
   .incident-grid,
-  .evidence-grid {
+  .evidence-grid,
+  .decision-grid,
+  .failure-lab-grid {
     grid-template-columns: 1fr;
   }
 
@@ -249,4 +467,76 @@ pre {
   .case-study {
     padding: 50px 18px;
   }
+}
+
+/* --- Case Study Navigation --- */
+.case-study-nav {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 14px 0;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #ddd;
+}
+
+.case-study-nav a {
+  color: #555;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.2s ease;
+}
+
+.case-study-nav a:hover {
+  color: #111;
+  text-decoration: underline;
+}
+
+/* --- Progress and Day Card States --- */
+.progress-item.in-progress {
+  border-left: 3px solid #111;
+}
+
+.day-card.in-progress {
+  border-left: 3px solid #111;
+}
+
+.day-card.completed {
+  border-left: 3px solid #222;
+}
+
+.day-card.planned {
+  opacity: 0.55;
+}
+
+/* --- Day Architecture, Technical Detail & Failure Flows --- */
+.day-architecture,
+.technical-detail,
+.failure-test {
+  margin-top: 50px;
+}
+
+.failure-flow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+  font-family: monospace;
+  font-size: 14px;
+}
+
+.failure-flow div {
+  padding: 8px 14px;
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+}
+
+.test-status {
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  margin-top: 14px;
 }

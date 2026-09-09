@@ -31,6 +31,7 @@ app.use("/api/projects", projectsRouter);
 
 // Case Study
 app.use("/projects", caseStudyRouter);
+app.use("/case-study", caseStudyRouter);
 
 // Readiness
 app.get("/ready", (req, res) => {

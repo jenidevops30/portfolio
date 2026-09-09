@@ -17,28 +17,21 @@ variable "environment" {
 }
 
 variable "vpc_id" {
-  description = "Existing VPC ID"
+  description = "VPC ID"
   type        = string
 }
 
-variable "app_subnet_ids" {
-  description = "Application subnet IDs across AZs"
+variable "public_subnet_ids" {
+  description = "Public subnet IDs across multiple Availability Zones"
   type        = list(string)
 }
 
-
-variable "admin_cidr" {
-  description = "Administrator public IP in CIDR notation"
+variable "target_instance_id" {
+  description = "EC2 instance ID for target group registration"
   type        = string
 }
 
-variable "key_name" {
-  description = "EC2 SSH key pair"
+variable "ec2_security_group_id" {
+  description = "EC2 security group ID to attach ingress from ALB"
   type        = string
-}
-
-variable "instance_type" {
-  description = "EC2 instance type"
-  type        = string
-  default     = "t3.micro"
 }
