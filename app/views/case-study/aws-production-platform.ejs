@@ -405,7 +405,7 @@
 
     <% days.forEach(day => { %>
 
-      <article class="day-card <%= day.status %>">
+      <article id="day-<%= String(day.day).padStart(2, '0') %>" class="day-card <%= day.status %>">
 
         <div class="day-header">
 
@@ -419,9 +419,9 @@
 
           <div class="day-header-badges">
             <% if (day.incident) { %>
-              <span class="day-incident-tag">
+              <a href="#incident-<%= day.incident.match(/\d+/)?.[0] || '001' %>" class="day-incident-tag" title="Jump to Incident Report">
                 ⚠ <%= day.incident %>
-              </span>
+              </a>
             <% } %>
             <span class="day-status">
               <%= day.label %>
@@ -437,12 +437,17 @@
         <div class="day-sections">
 
           <% day.sections.forEach(section => { %>
+            <% const isIncident = section.title.toLowerCase().includes('incident') || section.title.toLowerCase().includes('root cause') || section.title.toLowerCase().includes('remediation') || section.title.toLowerCase().includes('symptom') || section.title.toLowerCase().includes('test plan') || section.title.toLowerCase().includes('expected recovery'); %>
 
-            <div class="day-section <%= section.title.toLowerCase().includes('incident') ? 'incident-highlight' : '' %>">
+            <div class="day-section <%= isIncident ? 'incident-highlight' : '' %>">
 
               <h3>
                 <% if (section.title.toLowerCase().includes('incident')) { %>
                   <span class="incident-badge-pill">INCIDENT</span>
+                <% } else if (section.title.toLowerCase().includes('root cause')) { %>
+                  <span class="incident-badge-pill" style="background: #c0392b;">ROOT CAUSE</span>
+                <% } else if (section.title.toLowerCase().includes('remediation')) { %>
+                  <span class="incident-badge-pill" style="background: #27ae60;">REMEDIATION</span>
                 <% } %>
                 <%= section.title %>
               </h3>
@@ -470,9 +475,10 @@
       <span>INCIDENT REPORT</span>
     </div>
 
-    <article class="incident-card">
+    <article id="incident-001" class="incident-card">
 
       <div class="incident-meta">
+        <a href="#day-03" class="incident-day-badge" title="View Day 03 in Timeline">DAY 03</a>
         <span>INCIDENT #001</span>
         <span>LOW</span>
         <span>ACCESS / COMPUTE</span>
@@ -531,9 +537,10 @@ Permission denied (publickey)</code></pre>
 
     </article>
 
-    <article class="incident-card">
+    <article id="incident-002" class="incident-card">
 
       <div class="incident-meta">
+        <a href="#day-04" class="incident-day-badge" title="View Day 04 in Timeline">DAY 04</a>
         <span>INCIDENT #002</span>
         <span>MEDIUM</span>
         <span>ROUTING / WEB TIER / APPLICATION</span>
@@ -597,9 +604,10 @@ Server: nginx/1.24.0 (Ubuntu)</code></pre>
 
     </article>
 
-    <article class="incident-card">
+    <article id="incident-003" class="incident-card">
 
       <div class="incident-meta">
+        <a href="#day-05" class="incident-day-badge" title="View Day 05 in Timeline">DAY 05</a>
         <span>INCIDENT #003</span>
         <span>HIGH</span>
         <span>LOAD BALANCING / SECURITY GROUP / NETWORK TIERING</span>
@@ -664,9 +672,10 @@ Content-Length: 0</code></pre>
 
     </article>
 
-    <article class="incident-card">
+    <article id="incident-004" class="incident-card">
 
       <div class="incident-meta">
+        <a href="#day-06" class="incident-day-badge" title="View Day 06 in Timeline">DAY 06</a>
         <span>INCIDENT #004</span>
         <span>COMPUTE</span>
         <span>RECOVERY</span>
@@ -884,7 +893,7 @@ Health check passed</code></pre>
 
       <div class="evidence-card">
         <strong>E007</strong>
-        <span>SSH Incident</span>
+        <span>Day 03: SSH Incident (key_name null)</span>
       </div>
 
       <div class="evidence-card">
@@ -899,7 +908,7 @@ Health check passed</code></pre>
 
       <div class="evidence-card">
         <strong>E010</strong>
-        <span>Incident #002 Report</span>
+        <span>Day 04: Incident #002 Report (Nginx 404)</span>
       </div>
 
       <div class="evidence-card">
@@ -924,7 +933,12 @@ Health check passed</code></pre>
 
       <div class="evidence-card">
         <strong>E015</strong>
-        <span>Incident #003 Report (ALB Security Group Tiering)</span>
+        <span>Day 05: Incident #003 Report (ALB SG Tiering)</span>
+      </div>
+
+      <div class="evidence-card">
+        <strong>E016</strong>
+        <span>Day 06: Incident #004 Test Plan (EC2 Termination & ASG)</span>
       </div>
 
     </div>

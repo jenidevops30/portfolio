@@ -405,7 +405,7 @@
 
     
 
-      <article class="day-card completed">
+      <article id="day-01" class="day-card completed">
 
         <div class="day-header">
 
@@ -433,6 +433,7 @@
         <div class="day-sections">
 
           
+            
 
             <div class="day-section ">
 
@@ -448,6 +449,7 @@
             </div>
 
           
+            
 
             <div class="day-section ">
 
@@ -470,7 +472,7 @@
 
     
 
-      <article class="day-card completed">
+      <article id="day-02" class="day-card completed">
 
         <div class="day-header">
 
@@ -498,6 +500,7 @@
         <div class="day-sections">
 
           
+            
 
             <div class="day-section ">
 
@@ -513,6 +516,7 @@
             </div>
 
           
+            
 
             <div class="day-section ">
 
@@ -528,6 +532,7 @@
             </div>
 
           
+            
 
             <div class="day-section ">
 
@@ -543,6 +548,7 @@
             </div>
 
           
+            
 
             <div class="day-section ">
 
@@ -565,7 +571,7 @@
 
     
 
-      <article class="day-card completed">
+      <article id="day-03" class="day-card completed">
 
         <div class="day-header">
 
@@ -579,9 +585,9 @@
 
           <div class="day-header-badges">
             
-              <span class="day-incident-tag">
+              <a href="#incident-001" class="day-incident-tag" title="Jump to Incident Report">
                 ⚠ INCIDENT #001
-              </span>
+              </a>
             
             <span class="day-status">
               COMPLETED
@@ -597,6 +603,7 @@
         <div class="day-sections">
 
           
+            
 
             <div class="day-section ">
 
@@ -612,6 +619,7 @@
             </div>
 
           
+            
 
             <div class="day-section ">
 
@@ -627,6 +635,7 @@
             </div>
 
           
+            
 
             <div class="day-section incident-highlight">
 
@@ -634,41 +643,47 @@
                 
                   <span class="incident-badge-pill">INCIDENT</span>
                 
-                Incident #001
+                Incident #001 Symptom
               </h3>
 
               <p>
-                Initial SSH access failed with Permission denied (publickey). Terraform inspection showed key_name = null.
+                Initial SSH access failed with Permission denied (publickey). Public IP and TCP/22 security group were verified active.
               </p>
 
             </div>
 
           
+            
 
-            <div class="day-section ">
+            <div class="day-section incident-highlight">
 
               <h3>
                 
-                Root cause
+                  <span class="incident-badge-pill">INCIDENT</span>
+                
+                Incident #001 Root Cause
               </h3>
 
               <p>
-                The EC2 instance was provisioned without an EC2 key pair.
+                Terraform inspection revealed key_name = null on aws_instance.app. The EC2 instance was provisioned without an SSH key pair.
               </p>
 
             </div>
 
           
+            
 
-            <div class="day-section ">
+            <div class="day-section incident-highlight">
 
               <h3>
                 
-                Remediation
+                  <span class="incident-badge-pill">INCIDENT</span>
+                
+                Incident #001 Remediation
               </h3>
 
               <p>
-                Terraform was updated to explicitly configure key_name = var.key_name, restoring secure SSH access.
+                Terraform was updated to explicitly associate key_name = var.key_name, restoring secure administrative SSH access.
               </p>
 
             </div>
@@ -681,7 +696,7 @@
 
     
 
-      <article class="day-card completed">
+      <article id="day-04" class="day-card completed">
 
         <div class="day-header">
 
@@ -695,9 +710,9 @@
 
           <div class="day-header-badges">
             
-              <span class="day-incident-tag">
+              <a href="#incident-002" class="day-incident-tag" title="Jump to Incident Report">
                 ⚠ INCIDENT #002
-              </span>
+              </a>
             
             <span class="day-status">
               COMPLETED
@@ -713,6 +728,7 @@
         <div class="day-sections">
 
           
+            
 
             <div class="day-section ">
 
@@ -728,51 +744,23 @@
             </div>
 
           
+            
 
             <div class="day-section ">
 
               <h3>
                 
-                Runtime Environment
+                Runtime &amp; Process Supervision
               </h3>
 
               <p>
-                Installed NVM and Node.js v24.x LTS in user space (/home/ubuntu/.nvm), ensuring reproducible runtime isolation.
+                Installed Node.js v24.x LTS in user space (/home/ubuntu/.nvm) and registered portfolio.service systemd unit for continuous supervision on port 3000.
               </p>
 
             </div>
 
           
-
-            <div class="day-section ">
-
-              <h3>
-                
-                Application Service
-              </h3>
-
-              <p>
-                Created portfolio.service systemd unit for automatic process recovery, environment isolation, and lifecycle supervision on port 3000.
-              </p>
-
-            </div>
-
-          
-
-            <div class="day-section ">
-
-              <h3>
-                
-                Nginx Reverse Proxy
-              </h3>
-
-              <p>
-                Configured Nginx with proxy_pass to http://127.0.0.1:3000, passing Host, X-Real-IP, and X-Forwarded headers.
-              </p>
-
-            </div>
-
-          
+            
 
             <div class="day-section incident-highlight">
 
@@ -780,16 +768,53 @@
                 
                   <span class="incident-badge-pill">INCIDENT</span>
                 
-                Incident #002
+                Incident #002 Symptom
               </h3>
 
               <p>
-                Default Nginx configuration returned 404 on /health. Remediated by replacing default web root with reverse proxy upstream.
+                Public HTTP probes to http://54.236.188.6/health returned HTTP 404 Not Found from Nginx despite the Node.js process running healthy on localhost:3000.
               </p>
 
             </div>
 
           
+            
+
+            <div class="day-section incident-highlight">
+
+              <h3>
+                
+                  <span class="incident-badge-pill">INCIDENT</span>
+                
+                Incident #002 Root Cause
+              </h3>
+
+              <p>
+                Default Nginx distribution configuration served static files from /var/www/html with try_files $uri $uri/ =404, lacking reverse proxy proxy_pass to port 3000.
+              </p>
+
+            </div>
+
+          
+            
+
+            <div class="day-section incident-highlight">
+
+              <h3>
+                
+                  <span class="incident-badge-pill">INCIDENT</span>
+                
+                Incident #002 Remediation
+              </h3>
+
+              <p>
+                Configured Nginx location / with proxy_pass http://127.0.0.1:3000 and proxy headers, validated syntax with nginx -t, and verified 200 OK on /health and /ready.
+              </p>
+
+            </div>
+
+          
+            
 
             <div class="day-section ">
 
@@ -799,7 +824,7 @@
               </h3>
 
               <p>
-                Validated 200 OK contracts on /health and /ready endpoints locally and over public HTTP (54.236.188.6).
+                Validated 200 OK contracts on /health and /ready endpoints locally and over public HTTP across EC2 nodes.
               </p>
 
             </div>
@@ -812,7 +837,7 @@
 
     
 
-      <article class="day-card completed">
+      <article id="day-05" class="day-card completed">
 
         <div class="day-header">
 
@@ -826,9 +851,9 @@
 
           <div class="day-header-badges">
             
-              <span class="day-incident-tag">
+              <a href="#incident-003" class="day-incident-tag" title="Jump to Incident Report">
                 ⚠ INCIDENT #003
-              </span>
+              </a>
             
             <span class="day-status">
               COMPLETED
@@ -844,6 +869,7 @@
         <div class="day-sections">
 
           
+            
 
             <div class="day-section ">
 
@@ -859,6 +885,7 @@
             </div>
 
           
+            
 
             <div class="day-section ">
 
@@ -874,36 +901,23 @@
             </div>
 
           
+            
 
             <div class="day-section ">
 
               <h3>
                 
-                Target Group &amp; Health Check Contract
+                Target Group Health Check
               </h3>
 
               <p>
-                Configured HTTP/80 target group checking /health endpoint with 200 OK contract (30s interval, 5s timeout, 2 healthy / 2 unhealthy thresholds). Registered active EC2 instance.
+                Configured HTTP/80 target group checking /health endpoint with 200 OK contract (30s interval, 5s timeout, 2 healthy / 2 unhealthy thresholds).
               </p>
 
             </div>
 
           
-
-            <div class="day-section ">
-
-              <h3>
-                
-                Target Health Status
-              </h3>
-
-              <p>
-                Verified instance i-08b963ba04b701a81 reached healthy state in target group af96725dc44a51fd via AWS ELBv2 API.
-              </p>
-
-            </div>
-
-          
+            
 
             <div class="day-section incident-highlight">
 
@@ -911,26 +925,47 @@
                 
                   <span class="incident-badge-pill">INCIDENT</span>
                 
-                Incident #003
+                Incident #003 Symptom
               </h3>
 
               <p>
-                ALB returned 502 Bad Gateway due to missing security group tiering rule. Remediated by adding an ingress rule allowing TCP/80 exclusively from the ALB security group.
+                Public curl to ALB DNS returned HTTP/1.1 502 Bad Gateway from awselb/2.0. Target Group showed target status unhealthy on port 80.
               </p>
 
             </div>
 
           
+            
 
-            <div class="day-section ">
+            <div class="day-section incident-highlight">
 
               <h3>
                 
-                End-to-End Traffic Verification
+                  <span class="incident-badge-pill">INCIDENT</span>
+                
+                Incident #003 Root Cause
               </h3>
 
               <p>
-                Confirmed HTTP 200 responses for /health, /ready, and portfolio UI via ALB DNS name (devops-portfolio-lab-alb-960839588.us-east-1.elb.amazonaws.com).
+                The EC2 compute security group lacked an ingress rule authorizing traffic from the ALB security group (sg-01458968cdedf7043), causing health check probes to be dropped.
+              </p>
+
+            </div>
+
+          
+            
+
+            <div class="day-section incident-highlight">
+
+              <h3>
+                
+                  <span class="incident-badge-pill">INCIDENT</span>
+                
+                Incident #003 Remediation
+              </h3>
+
+              <p>
+                Added aws_security_group_rule in Terraform authorizing TCP/80 exclusively from the ALB security group. Targets transitioned to healthy and ALB returned 200 OK.
               </p>
 
             </div>
@@ -943,7 +978,7 @@
 
     
 
-      <article class="day-card in-progress">
+      <article id="day-06" class="day-card in-progress">
 
         <div class="day-header">
 
@@ -957,9 +992,9 @@
 
           <div class="day-header-badges">
             
-              <span class="day-incident-tag">
+              <a href="#incident-004" class="day-incident-tag" title="Jump to Incident Report">
                 ⚠ INCIDENT #004 (PLANNED TEST)
-              </span>
+              </a>
             
             <span class="day-status">
               IN PROGRESS
@@ -975,6 +1010,7 @@
         <div class="day-sections">
 
           
+            
 
             <div class="day-section ">
 
@@ -990,81 +1026,39 @@
             </div>
 
           
+            
 
             <div class="day-section ">
 
               <h3>
                 
-                Launch Template
+                Launch Template &amp; Dynamic AMI
               </h3>
 
               <p>
-                Define the AMI, instance type, SSH key pair, security group, tags, and bootstrap configuration in Terraform.
+                Defined Launch Template using dynamic Ubuntu 24.04 LTS data source lookup, user-space Node.js bootstrap, systemd unit, and reverse proxy.
               </p>
 
             </div>
 
           
+            
 
             <div class="day-section ">
 
               <h3>
                 
-                AMI Selection
+                Multi-AZ Auto Scaling
               </h3>
 
               <p>
-                Use Terraform to dynamically select the latest matching Ubuntu 24.04 LTS AMI instead of hardcoding an AMI ID.
+                Maintained target capacity (Min: 2, Desired: 2, Max: 2) across public subnets in us-east-1a and us-east-1b with ELB health checks.
               </p>
 
             </div>
 
           
-
-            <div class="day-section ">
-
-              <h3>
-                
-                Multi-AZ Compute
-              </h3>
-
-              <p>
-                Run application capacity across the existing application subnets in us-east-1a and us-east-1b.
-              </p>
-
-            </div>
-
-          
-
-            <div class="day-section ">
-
-              <h3>
-                
-                Auto Scaling
-              </h3>
-
-              <p>
-                Maintain the desired application capacity and replace unhealthy or terminated instances.
-              </p>
-
-            </div>
-
-          
-
-            <div class="day-section ">
-
-              <h3>
-                
-                Health
-              </h3>
-
-              <p>
-                Use ALB target health as part of the instance health model.
-              </p>
-
-            </div>
-
-          
+            
 
             <div class="day-section incident-highlight">
 
@@ -1072,11 +1066,29 @@
                 
                   <span class="incident-badge-pill">INCIDENT</span>
                 
-                Incident #004 (Failure Test)
+                Incident #004 Test Plan
               </h3>
 
               <p>
                 Controlled instance termination test to verify that the Auto Scaling Group detects capacity loss and automatically provisions and registers a replacement instance.
+              </p>
+
+            </div>
+
+          
+            
+
+            <div class="day-section incident-highlight">
+
+              <h3>
+                
+                  <span class="incident-badge-pill">INCIDENT</span>
+                
+                Incident #004 Expected Recovery
+              </h3>
+
+              <p>
+                ASG detects capacity deficit via ELB health check, provisions a replacement instance via Launch Template v2, runs user-data initialization, and registers to Target Group.
               </p>
 
             </div>
@@ -1089,7 +1101,7 @@
 
     
 
-      <article class="day-card planned">
+      <article id="day-07" class="day-card planned">
 
         <div class="day-header">
 
@@ -1117,6 +1129,7 @@
         <div class="day-sections">
 
           
+            
 
             <div class="day-section ">
 
@@ -1132,6 +1145,7 @@
             </div>
 
           
+            
 
             <div class="day-section ">
 
@@ -1154,7 +1168,7 @@
 
     
 
-      <article class="day-card planned">
+      <article id="day-08" class="day-card planned">
 
         <div class="day-header">
 
@@ -1182,6 +1196,7 @@
         <div class="day-sections">
 
           
+            
 
             <div class="day-section ">
 
@@ -1204,7 +1219,7 @@
 
     
 
-      <article class="day-card planned">
+      <article id="day-09" class="day-card planned">
 
         <div class="day-header">
 
@@ -1232,6 +1247,7 @@
         <div class="day-sections">
 
           
+            
 
             <div class="day-section ">
 
@@ -1247,6 +1263,7 @@
             </div>
 
           
+            
 
             <div class="day-section ">
 
@@ -1278,9 +1295,10 @@
       <span>INCIDENT REPORT</span>
     </div>
 
-    <article class="incident-card">
+    <article id="incident-001" class="incident-card">
 
       <div class="incident-meta">
+        <a href="#day-03" class="incident-day-badge" title="View Day 03 in Timeline">DAY 03</a>
         <span>INCIDENT #001</span>
         <span>LOW</span>
         <span>ACCESS / COMPUTE</span>
@@ -1339,9 +1357,10 @@ Permission denied (publickey)</code></pre>
 
     </article>
 
-    <article class="incident-card">
+    <article id="incident-002" class="incident-card">
 
       <div class="incident-meta">
+        <a href="#day-04" class="incident-day-badge" title="View Day 04 in Timeline">DAY 04</a>
         <span>INCIDENT #002</span>
         <span>MEDIUM</span>
         <span>ROUTING / WEB TIER / APPLICATION</span>
@@ -1405,9 +1424,10 @@ Server: nginx/1.24.0 (Ubuntu)</code></pre>
 
     </article>
 
-    <article class="incident-card">
+    <article id="incident-003" class="incident-card">
 
       <div class="incident-meta">
+        <a href="#day-05" class="incident-day-badge" title="View Day 05 in Timeline">DAY 05</a>
         <span>INCIDENT #003</span>
         <span>HIGH</span>
         <span>LOAD BALANCING / SECURITY GROUP / NETWORK TIERING</span>
@@ -1472,9 +1492,10 @@ Content-Length: 0</code></pre>
 
     </article>
 
-    <article class="incident-card">
+    <article id="incident-004" class="incident-card">
 
       <div class="incident-meta">
+        <a href="#day-06" class="incident-day-badge" title="View Day 06 in Timeline">DAY 06</a>
         <span>INCIDENT #004</span>
         <span>COMPUTE</span>
         <span>RECOVERY</span>
@@ -1692,7 +1713,7 @@ Health check passed</code></pre>
 
       <div class="evidence-card">
         <strong>E007</strong>
-        <span>SSH Incident</span>
+        <span>Day 03: SSH Incident (key_name null)</span>
       </div>
 
       <div class="evidence-card">
@@ -1707,7 +1728,7 @@ Health check passed</code></pre>
 
       <div class="evidence-card">
         <strong>E010</strong>
-        <span>Incident #002 Report</span>
+        <span>Day 04: Incident #002 Report (Nginx 404)</span>
       </div>
 
       <div class="evidence-card">
@@ -1732,7 +1753,12 @@ Health check passed</code></pre>
 
       <div class="evidence-card">
         <strong>E015</strong>
-        <span>Incident #003 Report (ALB Security Group Tiering)</span>
+        <span>Day 05: Incident #003 Report (ALB SG Tiering)</span>
+      </div>
+
+      <div class="evidence-card">
+        <strong>E016</strong>
+        <span>Day 06: Incident #004 Test Plan (EC2 Termination & ASG)</span>
       </div>
 
     </div>

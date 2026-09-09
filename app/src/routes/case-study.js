@@ -73,19 +73,19 @@ const days = [
           "HTTP TCP/80 is publicly reachable. SSH TCP/22 is restricted to the administrator IP.",
       },
       {
-        title: "Incident #001",
+        title: "Incident #001 Symptom",
         content:
-          "Initial SSH access failed with Permission denied (publickey). Terraform inspection showed key_name = null.",
+          "Initial SSH access failed with Permission denied (publickey). Public IP and TCP/22 security group were verified active.",
       },
       {
-        title: "Root cause",
+        title: "Incident #001 Root Cause",
         content:
-          "The EC2 instance was provisioned without an EC2 key pair.",
+          "Terraform inspection revealed key_name = null on aws_instance.app. The EC2 instance was provisioned without an SSH key pair.",
       },
       {
-        title: "Remediation",
+        title: "Incident #001 Remediation",
         content:
-          "Terraform was updated to explicitly configure key_name = var.key_name, restoring secure SSH access.",
+          "Terraform was updated to explicitly associate key_name = var.key_name, restoring secure administrative SSH access.",
       },
     ],
   },
@@ -105,29 +105,29 @@ const days = [
           "Codified configuration in deployment/ansible/playbook.yml: automated packages, user-space NVM, app dependencies, systemd management, and Nginx reverse proxy.",
       },
       {
-        title: "Runtime Environment",
+        title: "Runtime & Process Supervision",
         content:
-          "Installed NVM and Node.js v24.x LTS in user space (/home/ubuntu/.nvm), ensuring reproducible runtime isolation.",
+          "Installed Node.js v24.x LTS in user space (/home/ubuntu/.nvm) and registered portfolio.service systemd unit for continuous supervision on port 3000.",
       },
       {
-        title: "Application Service",
+        title: "Incident #002 Symptom",
         content:
-          "Created portfolio.service systemd unit for automatic process recovery, environment isolation, and lifecycle supervision on port 3000.",
+          "Public HTTP probes to http://54.236.188.6/health returned HTTP 404 Not Found from Nginx despite the Node.js process running healthy on localhost:3000.",
       },
       {
-        title: "Nginx Reverse Proxy",
+        title: "Incident #002 Root Cause",
         content:
-          "Configured Nginx with proxy_pass to http://127.0.0.1:3000, passing Host, X-Real-IP, and X-Forwarded headers.",
+          "Default Nginx distribution configuration served static files from /var/www/html with try_files $uri $uri/ =404, lacking reverse proxy proxy_pass to port 3000.",
       },
       {
-        title: "Incident #002",
+        title: "Incident #002 Remediation",
         content:
-          "Default Nginx configuration returned 404 on /health. Remediated by replacing default web root with reverse proxy upstream.",
+          "Configured Nginx location / with proxy_pass http://127.0.0.1:3000 and proxy headers, validated syntax with nginx -t, and verified 200 OK on /health and /ready.",
       },
       {
         title: "Verification",
         content:
-          "Validated 200 OK contracts on /health and /ready endpoints locally and over public HTTP (54.236.188.6).",
+          "Validated 200 OK contracts on /health and /ready endpoints locally and over public HTTP across EC2 nodes.",
       },
     ],
   },
@@ -152,24 +152,24 @@ const days = [
           "Created ALB security group allowing HTTP/80 from 0.0.0.0/0. Updated EC2 security group with an ingress rule allowing traffic exclusively from the ALB security group on TCP/80.",
       },
       {
-        title: "Target Group & Health Check Contract",
+        title: "Target Group Health Check",
         content:
-          "Configured HTTP/80 target group checking /health endpoint with 200 OK contract (30s interval, 5s timeout, 2 healthy / 2 unhealthy thresholds). Registered active EC2 instance.",
+          "Configured HTTP/80 target group checking /health endpoint with 200 OK contract (30s interval, 5s timeout, 2 healthy / 2 unhealthy thresholds).",
       },
       {
-        title: "Target Health Status",
+        title: "Incident #003 Symptom",
         content:
-          "Verified instance i-08b963ba04b701a81 reached healthy state in target group af96725dc44a51fd via AWS ELBv2 API.",
+          "Public curl to ALB DNS returned HTTP/1.1 502 Bad Gateway from awselb/2.0. Target Group showed target status unhealthy on port 80.",
       },
       {
-        title: "Incident #003",
+        title: "Incident #003 Root Cause",
         content:
-          "ALB returned 502 Bad Gateway due to missing security group tiering rule. Remediated by adding an ingress rule allowing TCP/80 exclusively from the ALB security group.",
+          "The EC2 compute security group lacked an ingress rule authorizing traffic from the ALB security group (sg-01458968cdedf7043), causing health check probes to be dropped.",
       },
       {
-        title: "End-to-End Traffic Verification",
+        title: "Incident #003 Remediation",
         content:
-          "Confirmed HTTP 200 responses for /health, /ready, and portfolio UI via ALB DNS name (devops-portfolio-lab-alb-960839588.us-east-1.elb.amazonaws.com).",
+          "Added aws_security_group_rule in Terraform authorizing TCP/80 exclusively from the ALB security group. Targets transitioned to healthy and ALB returned 200 OK.",
       },
     ],
   },
@@ -191,39 +191,27 @@ const days = [
       },
 
       {
-        title: "Launch Template",
+        title: "Launch Template & Dynamic AMI",
         content:
-          "Define the AMI, instance type, SSH key pair, security group, tags, and bootstrap configuration in Terraform."
+          "Defined Launch Template using dynamic Ubuntu 24.04 LTS data source lookup, user-space Node.js bootstrap, systemd unit, and reverse proxy."
       },
 
       {
-        title: "AMI Selection",
+        title: "Multi-AZ Auto Scaling",
         content:
-          "Use Terraform to dynamically select the latest matching Ubuntu 24.04 LTS AMI instead of hardcoding an AMI ID."
+          "Maintained target capacity (Min: 2, Desired: 2, Max: 2) across public subnets in us-east-1a and us-east-1b with ELB health checks."
       },
 
       {
-        title: "Multi-AZ Compute",
-        content:
-          "Run application capacity across the existing application subnets in us-east-1a and us-east-1b."
-      },
-
-      {
-        title: "Auto Scaling",
-        content:
-          "Maintain the desired application capacity and replace unhealthy or terminated instances."
-      },
-
-      {
-        title: "Health",
-        content:
-          "Use ALB target health as part of the instance health model."
-      },
-
-      {
-        title: "Incident #004 (Failure Test)",
+        title: "Incident #004 Test Plan",
         content:
           "Controlled instance termination test to verify that the Auto Scaling Group detects capacity loss and automatically provisions and registers a replacement instance."
+      },
+
+      {
+        title: "Incident #004 Expected Recovery",
+        content:
+          "ASG detects capacity deficit via ELB health check, provisions a replacement instance via Launch Template v2, runs user-data initialization, and registers to Target Group."
       }
     ]
   },
