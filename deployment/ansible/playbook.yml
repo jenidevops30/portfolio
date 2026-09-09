@@ -85,6 +85,8 @@
         force: yes
       ignore_errors: yes
       register: git_clone
+      notify:
+        - Restart portfolio service
 
     - name: Install application production dependencies
       become_user: "{{ app_user }}"
