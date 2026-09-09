@@ -6,7 +6,7 @@ const projects = [
   {
     id: "aws-production-platform",
     title: "AWS Production Platform",
-    status: "Building",
+    status: "Completed / Verified",
     description:
       "Production-style AWS infrastructure demonstrating secure networking, load balancing, high availability, monitoring and failure recovery.",
     technologies: [

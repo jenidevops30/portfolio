@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AWS Cost Optimization Case Study by Jeni Patel - Reducing monthly AWS spend from $813 to ~$327 (~60% reduction) through systematic FinOps engineering.">
+  <title>AWS Cost Optimization | Jeni Patel</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/case-study.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="container navigation">
+    <a href="/" class="logo">Jeni Patel</a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/#projects">Projects</a>
+      <a href="/#experience">Experience</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main class="case-study">
+
+  <!-- Sticky Internal Navigation -->
+  <nav class="case-study-nav">
+    <a href="#overview">Overview</a>
+    <a href="#breakdown">Spend Breakdown</a>
+    <a href="#methodology">FinOps Framework</a>
+    <a href="#execution">Technical Execution</a>
+    <a href="#evidence">Evidence Register</a>
+    <a href="#guardrails">Governance</a>
+    <a href="#impact">Business Impact</a>
+  </nav>
+
+  <!-- Hero & Overview Section -->
+  <section id="overview" class="case-hero">
+    <span class="eyebrow">AWS COST OPTIMIZATION & FINOPS</span>
+
+    <h1>AWS Infrastructure Cost Optimization</h1>
+
+    <div class="case-status-badge">
+      <span class="status-indicator">●</span>
+      <strong>STATUS: COMPLETED</strong>
+      <span class="status-sep">•</span>
+      <span class="status-progress">$813 → ~$327 / Month</span>
+      <span class="status-sep">•</span>
+      <span class="status-remaining">~60% Cost Reduction</span>
+    </div>
+
+    <p class="case-description">
+      An evidence-driven FinOps engineering case study demonstrating how I audited, rightsized, modernized, and governed cloud infrastructure across multiple AWS accounts—reducing monthly run rate from $813/month to ~$327/month ($5,832/year annualized savings) while maintaining 100% availability and application performance.
+    </p>
+
+    <!-- Platform State / FinOps KPI Card -->
+    <div class="platform-state-card">
+      <div class="state-card-header">
+        <span class="eyebrow">FINOPS ENGAGEMENT SUMMARY</span>
+        <span class="state-badge verified">● MEASURED & VERIFIED</span>
+      </div>
+
+      <div class="state-grid">
+        <div class="state-item verified">
+          <span class="state-icon">📉</span>
+          <span class="state-name">Baseline Spend</span>
+          <span class="state-status">$813 / mo</span>
+        </div>
+
+        <div class="state-item verified">
+          <span class="state-icon">✅</span>
+          <span class="state-name">Optimized Spend</span>
+          <span class="state-status">~$327 / mo</span>
+        </div>
+
+        <div class="state-item verified">
+          <span class="state-icon">💰</span>
+          <span class="state-name">Monthly Savings</span>
+          <span class="state-status">$486 / mo</span>
+        </div>
+
+        <div class="state-item verified">
+          <span class="state-icon">📊</span>
+          <span class="state-name">Spend Reduction</span>
+          <span class="state-status">~60%</span>
+        </div>
+
+        <div class="state-item verified">
+          <span class="state-icon">⚡</span>
+          <span class="state-name">Annualized Value</span>
+          <span class="state-status">$5,832 / yr</span>
+        </div>
+
+        <div class="state-item verified">
+          <span class="state-icon">🛡️</span>
+          <span class="state-name">Performance SLA</span>
+          <span class="state-status">0% Impact</span>
+        </div>
+
+        <div class="state-item verified">
+          <span class="state-icon">⏱️</span>
+          <span class="state-name">Execution Window</span>
+          <span class="state-status">30 Days</span>
+        </div>
+
+        <div class="state-item verified">
+          <span class="state-icon">🔔</span>
+          <span class="state-name">Budget Guardrail</span>
+          <span class="state-status">$350 Target</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Spend Breakdown Section -->
+  <section id="breakdown" class="progress-section">
+    <div class="section-heading">
+      <span>SPEND BREAKDOWN & OPTIMIZATION MATRIX</span>
+      <span class="heading-badge verified">$486 / MONTH SAVED</span>
+    </div>
+
+    <div class="progress-table-wrap">
+      <table class="progress-table">
+        <thead>
+          <tr>
+            <th>Resource Tier</th>
+            <th>Baseline Spend</th>
+            <th>Optimized Spend</th>
+            <th>Monthly Savings</th>
+            <th>Engineering Actions Taken</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="completed-row">
+            <td><strong>EC2 Compute</strong></td>
+            <td>$420 / mo</td>
+            <td>$165 / mo</td>
+            <td><strong style="color: #4ade80;">-$255 / mo</strong> (-60.7%)</td>
+            <td>
+              Analyzed 30-day p95 CPU/Memory utilization via Compute Optimizer. Rightsized over-provisioned <code>c5.2xlarge</code> instances (running at &lt;10% average CPU) down to <code>t3.large</code> and <code>m5.large</code>. Decommissioned 2 abandoned test instances.
+            </td>
+          </tr>
+          <tr class="completed-row">
+            <td><strong>EBS Block Storage</strong></td>
+            <td>$145 / mo</td>
+            <td>$48 / mo</td>
+            <td><strong style="color: #4ade80;">-$97 / mo</strong> (-66.9%)</td>
+            <td>
+              Identified and removed 6 orphaned unattached EBS volumes left behind by terminated instances. Converted 14 active <code>gp2</code> volumes to <code>gp3</code> for immediate 20% baseline storage cost savings plus independent throughput/IOPS scaling.
+            </td>
+          </tr>
+          <tr class="completed-row">
+            <td><strong>RDS Databases</strong></td>
+            <td>$180 / mo</td>
+            <td>$82 / mo</td>
+            <td><strong style="color: #4ade80;">-$98 / mo</strong> (-54.4%)</td>
+            <td>
+              Converted staging database from redundant Multi-AZ to Single-AZ with automated point-in-time recovery. Implemented EventBridge + Lambda automated schedule stopping dev databases during non-working hours (7 PM–7 AM & weekends).
+            </td>
+          </tr>
+          <tr class="completed-row">
+            <td><strong>Networking & Logs</strong></td>
+            <td>$68 / mo</td>
+            <td>$32 / mo</td>
+            <td><strong style="color: #4ade80;">-$36 / mo</strong> (-52.9%)</td>
+            <td>
+              Released 4 unassociated Elastic IPs ($0.005/hr each). Updated CloudWatch log retention policies from default "Never Expire" to 30 days for application logs and 90 days for audit logs, purging cold gigabytes.
+            </td>
+          </tr>
+          <tr style="background: rgba(255, 255, 255, 0.05); font-weight: bold;">
+            <td><strong>TOTAL CLOUD SPEND</strong></td>
+            <td>$813 / mo</td>
+            <td>~$327 / mo</td>
+            <td><strong style="color: #4ade80;">-$486 / mo</strong> (-59.8%)</td>
+            <td><strong>Sustained Annual Run Rate Reduction: $5,832 / Year</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <!-- FinOps Methodology Section -->
+  <section id="methodology" class="lesson-section">
+    <div class="section-heading">
+      <span>FINOPS FRAMEWORK</span>
+      <span class="heading-badge">SYSTEMATIC METHODOLOGY</span>
+    </div>
+
+    <div class="workflow-visual">
+      <div class="workflow-step">Tag & Attribute</div>
+      <span class="workflow-arrow">↓</span>
+      <div class="workflow-step">Analyze Telemetry</div>
+      <span class="workflow-arrow">↓</span>
+      <div class="workflow-step">Purge Zombie Waste</div>
+      <span class="workflow-arrow">↓</span>
+      <div class="workflow-step">Rightsize Compute</div>
+      <span class="workflow-arrow">↓</span>
+      <div class="workflow-step">Modernize Storage</div>
+      <span class="workflow-arrow">↓</span>
+      <div class="workflow-step">Automate Schedules</div>
+      <span class="workflow-arrow">↓</span>
+      <div class="workflow-step">Enforce Guardrails</div>
+    </div>
+
+    <div class="architecture-explanations" style="margin-top: 2rem;">
+      <div class="arch-explain-item">
+        <strong>1. Discovery & Allocation Tagging</strong>
+        <p>Enforced required AWS Cost Allocation Tags (<code>Environment</code>, <code>Application</code>, <code>Owner</code>) to eliminate unallocated spend and establish accountability across workloads.</p>
+      </div>
+
+      <div class="arch-explain-item">
+        <strong>2. Telemetry & Metrics Profiling</strong>
+        <p>Used AWS Cost Explorer, Compute Optimizer, and CloudWatch metrics over 30 days to measure p95 and peak CPU, memory, network, and disk I/O demands before proposing any changes.</p>
+      </div>
+
+      <div class="arch-explain-item">
+        <strong>3. Low-Risk Waste Elimination</strong>
+        <p>Safely eliminated zombie resources that incurred costs with zero functional benefit: detached EBS volumes, unassigned Elastic IPs, and stale EBS snapshots.</p>
+      </div>
+
+      <div class="arch-explain-item">
+        <strong>4. Measured Architecture Rightsizing</strong>
+        <p>Downsized compute nodes based on validated p95 resource profiles while keeping burstable headroom for traffic spikes, ensuring zero performance SLA degradation.</p>
+      </div>
+
+      <div class="arch-explain-item">
+        <strong>5. Storage Modernization (gp2 → gp3)</strong>
+        <p>Converted all eligible EBS volumes from older generation <code>gp2</code> to modern <code>gp3</code> in-place with zero downtime, gaining higher baseline performance at 20% lower cost.</p>
+      </div>
+
+      <div class="arch-explain-item">
+        <strong>6. Proactive Budget Guardrails</strong>
+        <p>Configured AWS Budgets alerts ($350 target with 85% threshold notifications) and Cost Anomaly Detection to catch spend spikes before the monthly billing cycle closes.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Technical Execution Section -->
+  <section id="execution" class="decisions-section">
+    <div class="section-heading">
+      <span>TECHNICAL EXECUTION</span>
+      <span class="heading-badge">HOW IT WAS IMPLEMENTED</span>
+    </div>
+
+    <div class="decision-grid">
+      <article class="decision-card">
+        <span class="eyebrow">STORAGE OPTIMIZATION</span>
+        <h2>gp2 to gp3 Live Volume Migration</h2>
+        <p>
+          Migrated 14 EBS volumes using the AWS CLI without detaching or stopping active EC2 instances:
+          <code>aws ec2 modify-volume --volume-id vol-xxxx --volume-type gp3</code>.
+          Transitioned seamlessly from gp2's $0.10/GB-month to gp3's $0.08/GB-month with baseline 3,000 IOPS and 125 MB/s throughput included.
+        </p>
+      </article>
+
+      <article class="decision-card">
+        <span class="eyebrow">COMPUTE RIGHTSIZING</span>
+        <h2>Telemetry-Backed Instance Rightsizing</h2>
+        <p>
+          Compute Optimizer flagged instances where average CPU hovered under 8% with peak RAM utilization under 45%. Replaced expensive <code>c5.2xlarge</code> (8 vCPU, 16 GB RAM at ~$0.34/hr) with <code>t3.large</code> (2 vCPU, 8 GB RAM at ~$0.0832/hr), reducing hourly compute cost by 75% per node.
+        </p>
+      </article>
+
+      <article class="decision-card">
+        <span class="eyebrow">AUTOMATED SCHEDULING</span>
+        <h2>Dev & Staging Off-Hours Shutdown</h2>
+        <p>
+          Engineered an automated serverless lifecycle scheduler using Amazon EventBridge cron rules and an AWS Lambda function (Python). Non-production environments stop automatically at 19:00 UTC and boot at 07:00 UTC on weekdays, eliminating 65% of weekly dev compute spend.
+        </p>
+      </article>
+
+      <article class="decision-card">
+        <span class="eyebrow">DATABASE ARCHITECTURE</span>
+        <h2>RDS Staging Multi-AZ Elimination</h2>
+        <p>
+          Evaluated staging requirements: Multi-AZ failover was costing double for a non-production test environment. Converted staging to Single-AZ while maintaining automated 7-day snapshots and point-in-time recovery, immediately halving the staging RDS bill.
+        </p>
+      </article>
+    </div>
+  </section>
+
+
+  <!-- Evidence Register Section -->
+  <section id="evidence" class="evidence-section">
+    <div class="section-heading">
+      <span>EVIDENCE REGISTER</span>
+      <span class="heading-badge verified">SANITIZED EVIDENCE RECORDS</span>
+    </div>
+
+    <div class="evidence-grid">
+      <div class="evidence-card">
+        <strong>E-COST-001</strong>
+        <span>Cost Explorer Baseline Run Rate ($813/mo)</span>
+        <small class="verified-tag">✓ Verified</small>
+      </div>
+
+      <div class="evidence-card">
+        <strong>E-COST-002</strong>
+        <span>AWS Compute Optimizer Rightsizing Assessment</span>
+        <small class="verified-tag">✓ Verified</small>
+      </div>
+
+      <div class="evidence-card">
+        <strong>E-COST-003</strong>
+        <span>Unattached EBS Volume Cleanup & gp3 Migration Audit</span>
+        <small class="verified-tag">✓ Verified</small>
+      </div>
+
+      <div class="evidence-card">
+        <strong>E-COST-004</strong>
+        <span>Automated RDS & EC2 Off-Hours Schedule Logs</span>
+        <small class="verified-tag">✓ Verified</small>
+      </div>
+
+      <div class="evidence-card">
+        <strong>E-COST-005</strong>
+        <span>AWS Budgets Alert & Anomaly Detection Config</span>
+        <small class="verified-tag">✓ Verified</small>
+      </div>
+
+      <div class="evidence-card">
+        <strong>E-COST-006</strong>
+        <span>Post-Optimization Billing Statement (~$327/mo)</span>
+        <small class="verified-tag">✓ Verified</small>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Governance & Guardrails Section -->
+  <section id="guardrails" class="validation-section">
+    <div class="section-heading">
+      <span>GOVERNANCE & GUARDRAILS</span>
+      <span class="heading-badge verified">PREVENTING COST DRIFT</span>
+    </div>
+
+    <div class="progress-table-wrap">
+      <table class="progress-table">
+        <thead>
+          <tr>
+            <th>Guardrail Mechanism</th>
+            <th>Configuration Target</th>
+            <th>Operational Action</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>AWS Monthly Budget</strong></td>
+            <td>$350.00 / month</td>
+            <td>SNS email alert triggered if actual or forecasted spend exceeds 85% ($297.50)</td>
+            <td><span class="status-pill verified">✅ Active</span></td>
+          </tr>
+          <tr>
+            <td><strong>Cost Anomaly Detection</strong></td>
+            <td>Individual services</td>
+            <td>Machine learning model flags unexpected daily spend increases &gt; $15/day</td>
+            <td><span class="status-pill verified">✅ Active</span></td>
+          </tr>
+          <tr>
+            <td><strong>Tag Enforcement Policy</strong></td>
+            <td>All provisioned resources</td>
+            <td>Terraform default_tags block automatically tags all resources with Environment & Owner</td>
+            <td><span class="status-pill verified">✅ Active</span></td>
+          </tr>
+          <tr>
+            <td><strong>Storage Modernization Default</strong></td>
+            <td>EBS Block Devices</td>
+            <td>Terraform standards prohibit gp2 in favor of gp3 for all new volume creation</td>
+            <td><span class="status-pill verified">✅ Active</span></td>
+          </tr>
+          <tr>
+            <td><strong>CloudWatch Log Expiration</strong></td>
+            <td>18 Log Groups</td>
+            <td>Automated retention limit set to 30 days (app) and 90 days (audit) via IaC</td>
+            <td><span class="status-pill verified">✅ Active</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <!-- Business Impact Section -->
+  <section id="impact" class="lesson-section">
+    <div class="section-heading">
+      <span>BUSINESS IMPACT & TAKEAWAYS</span>
+      <span class="heading-badge">FINOPS PHILOSOPHY</span>
+    </div>
+
+    <blockquote>
+      "Cloud cost optimization is not a one-time cleanup task—it is an ongoing engineering discipline that balances infrastructure efficiency, operational velocity, and architectural resilience."
+    </blockquote>
+
+    <div class="architecture-explanations" style="margin-top: 1.5rem;">
+      <div class="arch-explain-item">
+        <strong>Direct Financial ROI</strong>
+        <p>Saved $486/month ($5,832 annualized), allowing capital to be redeployed into automated CI/CD and production redundancy without increasing the engineering budget.</p>
+      </div>
+
+      <div class="arch-explain-item">
+        <strong>Zero Operational Disruption</strong>
+        <p>All EBS volume upgrades and instance rightsizing were executed with zero downtime or SLA breaches through rolling deployments and live EBS elastic modifications.</p>
+      </div>
+
+      <div class="arch-explain-item">
+        <strong>Culture of Cost Awareness</strong>
+        <p>Equipped the engineering team with clear attribution, visibility dashboards, and proactive alerts, preventing uncontrolled resource sprawl in future sprints.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Jeni Patel</p>
+    <p>DevOps • AWS • Infrastructure • Reliability • FinOps</p>
+  </div>
+</footer>
+
+</body>
+</html>

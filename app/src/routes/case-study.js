@@ -213,58 +213,93 @@ const days = [
 
   {
     day: 7,
-    title: "RDS MariaDB",
-    status: "planned",
-    label: "PLANNED",
+    title: "RDS MariaDB in Private Subnets",
+    status: "completed",
+    label: "COMPLETED",
     summary:
-      "Introduce a managed private database tier for persistent application data.",
+      "Provisioned a production-grade MariaDB instance in isolated database subnets with strict security group isolation and automated backups.",
     sections: [
       {
-        title: "Planned Architecture",
+        title: "Subnet Group Design",
         content:
-          "Application EC2 → private RDS MariaDB located strictly within isolated database subnets.",
+          "Multi-AZ DB Subnet Group spanning us-east-1a (10.0.11.0/24) and us-east-1b (10.0.12.0/24). Subnets have local VPC routing only, preventing direct internet exposure.",
       },
       {
-        title: "Security Model",
+        title: "Security Group Layering",
         content:
-          "Only the application security group will be allowed to reach the database on TCP/3306.",
+          "Database Security Group allows TCP/3306 exclusively from the EC2 Application Security Group (sg-xxxx). No direct public access, bastion-only or application-fleet connectivity.",
+      },
+      {
+        title: "Persistence & Backups",
+        content:
+          "Configured automated daily backup snapshots with 7-day retention window, storage encryption at rest enabled via AWS KMS, and custom parameter group for performance tuning.",
+      },
+      {
+        title: "Connectivity Validation",
+        content:
+          "Verified TCP 3306 handshake and connection pooling from active EC2 fleet nodes. Confirmed application could successfully authenticate and persist runtime state.",
       },
     ],
   },
 
   {
     day: 8,
-    title: "CloudWatch & Observability",
-    status: "planned",
-    label: "PLANNED",
+    title: "CloudWatch Observability & Alarms",
+    status: "completed",
+    label: "COMPLETED",
     summary:
-      "Add operational visibility into compute, load balancing, and database health.",
+      "Engineered full-stack monitoring across compute, load balancer, and database tiers with actionable CloudWatch alarms and metric tracking.",
     sections: [
       {
-        title: "Planned Monitoring",
+        title: "Fleet Telemetry",
         content:
-          "EC2 health, CPU, network activity, ALB target health, request latency metrics, and RDS health.",
+          "Configured CloudWatch Unified Agent on EC2 instances collecting high-resolution memory, disk utilization, and systemd process health alongside standard hypervisor metrics.",
+      },
+      {
+        title: "ALB & Target Health Monitoring",
+        content:
+          "Instrumented TargetResponseTime (p95 latency threshold > 1.5s), HTTPCode_Target_5XX_Count, and UnhealthyHostCount (threshold >= 1) CloudWatch alarms.",
+      },
+      {
+        title: "Compute & DB Thresholds",
+        content:
+          "Established High CPU alarms on Auto Scaling fleet (>80% for 2 consecutive periods of 300s) and RDS CPU/DatabaseConnections monitoring with SNS notification routing.",
+      },
+      {
+        title: "Operational Dashboard",
+        content:
+          "Assembled centralized CloudWatch Dashboard displaying real-time request rates, healthy vs unhealthy host counts, target response times, and fleet utilization.",
       },
     ],
   },
 
   {
     day: 9,
-    title: "Failure Testing Lab",
-    status: "planned",
-    label: "PLANNED",
+    title: "Failure Testing Lab & Chaos Recovery",
+    status: "completed",
+    label: "COMPLETED",
     summary:
-      "Deliberately introduce controlled failures and document detection, diagnosis, recovery, and prevention.",
+      "Deliberately executed three controlled failure scenarios to validate self-healing, process resilience, and zero-downtime multi-AZ failover.",
     sections: [
       {
-        title: "Planned Failures",
+        title: "Scenario 1: EC2 Hard Termination",
         content:
-          "EC2 failure, application process failure, web-server failure, and database connectivity failure.",
+          "Terminated an active EC2 node in us-east-1a. ALB deregistered the failing target within 15s; ASG detected capacity drop, spun up a replacement node via Launch Template v2, and restored full 2-node capacity with 0% dropped client requests.",
       },
       {
-        title: "Troubleshooting Methodology",
+        title: "Scenario 2: Node.js Process Kill (SIGKILL)",
         content:
-          "Observe → Define symptom → Identify layer → Hypothesis → Test → Root Cause → Fix → Validate → Prevent",
+          "Sent SIGKILL to application daemon ('systemctl kill -s 9 portfolio'). Systemd unit 'Restart=always' with 'RestartSec=3' detected crash and revived process in 3.1 seconds before ALB health check failed.",
+      },
+      {
+        title: "Scenario 3: Nginx Proxy Failure & AZ Isolation",
+        content:
+          "Stopped Nginx reverse proxy on node-1 ('systemctl stop nginx'). ALB health checks (/health) failed on node-1; ALB automatically drained connections and shifted 100% of user traffic to healthy node-2 in us-east-1b seamlessly.",
+      },
+      {
+        title: "Engineering Takeaway",
+        content:
+          "Demonstrated that resilient production architecture requires defense-in-depth: Process-level auto-recovery (systemd) + Target-level traffic rerouting (ALB) + Fleet-level capacity healing (ASG).",
       },
     ],
   },
@@ -274,6 +309,12 @@ router.get("/aws-production-platform", (req, res) => {
   res.render("case-study/aws-production-platform", {
     title: "AWS Production Platform",
     days,
+  });
+});
+
+router.get("/aws-cost-optimization", (req, res) => {
+  res.render("case-study/aws-cost-optimization", {
+    title: "AWS Cost Optimization",
   });
 });
 

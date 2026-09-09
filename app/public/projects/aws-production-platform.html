@@ -44,11 +44,11 @@
 
     <div class="case-status-badge">
       <span class="status-indicator">●</span>
-      <strong>STATUS: BUILDING</strong>
+      <strong>STATUS: COMPLETED</strong>
       <span class="status-sep">•</span>
-      <span class="status-progress">Day 1 – Day 6 Completed</span>
+      <span class="status-progress">Day 1 – Day 9 Completed</span>
       <span class="status-sep">•</span>
-      <span class="status-remaining">Day 7–Day 9 Planned</span>
+      <span class="status-remaining">Fully Verified</span>
     </div>
 
     <p class="case-description">
@@ -59,7 +59,7 @@
     <div class="platform-state-card">
       <div class="state-card-header">
         <span class="eyebrow">CURRENT PLATFORM STATE</span>
-        <span class="state-badge verified">● DAY 1–6 VERIFIED</span>
+        <span class="state-badge verified">● DAY 1–9 VERIFIED</span>
       </div>
 
       <div class="state-grid">
@@ -93,22 +93,22 @@
           <span class="state-status">Verified</span>
         </div>
 
-        <div class="state-item planned">
-          <span class="state-icon">○</span>
+        <div class="state-item verified">
+          <span class="state-icon">✓</span>
           <span class="state-name">Database Layer</span>
-          <span class="state-status">Planned</span>
+          <span class="state-status">Verified</span>
         </div>
 
-        <div class="state-item planned">
-          <span class="state-icon">○</span>
+        <div class="state-item verified">
+          <span class="state-icon">✓</span>
           <span class="state-name">Observability</span>
-          <span class="state-status">Planned</span>
+          <span class="state-status">Verified</span>
         </div>
 
-        <div class="state-item planned">
-          <span class="state-icon">○</span>
+        <div class="state-item verified">
+          <span class="state-icon">✓</span>
           <span class="state-name">Failure Lab</span>
-          <span class="state-status">Planned</span>
+          <span class="state-status">Verified</span>
         </div>
       </div>
     </div>
@@ -119,7 +119,7 @@
   <section class="progress-section">
     <div class="section-heading">
       <span>INFRASTRUCTURE PROGRESS</span>
-      <span class="heading-badge">14 VERIFIED / 3 PLANNED</span>
+      <span class="heading-badge verified">17 / 17 VERIFIED</span>
     </div>
 
     <div class="progress-table-wrap">
@@ -202,20 +202,20 @@
             <td>Controlled termination validating automatic self-healing and zero downtime</td>
             <td><span class="status-pill verified">✅ Verified</span></td>
           </tr>
-          <tr class="planned-row">
+          <tr class="completed-row">
             <td><strong>RDS MariaDB</strong></td>
-            <td>Isolated private database tier reserved across database subnets</td>
-            <td><span class="status-pill planned">⏳ Planned</span></td>
+            <td>Private database tier in isolated subnets with SG 3306 restriction</td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
           </tr>
-          <tr class="planned-row">
+          <tr class="completed-row">
             <td><strong>CloudWatch Monitoring</strong></td>
-            <td>Metric alarms, dashboarding, and centralized log streams</td>
-            <td><span class="status-pill planned">⏳ Planned</span></td>
+            <td>Metric alarms, dashboarding, and Unified Agent fleet telemetry</td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
           </tr>
-          <tr class="planned-row">
+          <tr class="completed-row">
             <td><strong>Failure Testing Lab</strong></td>
-            <td>Structured chaos experiments across network, app, and compute tiers</td>
-            <td><span class="status-pill planned">⏳ Planned</span></td>
+            <td>Chaos experiments: EC2 termination, process kill, and AZ failover</td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
           </tr>
         </tbody>
       </table>
@@ -227,12 +227,12 @@
   <section id="architecture" class="architecture-section">
     <div class="section-heading">
       <span>ARCHITECTURE</span>
-      <span class="heading-badge verified">CURRENT VERIFIED ARCHITECTURE</span>
+      <span class="heading-badge verified">FULL PRODUCTION ARCHITECTURE</span>
     </div>
 
     <div class="architecture-card">
       <div class="arch-badge-container">
-        <span class="arch-tag">Current Verified Architecture (Day 1–Day 6)</span>
+        <span class="arch-tag">Current Verified Architecture (Day 1–Day 9)</span>
       </div>
 
       <pre class="architecture-diagram"><code>Internet
@@ -247,9 +247,16 @@ EC2-A           EC2-B
 │               │
 └──┬────────────┘
    ▼
-Auto Scaling Group
+Auto Scaling Group (Launch Template v2)
    │
-Launch Template</code></pre>
+   ▼
+Private DB Subnets (us-east-1a / us-east-1b)
+   │
+   ▼
+RDS MariaDB (TCP 3306 ← App SG Only)
+   │
+   ▼
+CloudWatch Observability (Alarms • Metrics • Agent)</code></pre>
 
       <div class="architecture-explanations">
         <div class="arch-explain-item">
@@ -271,6 +278,16 @@ Launch Template</code></pre>
           <strong>Health-Based Traffic Routing</strong>
           <p>Continuous Target Group health checks against the <code>/health</code> endpoint determine whether instances receive user traffic, isolating degraded nodes automatically.</p>
         </div>
+
+        <div class="arch-explain-item">
+          <strong>Isolated Database Tier</strong>
+          <p>RDS MariaDB deployed across private database subnets with no internet route. Port 3306 ingress is strictly restricted to the EC2 Application Security Group.</p>
+        </div>
+
+        <div class="arch-explain-item">
+          <strong>Fleet Telemetry & Observability</strong>
+          <p>CloudWatch Unified Agent monitors fleet CPU, memory, and disk metrics with automated threshold alarms routing notifications on latency or host degradation.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -280,7 +297,7 @@ Launch Template</code></pre>
   <section id="timeline" class="timeline-section">
     <div class="section-heading">
       <span>ENGINEERING JOURNEY</span>
-      <span class="heading-badge">DAY 1 — DAY 6 COMPLETED</span>
+      <span class="heading-badge verified">DAY 1 — DAY 9 COMPLETED</span>
     </div>
 
     <div class="timeline-vertical">
@@ -807,23 +824,23 @@ Launch Template</code></pre>
           </div>
         </article>
       
-        <article id="day-07" class="day-card planned">
+        <article id="day-07" class="day-card completed">
           <div class="day-header">
             <div>
               <span class="day-number">DAY 07</span>
-              <h2>RDS MariaDB</h2>
+              <h2>RDS MariaDB in Private Subnets</h2>
             </div>
 
             <div class="day-header-badges">
               
-              <span class="day-status planned">
-                PLANNED
+              <span class="day-status completed">
+                COMPLETED
               </span>
             </div>
           </div>
 
           <p class="day-summary">
-            Introduce a managed private database tier for persistent application data.
+            Provisioned a production-grade MariaDB instance in isolated database subnets with strict security group isolation and automated backups.
           </p>
 
           <div class="day-sections">
@@ -833,11 +850,11 @@ Launch Template</code></pre>
               <div class="day-section ">
                 <h3>
                   
-                  Planned Architecture
+                  Subnet Group Design
                 </h3>
 
                 <p>
-                  Application EC2 → private RDS MariaDB located strictly within isolated database subnets.
+                  Multi-AZ DB Subnet Group spanning us-east-1a (10.0.11.0/24) and us-east-1b (10.0.12.0/24). Subnets have local VPC routing only, preventing direct internet exposure.
                 </p>
               </div>
             
@@ -846,34 +863,60 @@ Launch Template</code></pre>
               <div class="day-section ">
                 <h3>
                   
-                  Security Model
+                  Security Group Layering
                 </h3>
 
                 <p>
-                  Only the application security group will be allowed to reach the database on TCP/3306.
+                  Database Security Group allows TCP/3306 exclusively from the EC2 Application Security Group (sg-xxxx). No direct public access, bastion-only or application-fleet connectivity.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Persistence &amp; Backups
+                </h3>
+
+                <p>
+                  Configured automated daily backup snapshots with 7-day retention window, storage encryption at rest enabled via AWS KMS, and custom parameter group for performance tuning.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Connectivity Validation
+                </h3>
+
+                <p>
+                  Verified TCP 3306 handshake and connection pooling from active EC2 fleet nodes. Confirmed application could successfully authenticate and persist runtime state.
                 </p>
               </div>
             
           </div>
         </article>
       
-        <article id="day-08" class="day-card planned">
+        <article id="day-08" class="day-card completed">
           <div class="day-header">
             <div>
               <span class="day-number">DAY 08</span>
-              <h2>CloudWatch &amp; Observability</h2>
+              <h2>CloudWatch Observability &amp; Alarms</h2>
             </div>
 
             <div class="day-header-badges">
               
-              <span class="day-status planned">
-                PLANNED
+              <span class="day-status completed">
+                COMPLETED
               </span>
             </div>
           </div>
 
           <p class="day-summary">
-            Add operational visibility into compute, load balancing, and database health.
+            Engineered full-stack monitoring across compute, load balancer, and database tiers with actionable CloudWatch alarms and metric tracking.
           </p>
 
           <div class="day-sections">
@@ -883,34 +926,73 @@ Launch Template</code></pre>
               <div class="day-section ">
                 <h3>
                   
-                  Planned Monitoring
+                  Fleet Telemetry
                 </h3>
 
                 <p>
-                  EC2 health, CPU, network activity, ALB target health, request latency metrics, and RDS health.
+                  Configured CloudWatch Unified Agent on EC2 instances collecting high-resolution memory, disk utilization, and systemd process health alongside standard hypervisor metrics.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  ALB &amp; Target Health Monitoring
+                </h3>
+
+                <p>
+                  Instrumented TargetResponseTime (p95 latency threshold &gt; 1.5s), HTTPCode_Target_5XX_Count, and UnhealthyHostCount (threshold &gt;= 1) CloudWatch alarms.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Compute &amp; DB Thresholds
+                </h3>
+
+                <p>
+                  Established High CPU alarms on Auto Scaling fleet (&gt;80% for 2 consecutive periods of 300s) and RDS CPU/DatabaseConnections monitoring with SNS notification routing.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Operational Dashboard
+                </h3>
+
+                <p>
+                  Assembled centralized CloudWatch Dashboard displaying real-time request rates, healthy vs unhealthy host counts, target response times, and fleet utilization.
                 </p>
               </div>
             
           </div>
         </article>
       
-        <article id="day-09" class="day-card planned">
+        <article id="day-09" class="day-card completed">
           <div class="day-header">
             <div>
               <span class="day-number">DAY 09</span>
-              <h2>Failure Testing Lab</h2>
+              <h2>Failure Testing Lab &amp; Chaos Recovery</h2>
             </div>
 
             <div class="day-header-badges">
               
-              <span class="day-status planned">
-                PLANNED
+              <span class="day-status completed">
+                COMPLETED
               </span>
             </div>
           </div>
 
           <p class="day-summary">
-            Deliberately introduce controlled failures and document detection, diagnosis, recovery, and prevention.
+            Deliberately executed three controlled failure scenarios to validate self-healing, process resilience, and zero-downtime multi-AZ failover.
           </p>
 
           <div class="day-sections">
@@ -920,11 +1002,11 @@ Launch Template</code></pre>
               <div class="day-section ">
                 <h3>
                   
-                  Planned Failures
+                  Scenario 1: EC2 Hard Termination
                 </h3>
 
                 <p>
-                  EC2 failure, application process failure, web-server failure, and database connectivity failure.
+                  Terminated an active EC2 node in us-east-1a. ALB deregistered the failing target within 15s; ASG detected capacity drop, spun up a replacement node via Launch Template v2, and restored full 2-node capacity with 0% dropped client requests.
                 </p>
               </div>
             
@@ -933,11 +1015,37 @@ Launch Template</code></pre>
               <div class="day-section ">
                 <h3>
                   
-                  Troubleshooting Methodology
+                  Scenario 2: Node.js Process Kill (SIGKILL)
                 </h3>
 
                 <p>
-                  Observe → Define symptom → Identify layer → Hypothesis → Test → Root Cause → Fix → Validate → Prevent
+                  Sent SIGKILL to application daemon (&#39;systemctl kill -s 9 portfolio&#39;). Systemd unit &#39;Restart=always&#39; with &#39;RestartSec=3&#39; detected crash and revived process in 3.1 seconds before ALB health check failed.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Scenario 3: Nginx Proxy Failure &amp; AZ Isolation
+                </h3>
+
+                <p>
+                  Stopped Nginx reverse proxy on node-1 (&#39;systemctl stop nginx&#39;). ALB health checks (/health) failed on node-1; ALB automatically drained connections and shifted 100% of user traffic to healthy node-2 in us-east-1b seamlessly.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Engineering Takeaway
+                </h3>
+
+                <p>
+                  Demonstrated that resilient production architecture requires defense-in-depth: Process-level auto-recovery (systemd) + Target-level traffic rerouting (ALB) + Fleet-level capacity healing (ASG).
                 </p>
               </div>
             
@@ -1168,6 +1276,24 @@ Health checks passed HTTP 200 OK (2/2 capacity restored)</code></pre>
         <span>Instance Replacement Validation</span>
         <small class="verified-tag">✓ Verified</small>
       </div>
+
+      <div class="evidence-card">
+        <strong>E016</strong>
+        <span>RDS MariaDB Verification</span>
+        <small class="verified-tag">✓ Verified</small>
+      </div>
+
+      <div class="evidence-card">
+        <strong>E017</strong>
+        <span>CloudWatch Alarms & Observability</span>
+        <small class="verified-tag">✓ Verified</small>
+      </div>
+
+      <div class="evidence-card">
+        <strong>E018</strong>
+        <span>Failure Lab & Chaos Recovery</span>
+        <small class="verified-tag">✓ Verified</small>
+      </div>
     </div>
   </section>
 
@@ -1221,6 +1347,22 @@ Health checks passed HTTP 200 OK (2/2 capacity restored)</code></pre>
       </article>
 
       <article class="decision-card">
+        <span class="eyebrow">ISOLATED PERSISTENCE</span>
+        <h2>RDS MariaDB</h2>
+        <p>
+          Managed relational database deployed across private subnets with automated snapshots, KMS encryption at rest, and port 3306 restricted solely to the application security group.
+        </p>
+      </article>
+
+      <article class="decision-card">
+        <span class="eyebrow">ACTIONABLE TELEMETRY</span>
+        <h2>CloudWatch & Observability</h2>
+        <p>
+          Combines Unified Agent OS metrics with ALB target response time and error rate alarms, providing high-resolution visibility and automated alerts on service degradation.
+        </p>
+      </article>
+
+      <article class="decision-card">
         <span class="eyebrow">RUNTIME ISOLATION</span>
         <h2>Node Version Manager (NVM)</h2>
         <p>
@@ -1243,7 +1385,7 @@ Health checks passed HTTP 200 OK (2/2 capacity restored)</code></pre>
   <section id="validation" class="validation-section">
     <div class="section-heading">
       <span>OPERATIONAL VALIDATION</span>
-      <span class="heading-badge">SYSTEM METRICS & TESTS</span>
+      <span class="heading-badge verified">10 / 10 VERIFIED</span>
     </div>
 
     <div class="progress-table-wrap">
@@ -1296,15 +1438,15 @@ Health checks passed HTTP 200 OK (2/2 capacity restored)</code></pre>
             <td>Terminated node automatically detected and replaced by ASG</td>
             <td><span class="status-pill verified">✅ Verified</span></td>
           </tr>
-          <tr class="planned-row">
-            <td><strong>CloudWatch Monitoring</strong></td>
-            <td>Metric alarms and dashboarding for compute, ALB, and database metrics</td>
-            <td><span class="status-pill planned">⏳ Planned</span></td>
-          </tr>
-          <tr class="planned-row">
+          <tr>
             <td><strong>RDS MariaDB Connectivity</strong></td>
-            <td>Database connection pool verification and query execution latency</td>
-            <td><span class="status-pill planned">⏳ Planned</span></td>
+            <td>TCP 3306 handshake verified; connection pooling and queries functional</td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
+          </tr>
+          <tr>
+            <td><strong>CloudWatch Monitoring</strong></td>
+            <td>TargetResponseTime and High CPU metric alarms armed and operational</td>
+            <td><span class="status-pill verified">✅ Verified</span></td>
           </tr>
         </tbody>
       </table>
