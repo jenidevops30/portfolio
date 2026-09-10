@@ -15,23 +15,19 @@ app.use(express.json());
 app.set("views", path.join(__dirname, "../views"));
 app.set("view engine", "ejs");
 
-// Legacy stylesheet redirect
-app.get("/style.css", (req, res) => {
-  res.redirect(301, "/css/style.css");
-});
-
-// Static files
-app.use(express.static(path.join(__dirname, "../public")));
+// Case Study (must be before express.static to avoid /projects dir interception)
+app.use("/projects", caseStudyRouter);
+app.use("/case-study", caseStudyRouter);
 
 // Health
 app.use("/health", healthRouter);
 
-// Projects
+// Projects API
 app.use("/api/projects", projectsRouter);
 
-// Case Study
-app.use("/projects", caseStudyRouter);
-app.use("/case-study", caseStudyRouter);
+// Static files
+app.use(express.static(path.join(__dirname, "../public")));
+
 
 // Readiness
 app.get("/ready", (req, res) => {

@@ -305,6 +305,60 @@ const days = [
   },
 ];
 
+router.get("/", (req, res) => {
+  const projects = [
+    {
+      id: "aws-production-platform",
+      label: "AWS PRODUCTION PLATFORM",
+      title: "AWS Production Platform",
+      status: "in-progress",
+      statusLabel: "BUILDING",
+      description:
+        "Production-style AWS infrastructure demonstrating secure networking, load balancing, high availability, monitoring and failure recovery.",
+      technologies: ["AWS", "Terraform", "ALB", "Auto Scaling", "RDS", "CloudWatch", "Ansible"],
+      link: "/projects/aws-production-platform",
+      days: { total: 9, completed: 6 },
+    },
+    {
+      id: "aws-cost-optimization",
+      label: "AWS COST OPTIMIZATION",
+      title: "AWS Cost Optimization",
+      status: "completed",
+      statusLabel: "CASE STUDY",
+      description:
+        "AWS cost analysis and infrastructure optimization backed by billing evidence and before-and-after cost comparison.",
+      technologies: ["AWS", "FinOps", "Cost Explorer", "EC2", "RDS"],
+      link: "/projects/aws-cost-optimization",
+      days: null,
+    },
+    {
+      id: "cicd-pipeline",
+      label: "CI/CD PIPELINE",
+      title: "Production CI/CD Pipeline",
+      status: "planned",
+      statusLabel: "PLANNED",
+      description:
+        "CI/CD platform demonstrating automated testing, security checks, deployment and deployment verification.",
+      technologies: ["Jenkins", "Git", "Docker", "CI/CD"],
+      link: null,
+      days: null,
+    },
+    {
+      id: "aws-gpu-infrastructure",
+      label: "AWS GPU INFRASTRUCTURE",
+      title: "AWS GPU Infrastructure",
+      status: "completed",
+      statusLabel: "CASE STUDY",
+      description:
+        "AWS GPU infrastructure supporting media-processing workloads with Linux, NVIDIA drivers, CUDA and automated deployment workflows.",
+      technologies: ["AWS", "GPU", "Linux", "Jenkins"],
+      link: null,
+      days: null,
+    },
+  ];
+  res.render("case-study/projects", { title: "Projects", projects });
+});
+
 router.get("/aws-production-platform", (req, res) => {
   res.render("case-study/aws-production-platform", {
     title: "AWS Production Platform",
