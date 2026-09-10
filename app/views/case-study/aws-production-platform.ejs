@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="AWS Production Platform case study by Jeni Patel.">
-  <title><%= typeof title !== 'undefined' ? title : 'AWS Production Platform' %> | Jeni Patel</title>
+  <title>AWS Production Platform | Jeni Patel</title>
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/case-study.css" />
 </head>
@@ -24,17 +24,6 @@
 
 <main class="case-study">
 
-  <!-- Sticky Internal Navigation -->
-  <nav class="case-study-nav">
-    <a href="#overview">Overview</a>
-    <a href="#architecture">Architecture</a>
-    <a href="#timeline">Engineering Journey</a>
-    <a href="#incidents">Incidents</a>
-    <a href="#evidence">Evidence</a>
-    <a href="#decisions">Technology Decisions</a>
-    <a href="#validation">Validation</a>
-    <a href="#lessons">Lessons Learned</a>
-  </nav>
 
   <!-- Hero & Overview Section -->
   <section id="overview" class="case-hero">
@@ -301,54 +290,757 @@ CloudWatch Observability (Alarms • Metrics • Agent)</code></pre>
     </div>
 
     <div class="timeline-vertical">
-      <% days.forEach(day => { %>
-        <article id="day-<%= String(day.day).padStart(2, '0') %>" class="day-card <%= day.status %>">
+      
+        <article id="day-01" class="day-card completed">
           <div class="day-header">
             <div>
-              <span class="day-number">DAY <%= String(day.day).padStart(2, "0") %></span>
-              <h2><%= day.title %></h2>
+              <span class="day-number">DAY 01</span>
+              <h2>Project Foundation</h2>
             </div>
 
             <div class="day-header-badges">
-              <% if (day.incident) { %>
-                <a href="#incident-<%= day.incident.match(/\d+/)?.[0] || '001' %>" class="day-incident-tag" title="Jump to Incident Report">
-                  ⚠ <%= day.incident %>
-                </a>
-              <% } %>
-              <span class="day-status <%= day.status %>">
-                <%= day.label %>
+              
+              <span class="day-status completed">
+                COMPLETED
               </span>
             </div>
           </div>
 
           <p class="day-summary">
-            <%= day.summary %>
+            Defined the production-style AWS platform architecture and established infrastructure objectives using Terraform.
           </p>
 
           <div class="day-sections">
-            <% day.sections.forEach(section => { %>
-              <% const isIncident = section.title.toLowerCase().includes('incident') || section.title.toLowerCase().includes('root cause') || section.title.toLowerCase().includes('remediation') || section.title.toLowerCase().includes('symptom') || section.title.toLowerCase().includes('test plan') || section.title.toLowerCase().includes('expected recovery'); %>
+            
+              
 
-              <div class="day-section <%= isIncident ? 'incident-highlight' : '' %>">
+              <div class="day-section ">
                 <h3>
-                  <% if (section.title.toLowerCase().includes('incident')) { %>
-                    <span class="incident-badge-pill">INCIDENT</span>
-                  <% } else if (section.title.toLowerCase().includes('root cause')) { %>
-                    <span class="incident-badge-pill" style="background: #c0392b;">ROOT CAUSE</span>
-                  <% } else if (section.title.toLowerCase().includes('remediation')) { %>
-                    <span class="incident-badge-pill" style="background: #27ae60;">REMEDIATION</span>
-                  <% } %>
-                  <%= section.title %>
+                  
+                  Objective
                 </h3>
 
                 <p>
-                  <%= section.content %>
+                  Design a production-style AWS platform with an emphasis on reliability, security, repeatability, and operational evidence before provisioning resources.
                 </p>
               </div>
-            <% }) %>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  IaC Selection
+                </h3>
+
+                <p>
+                  Selected Terraform for Infrastructure as Code to ensure reproducible state management, declarative resource tracking, and modular infrastructure composition.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Engineering Workflow
+                </h3>
+
+                <p>
+                  Design → Build → Verify → Break → Troubleshoot → Improve → Document
+                </p>
+              </div>
+            
           </div>
         </article>
-      <% }) %>
+      
+        <article id="day-02" class="day-card completed">
+          <div class="day-header">
+            <div>
+              <span class="day-number">DAY 02</span>
+              <h2>VPC &amp; Multi-AZ Network</h2>
+            </div>
+
+            <div class="day-header-badges">
+              
+              <span class="day-status completed">
+                COMPLETED
+              </span>
+            </div>
+          </div>
+
+          <p class="day-summary">
+            Provisioned the AWS network foundation with Terraform across two Availability Zones.
+          </p>
+
+          <div class="day-sections">
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  VPC CIDR
+                </h3>
+
+                <p>
+                  10.0.0.0/16 VPC providing isolated network boundaries and sufficient address space across availability zones.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Application Subnets
+                </h3>
+
+                <p>
+                  10.0.1.0/24 in us-east-1a and 10.0.2.0/24 in us-east-1b associated with the public route table.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Database Subnets
+                </h3>
+
+                <p>
+                  10.0.11.0/24 in us-east-1a and 10.0.12.0/24 in us-east-1b reserved strictly for future RDS private database workloads.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Routing &amp; Gateways
+                </h3>
+
+                <p>
+                  Internet Gateway attached with default route (0.0.0.0/0 -&gt; igw) on the public route table. Database route table contains local VPC route only.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Subnet Separation Rationale
+                </h3>
+
+                <p>
+                  Application and database subnets are separated to enforce network isolation. Database subnets have no internet gateway route, guaranteeing that database instances cannot be directly addressed or scanned from the public internet.
+                </p>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article id="day-03" class="day-card completed">
+          <div class="day-header">
+            <div>
+              <span class="day-number">DAY 03</span>
+              <h2>EC2 &amp; Security Groups</h2>
+            </div>
+
+            <div class="day-header-badges">
+              
+                <a href="#incident-001" class="day-incident-tag" title="Jump to Incident Report">
+                  ⚠ INCIDENT #001
+                </a>
+              
+              <span class="day-status completed">
+                COMPLETED
+              </span>
+            </div>
+          </div>
+
+          <p class="day-summary">
+            Deployed EC2 compute and implemented controlled HTTP and SSH access.
+          </p>
+
+          <div class="day-sections">
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Compute Deployment
+                </h3>
+
+                <p>
+                  An EC2 instance was deployed into the application subnet and verified as running with public IPv4 addressing.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Security Group Design
+                </h3>
+
+                <p>
+                  HTTP TCP/80 is publicly reachable for application web traffic. SSH TCP/22 is restricted exclusively to the administrator IP.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section incident-highlight">
+                <h3>
+                  
+                    <span class="incident-badge-pill">INCIDENT</span>
+                  
+                  Incident #001 — EC2 SSH Authentication Failure
+                </h3>
+
+                <p>
+                  Initial SSH connection attempt failed with &#39;Permission denied (publickey)&#39;. Terraform state inspection showed key_name was omitted (key_name = null).
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section incident-highlight">
+                <h3>
+                  
+                    <span class="incident-badge-pill" style="background: #c0392b;">ROOT CAUSE</span>
+                  
+                  Root Cause &amp; Remediation
+                </h3>
+
+                <p>
+                  The EC2 instance was provisioned without an EC2 key pair. Updated Terraform compute module with key_name = var.key_name, restoring secure SSH access.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Engineering Lesson
+                </h3>
+
+                <p>
+                  Always declare authentication credentials explicitly in IaC; verify access immediately upon initial deployment before proceeding to software provisioning.
+                </p>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article id="day-04" class="day-card completed">
+          <div class="day-header">
+            <div>
+              <span class="day-number">DAY 04</span>
+              <h2>Application Runtime &amp; Web Server</h2>
+            </div>
+
+            <div class="day-header-badges">
+              
+              <span class="day-status completed">
+                COMPLETED
+              </span>
+            </div>
+          </div>
+
+          <p class="day-summary">
+            Automated server configuration and application deployment with Ansible: provisioned NVM, Node.js LTS, systemd service, and Nginx reverse proxy.
+          </p>
+
+          <div class="day-sections">
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Node.js Runtime via NVM
+                </h3>
+
+                <p>
+                  Installed NVM and Node.js v24.x LTS in user space (/home/ubuntu/.nvm) to eliminate root permission hazards and ensure isolated, reproducible runtime versions.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Application Service (Systemd)
+                </h3>
+
+                <p>
+                  Created portfolio.service systemd unit for automatic process recovery, environment isolation, and continuous supervision on port 3000.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Nginx Reverse Proxy
+                </h3>
+
+                <p>
+                  Configured Nginx with proxy_pass to http://127.0.0.1:3000, passing Host, X-Real-IP, and X-Forwarded headers while managing port 80 public traffic.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Request Flow
+                </h3>
+
+                <p>
+                  Internet → Nginx (:80) → Node.js (:3000) → Express Application
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Verification Checklist
+                </h3>
+
+                <p>
+                  Validated 200 OK contracts on /health and /ready endpoints locally and over public HTTP; verified proxy header forwarding and systemd automatic crash recovery.
+                </p>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article id="day-05" class="day-card completed">
+          <div class="day-header">
+            <div>
+              <span class="day-number">DAY 05</span>
+              <h2>Application Load Balancer</h2>
+            </div>
+
+            <div class="day-header-badges">
+              
+              <span class="day-status completed">
+                COMPLETED
+              </span>
+            </div>
+          </div>
+
+          <p class="day-summary">
+            Introduced an Application Load Balancer across multi-AZ public subnets with target group health checks and security group tiering.
+          </p>
+
+          <div class="day-sections">
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Multi-AZ ALB Provisioning
+                </h3>
+
+                <p>
+                  Deployed an internet-facing Application Load Balancer spanning public subnets in us-east-1a and us-east-1b via Terraform.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Target Group &amp; Health Check
+                </h3>
+
+                <p>
+                  Configured HTTP/80 target group checking /health endpoint with 200 OK contract (30s interval, 5s timeout, 2 healthy / 2 unhealthy thresholds).
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Security Group Tiering
+                </h3>
+
+                <p>
+                  ALB security group allows HTTP/80 from 0.0.0.0/0. EC2 security group allows TCP/80 exclusively from the ALB security group.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Traffic Tiering Rationale
+                </h3>
+
+                <p>
+                  Restricting EC2 ingress exclusively to the ALB security group ensures all client traffic passes through the ALB for inspection and load balancing, protecting EC2 nodes from direct internet exposure.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  End-to-End Verification
+                </h3>
+
+                <p>
+                  Confirmed HTTP 200 responses for /health, /ready, and portfolio UI via ALB DNS name across both availability zones.
+                </p>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article id="day-06" class="day-card completed">
+          <div class="day-header">
+            <div>
+              <span class="day-number">DAY 06</span>
+              <h2>Launch Template &amp; Auto Scaling</h2>
+            </div>
+
+            <div class="day-header-badges">
+              
+                <a href="#incident-002" class="day-incident-tag" title="Jump to Incident Report">
+                  ⚠ INCIDENT #002
+                </a>
+              
+              <span class="day-status completed">
+                COMPLETED
+              </span>
+            </div>
+          </div>
+
+          <p class="day-summary">
+            Moving from individually managed EC2 instances toward repeatable, replaceable application infrastructure using a Launch Template and Auto Scaling Group.
+          </p>
+
+          <div class="day-sections">
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Launch Template
+                </h3>
+
+                <p>
+                  Defined the AMI, instance type (t3.micro), SSH key pair, security group, tags, and cloud-init bootstrap in Terraform.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Dynamic AMI Selection
+                </h3>
+
+                <p>
+                  Used Terraform data &#39;aws_ami&#39; &#39;ubuntu&#39; to dynamically query the latest official Ubuntu 24.04 LTS x86_64 AMI instead of hardcoding an ephemeral AMI ID.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Multi-AZ Auto Scaling
+                </h3>
+
+                <p>
+                  Configured Auto Scaling Group maintaining desired capacity (Min: 2, Desired: 2, Max: 2) across application subnets in us-east-1a and us-east-1b.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Health Check Model
+                </h3>
+
+                <p>
+                  Configured health_check_type = &#39;ELB&#39; to integrate Target Group HTTP /health probe results directly into Auto Scaling replacement decisions.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section incident-highlight">
+                <h3>
+                  
+                    <span class="incident-badge-pill">INCIDENT</span>
+                  
+                  Incident #002 — Instance Replacement Test
+                </h3>
+
+                <p>
+                  Deliberately terminated an active application EC2 instance to test Auto Scaling recovery. ASG detected lost capacity, launched a replacement instance, registered to Target Group, and restored full capacity with zero ALB downtime.
+                </p>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article id="day-07" class="day-card completed">
+          <div class="day-header">
+            <div>
+              <span class="day-number">DAY 07</span>
+              <h2>RDS MariaDB in Private Subnets</h2>
+            </div>
+
+            <div class="day-header-badges">
+              
+              <span class="day-status completed">
+                COMPLETED
+              </span>
+            </div>
+          </div>
+
+          <p class="day-summary">
+            Provisioned a production-grade MariaDB instance in isolated database subnets with strict security group isolation and automated backups.
+          </p>
+
+          <div class="day-sections">
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Subnet Group Design
+                </h3>
+
+                <p>
+                  Multi-AZ DB Subnet Group spanning us-east-1a (10.0.11.0/24) and us-east-1b (10.0.12.0/24). Subnets have local VPC routing only, preventing direct internet exposure.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Security Group Layering
+                </h3>
+
+                <p>
+                  Database Security Group allows TCP/3306 exclusively from the EC2 Application Security Group (sg-xxxx). No direct public access, bastion-only or application-fleet connectivity.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Persistence &amp; Backups
+                </h3>
+
+                <p>
+                  Configured automated daily backup snapshots with 7-day retention window, storage encryption at rest enabled via AWS KMS, and custom parameter group for performance tuning.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Connectivity Validation
+                </h3>
+
+                <p>
+                  Verified TCP 3306 handshake and connection pooling from active EC2 fleet nodes. Confirmed application could successfully authenticate and persist runtime state.
+                </p>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article id="day-08" class="day-card completed">
+          <div class="day-header">
+            <div>
+              <span class="day-number">DAY 08</span>
+              <h2>CloudWatch Observability &amp; Alarms</h2>
+            </div>
+
+            <div class="day-header-badges">
+              
+              <span class="day-status completed">
+                COMPLETED
+              </span>
+            </div>
+          </div>
+
+          <p class="day-summary">
+            Engineered full-stack monitoring across compute, load balancer, and database tiers with actionable CloudWatch alarms and metric tracking.
+          </p>
+
+          <div class="day-sections">
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Fleet Telemetry
+                </h3>
+
+                <p>
+                  Configured CloudWatch Unified Agent on EC2 instances collecting high-resolution memory, disk utilization, and systemd process health alongside standard hypervisor metrics.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  ALB &amp; Target Health Monitoring
+                </h3>
+
+                <p>
+                  Instrumented TargetResponseTime (p95 latency threshold &gt; 1.5s), HTTPCode_Target_5XX_Count, and UnhealthyHostCount (threshold &gt;= 1) CloudWatch alarms.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Compute &amp; DB Thresholds
+                </h3>
+
+                <p>
+                  Established High CPU alarms on Auto Scaling fleet (&gt;80% for 2 consecutive periods of 300s) and RDS CPU/DatabaseConnections monitoring with SNS notification routing.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Operational Dashboard
+                </h3>
+
+                <p>
+                  Assembled centralized CloudWatch Dashboard displaying real-time request rates, healthy vs unhealthy host counts, target response times, and fleet utilization.
+                </p>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article id="day-09" class="day-card completed">
+          <div class="day-header">
+            <div>
+              <span class="day-number">DAY 09</span>
+              <h2>Failure Testing Lab &amp; Chaos Recovery</h2>
+            </div>
+
+            <div class="day-header-badges">
+              
+              <span class="day-status completed">
+                COMPLETED
+              </span>
+            </div>
+          </div>
+
+          <p class="day-summary">
+            Deliberately executed three controlled failure scenarios to validate self-healing, process resilience, and zero-downtime multi-AZ failover.
+          </p>
+
+          <div class="day-sections">
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Scenario 1: EC2 Hard Termination
+                </h3>
+
+                <p>
+                  Terminated an active EC2 node in us-east-1a. ALB deregistered the failing target within 15s; ASG detected capacity drop, spun up a replacement node via Launch Template v2, and restored full 2-node capacity with 0% dropped client requests.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Scenario 2: Node.js Process Kill (SIGKILL)
+                </h3>
+
+                <p>
+                  Sent SIGKILL to application daemon (&#39;systemctl kill -s 9 portfolio&#39;). Systemd unit &#39;Restart=always&#39; with &#39;RestartSec=3&#39; detected crash and revived process in 3.1 seconds before ALB health check failed.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Scenario 3: Nginx Proxy Failure &amp; AZ Isolation
+                </h3>
+
+                <p>
+                  Stopped Nginx reverse proxy on node-1 (&#39;systemctl stop nginx&#39;). ALB health checks (/health) failed on node-1; ALB automatically drained connections and shifted 100% of user traffic to healthy node-2 in us-east-1b seamlessly.
+                </p>
+              </div>
+            
+              
+
+              <div class="day-section ">
+                <h3>
+                  
+                  Engineering Takeaway
+                </h3>
+
+                <p>
+                  Demonstrated that resilient production architecture requires defense-in-depth: Process-level auto-recovery (systemd) + Target-level traffic rerouting (ALB) + Fleet-level capacity healing (ASG).
+                </p>
+              </div>
+            
+          </div>
+        </article>
+      
     </div>
   </section>
 
