@@ -54,7 +54,7 @@
         <span class="state-badge verified">● MEASURED & AUDITED</span>
       </div>
 
-      <div class="state-grid">
+      <div class="state-grid balanced-4x2">
         <div class="state-item verified">
           <span class="state-icon">🛡️</span>
           <span class="state-name">Security Gates</span>
@@ -115,32 +115,49 @@
       </a>
     </div>
 
-    <!-- Workflow Progress Visual (Synchronized Horizontal Format) -->
+    <!-- Workflow Progress Visual (Two-Phase Pipeline Track) -->
     <div class="workflow-visual-container">
-      <div class="workflow-visual-title">AUTOMATED DEVSECOPS DELIVERY LIFECYCLE</div>
-      <div class="workflow-visual">
-        <span class="workflow-step"><span class="step-num">01</span><span class="step-name">Gitleaks</span></span>
-        <span class="workflow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-        
-        <span class="workflow-step"><span class="step-num">02</span><span class="step-name">Semgrep SAST</span></span>
-        <span class="workflow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-        
-        <span class="workflow-step"><span class="step-num">03</span><span class="step-name">Trivy SCA</span></span>
-        <span class="workflow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-        
-        <span class="workflow-step"><span class="step-num">04</span><span class="step-name">Checkov IaC</span></span>
-        <span class="workflow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-        
-        <span class="workflow-step"><span class="step-num">05</span><span class="step-name">Container Scan</span></span>
-        <span class="workflow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-        
-        <span class="workflow-step"><span class="step-num">06</span><span class="step-name">OWASP ZAP</span></span>
-        <span class="workflow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-        
-        <span class="workflow-step"><span class="step-num">07</span><span class="step-name">AWS OIDC</span></span>
-        <span class="workflow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-        
-        <span class="workflow-step"><span class="step-num">08</span><span class="step-name">ECS Fargate</span></span>
+      <div class="workflow-visual-header">
+        <span class="workflow-visual-title">AUTOMATED DEVSECOPS DELIVERY LIFECYCLE</span>
+        <span class="workflow-badge">8 SEQUENTIAL GATES</span>
+      </div>
+
+      <div class="workflow-track">
+        <div class="workflow-phase">
+          <div class="workflow-phase-label">PHASE 1: STATIC SHIFT-LEFT GATES</div>
+          <div class="workflow-steps-row">
+            <span class="workflow-step"><span class="step-num">01</span><span class="step-name">Gitleaks</span></span>
+            <span class="workflow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+
+            <span class="workflow-step"><span class="step-num">02</span><span class="step-name">Semgrep SAST</span></span>
+            <span class="workflow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+
+            <span class="workflow-step"><span class="step-num">03</span><span class="step-name">Trivy SCA</span></span>
+            <span class="workflow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+
+            <span class="workflow-step"><span class="step-num">04</span><span class="step-name">Checkov IaC</span></span>
+          </div>
+        </div>
+
+        <div class="workflow-connector">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </div>
+
+        <div class="workflow-phase">
+          <div class="workflow-phase-label">PHASE 2: BUILD, DAST & ARTIFACT PROMOTION</div>
+          <div class="workflow-steps-row">
+            <span class="workflow-step"><span class="step-num">05</span><span class="step-name">Container Scan</span></span>
+            <span class="workflow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+
+            <span class="workflow-step"><span class="step-num">06</span><span class="step-name">OWASP ZAP</span></span>
+            <span class="workflow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+
+            <span class="workflow-step"><span class="step-num">07</span><span class="step-name">AWS OIDC</span></span>
+            <span class="workflow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+
+            <span class="workflow-step live-deploy"><span class="step-num">08</span><span class="step-name">ECS Fargate</span></span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -192,59 +209,59 @@
       Every code change submitted to the repository must satisfy all six security gates before any artifact is pushed to Amazon ECR or deployed to AWS ECS Fargate:
     </p>
 
-    <div style="overflow-x: auto; margin-top: 20px;">
-      <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+    <div class="table-container">
+      <table class="security-spectrum-table">
         <thead>
-          <tr style="border-bottom: 2px solid #111; text-align: left; background: #f8f9fa;">
-            <th style="padding: 12px 14px;">Gate #</th>
-            <th style="padding: 12px 14px;">Domain</th>
-            <th style="padding: 12px 14px;">Tool / Engine</th>
-            <th style="padding: 12px 14px;">Standard / Scope</th>
-            <th style="padding: 12px 14px;">Failure Action</th>
+          <tr>
+            <th style="width: 70px;">Gate #</th>
+            <th>Domain</th>
+            <th>Tool / Engine</th>
+            <th>Standard / Scope</th>
+            <th>Failure Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr style="border-bottom: 1px solid #eee;">
-            <td style="padding: 12px 14px; font-weight:700;">01</td>
-            <td style="padding: 12px 14px;"><strong>Secrets Detection</strong></td>
-            <td style="padding: 12px 14px;">Gitleaks v8</td>
-            <td style="padding: 12px 14px;">Entropy & pattern scanning for AWS, JWT, API tokens</td>
-            <td style="padding: 12px 14px; color: #dc2626; font-weight:600;">Hard PR Block</td>
+          <tr>
+            <td style="font-weight:700;">01</td>
+            <td><strong>Secrets Detection</strong></td>
+            <td><code>Gitleaks v8</code></td>
+            <td>Entropy & pattern scanning for AWS, JWT, API tokens</td>
+            <td><span class="gate-badge block">Hard PR Block</span></td>
           </tr>
-          <tr style="border-bottom: 1px solid #eee;">
-            <td style="padding: 12px 14px; font-weight:700;">02</td>
-            <td style="padding: 12px 14px;"><strong>Static Code Analysis (SAST)</strong></td>
-            <td style="padding: 12px 14px;">Semgrep + ESLint</td>
-            <td style="padding: 12px 14px;">OWASP Top 10, CWE-89 (SQLi), CWE-79 (XSS) rules</td>
-            <td style="padding: 12px 14px; color: #dc2626; font-weight:600;">Hard PR Block</td>
+          <tr>
+            <td style="font-weight:700;">02</td>
+            <td><strong>Static Code Analysis (SAST)</strong></td>
+            <td><code>Semgrep + ESLint</code></td>
+            <td>OWASP Top 10, CWE-89 (SQLi), CWE-79 (XSS) rules</td>
+            <td><span class="gate-badge block">Hard PR Block</span></td>
           </tr>
-          <tr style="border-bottom: 1px solid #eee;">
-            <td style="padding: 12px 14px; font-weight:700;">03</td>
-            <td style="padding: 12px 14px;"><strong>Software Composition (SCA)</strong></td>
-            <td style="padding: 12px 14px;">Trivy (fs) + npm audit</td>
-            <td style="padding: 12px 14px;">National Vulnerability Database (CVEs >= HIGH)</td>
-            <td style="padding: 12px 14px; color: #dc2626; font-weight:600;">Hard PR Block</td>
+          <tr>
+            <td style="font-weight:700;">03</td>
+            <td><strong>Software Composition (SCA)</strong></td>
+            <td><code>Trivy (fs) + npm audit</code></td>
+            <td>National Vulnerability Database (CVEs &ge; HIGH)</td>
+            <td><span class="gate-badge block">Hard PR Block</span></td>
           </tr>
-          <tr style="border-bottom: 1px solid #eee;">
-            <td style="padding: 12px 14px; font-weight:700;">04</td>
-            <td style="padding: 12px 14px;"><strong>IaC Compliance</strong></td>
-            <td style="padding: 12px 14px;">Checkov v3</td>
-            <td style="padding: 12px 14px;">CIS AWS Benchmark & Terraform least-privilege</td>
-            <td style="padding: 12px 14px; color: #dc2626; font-weight:600;">Hard PR Block</td>
+          <tr>
+            <td style="font-weight:700;">04</td>
+            <td><strong>IaC Compliance</strong></td>
+            <td><code>Checkov v3</code></td>
+            <td>CIS AWS Benchmark & Terraform least-privilege</td>
+            <td><span class="gate-badge block">Hard PR Block</span></td>
           </tr>
-          <tr style="border-bottom: 1px solid #eee;">
-            <td style="padding: 12px 14px; font-weight:700;">05</td>
-            <td style="padding: 12px 14px;"><strong>Container Hardening</strong></td>
-            <td style="padding: 12px 14px;">Trivy (image) + Alpine</td>
-            <td style="padding: 12px 14px;">Multi-stage build, unprivileged user, 0 root execution</td>
-            <td style="padding: 12px 14px; color: #dc2626; font-weight:600;">Rejects Image Push</td>
+          <tr>
+            <td style="font-weight:700;">05</td>
+            <td><strong>Container Hardening</strong></td>
+            <td><code>Trivy (image) + Alpine</code></td>
+            <td>Multi-stage build, unprivileged user, 0 root execution</td>
+            <td><span class="gate-badge reject">Rejects Image Push</span></td>
           </tr>
-          <tr style="border-bottom: 1px solid #eee;">
-            <td style="padding: 12px 14px; font-weight:700;">06</td>
-            <td style="padding: 12px 14px;"><strong>Dynamic Testing (DAST)</strong></td>
-            <td style="padding: 12px 14px;">OWASP ZAP Baseline</td>
-            <td style="padding: 12px 14px;">Live crawls against ephemeral container instance</td>
-            <td style="padding: 12px 14px; color: #dc2626; font-weight:600;">Blocks Deployment</td>
+          <tr>
+            <td style="font-weight:700;">06</td>
+            <td><strong>Dynamic Testing (DAST)</strong></td>
+            <td><code>OWASP ZAP Baseline</code></td>
+            <td>Live crawls against ephemeral container instance</td>
+            <td><span class="gate-badge block">Blocks Deployment</span></td>
           </tr>
         </tbody>
       </table>
@@ -262,31 +279,39 @@
       Traditional CI/CD pipelines store static <code>AWS_ACCESS_KEY_ID</code> and <code>AWS_SECRET_ACCESS_KEY</code> tokens in GitHub repository settings. If compromised, attackers obtain persistent cloud access. This platform adopts <strong>GitHub Actions OpenID Connect (OIDC)</strong> web identity federation:
     </p>
 
-    <div class="code-block" style="background: #111; color: #f8f9fa; padding: 20px; border-radius: 6px; font-family: monospace; font-size: 13px; line-height: 1.6; overflow-x: auto;">
-# Terraform IAM Trust Policy restricting role assumption strictly to repository commits:
-data "aws_iam_policy_document" "github_oidc_assume_role" {
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <div class="terminal-dots">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+        </div>
+        <div class="terminal-title">terraform/oidc.tf — IAM Web Identity Trust Policy</div>
+      </div>
+      <pre><code class="terminal-body"><span class="term-dim"># Restrict STS role assumption strictly to GitHub Actions token issued for this repo:</span>
+<span class="term-cyan">data</span> <span class="term-green">"aws_iam_policy_document"</span> <span class="term-yellow">"github_oidc_assume_role"</span> {
   statement {
-    effect  = "Allow"
-    actions = ["sts:AssumeRoleWithWebIdentity"]
+    effect  = <span class="term-green">"Allow"</span>
+    actions = [<span class="term-green">"sts:AssumeRoleWithWebIdentity"</span>]
 
     principals {
-      type        = "Federated"
+      type        = <span class="term-green">"Federated"</span>
       identifiers = [aws_iam_openid_connect_provider.github.arn]
     }
 
     condition {
-      test     = "StringEquals"
-      variable = "token.actions.githubusercontent.com:aud"
-      values   = ["sts.amazonaws.com"]
+      test     = <span class="term-green">"StringEquals"</span>
+      variable = <span class="term-green">"token.actions.githubusercontent.com:aud"</span>
+      values   = [<span class="term-green">"sts.amazonaws.com"</span>]
     }
 
     condition {
-      test     = "StringLike"
-      variable = "token.actions.githubusercontent.com:sub"
-      values   = ["repo:jenidevops30/aws-devsecops-pipeline:*"]
+      test     = <span class="term-green">"StringLike"</span>
+      variable = <span class="term-green">"token.actions.githubusercontent.com:sub"</span>
+      values   = [<span class="term-green">"repo:jenidevops30/aws-devsecops-pipeline:*"</span>]
     }
   }
-}
+}</code></pre>
     </div>
 
     <p style="margin-top: 15px;">
@@ -305,31 +330,31 @@ data "aws_iam_policy_document" "github_oidc_assume_role" {
       The monolith (Order & Inventory Management API) incorporates defense-in-depth directly into application code, ensuring security boundaries are enforced even if perimeter defenses are bypassed:
     </p>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px;">
-      <div style="background: #fdfdfd; border: 1px solid #e5e7eb; border-radius: 6px; padding: 20px;">
-        <h4 style="margin: 0 0 10px; font-size: 16px; color:#111;">🛡️ Zero-Dependency SQLite</h4>
-        <p style="font-size: 13px; line-height: 1.6; color:#555; margin:0;">
+    <div class="appsec-grid">
+      <div class="appsec-card">
+        <h4>🛡️ Zero-Dependency SQLite</h4>
+        <p>
           Uses Node.js 24's native <code>node:sqlite</code> (<code>DatabaseSync</code>). Eliminates external native C++ compilation modules (node-gyp, python buildtools), resulting in a lean, minimal Alpine container with 0 OS CVEs.
         </p>
       </div>
 
-      <div style="background: #fdfdfd; border: 1px solid #e5e7eb; border-radius: 6px; padding: 20px;">
-        <h4 style="margin: 0 0 10px; font-size: 16px; color:#111;">🔒 Parameterized SQL (CWE-89)</h4>
-        <p style="font-size: 13px; line-height: 1.6; color:#555; margin:0;">
+      <div class="appsec-card">
+        <h4>🔒 Parameterized SQL (CWE-89)</h4>
+        <p>
           All queries execute via prepared statements (<code>db.prepare("... WHERE id = ?").get(id)</code>). User inputs are strictly treated as data parameters, neutralizing SQL injection attempts automatically.
         </p>
       </div>
 
-      <div style="background: #fdfdfd; border: 1px solid #e5e7eb; border-radius: 6px; padding: 20px;">
-        <h4 style="margin: 0 0 10px; font-size: 16px; color:#111;">🧱 Schema Ingestion (Zod)</h4>
-        <p style="font-size: 13px; line-height: 1.6; color:#555; margin:0;">
+      <div class="appsec-card">
+        <h4>🧱 Schema Ingestion (Zod)</h4>
+        <p>
           Every incoming payload is parsed and validated by strict Zod schemas before hitting business logic. Malformed payloads or prototype pollution attempts trigger an immediate HTTP 400 rejection.
         </p>
       </div>
 
-      <div style="background: #fdfdfd; border: 1px solid #e5e7eb; border-radius: 6px; padding: 20px;">
-        <h4 style="margin: 0 0 10px; font-size: 16px; color:#111;">👤 Non-Root Unprivileged User</h4>
-        <p style="font-size: 13px; line-height: 1.6; color:#555; margin:0;">
+      <div class="appsec-card">
+        <h4>👤 Non-Root Unprivileged User</h4>
+        <p>
           Container runtime drops root immediately using <code>USER 10001:10001</code>. If an application remote code execution vulnerability were ever discovered, attackers cannot escape container boundaries or modify root filesystem assets.
         </p>
       </div>
@@ -347,44 +372,49 @@ data "aws_iam_policy_document" "github_oidc_assume_role" {
       A security pipeline is only as good as its proven ability to block real threats. We engineered five automated chaos drill scripts to inject deliberate violations and assert that pipeline gates break the build as expected:
     </p>
 
-    <div class="evidence-box">
-      <div class="evidence-title">LOCAL SECURITY DRILLS EXECUTION EVIDENCE</div>
-      <div style="font-family: monospace; font-size: 12px; background: #000; color: #a3e635; padding: 16px; border-radius: 4px; overflow-x: auto; line-height: 1.6;">
-$ make drills
-========================================================================
-  [DRILL 01] Secret Leakage Prevention Drill (Gitleaks)
-========================================================================
-[*] Created synthetic leaked AWS credentials in test file.
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <div class="terminal-dots">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+        </div>
+        <div class="terminal-title">bash — make drills</div>
+      </div>
+      <pre><code class="terminal-body"><span class="term-green">$</span> make drills
+<span class="term-dim">========================================================================</span>
+  <span class="term-yellow">[DRILL 01]</span> Secret Leakage Prevention Drill (Gitleaks)
+<span class="term-dim">========================================================================</span>
+<span class="term-cyan">[*]</span> Created synthetic leaked AWS credentials in test file.
 Finding:     const AWS_SECRET_ACCESS_KEY = "wJalrXUtnFEMI/K7MDENG..."
 RuleID:      generic-api-key
-[PASSED] Gitleaks intercepted the leaked AWS credential as expected!
+<span class="term-green">[PASSED]</span> Gitleaks intercepted the leaked AWS credential as expected!
 
-========================================================================
-  [DRILL 02] SAST SQL Injection Detection Drill (Semgrep / ESLint)
-========================================================================
-[*] Created synthetic SQL injection vulnerability in test file.
-[PASSED] Static pattern matched unescaped query concatenation!
+<span class="term-dim">========================================================================</span>
+  <span class="term-yellow">[DRILL 02]</span> SAST SQL Injection Detection Drill (Semgrep / ESLint)
+<span class="term-dim">========================================================================</span>
+<span class="term-cyan">[*]</span> Created synthetic SQL injection vulnerability in test file.
+<span class="term-green">[PASSED]</span> Static pattern matched unescaped query concatenation!
 
-========================================================================
-  [DRILL 03] SCA Vulnerable Dependency Interception Drill (npm audit)
-========================================================================
-[*] Created synthetic package.json with vulnerable dependency (minimist@1.2.0 - Prototype Pollution).
-[PASSED] SCA scanner flagged the vulnerable dependency and failed the audit gate as expected!
+<span class="term-dim">========================================================================</span>
+  <span class="term-yellow">[DRILL 03]</span> SCA Vulnerable Dependency Interception Drill (npm audit)
+<span class="term-dim">========================================================================</span>
+<span class="term-cyan">[*]</span> Created synthetic package.json with vulnerable dependency (minimist@1.2.0 - Prototype Pollution).
+<span class="term-green">[PASSED]</span> SCA scanner flagged the vulnerable dependency and failed the audit gate as expected!
 
-========================================================================
-  [DRILL 04] IaC Open Security Group Violation Drill (Checkov)
-========================================================================
-[*] Created rogue Terraform security group with public SSH ingress.
-[PASSED] IaC Policy engine rule matched open SSH ingress to 0.0.0.0/0!
+<span class="term-dim">========================================================================</span>
+  <span class="term-yellow">[DRILL 04]</span> IaC Open Security Group Violation Drill (Checkov)
+<span class="term-dim">========================================================================</span>
+<span class="term-cyan">[*]</span> Created rogue Terraform security group with public SSH ingress.
+<span class="term-green">[PASSED]</span> IaC Policy engine rule matched open SSH ingress to 0.0.0.0/0!
 
-========================================================================
-  [DRILL 05] DAST Missing Anti-Clickjacking Header Drill (OWASP ZAP)
-========================================================================
-[*] Launching unhardened target on 127.0.0.1:3999...
-[-] VIOLATION: Missing X-Frame-Options header (Vulnerable to Clickjacking - CWE-1021)
-[-] VIOLATION: Missing X-Content-Type-Options header (MIME-type Sniffing - CWE-79)
-[PASSED] DAST header audit detected 2 critical defensive header violations!
-      </div>
+<span class="term-dim">========================================================================</span>
+  <span class="term-yellow">[DRILL 05]</span> DAST Missing Anti-Clickjacking Header Drill (OWASP ZAP)
+<span class="term-dim">========================================================================</span>
+<span class="term-cyan">[*]</span> Launching unhardened target on 127.0.0.1:3999...
+<span class="term-red">[-] VIOLATION:</span> Missing X-Frame-Options header (Vulnerable to Clickjacking - CWE-1021)
+<span class="term-red">[-] VIOLATION:</span> Missing X-Content-Type-Options header (MIME-type Sniffing - CWE-79)
+<span class="term-green">[PASSED]</span> DAST header audit detected 2 critical defensive header violations!</code></pre>
     </div>
   </section>
 
@@ -399,32 +429,37 @@ RuleID:      generic-api-key
       Following container build and deployment, our automated smoke test script (<code>scripts/verify-deployment.sh</code>) audits the live container runtime:
     </p>
 
-    <div class="evidence-box">
-      <div class="evidence-title">AUTOMATED CONTAINER SMOKE TEST OUTPUT</div>
-      <div style="font-family: monospace; font-size: 12px; background: #000; color: #38bdf8; padding: 16px; border-radius: 4px; overflow-x: auto; line-height: 1.6;">
-$ ./scripts/verify-deployment.sh http://localhost:3001
-========================================================================
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <div class="terminal-dots">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+        </div>
+        <div class="terminal-title">bash — ./scripts/verify-deployment.sh http://localhost:3001</div>
+      </div>
+      <pre><code class="terminal-body"><span class="term-green">$</span> ./scripts/verify-deployment.sh http://localhost:3001
+<span class="term-dim">========================================================================</span>
   Production DevSecOps Pipeline: Automated Deployment Verification
   Target URL: http://localhost:3001
-========================================================================
-[INFO] Verifying Liveness Probe (/health)...
-[PASS] Liveness probe returned 200 OK with healthy status
-[INFO] Verifying Readiness Probe (/ready)...
-[PASS] Readiness probe returned 200 OK with connected database
-[INFO] Verifying Runtime Metrics Probe (/metrics)...
-[PASS] Runtime metrics endpoint returned 200 OK with memory diagnostics
-[INFO] Auditing HTTP Security Headers via curl...
-[PASS] Header 'X-Content-Type-Options: nosniff' present
-[PASS] Header 'X-Frame-Options: DENY' present (Anti-Clickjacking)
-[PASS] Header 'X-Powered-By' properly suppressed
-[INFO] Testing API SQL Injection defense...
-[PASS] SQL injection attempt safely neutralized (HTTP 404)
-[INFO] Testing Zod schema input validation...
-[PASS] Malformed payload correctly rejected by Zod schema (HTTP 400)
-========================================================================
-Verification Summary: 8 Passed, 0 Failed
-========================================================================
-      </div>
+<span class="term-dim">========================================================================</span>
+<span class="term-cyan">[INFO]</span> Verifying Liveness Probe (/health)...
+<span class="term-green">[PASS]</span> Liveness probe returned 200 OK with healthy status
+<span class="term-cyan">[INFO]</span> Verifying Readiness Probe (/ready)...
+<span class="term-green">[PASS]</span> Readiness probe returned 200 OK with connected database
+<span class="term-cyan">[INFO]</span> Verifying Runtime Metrics Probe (/metrics)...
+<span class="term-green">[PASS]</span> Runtime metrics endpoint returned 200 OK with memory diagnostics
+<span class="term-cyan">[INFO]</span> Auditing HTTP Security Headers via curl...
+<span class="term-green">[PASS]</span> Header 'X-Content-Type-Options: nosniff' present
+<span class="term-green">[PASS]</span> Header 'X-Frame-Options: DENY' present (Anti-Clickjacking)
+<span class="term-green">[PASS]</span> Header 'X-Powered-By' properly suppressed
+<span class="term-cyan">[INFO]</span> Testing API SQL Injection defense...
+<span class="term-green">[PASS]</span> SQL injection attempt safely neutralized (HTTP 404)
+<span class="term-cyan">[INFO]</span> Testing Zod schema input validation...
+<span class="term-green">[PASS]</span> Malformed payload correctly rejected by Zod schema (HTTP 400)
+<span class="term-dim">========================================================================</span>
+Verification Summary: <span class="term-green">8 Passed</span>, <span class="term-cyan">0 Failed</span>
+<span class="term-dim">========================================================================</span></code></pre>
     </div>
 
     <!-- Engineering Runbooks Reference -->
