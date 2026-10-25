@@ -311,13 +311,13 @@ router.get("/", (req, res) => {
       id: "aws-production-platform",
       label: "AWS PRODUCTION PLATFORM",
       title: "AWS Production Platform",
-      status: "in-progress",
-      statusLabel: "BUILDING",
+      status: "completed",
+      statusLabel: "COMPLETED / VERIFIED",
       description:
         "Production-style AWS infrastructure demonstrating secure networking, load balancing, high availability, monitoring and failure recovery.",
       technologies: ["AWS", "Terraform", "ALB", "Auto Scaling", "RDS", "CloudWatch", "Ansible"],
       link: "/projects/aws-production-platform",
-      days: { total: 9, completed: 6 },
+      days: { total: 9, completed: 9 },
     },
     {
       id: "aws-cost-optimization",
@@ -333,14 +333,14 @@ router.get("/", (req, res) => {
     },
     {
       id: "cicd-pipeline",
-      label: "CI/CD PIPELINE",
-      title: "Production CI/CD Pipeline",
-      status: "planned",
-      statusLabel: "PLANNED",
+      label: "DEVSECOPS PIPELINE",
+      title: "Production DevSecOps CI/CD Pipeline",
+      status: "completed",
+      statusLabel: "COMPLETED / VERIFIED",
       description:
-        "CI/CD platform demonstrating automated testing, security checks, deployment and deployment verification.",
-      technologies: ["Jenkins", "Git", "Docker", "CI/CD"],
-      link: null,
+        "Enterprise-grade 6-layer DevSecOps CI/CD pipeline on AWS with GitHub Actions OIDC federation, automated SAST, SCA, IaC compliance, DAST, and zero-downtime ECS Fargate deployment.",
+      technologies: ["AWS", "ECS Fargate", "Docker", "Terraform", "GitHub Actions", "OIDC", "OWASP ZAP", "Trivy", "Semgrep"],
+      link: "/projects/cicd-pipeline",
       days: null,
     },
     {
@@ -369,6 +369,12 @@ router.get("/aws-production-platform", (req, res) => {
 router.get("/aws-cost-optimization", (req, res) => {
   res.render("case-study/aws-cost-optimization", {
     title: "AWS Cost Optimization",
+  });
+});
+
+router.get("/cicd-pipeline", (req, res) => {
+  res.render("case-study/cicd-pipeline", {
+    title: "Production DevSecOps CI/CD Pipeline",
   });
 });
 

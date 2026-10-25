@@ -57,6 +57,9 @@ override.tf.json
 .vscode/
 .idea/
 .claude/
+.agent/
+**/.agent/
+.playwright-mcp/
 
 # Python caches
 __pycache__/

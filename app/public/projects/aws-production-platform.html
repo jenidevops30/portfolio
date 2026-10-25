@@ -7,6 +7,8 @@
   <title>AWS Production Platform | Jeni Patel</title>
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/case-study.css" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="alternate icon" href="/favicon.ico">
 </head>
 <body>
 
@@ -14,8 +16,10 @@
   <nav class="container navigation">
     <a href="/" class="logo">Jeni Patel</a>
     <div class="nav-links">
-      <a href="/">Home</a>
+      <a href="/#about">About</a>
+      <a href="/#skills">Skills</a>
       <a href="/#projects">Projects</a>
+      <a href="/#approach">Approach</a>
       <a href="/#experience">Experience</a>
       <a href="/#contact">Contact</a>
     </div>
@@ -24,17 +28,6 @@
 
 <main class="case-study">
 
-  <!-- Sticky Internal Navigation -->
-  <nav class="case-study-nav">
-    <a href="#overview">Overview</a>
-    <a href="#architecture">Architecture</a>
-    <a href="#timeline">Engineering Journey</a>
-    <a href="#incidents">Incidents</a>
-    <a href="#evidence">Evidence</a>
-    <a href="#decisions">Technology Decisions</a>
-    <a href="#validation">Validation</a>
-    <a href="#lessons">Lessons Learned</a>
-  </nav>
 
   <!-- Hero & Overview Section -->
   <section id="overview" class="case-hero">
@@ -559,7 +552,12 @@ CloudWatch Observability (Alarms • Metrics • Agent)</code></pre>
             </div>
 
             <div class="day-header-badges">
-              
+              <a href="#incident-002" class="day-incident-tag" title="Jump to Incident Report">
+                ⚠ INCIDENT #002
+              </a>
+              <a href="#incident-008" class="day-incident-tag" title="Jump to Incident Report">
+                ⚠ INCIDENT #008
+              </a>
               <span class="day-status completed">
                 COMPLETED
               </span>
@@ -737,11 +735,12 @@ CloudWatch Observability (Alarms • Metrics • Agent)</code></pre>
             </div>
 
             <div class="day-header-badges">
-              
-                <a href="#incident-002" class="day-incident-tag" title="Jump to Incident Report">
-                  ⚠ INCIDENT #002
-                </a>
-              
+              <a href="#incident-004" class="day-incident-tag" title="Jump to Incident Report">
+                ⚠ INCIDENT #004
+              </a>
+              <a href="#incident-009" class="day-incident-tag" title="Jump to Incident Report">
+                ⚠ INCIDENT #009
+              </a>
               <span class="day-status completed">
                 COMPLETED
               </span>
@@ -832,7 +831,12 @@ CloudWatch Observability (Alarms • Metrics • Agent)</code></pre>
             </div>
 
             <div class="day-header-badges">
-              
+              <a href="#incident-005" class="day-incident-tag" title="Jump to Incident Report">
+                ⚠ INCIDENT #005
+              </a>
+              <a href="#incident-007" class="day-incident-tag" title="Jump to Incident Report">
+                ⚠ INCIDENT #007
+              </a>
               <span class="day-status completed">
                 COMPLETED
               </span>
@@ -908,7 +912,9 @@ CloudWatch Observability (Alarms • Metrics • Agent)</code></pre>
             </div>
 
             <div class="day-header-badges">
-              
+              <a href="#incident-006" class="day-incident-tag" title="Jump to Incident Report">
+                ⚠ INCIDENT #006
+              </a>
               <span class="day-status completed">
                 COMPLETED
               </span>
@@ -984,7 +990,12 @@ CloudWatch Observability (Alarms • Metrics • Agent)</code></pre>
             </div>
 
             <div class="day-header-badges">
-              
+              <a href="#incident-008" class="day-incident-tag" title="Jump to Incident Report">
+                ⚠ INCIDENT #008
+              </a>
+              <a href="#incident-009" class="day-incident-tag" title="Jump to Incident Report">
+                ⚠ INCIDENT #009
+              </a>
               <span class="day-status completed">
                 COMPLETED
               </span>
@@ -1060,7 +1071,7 @@ CloudWatch Observability (Alarms • Metrics • Agent)</code></pre>
   <section id="incidents" class="incident-section">
     <div class="section-heading">
       <span>INCIDENT REPORT</span>
-      <span class="heading-badge">PRODUCTION INVESTIGATION & RECOVERY</span>
+      <span class="heading-badge">8 PRODUCTION DRILLS & ROOT CAUSES INVESTIGATED</span>
     </div>
 
     <!-- Incident #001 -->
@@ -1077,7 +1088,7 @@ CloudWatch Observability (Alarms • Metrics • Agent)</code></pre>
       <div class="incident-grid">
         <div>
           <h3>Symptom</h3>
-          <pre><code>ssh ubuntu@&lt;host&gt;
+          <pre><code>ssh -i ~/.ssh/Jeni.pem ubuntu@54.236.188.6
 
 Permission denied (publickey)</code></pre>
         </div>
@@ -1085,9 +1096,9 @@ Permission denied (publickey)</code></pre>
         <div>
           <h3>Investigation</h3>
           <ul>
-            <li>EC2 instance was verified in running state in application subnet</li>
-            <li>Security group allowed inbound TCP/22 from administrator IP</li>
-            <li>Public IPv4 address was attached and responding to network probes</li>
+            <li>EC2 instance verified running in application subnet</li>
+            <li>Security group allowed inbound TCP/22 from administrator /32 CIDR</li>
+            <li>Public IPv4 address attached and responding to network probes</li>
             <li>Terraform state inspection showed <code>key_name = null</code></li>
           </ul>
         </div>
@@ -1096,7 +1107,7 @@ Permission denied (publickey)</code></pre>
       <div class="root-cause">
         <span>ROOT CAUSE</span>
         <p>
-          The EC2 instance was provisioned without an EC2 key pair because the <code>key_name</code> parameter was omitted in the Terraform compute configuration.
+          The EC2 instance was provisioned without an authorized SSH public key because the <code>key_name</code> argument was omitted in the Terraform compute resource configuration.
         </p>
       </div>
 
@@ -1104,14 +1115,14 @@ Permission denied (publickey)</code></pre>
         <h3>Remediation</h3>
         <pre><code>key_name = var.key_name</code></pre>
         <p>
-          Updated the Terraform configuration to explicitly associate the instance with the authorized SSH key pair. Applied changes and confirmed immediate successful authentication.
+          Updated the Terraform compute configuration to explicitly associate the instance with the authorized SSH key pair. Re-applied changes and confirmed immediate successful login.
         </p>
       </div>
 
       <div class="validation-box">
-        <h3>Validation & Engineering Lesson</h3>
+        <h3>Validation &amp; Engineering Lesson</h3>
         <p>
-          Validated SSH connection via key pair. Established a core engineering guideline: all compute definitions in IaC must enforce explicit key pair assignment before initiating software provisioning.
+          Validated SSH connection via key pair. Established a core engineering guardrail: all compute definitions in IaC must enforce explicit key pair assignment before initiating software provisioning.
         </p>
       </div>
     </article>
@@ -1119,26 +1130,84 @@ Permission denied (publickey)</code></pre>
     <!-- Incident #002 -->
     <article id="incident-002" class="incident-card">
       <div class="incident-meta">
-        <a href="#day-06" class="incident-day-badge" title="View Day 06 in Timeline">DAY 06</a>
+        <a href="#day-04" class="incident-day-badge" title="View Day 04 in Timeline">DAY 04</a>
         <span>INCIDENT #002</span>
-        <span>HIGH</span>
+        <span>MEDIUM</span>
+        <span>ROUTING / WEB TIER</span>
+      </div>
+
+      <h2>Nginx Reverse Proxy 404 Route Resolution</h2>
+
+      <div class="incident-grid">
+        <div>
+          <h3>Symptom</h3>
+          <pre><code>$ curl -i http://54.236.188.6/health
+HTTP/1.1 404 Not Found
+Server: nginx/1.24.0 (Ubuntu)</code></pre>
+        </div>
+
+        <div>
+          <h3>Investigation</h3>
+          <ul>
+            <li>Security group TCP/80 ingress verified open to internet</li>
+            <li>Node.js application verified active and healthy on <code>127.0.0.1:3000</code></li>
+            <li>Nginx configuration served default root <code>/var/www/html</code> with static file fallback</li>
+            <li>No reverse proxy directive bound port 80 to the Node.js backend daemon</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="root-cause">
+        <span>ROOT CAUSE</span>
+        <p>
+          Nginx was running with default Ubuntu packaging configuration (<code>try_files $uri $uri/ =404;</code>) rather than proxying traffic to the upstream Node.js process listening on port 3000.
+        </p>
+      </div>
+
+      <div class="remediation">
+        <h3>Remediation</h3>
+        <pre><code>location / {
+    proxy_pass http://127.0.0.1:3000;
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+}</code></pre>
+        <p>
+          Configured upstream reverse proxy in <code>/etc/nginx/sites-available/default</code>, ran <code>sudo nginx -t</code> syntax check, and reloaded the service.
+        </p>
+      </div>
+
+      <div class="validation-box">
+        <h3>Validation &amp; Engineering Lesson</h3>
+        <p>
+          Endpoint returned <code>HTTP/1.1 200 OK</code>. A running web server does not imply traffic routing; reverse proxy rules must be explicitly validated during automated deployment.
+        </p>
+      </div>
+    </article>
+
+    <!-- Incident #004 -->
+    <article id="incident-004" class="incident-card">
+      <div class="incident-meta">
+        <a href="#day-06" class="incident-day-badge" title="View Day 06 in Timeline">DAY 06</a>
+        <span>INCIDENT #004</span>
+        <span>LOW / DRILL</span>
         <span>AUTO SCALING / RECOVERY TEST</span>
       </div>
 
-      <h2>Instance Replacement Test (Controlled Termination)</h2>
+      <h2>Auto Scaling Controlled Node Termination Drill</h2>
 
       <div class="incident-grid">
         <div>
           <h3>Scenario</h3>
           <p>
-            An active application EC2 instance in us-east-1a was deliberately terminated via AWS CLI to test Auto Scaling Group self-healing and zero-downtime recovery.
+            An active application EC2 instance in <code>us-east-1a</code> was deliberately terminated via AWS CLI to test Auto Scaling Group self-healing and zero-downtime recovery.
           </p>
         </div>
 
         <div>
           <h3>Expected Behavior</h3>
           <p>
-            The Auto Scaling Group detects capacity loss via ELB health check, terminates the degraded node, provisions a replacement instance from the Launch Template, and registers it to the Target Group.
+            The Auto Scaling Group detects capacity loss via ELB health checks, drains connections gracefully, provisions a replacement instance from the Launch Template, and registers it to the Target Group.
           </p>
         </div>
       </div>
@@ -1161,7 +1230,7 @@ Health checks passed HTTP 200 OK (2/2 capacity restored)</code></pre>
       <div class="remediation">
         <h3>Validation</h3>
         <p>
-          Target Group reached full healthy state (2/2 instances) within evaluation threshold. Public ALB endpoint maintained 100% uptime with zero client 5xx errors during node replacement.
+          Target Group reached full healthy state (2/2 instances) within 95 seconds. Public ALB endpoint maintained 100% uptime with zero client 5xx errors during node replacement.
         </p>
       </div>
 
@@ -1169,6 +1238,280 @@ Health checks passed HTTP 200 OK (2/2 capacity restored)</code></pre>
         <h3>Engineering Lesson</h3>
         <p>
           Stateless compute paired with immutable Launch Templates and health-aware Auto Scaling Groups ensures automated self-healing without requiring human intervention during infrastructure failures.
+        </p>
+      </div>
+    </article>
+
+    <!-- Incident #005 -->
+    <article id="incident-005" class="incident-card">
+      <div class="incident-meta">
+        <a href="#day-07" class="incident-day-badge" title="View Day 07 in Timeline">DAY 07</a>
+        <span>INCIDENT #005</span>
+        <span>HIGH</span>
+        <span>DATABASE / NETWORK SECURITY</span>
+      </div>
+
+      <h2>Database TCP 3306 Connection Timeout (RDS Ingress)</h2>
+
+      <div class="incident-grid">
+        <div>
+          <h3>Symptom</h3>
+          <pre><code>$ nc -zvw3 devops-portfolio-lab-mariadb.c3j92kx981ls.us-east-1.rds.amazonaws.com 3306
+nc: connect to ... port 3306 (tcp) timed out: Operation timed out</code></pre>
+        </div>
+
+        <div>
+          <h3>Investigation</h3>
+          <ul>
+            <li>DNS resolved RDS endpoint to private IP <code>10.0.11.45</code></li>
+            <li>EC2 application node had valid local VPC route to <code>10.0.0.0/16</code></li>
+            <li>RDS security group audit revealed <code>IpPermissions</code> had no ingress rule authorizing the EC2 security group</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="root-cause">
+        <span>ROOT CAUSE</span>
+        <p>
+          Chained security group authorization was missing in the database tier Terraform module: the database security group did not reference the EC2 application security group (<code>sg-05ca8ca9955ca291a</code>) as an authorized ingress source.
+        </p>
+      </div>
+
+      <div class="remediation">
+        <h3>Remediation</h3>
+        <pre><code>resource "aws_security_group_rule" "db_ingress" {
+  type                     = "ingress"
+  from_port                = 3306
+  to_port                  = 3306
+  protocol                 = "tcp"
+  source_security_group_id = var.app_security_group_id
+  security_group_id        = aws_security_group.db.id
+}</code></pre>
+        <p>
+          Added explicit security-group-to-security-group ingress rule in Terraform and applied changes.
+        </p>
+      </div>
+
+      <div class="validation-box">
+        <h3>Validation &amp; Engineering Lesson</h3>
+        <p>
+          TCP socket probe connected immediately (<code>port [tcp/mysql] succeeded!</code>). Application <code>/ready</code> endpoint returned 200 OK. Private databases must use SG-to-SG chaining rather than CIDR blocks.
+        </p>
+      </div>
+    </article>
+
+    <!-- Incident #006 -->
+    <article id="incident-006" class="incident-card">
+      <div class="incident-meta">
+        <a href="#day-08" class="incident-day-badge" title="View Day 08 in Timeline">DAY 08</a>
+        <span>INCIDENT #006</span>
+        <span>MEDIUM</span>
+        <span>OBSERVABILITY / ALERTING</span>
+      </div>
+
+      <h2>Target Group Unhealthy Host Alarm &amp; SNS Notification</h2>
+
+      <div class="incident-grid">
+        <div>
+          <h3>Symptom</h3>
+          <pre><code>Alarm: devops-portfolio-lab-alb-unhealthy-hosts
+State: OK → ALARM
+Metric: UnHealthyHostCount >= 1.0 for 60s
+Action: SNS Notification published to alert topic</code></pre>
+        </div>
+
+        <div>
+          <h3>Investigation</h3>
+          <ul>
+            <li>Target Node 1 in <code>us-east-1a</code> failed consecutive ALB health checks</li>
+            <li>ALB drained connections and shifted 100% of user traffic to Node 2 in <code>us-east-1b</code></li>
+            <li>CloudWatch alarm triggered within 60s of metric threshold breach</li>
+            <li>Systemd watchdog detected process exit and triggered automatic restart</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="root-cause">
+        <span>ROOT CAUSE</span>
+        <p>
+          Intentional failure injection during Day 08 telemetry validation to verify that CloudWatch alarms accurately detect degraded backend targets and dispatch automated SNS notifications to operations teams.
+        </p>
+      </div>
+
+      <div class="remediation">
+        <h3>Remediation &amp; Auto-Recovery</h3>
+        <p>
+          Systemd <code>Restart=always</code> revived the application daemon; target health check returned HTTP 200 within 15 seconds; target re-entered healthy status; CloudWatch alarm transitioned back to <code>OK</code>.
+        </p>
+      </div>
+
+      <div class="validation-box">
+        <h3>Validation &amp; Engineering Lesson</h3>
+        <p>
+          Verified end-to-end telemetry: ALB health probe → CloudWatch metric emission → Alarm state evaluation → SNS topic delivery. The surviving node maintained zero downtime for users.
+        </p>
+      </div>
+    </article>
+
+    <!-- Incident #007 -->
+    <article id="incident-007" class="incident-card">
+      <div class="incident-meta">
+        <a href="#day-07" class="incident-day-badge" title="View Day 07 in Timeline">DAY 07</a>
+        <span>INCIDENT #007</span>
+        <span>HIGH / DRILL</span>
+        <span>DATABASE / NETWORK ISOLATION</span>
+      </div>
+
+      <h2>Private Database Network Isolation &amp; Security Group Ingress Removal Drill</h2>
+
+      <div class="incident-grid">
+        <div>
+          <h3>Scenario</h3>
+          <p>
+            Temporarily revoked the EC2-SG → RDS-SG ingress rule to validate that database isolation is strictly enforced at the AWS network boundary and can be diagnosed methodically.
+          </p>
+        </div>
+
+        <div>
+          <h3>Observed Symptom</h3>
+          <pre><code>$ nc -zv devops-portfolio-lab-mariadb... 3306
+nc: connect to ... timed out: Operation timed out
+
+$ curl -i http://localhost:3000/ready
+HTTP/1.1 503 Service Unavailable (DB Pool Timeout)</code></pre>
+        </div>
+      </div>
+
+      <div class="root-cause">
+        <span>METHODOLOGICAL DIAGNOSIS</span>
+        <p>
+          Followed structured incident triage (Observe → Define Symptom → Identify Layer → Form Hypothesis → Test → Root Cause → Fix → Validate → Prevent). DNS resolved normally, proving layer 3/4 was functional while layer 4 security group packet filtering dropped TCP SYN packets.
+        </p>
+      </div>
+
+      <div class="remediation">
+        <h3>Remediation</h3>
+        <pre><code>aws ec2 authorize-security-group-ingress \
+  --group-id sg-0aa34f78314e0821b \
+  --protocol tcp --port 3306 \
+  --source-group sg-05ca8ca9955ca291a</code></pre>
+        <p>
+          Re-authorized security group ingress and reconciled Terraform state with <code>terraform apply -auto-approve</code>.
+        </p>
+      </div>
+
+      <div class="validation-box">
+        <h3>Validation &amp; Engineering Lesson</h3>
+        <p>
+          TCP socket connection restored in &lt;1s. Application <code>/ready</code> returned HTTP 200 OK. Proved database connectivity failures can be verified at the network boundary rather than misdiagnosed as application bugs.
+        </p>
+      </div>
+    </article>
+
+    <!-- Incident #008 -->
+    <article id="incident-008" class="incident-card">
+      <div class="incident-meta">
+        <a href="#day-04" class="incident-day-badge" title="View Day 04 in Timeline">DAY 04 / 09</a>
+        <span>INCIDENT #008</span>
+        <span>MEDIUM</span>
+        <span>WEB TIER / CONFIGURATION DRIFT</span>
+      </div>
+
+      <h2>Nginx Configuration Syntax Typo &amp; Web Server Recovery</h2>
+
+      <div class="incident-grid">
+        <div>
+          <h3>Symptom</h3>
+          <pre><code>$ curl -i http://54.236.188.6/health
+curl: (7) Failed to connect: Connection refused
+EC2 Status Checks: 2/2 Passed (Healthy)</code></pre>
+        </div>
+
+        <div>
+          <h3>Investigation</h3>
+          <ul>
+            <li>EC2 instance healthy at compute and hypervisor layer</li>
+            <li>Node.js application active and serving on <code>127.0.0.1:3000</code></li>
+            <li><code>systemctl status nginx</code> reported service failed with exit-code</li>
+            <li><code>sudo nginx -t</code> caught invalid directive <code>proxy_cache_bypasss</code></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="root-cause">
+        <span>ROOT CAUSE</span>
+        <p>
+          A typographical error (<code>proxy_cache_bypasss</code> with an extraneous trailing 's') in <code>/etc/nginx/sites-enabled/default</code> caused Nginx configuration parsing to fail, preventing the daemon from starting and unbinding port 80.
+        </p>
+      </div>
+
+      <div class="remediation">
+        <h3>Remediation</h3>
+        <pre><code>sudo nginx -t && sudo systemctl restart nginx</code></pre>
+        <p>
+          Corrected typo to <code>proxy_cache_bypass $http_upgrade;</code>, verified syntax with dry-run test, and restarted Nginx.
+        </p>
+      </div>
+
+      <div class="validation-box">
+        <h3>Validation &amp; Engineering Lesson</h3>
+        <p>
+          External endpoint returned <code>HTTP 200 OK</code>. A healthy EC2 instance does not guarantee a healthy application stack. Enforced dry-run syntax verification (<code>nginx -t</code>) before every automated service reload.
+        </p>
+      </div>
+    </article>
+
+    <!-- Incident #009 -->
+    <article id="incident-009" class="incident-card">
+      <div class="incident-meta">
+        <a href="#day-06" class="incident-day-badge" title="View Day 06 in Timeline">DAY 06 / 09</a>
+        <span>INCIDENT #009</span>
+        <span>HIGH / DRILL</span>
+        <span>COMPUTE / AUTO SCALING RECOVERY</span>
+      </div>
+
+      <h2>EC2 Instance Hard Termination &amp; Autonomous ASG Healing</h2>
+
+      <div class="incident-grid">
+        <div>
+          <h3>Symptom &amp; Scenario</h3>
+          <p>
+            Active node <code>i-0ba4586e44ec1e049</code> in <code>us-east-1a</code> was hard-terminated during a controlled resilience drill. Fleet capacity dropped from 2 InService nodes to 1, below desired capacity.
+          </p>
+        </div>
+
+        <div>
+          <h3>Detection &amp; Traffic Draining</h3>
+          <ul>
+            <li>t+05s: ALB detected shutting-down state; target set to draining (30s delay)</li>
+            <li>t+12s: Surviving node in <code>us-east-1b</code> absorbed 100% of user traffic</li>
+            <li>t+32s: ASG detected capacity deficit and triggered <code>LaunchInstances</code></li>
+            <li>110 probes sent during replacement; <strong>0 dropped requests, 0% 5xx errors</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="root-cause">
+        <span>AUTONOMOUS RECOVERY CYCLE</span>
+        <pre><code>t+00s: Node 1 hard-terminated via CLI
+t+05s: ALB drains target connections gracefully
+t+32s: ASG triggers replacement launch via Launch Template v2
+t+48s: Replacement node boots; cloud-init configures Node.js & Nginx
+t+75s: New target registers to ALB Target Group
+t+105s: Health checks pass HTTP 200 OK; 2/2 desired capacity restored</code></pre>
+      </div>
+
+      <div class="remediation">
+        <h3>Validation</h3>
+        <p>
+          Replacement instance <code>i-0fe48911029ba81c7</code> registered as healthy in Target Group. Total autonomous recovery time: 105 seconds with zero human intervention.
+        </p>
+      </div>
+
+      <div class="validation-box">
+        <h3>Engineering Lesson</h3>
+        <p>
+          Auto Scaling Groups enforce desired capacity as a continuous contract. Connection draining prevents dropped requests during failover, while Launch Templates ensure exact configuration parity for replacement nodes.
         </p>
       </div>
     </article>
@@ -1225,7 +1568,7 @@ Health checks passed HTTP 200 OK (2/2 capacity restored)</code></pre>
 
       <div class="evidence-card">
         <strong>E007</strong>
-        <span>SSH Incident Report</span>
+        <span>SSH Incident (Incident #001)</span>
         <small class="verified-tag">✓ Verified</small>
       </div>
 
@@ -1237,7 +1580,7 @@ Health checks passed HTTP 200 OK (2/2 capacity restored)</code></pre>
 
       <div class="evidence-card">
         <strong>E009</strong>
-        <span>Nginx Reverse Proxy Validation</span>
+        <span>Nginx Reverse Proxy (Incident #002)</span>
         <small class="verified-tag">✓ Verified</small>
       </div>
 
@@ -1249,7 +1592,7 @@ Health checks passed HTTP 200 OK (2/2 capacity restored)</code></pre>
 
       <div class="evidence-card">
         <strong>E011</strong>
-        <span>ALB Verification</span>
+        <span>ALB Infrastructure Verification</span>
         <small class="verified-tag">✓ Verified</small>
       </div>
 
@@ -1273,7 +1616,7 @@ Health checks passed HTTP 200 OK (2/2 capacity restored)</code></pre>
 
       <div class="evidence-card">
         <strong>E015</strong>
-        <span>Instance Replacement Validation</span>
+        <span>ASG Controlled Termination (Incident #004)</span>
         <small class="verified-tag">✓ Verified</small>
       </div>
 
@@ -1285,13 +1628,49 @@ Health checks passed HTTP 200 OK (2/2 capacity restored)</code></pre>
 
       <div class="evidence-card">
         <strong>E017</strong>
-        <span>CloudWatch Alarms & Observability</span>
+        <span>RDS Security Group Isolation (Incident #005)</span>
         <small class="verified-tag">✓ Verified</small>
       </div>
 
       <div class="evidence-card">
         <strong>E018</strong>
-        <span>Failure Lab & Chaos Recovery</span>
+        <span>CloudWatch Alarms &amp; Observability (Incident #006)</span>
+        <small class="verified-tag">✓ Verified</small>
+      </div>
+
+      <div class="evidence-card">
+        <strong>E019</strong>
+        <span>Database Security Group Ingress Drill (Incident #007)</span>
+        <small class="verified-tag">✓ Verified</small>
+      </div>
+
+      <div class="evidence-card">
+        <strong>E020</strong>
+        <span>Nginx Syntax Typo &amp; Recovery (Incident #008)</span>
+        <small class="verified-tag">✓ Verified</small>
+      </div>
+
+      <div class="evidence-card">
+        <strong>E021</strong>
+        <span>EC2 Hard Termination &amp; ASG Healing (Incident #009)</span>
+        <small class="verified-tag">✓ Verified</small>
+      </div>
+
+      <div class="evidence-card">
+        <strong>E022</strong>
+        <span>Multi-AZ Traffic Load Balancing Test</span>
+        <small class="verified-tag">✓ Verified</small>
+      </div>
+
+      <div class="evidence-card">
+        <strong>E023</strong>
+        <span>Systemd Process Crash Recovery (SIGKILL)</span>
+        <small class="verified-tag">✓ Verified</small>
+      </div>
+
+      <div class="evidence-card">
+        <strong>E024</strong>
+        <span>Nginx Proxy Stop &amp; AZ Failover Test</span>
         <small class="verified-tag">✓ Verified</small>
       </div>
     </div>
@@ -1454,6 +1833,383 @@ Health checks passed HTTP 200 OK (2/2 capacity restored)</code></pre>
   </section>
 
 
+  <!-- Phase 11 — Production Readiness -->
+  <section id="production-readiness" class="readiness-section">
+    <div class="section-heading">
+      <span>PHASE 11 — PRODUCTION READINESS</span>
+      <span class="heading-badge">SENIOR DEVOPS ARCHITECTURE</span>
+    </div>
+
+    <p class="section-intro" style="font-size: 16px; line-height: 1.6; color: #475569; margin-bottom: 30px;">
+      Moving beyond infrastructure provisioning into production-grade systems engineering. A senior DevOps case study demonstrates how systems are operated, protected, diagnosed, and recovered under real-world operational stress.
+    </p>
+
+    <!-- 1. Security Model -->
+    <div class="readiness-card" style="margin-bottom: 30px;">
+      <h3>
+        <span>🛡️ 1. Security Model — Principle of Least Privilege & SG Chaining</span>
+      </h3>
+      <p>
+        Network isolation is enforced via layered security group chaining. Traffic flows through unidirectional, strictly justified security boundaries:
+      </p>
+
+      <div class="security-diagram-box">
+Internet
+   │
+   ▼ [TCP 80/443 - Public Ingress]
+ALB Security Group (sg-alb)
+   │
+   ▼ [TCP 80/3000 - Source SG: sg-alb only]
+EC2 Security Group (sg-compute)
+   │
+   ▼ [TCP 3306 - Source SG: sg-compute only]
+RDS Security Group (sg-database)
+      </div>
+
+      <div class="table-container" style="margin-top: 16px;">
+        <table class="validation-table">
+          <thead>
+            <tr>
+              <th>Boundary & Ingress Route</th>
+              <th>Allowed Port</th>
+              <th>Source / Scope</th>
+              <th>Explicit Security Justification</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Internet → ALB</strong></td>
+              <td><code>80, 443</code></td>
+              <td><code>0.0.0.0/0</code></td>
+              <td>Public entry point for client HTTPS traffic. Terminates TLS, shields backend EC2 instances from direct Internet exposure, and provides layer 7 DDoS mitigation.</td>
+            </tr>
+            <tr>
+              <td><strong>ALB → EC2</strong></td>
+              <td><code>80, 3000</code></td>
+              <td><code>sg-alb</code> ID</td>
+              <td>Backend reverse proxy and application runtime. Public HTTP ingress to EC2 is strictly blocked; instances accept packets only forwarded by the ALB security group.</td>
+            </tr>
+            <tr>
+              <td><strong>EC2 → RDS</strong></td>
+              <td><code>3306</code></td>
+              <td><code>sg-compute</code> ID</td>
+              <td>Database tier located in isolated private subnets with no route to the Internet Gateway. MariaDB accepts TCP 3306 packets exclusively from the EC2 compute fleet.</td>
+            </tr>
+            <tr>
+              <td><strong>Administrator → EC2</strong></td>
+              <td><code>22</code> (SSH)</td>
+              <td>Admin <code>/32</code> CIDR</td>
+              <td>Emergency administrative bastion access. Restricted to the engineer's static IP to eliminate bot brute-force attacks while preserving troubleshooting capabilities.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 2. Health Model -->
+    <div class="readiness-card" style="margin-bottom: 30px;">
+      <h3>
+        <span>🩺 2. Health Model — Liveness vs. Readiness Probing</span>
+      </h3>
+      <p>
+        Production architectures require decoupling process liveness from service readiness. Conflating them causes cascading outages when downstream dependencies experience transient delays:
+      </p>
+
+      <div class="health-model-grid">
+        <div class="probe-card health">
+          <h4>
+            <span>Process Health (Liveness)</span>
+            <span class="probe-code">/health</span>
+          </h4>
+          <p><strong>Question:</strong> Is the application process running and responding?</p>
+          <ul>
+            <li><strong>Monitored By:</strong> Node runtime / Systemd supervisor</li>
+            <li><strong>Failure Meaning:</strong> Event loop deadlock, memory exhaustion (OOM), unhandled exception.</li>
+            <li><strong>Remediation:</strong> Local systemd unit automatically executes <code>Restart=always</code> with 3s backoff.</li>
+            <li><strong>Traffic Impact:</strong> Process is recycled locally without triggering premature cluster-wide ASG node destructions.</li>
+          </ul>
+        </div>
+
+        <div class="probe-card ready">
+          <h4>
+            <span>Service Readiness</span>
+            <span class="probe-code">/ready</span>
+          </h4>
+          <p><strong>Question:</strong> Is the node ready to serve user transactions?</p>
+          <ul>
+            <li><strong>Monitored By:</strong> Application Load Balancer Target Group / ASG Health Checks</li>
+            <li><strong>Failure Meaning:</strong> Downstream dependency failure (e.g. MariaDB pool exhausted, cache unreachable).</li>
+            <li><strong>Remediation:</strong> ALB smoothly drains connections and routes traffic to healthy alternate AZ targets.</li>
+            <li><strong>Traffic Impact:</strong> Protects end users from 500 errors while giving the dependency time to recover.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Failure Matrix -->
+    <div class="readiness-card" style="margin-bottom: 30px;">
+      <h3>
+        <span>⚡ 3. Failure Matrix — Expected Behavior vs. Empirical Evidence</span>
+      </h3>
+      <p>
+        In accordance with senior engineering discipline, failure modes are distinguished between empirically executed tests and planned validations:
+      </p>
+
+      <div class="table-container">
+        <table class="validation-table">
+          <thead>
+            <tr>
+              <th>Failure Scenario</th>
+              <th>Expected Behavior</th>
+              <th>Evidence Source</th>
+              <th>Verification Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Application Stopped</strong></td>
+              <td>Health check fails; systemd triggers automatic restart; if persistent, ALB marks target unhealthy</td>
+              <td>HTTP 502 Bad Gateway / Systemd logs / ALB Target Health</td>
+              <td><span class="scorecard-badge in-progress">🟡 Tested (Incident #003)</span></td>
+            </tr>
+            <tr>
+              <td><strong>Nginx Proxy Stopped</strong></td>
+              <td>Application port 80 refused; ALB detects probe timeout, drains target, and isolates node</td>
+              <td>HTTP probe timeout / ALB Target Group metrics</td>
+              <td><span class="scorecard-badge in-progress">🟡 Tested (Incident #003)</span></td>
+            </tr>
+            <tr>
+              <td><strong>EC2 Node Terminated</strong></td>
+              <td>ASG detects missing EC2 heartbeat, marks instance unhealthy, and provisions replacement node via Launch Template</td>
+              <td>AWS ASG Activity History / EC2 DescribeInstances logs</td>
+              <td><span class="scorecard-badge in-progress">🟡 Tested (Incident #002)</span></td>
+            </tr>
+            <tr>
+              <td><strong>ALB Target Unhealthy</strong></td>
+              <td>ALB stops routing new sessions to impaired node; 100% traffic smoothly redirected to healthy multi-AZ target</td>
+              <td>ALB access logs / Zero dropped HTTP 200 responses</td>
+              <td><span class="scorecard-badge in-progress">🟡 Tested (Incident #003)</span></td>
+            </tr>
+            <tr>
+              <td><strong>Database Access Blocked</strong></td>
+              <td>Readiness probe <code>/ready</code> fails (503 Service Unavailable), while <code>/health</code> remains 200 OK; ALB drains node</td>
+              <td>Application error logs (<code>ECONNREFUSED 3306</code>) / Probing script</td>
+              <td><span class="scorecard-badge planned">🔵 Planned (Simulated RDS SG block)</span></td>
+            </tr>
+            <tr>
+              <td><strong>High CPU Saturation</strong></td>
+              <td>CloudWatch alarm triggers state transition to <code>ALARM</code>; SNS publishes alert notification</td>
+              <td>CloudWatch Alarm History / SNS Email & JSON payload</td>
+              <td><span class="scorecard-badge in-progress">🟡 Tested (Incident #008)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 4. Operational Runbook -->
+    <div class="readiness-card" style="margin-bottom: 30px;">
+      <h3>
+        <span>📋 4. Operational Runbook — Standard Incident Response Procedure</span>
+      </h3>
+      <p>
+        When an incident occurs in production, senior engineers follow a structured triage tree rather than guessing or applying random fixes:
+      </p>
+
+      <div class="runbook-pipeline">
+        <div class="runbook-step">
+          <span class="step-badge">STEP 01</span>
+          <div class="step-content">
+            <strong>Alert Triggered</strong>
+            <span>CloudWatch Metric Alarm fires (e.g. <code>TargetResponseTime > 1s</code> or <code>High CPU > 80%</code>) or synthetic canary fails.</span>
+          </div>
+        </div>
+
+        <div class="runbook-step">
+          <span class="step-badge">STEP 02</span>
+          <div class="step-content">
+            <strong>Confirm Symptom</strong>
+            <span>Execute outside-in probe: <code>curl -Iv https://&lt;alb-dns&gt;/health --max-time 5</code> to isolate user-facing failure code.</span>
+          </div>
+        </div>
+
+        <div class="runbook-step">
+          <span class="step-badge">STEP 03</span>
+          <div class="step-content">
+            <strong>Check ALB Target Health</strong>
+            <span>Query target group status: <code>aws elbv2 describe-target-health --target-group-arn &lt;arn&gt;</code> to pinpoint failing node IDs.</span>
+          </div>
+        </div>
+
+        <div class="runbook-step">
+          <span class="step-badge">STEP 04</span>
+          <div class="step-content">
+            <strong>Check EC2 Fleet Status</strong>
+            <span>Inspect instance status checks: <code>aws ec2 describe-instance-status --instance-ids &lt;id&gt;</code> (StatusCheckFailed_System vs Instance).</span>
+          </div>
+        </div>
+
+        <div class="runbook-step">
+          <span class="step-badge">STEP 05</span>
+          <div class="step-content">
+            <strong>Check Nginx Reverse Proxy</strong>
+            <span>Verify reverse proxy listener and upstream proxy logs: <code>systemctl status nginx</code> & <code>tail -n 50 /var/log/nginx/error.log</code>.</span>
+          </div>
+        </div>
+
+        <div class="runbook-step">
+          <span class="step-badge">STEP 06</span>
+          <div class="step-content">
+            <strong>Check Application Daemon</strong>
+            <span>Verify Node.js systemd process: <code>systemctl status aws-platform-app</code> & <code>journalctl -u aws-platform-app -n 50 --no-pager</code>.</span>
+          </div>
+        </div>
+
+        <div class="runbook-step">
+          <span class="step-badge">STEP 07</span>
+          <div class="step-content">
+            <strong>Check Database Connectivity</strong>
+            <span>Validate TCP socket to RDS endpoint: <code>nc -zv &lt;rds-endpoint&gt; 3306</code> and inspect connection pool error logs.</span>
+          </div>
+        </div>
+
+        <div class="runbook-step">
+          <span class="step-badge">STEP 08</span>
+          <div class="step-content">
+            <strong>Identify Root Cause</strong>
+            <span>Correlate timestamps across CloudWatch metrics, Nginx access logs, and application stack traces to pinpoint the exact failure mechanism.</span>
+          </div>
+        </div>
+
+        <div class="runbook-step">
+          <span class="step-badge">STEP 09</span>
+          <div class="step-content">
+            <strong>Remediate</strong>
+            <span>Apply targeted surgical remediation (e.g. reload systemd unit, drain unhealthy target, roll out Launch Template revision).</span>
+          </div>
+        </div>
+
+        <div class="runbook-step">
+          <span class="step-badge">STEP 10</span>
+          <div class="step-content">
+            <strong>Validate Recovery</strong>
+            <span>Run <code>./scripts/verify-health.sh</code>; confirm ALB target health returns to <code>healthy</code> across all Availability Zones.</span>
+          </div>
+        </div>
+
+        <div class="runbook-step">
+          <span class="step-badge">STEP 11</span>
+          <div class="step-content">
+            <strong>Document & Audit</strong>
+            <span>Capture CLI outputs, generate post-mortem report in <code>evidence/incidents/</code>, and update the failure matrix.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Production Readiness Scorecard -->
+    <div class="readiness-card" style="margin-bottom: 30px;">
+      <h3>
+        <span>📊 5. Production Readiness Scorecard</span>
+      </h3>
+      <p>
+        An honest, evidence-backed evaluation separating production-grade engineering from superficial demos. Items are only promoted to verified upon empirical operational testing:
+      </p>
+
+      <div class="table-container">
+        <table class="scorecard-table">
+        <thead>
+          <tr>
+            <th>Infrastructure & Operational Area</th>
+            <th>Maturity Status</th>
+            <th>Operational Evidence & Justification</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Infrastructure as Code</strong></td>
+            <td><span class="scorecard-badge completed">✅ Completed</span></td>
+            <td>Modular Terraform with variables, outputs, and strict state segregation.</td>
+          </tr>
+          <tr>
+            <td><strong>VPC / Networking</strong></td>
+            <td><span class="scorecard-badge completed">✅ Completed</span></td>
+            <td>Multi-AZ topology with public application and isolated private database subnets.</td>
+          </tr>
+          <tr>
+            <td><strong>EC2 Compute</strong></td>
+            <td><span class="scorecard-badge completed">✅ Completed</span></td>
+            <td>Launch Templates with dynamic Ubuntu 24.04 LTS AMI resolution and secure key-pair injection.</td>
+          </tr>
+          <tr>
+            <td><strong>Application Deployment</strong></td>
+            <td><span class="scorecard-badge in-progress">🟡 In Progress</span></td>
+            <td>Ansible automation configured; blue/green zero-downtime deployment pipeline planned.</td>
+          </tr>
+          <tr>
+            <td><strong>Load Balancing</strong></td>
+            <td><span class="scorecard-badge in-progress">🟡 In Progress</span></td>
+            <td>Multi-AZ ALB operational with target group health checks; HTTPS ACM cert in progress.</td>
+          </tr>
+          <tr>
+            <td><strong>Auto Scaling</strong></td>
+            <td><span class="scorecard-badge in-progress">🟡 In Progress</span></td>
+            <td>ASG min=2/desired=2 validated; target tracking policies based on CPU/request count in progress.</td>
+          </tr>
+          <tr>
+            <td><strong>Database Tier</strong></td>
+            <td><span class="scorecard-badge in-progress">🟡 In Progress</span></td>
+            <td>RDS MariaDB provisioned in private subnets; automated Multi-AZ standby replica in progress.</td>
+          </tr>
+          <tr>
+            <td><strong>Observability</strong></td>
+            <td><span class="scorecard-badge in-progress">🟡 In Progress</span></td>
+            <td>CloudWatch alarms, metric filters, and SNS operational; OpenTelemetry APM tracing planned.</td>
+          </tr>
+          <tr>
+            <td><strong>Failure Testing</strong></td>
+            <td><span class="scorecard-badge in-progress">🟡 In Progress</span></td>
+            <td>Chaos tests validated for EC2 termination, SIGKILL, and proxy failure; DB isolation planned.</td>
+          </tr>
+          <tr>
+            <td><strong>Security Hardening</strong></td>
+            <td><span class="scorecard-badge in-progress">🟡 In Progress</span></td>
+            <td>Chained security groups and admin /32 SSH enforced; AWS WAF and Secrets Manager rotation planned.</td>
+          </tr>
+          <tr>
+            <td><strong>Disaster Recovery</strong></td>
+            <td><span class="scorecard-badge planned">🔵 Planned</span></td>
+            <td>Cross-region backup replication and Route 53 failover routing planned for future phase.</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <!-- What I Learned Section -->
+    <div class="learned-deep-dive">
+      <h3>💡 What I Learned — Multi-Layered Systems Diagnosis</h3>
+      <p style="font-size: 15px; line-height: 1.7; color: #334155; margin-bottom: 16px;">
+        Infrastructure failures rarely occur at a single layer. During the EC2 SSH investigation, I initially encountered a connectivity symptom (<code>Permission denied (publickey)</code>), then systematically traced the problem through security-group access rules and instance configuration before identifying the root cause: the missing EC2 key-pair configuration in Terraform.
+      </p>
+
+      <div class="learned-pattern">
+        <span>SYMPTOM: Connection Rejected</span>
+        <span class="pattern-arrow">→</span>
+        <span>INVESTIGATION: Security Group & Logs</span>
+        <span class="pattern-arrow">→</span>
+        <span>EVIDENCE: CloudTrail & Instance Attributes</span>
+        <span class="pattern-arrow">→</span>
+        <span>ROOT CAUSE: Terraform key_name = null</span>
+      </div>
+
+      <p style="font-size: 14px; line-height: 1.6; color: #475569; margin: 0;">
+        This diagnostic progression proves why real DevOps engineering is rooted in observability and empirical evidence rather than trial-and-error changes. Every configuration parameter in code directly determines runtime system survivability.
+      </p>
+    </div>
+  </section>
+
+
   <!-- Engineering Lessons Section -->
   <section id="lessons" class="lesson-section">
     <div class="section-heading">
@@ -1462,21 +2218,35 @@ Health checks passed HTTP 200 OK (2/2 capacity restored)</code></pre>
     </div>
 
     <div class="workflow-visual">
-      <div class="workflow-step">Design</div>
-      <span class="workflow-arrow">↓</span>
-      <div class="workflow-step">Terraform</div>
-      <span class="workflow-arrow">↓</span>
-      <div class="workflow-step">Provision</div>
-      <span class="workflow-arrow">↓</span>
-      <div class="workflow-step">Verify</div>
-      <span class="workflow-arrow">↓</span>
-      <div class="workflow-step">Observe</div>
-      <span class="workflow-arrow">↓</span>
-      <div class="workflow-step">Troubleshoot</div>
-      <span class="workflow-arrow">↓</span>
-      <div class="workflow-step">Recover</div>
-      <span class="workflow-arrow">↓</span>
-      <div class="workflow-step">Document</div>
+      <div class="workflow-step"><span class="step-num">01</span> Design</div>
+      <span class="workflow-arrow" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <div class="workflow-step"><span class="step-num">02</span> Terraform</div>
+      <span class="workflow-arrow" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <div class="workflow-step"><span class="step-num">03</span> Provision</div>
+      <span class="workflow-arrow" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <div class="workflow-step"><span class="step-num">04</span> Verify</div>
+      <span class="workflow-arrow" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <div class="workflow-step"><span class="step-num">05</span> Observe</div>
+      <span class="workflow-arrow" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <div class="workflow-step"><span class="step-num">06</span> Troubleshoot</div>
+      <span class="workflow-arrow" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <div class="workflow-step"><span class="step-num">07</span> Recover</div>
+      <span class="workflow-arrow" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <div class="workflow-step"><span class="step-num">08</span> Document</div>
     </div>
 
     <blockquote>

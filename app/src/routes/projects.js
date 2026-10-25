@@ -34,15 +34,20 @@ const projects = [
   },
   {
     id: "cicd-pipeline",
-    title: "Production CI/CD Pipeline",
-    status: "Planned",
+    title: "Production DevSecOps CI/CD Pipeline",
+    status: "Completed / Verified",
     description:
-      "CI/CD platform demonstrating automated testing, security checks, deployment and deployment verification.",
+      "Enterprise-grade 6-layer DevSecOps CI/CD pipeline on AWS with GitHub Actions OIDC federation, automated SAST, SCA, IaC compliance, DAST, and zero-downtime ECS Fargate deployment.",
     technologies: [
-      "Jenkins",
-      "Git",
+      "AWS",
+      "ECS Fargate",
       "Docker",
-      "CI/CD"
+      "Terraform",
+      "GitHub Actions",
+      "OIDC",
+      "OWASP ZAP",
+      "Trivy",
+      "Semgrep"
     ]
   },
   {
