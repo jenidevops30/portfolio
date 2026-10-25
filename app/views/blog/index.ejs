@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog - Jeni Patel Portfolio</title>
+</head>
+<body>
+  <h1>Technical Blog</h1>
+  <div id="posts">
+    <% (posts || []).forEach(post => { %>
+      <article data-slug="<%= post.slug %>">
+        <h2><a href="/blog/<%= post.slug %>"><%= post.title %></a></h2>
+        <p><%= post.excerpt %></p>
+      </article>
+    <% }) %>
+  </div>
+</body>
+</html>
