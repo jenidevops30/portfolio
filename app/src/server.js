@@ -39,5 +39,17 @@ const shutdown = (signal) => {
   });
 };
 
-process.on("SIGTERM", () => shutdown("SIGTERM"));
+if (process.env.IGNORE_SIGTERM === "true") {
+  process.on("SIGTERM", () => {
+    console.log(
+      JSON.stringify({
+        level: "info",
+        message: "Ignoring SIGTERM because IGNORE_SIGTERM=true",
+        timestamp: new Date().toISOString(),
+      })
+    );
+  });
+} else {
+  process.on("SIGTERM", () => shutdown("SIGTERM"));
+}
 process.on("SIGINT", () => shutdown("SIGINT"));

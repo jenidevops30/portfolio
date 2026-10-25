@@ -53,13 +53,22 @@ override.tf.json
 *.key
 *.crt
 
-# Editor and IDE metadata
+# Editor, Agent and IDE metadata
 .vscode/
 .idea/
 .claude/
 .agent/
 **/.agent/
+.agents/
+**/.agents/
+.kiro/
+**/.kiro/
+skills/
+**/skills/
+skills-lock.json
+**/skills-lock.json
 .playwright-mcp/
+**/.playwright-mcp/
 
 # Python caches
 __pycache__/
@@ -68,3 +77,4 @@ __pycache__/
 # OS/editor noise
 .DS_Store
 Thumbs.db
+
