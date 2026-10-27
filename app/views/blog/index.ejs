@@ -2,17 +2,182 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Blog - Jeni Patel Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Technical blog by Jeni Patel - DevSecOps advisories, AWS architecture, CI/CD security automation, and cloud infrastructure guides.">
+  <title><%= typeof title !== 'undefined' ? title : 'DevSecOps & Cloud Engineering Blog | Jeni Patel' %></title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/blog.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="alternate icon" href="/favicon.ico">
 </head>
-<body>
-  <h1>Technical Blog</h1>
-  <div id="posts">
-    <% (posts || []).forEach(post => { %>
-      <article data-slug="<%= post.slug %>">
-        <h2><a href="/blog/<%= post.slug %>"><%= post.title %></a></h2>
-        <p><%= post.excerpt %></p>
-      </article>
-    <% }) %>
+<body class="blog-body">
+
+<header class="site-header">
+  <nav class="container navigation">
+    <a href="/" class="logo">Jeni Patel</a>
+    <div class="nav-links">
+      <a href="/#about">About</a>
+      <a href="/#skills">Skills</a>
+      <a href="/projects">Projects</a>
+      <a href="/blog" class="active-nav">Blog</a>
+      <a href="/#approach">Approach</a>
+      <a href="/#experience">Experience</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main class="blog-main">
+  <div class="container blog-container">
+
+    <!-- Blog Header / Intro -->
+    <header class="blog-header">
+      <span class="eyebrow">Technical Blog & Security Advisories</span>
+      <h1>DevSecOps & Cloud Engineering Blog</h1>
+      <p class="blog-subtitle">
+        Real-world vulnerability disclosures, zero-day threat mitigations, AWS keyless federation architectures, and production reliability runbooks.
+      </p>
+    </header>
+
+    <!-- Tag Filter Bar -->
+    <% 
+      const allTags = Array.from(new Set(posts.flatMap(p => p.tags || []))).sort();
+    %>
+    <div class="blog-filters">
+      <span class="filter-label">Filter by topic:</span>
+      <div class="tag-pills">
+        <a href="/blog" class="tag-pill <%= !selectedTag ? 'active' : '' %>">
+          All Posts (<%= typeof allPostsCount !== 'undefined' ? allPostsCount : posts.length %>)
+        </a>
+        <% allTags.forEach(tag => { %>
+          <a href="/blog?tag=<%= encodeURIComponent(tag) %>" 
+             class="tag-pill <%= (selectedTag && selectedTag.toLowerCase() === tag.toLowerCase()) ? 'active' : '' %>">
+            <%= tag %>
+          </a>
+        <% }) %>
+      </div>
+    </div>
+
+    <% if (typeof errorMessage !== 'undefined' && errorMessage) { %>
+      <div class="blog-alert warning">
+        <span>⚠️</span>
+        <p><%= errorMessage %></p>
+      </div>
+    <% } %>
+
+    <!-- Featured Post Section (Only on main blog index without active tag filter) -->
+    <% 
+      const featuredPost = !selectedTag && posts.find(p => p.featured);
+      const regularPosts = featuredPost ? posts.filter(p => p.slug !== featuredPost.slug) : posts;
+    %>
+
+    <% if (featuredPost) { %>
+      <section class="featured-section" aria-label="Featured Technical Advisory">
+        <article class="featured-card">
+          <div class="featured-header">
+            <div class="featured-badges">
+              <span class="badge-featured">⭐ FEATURED SECURITY ADVISORY</span>
+              <% if (featuredPost.cvss) { %>
+                <span class="badge-cvss">CVSS <%= featuredPost.cvss %></span>
+              <% } %>
+            </div>
+            <time datetime="<%= featuredPost.date %>" class="post-date"><%= featuredPost.date %></time>
+          </div>
+
+          <h2 class="featured-title">
+            <a href="/blog/<%= featuredPost.slug %>"><%= featuredPost.title %></a>
+          </h2>
+
+          <p class="featured-excerpt"><%= featuredPost.excerpt %></p>
+
+          <div class="featured-tags">
+            <% (featuredPost.tags || []).forEach(tag => { %>
+              <a href="/blog?tag=<%= encodeURIComponent(tag) %>" class="post-tag">#<%= tag %></a>
+            <% }) %>
+          </div>
+
+          <div class="featured-footer">
+            <div class="author-meta">
+              <div class="author-avatar">JP</div>
+              <div class="author-info">
+                <span class="author-name"><%= featuredPost.author %></span>
+                <span class="author-role"><%= featuredPost.authorRole %> • <%= featuredPost.readingTime %></span>
+              </div>
+            </div>
+            <a href="/blog/<%= featuredPost.slug %>" class="read-more-btn">
+              Read Security Advisory →
+            </a>
+          </div>
+        </article>
+      </section>
+    <% } %>
+
+    <!-- Posts Grid -->
+    <section class="posts-section" aria-label="Technical Articles List">
+      <% if (selectedTag) { %>
+        <div class="results-header">
+          <h2>Showing articles tagged with: <span class="highlight-tag">#<%= selectedTag %></span></h2>
+          <a href="/blog" class="clear-filter">Clear filter (Show all)</a>
+        </div>
+      <% } else if (featuredPost) { %>
+        <h2 class="section-title">Latest Technical Articles</h2>
+      <% } %>
+
+      <% if (regularPosts.length === 0) { %>
+        <div class="empty-state">
+          <p>No articles found matching the selected tag.</p>
+          <a href="/blog" class="button">View all articles</a>
+        </div>
+      <% } else { %>
+        <div class="posts-grid">
+          <% regularPosts.forEach(post => { %>
+            <article class="post-card">
+              <div class="card-meta">
+                <time datetime="<%= post.date %>" class="post-date"><%= post.date %></time>
+                <span class="reading-time"><%= post.readingTime %></span>
+              </div>
+
+              <h3 class="card-title">
+                <a href="/blog/<%= post.slug %>"><%= post.title %></a>
+              </h3>
+
+              <% if (post.cvss) { %>
+                <div class="card-cvss-tag">
+                  <span class="badge-cvss-small">CVSS <%= post.cvss %></span>
+                </div>
+              <% } %>
+
+              <p class="card-excerpt"><%= post.excerpt %></p>
+
+              <div class="card-tags">
+                <% (post.tags || []).slice(0, 4).forEach(tag => { %>
+                  <a href="/blog?tag=<%= encodeURIComponent(tag) %>" class="post-tag">#<%= tag %></a>
+                <% }) %>
+              </div>
+
+              <div class="card-footer">
+                <span class="card-author"><%= post.author %></span>
+                <a href="/blog/<%= post.slug %>" class="card-link">Read Article →</a>
+              </div>
+            </article>
+          <% }) %>
+        </div>
+      <% } %>
+    </section>
+
   </div>
+</main>
+
+<footer>
+  <div class="container footer-content">
+    <p>© 2026 Jeni Patel • DevOps • AWS • Infrastructure • Reliability</p>
+    <div class="footer-links">
+      <a href="/projects">Projects</a>
+      <a href="/blog">Blog</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>

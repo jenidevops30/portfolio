@@ -2,14 +2,143 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title><%= post.title %> - Technical Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="<%= post.excerpt %>">
+  <title><%= typeof title !== 'undefined' ? title : `${post.title} | Blog | Jeni Patel` %></title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/blog.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="alternate icon" href="/favicon.ico">
 </head>
-<body>
-  <article>
-    <h1><%= post.title %></h1>
+<body class="blog-body">
+
+<header class="site-header">
+  <nav class="container navigation">
+    <a href="/" class="logo">Jeni Patel</a>
+    <div class="nav-links">
+      <a href="/#about">About</a>
+      <a href="/#skills">Skills</a>
+      <a href="/projects">Projects</a>
+      <a href="/blog" class="active-nav">Blog</a>
+      <a href="/#approach">Approach</a>
+      <a href="/#experience">Experience</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main class="article-main">
+  <article class="container article-container">
+
+    <!-- Top Breadcrumbs -->
+    <nav class="article-breadcrumb" aria-label="Breadcrumb">
+      <a href="/blog">← Back to All Articles</a>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-current"><%= post.tags && post.tags[0] ? post.tags[0] : 'Engineering' %></span>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="article-header">
+      <div class="article-tags-top">
+        <% (post.tags || []).forEach(tag => { %>
+          <a href="/blog?tag=<%= encodeURIComponent(tag) %>" class="article-tag-pill">#<%= tag %></a>
+        <% }) %>
+      </div>
+
+      <h1 class="article-headline"><%= post.title %></h1>
+
+      <div class="article-meta-bar">
+        <div class="article-author-block">
+          <div class="author-avatar-circle">JP</div>
+          <div class="author-details">
+            <span class="author-name"><%= post.author %></span>
+            <span class="author-subtitle"><%= post.authorRole %></span>
+          </div>
+        </div>
+
+        <div class="article-time-info">
+          <span class="meta-item">
+            <span class="meta-label">PUBLISHED</span>
+            <time datetime="<%= post.date %>"><%= post.date %></time>
+          </span>
+          <span class="meta-item">
+            <span class="meta-label">READ TIME</span>
+            <span><%= post.readingTime %></span>
+          </span>
+        </div>
+      </div>
+
+      <!-- High-Severity Alert Callout (If CVSS exists) -->
+      <% if (post.cvss) { %>
+        <div class="security-advisory-banner" role="alert">
+          <div class="advisory-icon">🚨</div>
+          <div class="advisory-body">
+            <div class="advisory-title-row">
+              <strong>VULNERABILITY SEVERITY: CVSS <%= post.cvss %></strong>
+              <span class="advisory-status-badge">ACTION REQUIRED</span>
+            </div>
+            <p>
+              This advisory documents an active security vulnerability. Apply verified upstream vendor updates across your infrastructure immediately.
+            </p>
+            <% if (post.cves && post.cves.length > 0) { %>
+              <div class="cve-chips">
+                <% post.cves.forEach(cve => { %>
+                  <span class="cve-chip"><%= cve %></span>
+                <% }) %>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      <% } %>
+    </header>
+
+    <!-- Main Markdown Prose Content -->
     <div class="article-content">
       <%- post.htmlContent %>
     </div>
+
+    <!-- Author Profile Footer Card -->
+    <aside class="author-bio-card" aria-label="Author Information">
+      <div class="bio-avatar">JP</div>
+      <div class="bio-details">
+        <span class="bio-eyebrow">WRITTEN BY</span>
+        <h3 class="bio-name"><%= post.author %></h3>
+        <p class="bio-text">
+          DevOps & Cloud Security Engineer focused on building automated AWS infrastructure, enterprise CI/CD security pipelines, and reliable container orchestration platforms.
+        </p>
+        <div class="bio-links">
+          <a href="https://github.com/jenidevops30" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <span class="bio-sep">•</span>
+          <a href="https://linkedin.com/in/jenidevops" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <span class="bio-sep">•</span>
+          <a href="/projects">View Case Studies</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Article Bottom Navigation -->
+    <nav class="article-nav-bottom" aria-label="Post Navigation">
+      <a href="/blog" class="nav-btn-back">
+        ← Return to DevSecOps Blog
+      </a>
+      <a href="/projects/cicd-pipeline" class="nav-btn-next">
+        Explore DevSecOps CI/CD Case Study →
+      </a>
+    </nav>
+
   </article>
+</main>
+
+<footer>
+  <div class="container footer-content">
+    <p>© 2026 Jeni Patel • DevOps • AWS • Infrastructure • Reliability</p>
+    <div class="footer-links">
+      <a href="/projects">Projects</a>
+      <a href="/blog">Blog</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
