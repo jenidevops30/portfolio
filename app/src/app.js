@@ -8,6 +8,7 @@ const app = express();
 const projectsRouter = require("./routes/projects");
 
 const caseStudyRouter = require("./routes/case-study");
+const blogRouter = require("./routes/blog");
 
 app.use(express.json());
 
@@ -18,6 +19,10 @@ app.set("view engine", "ejs");
 // Case Study (must be before express.static to avoid /projects dir interception)
 app.use("/projects", caseStudyRouter);
 app.use("/case-study", caseStudyRouter);
+
+// Blog routes
+app.use("/blog", blogRouter);
+app.use("/api/blog", blogRouter.apiRouter);
 
 // Health
 app.use("/health", healthRouter);
