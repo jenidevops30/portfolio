@@ -51,6 +51,8 @@ app.get("/api", (req, res) => {
   });
 });
 
+const errorHandler = require("./middleware/errorHandler");
+
 // 404
 app.use((req, res) => {
   res.status(404).json({
@@ -59,5 +61,8 @@ app.use((req, res) => {
     path: req.originalUrl,
   });
 });
+
+// Central Error Handler
+app.use(errorHandler);
 
 module.exports = app;
