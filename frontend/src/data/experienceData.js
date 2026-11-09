@@ -52,7 +52,7 @@ export const experience = [
   {
     role: "IT Tutor",
     company: "Prakshal IT Academy",
-    date_range: "AUGUST 2017 – JANUARY 2019",
+    date_range: "AUGUST 2017 – DECEMBER 2019",
     description: [
       "Taught computer fundamentals, computer hardware, networking, Linux administration and cloud computing.",
       "Guided learners through foundational concepts and practical technical exercises."
