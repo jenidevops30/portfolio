@@ -1,8 +1,57 @@
-import { Mail, Phone, MapPin, Download } from 'lucide-react';
+import { useState } from 'react';
+import { Mail, Phone, MapPin, Download, Send } from 'lucide-react';
 import { contact } from '../data/portfolioData';
 import { GithubIcon, LinkedinIcon } from './BrandIcons';
 
+const initialForm = { name: '', email: '', subject: '', message: '', website: '' };
+const apiUrl = import.meta.env.VITE_CONTACT_API_URL;
+
 const Contact = () => {
+  const [form, setForm] = useState(initialForm);
+  const [status, setStatus] = useState({ type: 'idle', message: '' });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setForm((current) => ({ ...current, [name]: value }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!apiUrl) {
+      setStatus({
+        type: 'error',
+        message: 'The enquiry service is not configured yet. Please contact me by email instead.',
+      });
+      return;
+    }
+
+    setStatus({ type: 'loading', message: 'Sending your enquiry…' });
+    try {
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name.trim(),
+          email: form.email.trim(),
+          subject: form.subject.trim(),
+          message: form.message.trim(),
+          website: form.website,
+        }),
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(result.message || 'We could not send your enquiry. Please try again.');
+      }
+      setForm(initialForm);
+      setStatus({ type: 'success', message: 'Thanks for reaching out. Your enquiry has been submitted successfully.' });
+    } catch (error) {
+      setStatus({
+        type: 'error',
+        message: error.message || 'Something went wrong. Please email me directly.',
+      });
+    }
+  };
+
   return (
     <section id="contact">
       <div className="container">
@@ -11,12 +60,46 @@ const Contact = () => {
         <div className="contact-card">
           <div className="contact-title">Have a project in mind?</div>
           <p className="contact-sub">
-            I'm always open to discussing DevOps challenges, cloud architecture, or new opportunities. Let's connect.
+            Share a little about your project, infrastructure challenge, or opportunity. I’ll get back to you by email.
           </p>
 
+          <form className="contact-form" onSubmit={handleSubmit}>
+            <div className="contact-form-grid">
+              <label>
+                Your name
+                <input name="name" value={form.name} onChange={handleChange} autoComplete="name" maxLength={80} required />
+              </label>
+              <label>
+                Email address
+                <input name="email" type="email" value={form.email} onChange={handleChange} autoComplete="email" maxLength={254} required />
+              </label>
+            </div>
+            <label>
+              Subject
+              <input name="subject" value={form.subject} onChange={handleChange} maxLength={120} required />
+            </label>
+            <label>
+              Message
+              <textarea name="message" value={form.message} onChange={handleChange} rows={5} minLength={20} maxLength={4000} required />
+            </label>
+            <label className="contact-honeypot" aria-hidden="true">
+              Leave this field empty
+              <input name="website" value={form.website} onChange={handleChange} tabIndex={-1} autoComplete="off" />
+            </label>
+            <button className="btn-primary contact-submit" type="submit" disabled={status.type === 'loading'}>
+              <Send size={16} /> {status.type === 'loading' ? 'Sending…' : 'Send enquiry'}
+            </button>
+            {status.message && (
+              <p className={`contact-form-status ${status.type}`} role="status" aria-live="polite">
+                {status.message}
+              </p>
+            )}
+          </form>
+
+          <div className="contact-divider"><span>Or connect directly</span></div>
           <div className="contact-primary-btns">
-            <a href={`mailto:${contact.email}`} className="btn-primary">
-              <Mail size={16} /> {contact.email}
+            <a href={`mailto:${contact.email}`} className="btn-outline">
+              <Mail size={16} /> Email me
             </a>
             <a href={contact.resume} download className="btn-outline">
               <Download size={16} /> Download Resume
@@ -24,7 +107,7 @@ const Contact = () => {
           </div>
 
           <div className="contact-links">
-            <a href={`tel:${contact.phone.replace(/\s+/g, '')}`} className="contact-link">
+            <a href={`tel:${contact.phone.replace(/\\s+/g, '')}`} className="contact-link">
               <Phone size={16} /> {contact.phone}
             </a>
             <a href={contact.whatsapp} target="_blank" rel="noreferrer" className="contact-link">
