@@ -1,6 +1,7 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import Blog from './components/Blog';
 import Architecture from './components/Architecture';
 import ProjectCard from './components/ProjectCard';
 import TimelineItem from './components/TimelineItem';
@@ -73,6 +74,8 @@ function App() {
           </div>
         </div>
       </section>
+
+      <Blog />
 
       {/* AWARDS & CERTIFICATIONS */}
       <section id="awards">
