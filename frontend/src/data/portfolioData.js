@@ -39,197 +39,57 @@ export const infraTiers = [
 
 export const projects = [
   {
-    title: "jenidevops.in — Portfolio Site (CI/CD Case Study)",
-    badge: "React · GitHub Actions · AWS",
-    description: "This portfolio! Redesigned for enterprise SaaS aesthetics (Datadog/Vercel style). Showcases end-to-end DevOps: React/Vite app, automated GitHub Actions build, S3 deployment, and CloudFront CDN. Features live CI/CD status badge and automated cache invalidation.",
-    tags: ["React", "Vite", "GitHub Actions", "S3", "CloudFront"],
+    title: "AWS Production Infrastructure Operations",
+    category: "Professional experience",
+    badge: "AWS · EC2 · ALB · Auto Scaling · RDS",
+    description: "Operate AWS infrastructure supporting production Shopify applications. Work includes EC2 fleet and launch-template management, Application Load Balancers, Auto Scaling Groups, RDS, VPC networking, CloudWatch monitoring, and application-server operations with Apache and PHP-FPM.",
+    tags: ["AWS", "EC2", "ALB", "Auto Scaling", "Launch Templates", "RDS", "VPC", "CloudWatch", "Apache", "PHP-FPM"],
+  },
+  {
+    title: "EC2 Graviton Migration",
+    category: "Professional experience",
+    badge: "AWS · Graviton · Auto Scaling",
+    description: "Migrated production EC2 capacity from x86-based c5.xlarge instances to ARM-based c6g.xlarge instances through the Auto Scaling workflow. The work involved instance-family compatibility, launch configuration updates, rollout coordination, and post-migration validation.",
+    tags: ["AWS", "EC2", "Graviton", "ARM64", "Auto Scaling", "Launch Templates"],
+  },
+  {
+    title: "Android Application CI Pipeline",
+    category: "Professional experience",
+    badge: "Jenkins · Android · SonarQube · Artifactory",
+    description: "Worked on a Jenkins pipeline for a Java-based Android application. The workflow covered source checkout, build and test execution, APK/AAB artifact generation, SonarQube code analysis, publishing artifacts to a locally hosted JFrog Artifactory instance, and email notifications.",
+    tags: ["Jenkins", "Java", "Android", "Gradle", "SonarQube", "JFrog Artifactory"],
+  },
+  {
+    title: "Next.js Website CI/CD",
+    category: "Professional experience",
+    badge: "GitLab CI/CD · Next.js",
+    description: "Implemented and maintained GitLab CI/CD automation for a Next.js company website. The pipeline supported repeatable source-to-build delivery and helped standardize the deployment workflow.",
+    tags: ["GitLab CI/CD", "Next.js", "Node.js", "Linux", "Automation"],
+  },
+  {
+    title: "AWS Cost Optimization Intelligence",
+    category: "Independent project",
+    badge: "Python · Streamlit · AWS FinOps",
+    description: "An independent FinOps project exploring AWS cost visibility and optimization analysis. The planned capabilities include cost breakdowns, EC2 and RDS inventory insights, storage analysis, and utilization-informed recommendations. Treat this as a project in progress rather than a production service.",
+    tags: ["Python", "Streamlit", "AWS", "Cost Explorer", "FinOps", "EC2", "RDS"],
+  },
+  {
+    title: "Kubernetes Cluster Lab",
+    category: "Learning lab",
+    badge: "Kubernetes · kubeadm · Calico",
+    description: "A hands-on Kubernetes learning environment built with kubeadm and Calico networking across Ubuntu virtual machines. Used to practise cluster setup, node operations, networking, workload deployment, and troubleshooting.",
+    tags: ["Kubernetes", "kubeadm", "Calico", "Ubuntu", "containerd", "VMware"],
+  },
+  {
+    title: "Portfolio Website & Delivery Workflow",
+    category: "Independent project",
+    badge: "React · Vite · GitHub Actions · AWS",
+    description: "The portfolio website repository, built with React and Vite. The project includes a GitHub Actions deployment workflow targeting AWS hosting. The implementation and deployment workflow are being refined as part of this redesign.",
+    tags: ["React", "Vite", "GitHub Actions", "AWS", "S3", "CloudFront"],
     links: {
       repo: "https://github.com/jenidevops30/portfolio",
       live: "https://jenidevops.in",
-      workflow: "https://github.com/jenidevops30/portfolio/actions/workflows/deploy.yml"
     },
-    cicd: {
-      enabled: true,
-      badgeUrl: "https://github.com/jenidevops30/portfolio/actions/workflows/deploy.yml/badge.svg"
-    }
-  },
-  {
-    title: "Quickhunt — DigitalOcean to AWS Migration",
-    badge: "AWS · Terraform",
-    description: "Led the migration from DigitalOcean to a two-tier AWS architecture — CloudFront/S3 for the frontend, EC2/RDS for the backend — achieving 99.95% availability.",
-    tags: ["Terraform", "CloudFront", "EC2", "RDS"],
-  },
-  {
-    title: "Wishlist — High-Availability AWS Deployment",
-    badge: "AWS · ALB · RDS",
-    description: "Architected and executed the deployment of wishlist.webcontrive.com (React.js/Laravel) to AWS using Terraform, with ALB, Auto Scaling Groups, and AWS DMS for database migration.",
-    tags: ["Terraform", "ALB", "ASG", "AWS DMS"],
-  },
-  {
-    title: "Cloud Cost Optimization (FinOps)",
-    badge: "FinOps · AWS",
-    description: "Applied right-sizing, Graviton migration, and Spot Instance strategy across production workloads, cutting infrastructure spend by 30–40% without impacting reliability.",
-    tags: ["FinOps", "Spot Instances", "Cost Explorer"],
-  },
-  {
-    title: "Edu-Platform Azure Infrastructure",
-    badge: "Azure · GitHub Actions",
-    description: "Built a secure CI/CD pipeline for a global education platform using GitHub-to-Azure OIDC for passwordless auth, achieving 100% automated delivery to production with zero manual steps.",
-    tags: ["Azure Web Apps", "OIDC", "GitHub Actions"],
-  },
-  {
-    title: "Face Swap Pro — In-House AI Processing",
-    badge: "AI · GPU Infrastructure",
-    description: "Architected an on-premises, GPU-accelerated processing pipeline (NVIDIA CUDA + FFmpeg) with load balancing and monitoring for thousands of daily photo/video jobs.",
-    tags: ["Python", "FastAPI", "GPU", "Linux"],
-  },
-  {
-    title: "Logixbuilt Company Website",
-    badge: "Next.js · GitLab CI/CD",
-    description: "Built multi-environment GitLab CI/CD pipelines (dev, staging, prod) for the company website with automated tracking, secure auth, and monitoring — 40% faster deployment cycles.",
-    tags: ["Next.js", "GitLab CI/CD", "AWS", "Node.js"],
-  },
-  {
-    title: "OMI.day — Web Platform Management",
-    badge: "Nginx · Security",
-    description: "Own the ongoing infrastructure for the omi.day platform: server configuration, SSL/TLS, and performance tuning, with regular security hardening and maintenance.",
-    tags: ["Nginx", "SSL/TLS", "Hardening"],
-  },
-  {
-    title: "GitLab Self-Hosted Server",
-    badge: "GitLab CE · Bash",
-    description: "Designed and deployed an in-house GitLab server with custom bash-scripted backups, retention policies, and disaster recovery, sustaining 99.9% uptime.",
-    tags: ["GitLab CE", "Bash", "Disaster Recovery"],
-  },
-  {
-    title: "Enterprise Backup Solution",
-    badge: "Automation · Reliability",
-    description: "Built an automated backup system for critical business data (GitLab, MySQL, JFrog) with monitoring, alerting, and DR procedures at a 99.99% success rate.",
-    tags: ["Bash Scripting", "Alerting", "DB Backups"],
-  },
-  {
-    title: "AWS WordPress Deployment",
-    badge: "AWS EC2 · WordPress",
-    description: "Deployed a production WordPress platform on AWS EC2 with hardened security, SSL/TLS, and Apache tuning for 24/7 availability.",
-    tags: ["AWS EC2", "WordPress", "MySQL"],
-  },
-
-  // NEW TIER 1 PROJECTS
-  {
-    title: "Shopify Production Infrastructure on AWS",
-    badge: "AWS · Tier 1 · Professional",
-    description: "Production AWS infrastructure for Laravel/PHP e-commerce applications managing EC2 fleet with Auto Scaling, Application Load Balancer traffic routing, RDS MariaDB clusters, VPC networking, and Cloudflare integration. Achieved 99.95% uptime over 6-month production period with 3 incident-induced outages auto-resolved via ASG health check recovery.",
-    tags: ["AWS", "EC2", "ALB", "ASG", "Launch Templates", "RDS", "VPC", "Route 53", "Cloudflare", "Laravel", "PHP", "Apache", "MariaDB"],
-    links: {
-      repo: "https://github.com/jenidevops30/infrastructure-portfolio",
-      live: "https://jenidevops.in"
-    },
-    cicd: {
-      enabled: true,
-      badgeUrl: "https://img.shields.io/badge/Uptime%2099.95%25--brightgreen"
-    }
-  },
-  {
-    title: "AWS Cost Optimization & FinOps",
-    badge: "AWS · FinOps · Tier 1",
-    description: "Comprehensive cost optimization initiative reducing monthly infrastructure from $813.43 to $327.07 (~59.8% reduction) through EC2 right-sizing, scheduled Auto Scaling Group scaling (off-peak instance reduction), RDS parameter tuning, EBS snapshot lifecycle policies, and NAT gateway consolidation. Maintained zero degradation in application performance or availability throughout the optimization period.",
-    tags: ["AWS", "FinOps", "Cost Optimization", "EC2", "RDS", "ASG", "CloudWatch", "FinOps"],
-    links: {
-      repo: "https://github.com/jenidevops30/infrastructure-portfolio",
-      live: "https://jenidevops.in"
-    },
-    cicd: {
-      enabled: true,
-      badgeUrl: "https://img.shields.io/badge/Cost%20Reduction%2059.8%25--brightgreen"
-    }
-  },
-  {
-    title: "AWS Security & VAPT Remediation",
-    badge: "AWS · Security · Tier 1",
-    description: "Comprehensive VAPT assessment and remediation of production AWS infrastructure identifying 12 security findings (3 critical, 5 high, 4 medium) across network, application, and configuration layers. Remediated critical vulnerabilities including public SSH access, missing ALB security headers, and Shopify Admin endpoint exposure. Achieved AWS Security Hub score improvement from 'basic' to 'intermediate' posture and zero successful security incidents in 6 months following remediation.",
-    tags: ["AWS", "Security", "VAPT", "WAF", "IAM", "Cloudflare", "Compliance"],
-    links: {
-      repo: "https://github.com/jenidevops30/infrastructure-portfolio",
-      live: "https://jenidevops.in"
-    },
-    cicd: {
-      enabled: true,
-      badgeUrl: "https://img.shields.io/badge/Findings%20Remediated%2012--brightgreen"
-    }
-  },
-
-  // NEW TIER 2 PROJECTS
-  {
-    title: "Production CI/CD Pipeline with Jenkins",
-    badge: "Jenkins · Tier 2 · Professional",
-    description: "Designed and implemented automated CI/CD pipeline for PHP/Laravel application (Git → Jenkins → Build/Test → SonarQube → Deploy → Health Check). Increased deployment frequency from every 2-3 weeks to multiple per week, reduced deployment time from 45 minutes to 10 minutes, and decreased deployment failure rate from 15% to 3% (80% improvement). Integrated SonarQube quality gates to prevent defect leakage to production.",
-    tags: ["Jenkins", "Groovy", "CI/CD", "SonarQube", "PHP", "Docker", "Automation"],
-    links: {
-      repo: "https://github.com/jenidevops30/infrastructure-portfolio",
-      live: "https://jenidevops.in"
-    },
-    cicd: {
-      enabled: true,
-      badgeUrl: "https://img.shields.io/badge/Deployment%20Frequency%2010x--brightgreen"
-    }
-  },
-  {
-    title: "AWS GPU Infrastructure for Media Processing",
-    badge: "AWS · GPU · Tier 2",
-    description: "GPU-accelerated media processing infrastructure using EC2 g4dn.xlarge instances (NVIDIA T4 GPU with NVENC hardware acceleration) running Python transcoding scripts. Reduced processing time for 10-minute videos from 45 minutes to 4 minutes (91% reduction), cut cost per video from $1.50 to $0.45 (70% reduction), and achieved 95% Spot instance interruption success rate through checkpointing implementation. Hybrid On-Demand + Spot pricing model balanced reliability and cost.",
-    tags: ["AWS", "GPU", "NVIDIA", "CUDA", "FFmpeg", "Python", "Media Processing", "Spot Instances"],
-    links: {
-      repo: "https://github.com/jenidevops30/infrastructure-portfolio",
-      live: "https://jenidevops.in"
-    },
-    cicd: {
-      enabled: true,
-      badgeUrl: "https://img.shields.io/badge/Processing%20Time%2091%25%20Reduction--brightgreen"
-    }
-  },
-  {
-    title: "Dockerized Application & CI/CD — tenty.xyz",
-    badge: "Docker · Tier 2 · Independent",
-    description: "Independent Docker containerization project demonstrating multi-stage builds, docker-compose orchestration, and container best practices for PHP/Laravel application. Reduced Docker image size from 500+MB to ~120MB (75% reduction), cut deployment time from 10 minutes to 2 minutes (80% reduction), and achieved near-100% environment parity between local development and production. Fixed production restart loop, local environment drift, and build cache staleness incidents through systematic debugging and Dockerfile optimization.",
-    tags: ["Docker", "Containerization", "PHP", "Laravel", "Dockerfile", "docker-compose", "Multi-stage Build"],
-    links: {
-      repo: "https://github.com/jenidevops30/infrastructure-portfolio",
-      live: "https://jenidevops.in"
-    },
-    cicd: {
-      enabled: true,
-      badgeUrl: "https://img.shields.io/badge/Image%20Size%2075%25%20Reduction--brightgreen"
-    }
-  },
-
-  // NEW TIER 3 PROJECTS
-  {
-    title: "AWS Infrastructure Automation with Terraform",
-    badge: "Terraform · Tier 3 · Independent",
-    description: "Infrastructure-as-Code project automating AWS provisioning across dev/staging/prod environments using Terraform modules, workspaces, and remote backend (S3 + DynamoDB state locking). Eliminated configuration drift between environments, reduced infrastructure provisioning time from 2-3 hours to 15 minutes (87% reduction), decreased environment promotion time from 1 day to 30 minutes (83% reduction), and reduced configuration duplication by ~70% through module reuse. Added automated drift detection via `terraform plan -refresh-only` and pre-commit hooks with `terraform validate`.",
-    tags: ["Terraform", "IaC", "AWS", "Modules", "Workspaces", "S3", "DynamoDB", "Drift Detection"],
-    links: {
-      repo: "https://github.com/jenidevops30/infrastructure-portfolio",
-      live: "https://jenidevops.in"
-    },
-    cicd: {
-      enabled: true,
-      badgeUrl: "https://img.shields.io/badge/Provisioning%2015%20min%20vs%203hr--brightgreen"
-    }
-  },
-  {
-    title: "Production Monitoring & Incident Response",
-    badge: "Reliability · Tier 3 · Methodology",
-    description: "Systematic incident response methodology (Detection → Investigation → Root Cause → Resolution → Validation → Prevention) applied across 12+ production incidents. Reduced mean time to detection (MTTD) from 30 minutes to 5 minutes (83% reduction) through improved CloudWatch alarming and log monitoring. Reduced mean time to resolution (MTTR) from 25 minutes to 8 minutes (68% reduction) through systematic root cause analysis. Achieved 70% reduction in incident recurrence over 6-month period through runbook updates, alarm refinement, and automated testing. Documented 12+ incident reports with timelines, root causes, resolutions, and prevention measures in team knowledge base.",
-    tags: ["Monitoring", "Incident Response", "Reliability", "CloudWatch", "SNS", "Root Cause Analysis", "MTTR", "MTTD"],
-    links: {
-      repo: "https://github.com/jenidevops30/infrastructure-portfolio",
-      live: "https://jenidevops.in"
-    },
-    cicd: {
-      enabled: true,
-      badgeUrl: "https://img.shields.io/badge/MTTR%2025m%208m%2068%25--brightgreen"
-    }
   },
 ];
 
