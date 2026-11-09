@@ -107,7 +107,7 @@ const Contact = () => {
           </div>
 
           <div className="contact-links">
-            <a href={`tel:${contact.phone.replace(/\\s+/g, '')}`} className="contact-link">
+            <a href={`tel:${contact.phone.replaceAll(" ", "")}`} className="contact-link">
               <Phone size={16} /> {contact.phone}
             </a>
             <a href={contact.whatsapp} target="_blank" rel="noreferrer" className="contact-link">
