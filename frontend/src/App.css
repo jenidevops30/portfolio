@@ -1363,3 +1363,52 @@ h1, h2, h3, .editorial-name { font-family: 'Manrope', 'DM Sans', sans-serif; }
     padding: 1rem;
   }
 }
+
+/* Phase 1 — lightweight technical writing landing section */
+.writing-topic-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.writing-topic-card {
+  padding: 1.35rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.writing-topic-card h3 {
+  margin: 0 0 0.55rem;
+  font-size: 1.05rem;
+}
+
+.writing-topic-card p,
+.blog-empty-state p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+
+.blog-empty-state {
+  margin-top: 1.25rem;
+  padding: 1.25rem 1.4rem;
+  border: 1px dashed var(--border);
+  border-radius: 14px;
+}
+
+.blog-status {
+  display: inline-block;
+  margin-bottom: 0.65rem;
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+@media (max-width: 700px) {
+  .writing-topic-grid {
+    grid-template-columns: 1fr;
+  }
+}
