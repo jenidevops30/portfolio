@@ -26,7 +26,8 @@ sam deploy --guided
 Provide these parameters:
 - `AllowedOrigin`: exact production origin, for example `https://jenidevops.in`.
 - `NotificationEmail`: the Gmail inbox where notifications should arrive.
-- `SesFromEmail`: the verified SES sender identity.
+- `SesFromEmail`: the verified SES sender email address.
+- `SesIdentityArn`: the ARN of that verified SES identity; the Lambda policy is scoped to this identity.
 - `RetentionDays`: default 180 days; choose a retention period appropriate for enquiry records.
 
 4. Copy the `ContactApiUrl` stack output.
