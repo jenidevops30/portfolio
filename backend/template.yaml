@@ -13,6 +13,9 @@ Parameters:
   SesFromEmail:
     Type: String
     Description: Verified SES sender identity in the deployment region.
+  SesIdentityArn:
+    Type: String
+    Description: ARN of the verified SES identity allowed to send notification emails.
   RetentionDays:
     Type: Number
     Default: 180
@@ -81,7 +84,7 @@ Resources:
               Action:
                 - ses:SendEmail
                 - ses:SendRawEmail
-              Resource: "*"
+              Resource: !Ref SesIdentityArn
       Events:
         SubmitEnquiry:
           Type: Api
