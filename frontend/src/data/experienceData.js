@@ -1,27 +1,27 @@
-// Professional experience content. Dates and role titles are based on the career details confirmed by Jeni.
+// Professional experience. Dates reflect the user's supplied career history.
+// Earlier-role date overlap is flagged for final verification outside the public portfolio.
 export const experience = [
   {
     role: "DevOps Engineer",
     company: "Webcontrive",
     date_range: "NOVEMBER 2025 – PRESENT",
     description: [
-      "Manage and support AWS infrastructure used by application environments.",
-      "Work with EC2, RDS, Application Load Balancers, Auto Scaling Groups, VPC, IAM and CloudWatch.",
-      "Administer Linux-based production servers and support Apache, Nginx and PHP-FPM application environments.",
-      "Support production operations, infrastructure troubleshooting, monitoring and security improvements.",
-      "Contribute to infrastructure optimization, including instance right-sizing and AWS Graviton-based compute."
+      "Manage and support AWS infrastructure for production Shopify applications.",
+      "Operate and maintain EC2 instances, Launch Templates, Auto Scaling Groups, Application Load Balancers, RDS, VPC networking, IAM and CloudWatch.",
+      "Administer Linux application servers and support Apache, Nginx and PHP-FPM environments.",
+      "Handle infrastructure troubleshooting, production operations, monitoring and security improvements.",
+      "Contribute to infrastructure optimization through instance right-sizing and migration to AWS Graviton-based EC2 capacity."
     ]
   },
   {
     role: "AWS Engineer",
-    company: "OptimumBrew",
+    company: "OptimumBrew Technology LLP",
     date_range: "APRIL 2025 – OCTOBER 2025",
     description: [
-      "Worked on AWS cloud infrastructure and Linux-based server environments.",
-      "Created a Jenkins CI pipeline for a Java-based Android application.",
-      "Automated source checkout, build, tests, APK and AAB generation, SonarQube code analysis, JFrog Artifactory publishing and email notifications.",
-      "Integrated locally hosted JFrog Artifactory for build artifact storage.",
-      "Supported CI pipeline execution and troubleshooting."
+      "Worked with AWS cloud infrastructure and Linux-based server environments.",
+      "Built and maintained a Jenkins CI pipeline for a Java-based Android application.",
+      "Automated source checkout, build and test stages, APK/AAB generation, SonarQube analysis, artifact publishing to locally hosted JFrog Artifactory, and email notifications.",
+      "Supported CI pipeline execution, build troubleshooting and artifact management."
     ]
   },
   {
@@ -29,33 +29,32 @@ export const experience = [
     company: "Logix Built Solutions Pvt. Ltd.",
     date_range: "FEBRUARY 2022 – MARCH 2025",
     description: [
-      "Administered Ubuntu Linux servers and VMware ESXi virtualization environments for client projects.",
+      "Administered Linux servers and VMware ESXi environments supporting infrastructure and client projects.",
       "Worked with AWS services including EC2, VPC, EBS, ECS, EKS, S3, CloudFront and Lambda.",
-      "Used Docker to manage application containers and Kubernetes to deploy application workloads, including workloads on AWS EKS.",
-      "Used Terraform to provision and manage infrastructure.",
-      "Built GitLab CI/CD pipelines for a company website built with Next.js.",
-      "Created GitHub Actions workflows for the Pandits Near Me project and client application deployments.",
-      "Managed networking technologies including switches, routers, firewalls and VPNs, and troubleshot connectivity issues."
+      "Supported containerized and Kubernetes-based workloads, including client work involving Amazon EKS.",
+      "Used Terraform for infrastructure provisioning and management.",
+      "Built GitLab CI/CD automation for a Next.js company website and GitHub Actions workflows for client application deployments.",
+      "Managed network infrastructure including switches, routers, firewalls and VPNs, and investigated connectivity issues."
     ]
   },
   {
     role: "Network Engineer",
-    company: "OptimumBrew",
+    company: "OptimumBrew Technology LLP",
     date_range: "JANUARY 2020 – JANUARY 2022",
     description: [
       "Supported network infrastructure, FortiGate firewall administration and Linux server operations.",
-      "Deployed and maintained self-hosted GitLab, Zulip, JFrog Artifactory, Redmine and Nextcloud services.",
-      "Created Bash automation for JFrog Artifactory backups and supported GitLab backup operations.",
-      "Maintained internal collaboration, source-code management and file-storage services."
+      "Deployed and maintained self-hosted services including GitLab CE, Zulip, JFrog Artifactory, Redmine and Nextcloud.",
+      "Created Bash automation for JFrog Artifactory backups and supported GitLab backup and recovery operations.",
+      "Maintained internal source-code management, collaboration and file-storage services."
     ]
   },
   {
     role: "IT Tutor",
     company: "Prakshal IT Academy",
-    date_range: "AUGUST 2017 – DECEMBER 2019",
+    date_range: "AUGUST 2017 – JANUARY 2019",
     description: [
-      "Taught computer fundamentals, computer hardware, networking, Linux administration and cloud computing.",
-      "Guided learners through foundational concepts and practical technical exercises."
+      "Taught computer fundamentals, hardware, networking, Linux administration and cloud computing.",
+      "Guided learners through foundational technical concepts and practical exercises."
     ]
   },
   {
@@ -64,7 +63,7 @@ export const experience = [
     date_range: "JANUARY 2017 – SEPTEMBER 2017",
     description: [
       "Worked in network engineering and IT infrastructure support.",
-      "Supported network-related tasks and troubleshooting."
+      "Supported network setup, routine operations and connectivity troubleshooting."
     ]
   }
 ];
