@@ -7,7 +7,8 @@ import ProjectCard from './components/ProjectCard';
 import TimelineItem from './components/TimelineItem';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import { skills, projects, experience, awards, certifications } from './data/portfolioData';
+import { skills, projects, awards, certifications } from './data/portfolioData';
+import { experience } from './data/experienceData';
 import './App.css';
 
 function App() {
