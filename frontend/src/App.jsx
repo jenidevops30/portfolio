@@ -7,7 +7,8 @@ import ProjectCard from './components/ProjectCard';
 import TimelineItem from './components/TimelineItem';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import { skills, projects, awards, certifications } from './data/portfolioData';
+import { projects, awards, certifications } from './data/portfolioData';
+import { skillGroups } from './data/skillGroups';
 import { experience } from './data/experienceData';
 import './App.css';
 
@@ -45,9 +46,17 @@ function App() {
         <div className="container">
           <div className="section-label">Tech Stack</div>
           <h2 className="section-title">Skills &amp; Expertise</h2>
-          <div className="skills-grid">
-            {skills.map((skill, index) => (
-              <SkillCard key={index} {...skill} />
+          <div className="skill-groups">
+            {skillGroups.map((group) => (
+              <div className="skill-group" key={group.title}>
+                <div className="skill-group-heading">
+                  <h3>{group.title}</h3>
+                  <span>{group.context}</span>
+                </div>
+                <div className="skill-pills">
+                  {group.skills.map((skill) => <span className="skill-pill" key={skill}>{skill}</span>)}
+                </div>
+              </div>
             ))}
           </div>
         </div>
