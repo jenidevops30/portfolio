@@ -1,4 +1,3 @@
-import hashlib
 import html
 import json
 import logging
@@ -105,8 +104,8 @@ def handler(event, context):
     safe_subject = html.escape(subject)
     safe_message = html.escape(message).replace("\n", "<br>")
     text_body = (
-        f"New portfolio enquiry\\n\\nName: {name}\\nEmail: {email}"
-        f"\\nSubject: {subject}\\n\\n{message}\\n\\nReference: {enquiry_id}"
+        f"New portfolio enquiry\n\nName: {name}\nEmail: {email}"
+        f"\nSubject: {subject}\n\n{message}\n\nReference: {enquiry_id}"
     )
     html_body = (
         f"<h2>New portfolio enquiry</h2><p><b>Name:</b> {safe_name}</p>"
