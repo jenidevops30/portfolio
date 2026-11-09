@@ -7,6 +7,7 @@ import ProjectCard from './components/ProjectCard';
 import TimelineItem from './components/TimelineItem';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ScrollReveal from './components/ScrollReveal';
 import { projects, awards, certifications } from './data/portfolioData';
 import { skillGroups } from './data/skillGroups';
 import { experience } from './data/experienceData';
@@ -16,6 +17,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
+      <ScrollReveal />
       <Hero />
       <About />
 
