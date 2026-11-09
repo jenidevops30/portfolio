@@ -2,7 +2,6 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Architecture from './components/Architecture';
-import SkillCard from './components/SkillCard';
 import ProjectCard from './components/ProjectCard';
 import TimelineItem from './components/TimelineItem';
 import Contact from './components/Contact';
@@ -65,8 +64,8 @@ function App() {
       {/* PROJECTS */}
       <section id="projects" style={{ background: 'var(--surface)' }}>
         <div className="container">
-          <div className="section-label">Work</div>
-          <h2 className="section-title">Featured Projects</h2>
+          <div className="section-label">Projects &amp; Case Studies</div>
+          <h2 className="section-title">Selected Work &amp; Engineering Case Studies</h2>
           <div className="projects-grid">
             {projects.map((project, index) => (
               <ProjectCard key={index} {...project} />
