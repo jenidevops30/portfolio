@@ -1146,3 +1146,27 @@ h1, h2, h3, .editorial-name { font-family: 'Manrope', 'DM Sans', sans-serif; }
 @media (max-width: 820px) { .editorial-hero { padding-top:100px; } .editorial-hero-inner { grid-template-columns:1fr; gap:2.4rem; } .editorial-portrait-wrap { justify-self:start; max-width:420px; } .editorial-name { font-size:clamp(4.6rem, 18vw, 7rem); } }
 @media (max-width: 520px) { .editorial-hero { padding:92px 1.2rem 2.5rem; } .editorial-eyebrow { font-size:.62rem; letter-spacing:.12em; } .editorial-actions { flex-direction:column; align-items:stretch; } .editorial-actions button { justify-content:center; } .editorial-proof { justify-content:space-between; gap:.7rem; } .editorial-proof span { font-size:.65rem; } .portrait-index { right:-.8rem; } }
 @media (prefers-reduced-motion: reduce) { .editorial-socials a { transition:none; } }
+
+
+/* PHASE 1 — About and skill taxonomy */
+.about-intro-grid { display:grid; grid-template-columns:.85fr 1.15fr; gap:clamp(2rem,6vw,6rem); align-items:start; }
+.about-intro-grid .section-title { font-size:clamp(2rem,4vw,3.25rem); line-height:1.18; max-width:470px; }
+.about-intro-grid .about-text { line-height:1.85; }
+.about-resume { margin-top:1.3rem; }
+.about-principles { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:4rem; }
+.about-principles article { padding:1.5rem; border:1px solid var(--border); background:var(--card); border-radius:12px; }
+.about-principles article > span { color:var(--accent); font-size:.75rem; letter-spacing:.12em; }
+.about-principles h3 { font-size:1rem; margin:.8rem 0 .45rem; }
+.about-principles p { color:var(--muted); font-size:.88rem; line-height:1.7; }
+.skill-groups { display:grid; gap:1.2rem; }
+.skill-group { padding:1.5rem; border:1px solid var(--border); background:var(--card); border-radius:14px; }
+.skill-group-heading { display:flex; justify-content:space-between; align-items:baseline; gap:1rem; margin-bottom:1rem; }
+.skill-group-heading h3 { font-size:1.05rem; }
+.skill-group-heading span { color:var(--muted-dim); font-size:.76rem; }
+.skill-pills { display:flex; flex-wrap:wrap; gap:.65rem; }
+.skill-pill { border:1px solid var(--border-strong); background:var(--surface); color:var(--muted); border-radius:7px; padding:.5rem .8rem; font-size:.83rem; }
+@media (max-width:700px) {
+  .about-intro-grid { grid-template-columns:1fr; gap:1rem; }
+  .about-principles { grid-template-columns:1fr; margin-top:2rem; }
+  .skill-group-heading { align-items:flex-start; flex-direction:column; gap:.3rem; }
+}
