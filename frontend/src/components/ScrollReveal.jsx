@@ -4,14 +4,16 @@ const SELECTORS = [
   '.section-label',
   '.section-title',
   '.section-intro',
-  '.about-grid',
+  '.about-intro-grid',
+  '.about-principles > *',
   '.timeline > *',
   '.skill-group',
   '.projects-grid > *',
   '.arch-card',
   '.recognition-grid > *',
   '.contact-card',
-  '.blog-topic-card',
+  '.writing-topic-card',
+  '.blog-empty-state',
 ];
 
 const ScrollReveal = () => {
