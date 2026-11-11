@@ -17,7 +17,9 @@ function App() {
   return (
     <div className="App">
       <Navbar />
+      <a className="skip-link" href="#main-content">Skip to content</a>
       <ScrollReveal />
+      <main id="main-content">
       <Hero />
       <About />
 
@@ -115,6 +117,7 @@ function App() {
       </section>
 
       <Contact />
+      </main>
       <Footer />
     </div>
   );
