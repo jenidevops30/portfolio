@@ -1470,3 +1470,42 @@ h1, h2, h3, .editorial-name { font-family: 'Manrope', 'DM Sans', sans-serif; }
   }
   .reveal-on-scroll { opacity: 1; transform: none; }
 }
+
+
+/* Accessibility and responsive navigation refinements */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 2000;
+  padding: 0.75rem 1rem;
+  color: var(--color-text-on-brand, #06120f);
+  background: var(--brand-primary, #3ec9a8);
+  border-radius: 8px;
+  font-weight: 700;
+  transform: translateY(-160%);
+  transition: transform 160ms ease;
+}
+.skip-link:focus { transform: translateY(0); }
+[hidden] { display: none !important; }
+.nav-mobile-panel a:focus-visible,
+.nav-links a:focus-visible,
+.logo-container:focus-visible,
+.nav-toggle-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+@media (max-width: 700px) {
+  .nav-mobile-panel {
+    max-height: calc(100dvh - 64px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+@media (max-width: 380px) {
+  nav { padding-inline: 0.85rem; }
+  section { padding-inline: 1rem; }
+  .editorial-hero { padding-inline: 1rem; }
+  .editorial-name { font-size: clamp(3.8rem, 17vw, 5rem); }
+  .editorial-proof { flex-wrap: wrap; }
+}
