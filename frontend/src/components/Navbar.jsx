@@ -17,26 +17,24 @@ const Navbar = () => {
 
   const scrollTo = (id) => {
     setOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      window.scrollTo({
-        top: element.offsetTop - 60,
-        behavior: 'smooth',
-      });
-    }
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Escape' && open) setOpen(false);
   };
 
   return (
-    <nav>
+    <nav aria-label="Main navigation" onKeyDown={handleKeyDown}>
       <div className="nav-inner">
         <button className="logo-container" onClick={() => scrollTo('hero')} aria-label="Back to top">
-          <img src="/logo.svg" alt="Jeni Patel" />
+          <img src="/logo.svg" alt="" />
         </button>
 
         <ul className="nav-links">
           {LINKS.map((link) => (
             <li key={link.id}>
-              <a href={`#${link.id}`} onClick={(e) => { e.preventDefault(); scrollTo(link.id); }}>
+              <a href={`#${link.id}`} onClick={(event) => { event.preventDefault(); scrollTo(link.id); }}>
                 {link.label}
               </a>
             </li>
@@ -49,21 +47,23 @@ const Navbar = () => {
           </a>
           <button
             className="nav-toggle-btn"
-            aria-label={open ? 'Close menu' : 'Open menu'}
+            type="button"
+            aria-label={open ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-controls="mobile-navigation"
             aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
+            onClick={() => setOpen((value) => !value)}
           >
-            {open ? <X size={20} /> : <Menu size={20} />}
+            {open ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
           </button>
         </div>
       </div>
 
-      <div className={`nav-mobile-panel ${open ? 'open' : ''}`}>
+      <div id="mobile-navigation" className={`nav-mobile-panel ${open ? 'open' : ''}`} hidden={!open}>
         {LINKS.map((link) => (
           <a
             key={link.id}
             href={`#${link.id}`}
-            onClick={(e) => { e.preventDefault(); scrollTo(link.id); }}
+            onClick={(event) => { event.preventDefault(); scrollTo(link.id); }}
           >
             {link.label}
           </a>
