@@ -34,7 +34,7 @@ const Hero = () => {
         </div>
         <div className="editorial-portrait-wrap">
           <div className="portrait-frame">
-            <img src="/jeni-headshot.webp" alt="Portrait of Jeni Patel" fetchPriority="high" />
+            <img src="/jeni-headshot.webp" alt="Portrait of Jeni Patel" fetchPriority="high" decoding="async" />
           </div>
           <div className="portrait-caption"><span>INFRASTRUCTURE · AUTOMATION · OPERATIONS</span><span>BASED IN INDIA</span></div>
           <div className="portrait-index" aria-hidden="true">01 / 06</div>
