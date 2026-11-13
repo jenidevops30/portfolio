@@ -39,7 +39,7 @@ export const experience = [
   {
     role: "Network Engineer",
     company: "OptimumBrew Technology LLP",
-    date_range: "JANUARY 2020 – JANUARY 2022",
+    date_range: "FEBRUARY 2020 – JANUARY 2022",
     description: [
       "Supported network infrastructure, FortiGate firewall administration and Linux server operations.",
       "Deployed and maintained self-hosted services including GitLab CE, Zulip, JFrog Artifactory, Redmine and Nextcloud.",
