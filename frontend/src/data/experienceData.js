@@ -1,5 +1,4 @@
 // Professional experience. Dates reflect the user's supplied career history.
-// Earlier-role date overlap is flagged for final verification outside the public portfolio.
 export const experience = [
   {
     role: "DevOps Engineer",
@@ -51,7 +50,7 @@ export const experience = [
   {
     role: "IT Tutor",
     company: "Prakshal IT Academy",
-    date_range: "AUGUST 2017 – JANUARY 2019",
+    date_range: "OCTOBER 2017 – JANUARY 2019",
     description: [
       "Taught computer fundamentals, hardware, networking, Linux administration and cloud computing.",
       "Guided learners through foundational technical concepts and practical exercises."
