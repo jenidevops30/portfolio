@@ -1,46 +1,40 @@
+const ProjectCard = ({ title, category, badge, description, tags = [], links }) => {
+  const availableLinks = links
+    ? Object.entries(links).filter(([, url]) => typeof url === "string" && url.trim())
+    : [];
 
-const ProjectCard = ({ title, badge, description, tags, links, cicd }) => {
   return (
-    <div className="project-card">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem' }}>
-        <div className="project-badge">{badge}</div>
-        {cicd?.badgeUrl && (
-          <img
-            src={cicd.badgeUrl}
-            alt="Build Status"
-            style={{ height: '20px' }}
-          />
-        )}
-      </div>
-      <div className="project-title">{title}</div>
-      <div className="project-desc">{description}</div>
-
-      <div className="project-tags">
-        {tags.map((tag, index) => (
-          <span key={index} className="project-tag">{tag}</span>
-        ))}
+    <article className="project-card">
+      <div className="project-card-meta">
+        {category && <span className="project-category">{category}</span>}
+        {badge && <span className="project-badge">{badge}</span>}
       </div>
 
-      {links && (
-        <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid var(--border)', display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
-          {links.repo && (
-            <a href={links.repo} target="_blank" rel="noreferrer" className="btn-outline" style={{ padding: '8px 12px', fontSize: '0.8rem' }}>
-              → GitHub
-            </a>
-          )}
-          {links.live && (
-            <a href={links.live} target="_blank" rel="noreferrer" className="btn-outline" style={{ padding: '8px 12px', fontSize: '0.8rem' }}>
-              → Live Site
-            </a>
-          )}
-          {links.workflow && (
-            <a href={links.workflow} target="_blank" rel="noreferrer" className="btn-outline" style={{ padding: '8px 12px', fontSize: '0.8rem' }}>
-              → CI/CD
-            </a>
-          )}
+      <h3 className="project-title">{title}</h3>
+      <p className="project-desc">{description}</p>
+
+      {tags.length > 0 && (
+        <div className="project-tags" aria-label={`Technologies used in ${title}`}>
+          {tags.map((tag) => <span key={tag} className="project-tag">{tag}</span>)}
         </div>
       )}
-    </div>
+
+      {availableLinks.length > 0 && (
+        <div className="project-links">
+          {availableLinks.map(([kind, url]) => (
+            <a
+              key={kind}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-outline"
+            >
+              {kind === "repo" ? "View repository" : kind === "live" ? "Live website" : "View workflow"} ↗
+            </a>
+          ))}
+        </div>
+      )}
+    </article>
   );
 };
 
