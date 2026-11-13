@@ -280,7 +280,7 @@ export const experience = [
   {
     role: "Network Engineer",
     company: "OptimumBrew Technology LLP",
-    date_range: "JANUARY 2020 – JANUARY 2022",
+    date_range: "FEBRUARY 2020 – JANUARY 2022",
     description: [
       "Managed FortiGate firewall and server infrastructure for 60+ users, achieving 99.9% uptime.",
       "Built an automated JFrog Artifactory backup solution with incremental backups, retention policies, and email reporting.",
