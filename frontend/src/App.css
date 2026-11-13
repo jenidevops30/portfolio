@@ -1385,6 +1385,28 @@ h1, h2, h3, .editorial-name { font-family: 'Manrope', 'DM Sans', sans-serif; }
 }
 
 .writing-topic-card p,
+.blog-empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+  padding: 1.4rem;
+  border: 1px dashed var(--border);
+  border-radius: 14px;
+}
+
+.blog-empty-copy {
+  max-width: 680px;
+}
+
+.blog-empty-copy h3 {
+  margin: 0 0 0.5rem;
+  color: var(--text);
+  font-size: 1.08rem;
+  line-height: 1.4;
+}
+
 .blog-empty-state p {
   margin: 0;
   color: var(--text-secondary);
@@ -1392,11 +1414,9 @@ h1, h2, h3, .editorial-name { font-family: 'Manrope', 'DM Sans', sans-serif; }
   line-height: 1.75;
 }
 
-.blog-empty-state {
-  margin-top: 1.25rem;
-  padding: 1.25rem 1.4rem;
-  border: 1px dashed var(--border);
-  border-radius: 14px;
+.blog-empty-action {
+  flex: 0 0 auto;
+  white-space: nowrap;
 }
 
 .blog-status {
@@ -1410,6 +1430,15 @@ h1, h2, h3, .editorial-name { font-family: 'Manrope', 'DM Sans', sans-serif; }
 @media (max-width: 700px) {
   .writing-topic-grid {
     grid-template-columns: 1fr;
+  }
+
+  .blog-empty-state {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .blog-empty-action {
+    white-space: normal;
   }
 }
 
