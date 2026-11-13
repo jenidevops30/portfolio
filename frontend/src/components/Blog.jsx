@@ -37,12 +37,18 @@ const Blog = () => (
       </div>
 
       <div className="blog-empty-state">
-        <span className="blog-status">Articles in preparation</span>
-        <p>
-          Published articles will appear here as they are ready. This section will use
-          locally managed Markdown/MDX content, keeping the initial blog lightweight
-          without requiring a database or admin dashboard.
-        </p>
+        <div className="blog-empty-copy">
+          <span className="blog-status">The first articles are in progress</span>
+          <h3>Useful field notes take time to get right.</h3>
+          <p>
+            I’m preparing practical walkthroughs on AWS operations, delivery automation,
+            Linux troubleshooting and Kubernetes. Until the first article is published,
+            explore the projects and infrastructure work behind these topics.
+          </p>
+        </div>
+        <a className="btn-outline blog-empty-action" href="#projects">
+          Explore engineering projects
+        </a>
       </div>
     </div>
   </section>
