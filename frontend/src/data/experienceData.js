@@ -48,9 +48,9 @@ export const experience = [
     ]
   },
   {
-    role: "IT Tutor",
+    role: "IT Infrastructure Management Faculty",
     company: "Prakshal IT Academy",
-    date_range: "SEPTEMBER 2017 – JANUARY 2019",
+    date_range: "SEPTEMBER 2017 – JANUARY 2020",
     description: [
       "Taught computer fundamentals, hardware, networking, Linux administration and cloud computing.",
       "Guided learners through foundational technical concepts and practical exercises."
