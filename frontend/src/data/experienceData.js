@@ -59,7 +59,7 @@ export const experience = [
   {
     role: "Network Engineer",
     company: "DNK Technology",
-    date_range: "JANUARY 2017 – SEPTEMBER 2017",
+    date_range: "JANUARY 2017 – AUGUST 2017",
     description: [
       "Worked in network engineering and IT infrastructure support.",
       "Supported network setup, routine operations and connectivity troubleshooting."
