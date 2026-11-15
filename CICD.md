@@ -48,9 +48,9 @@ This document explains the automated build, test, and deployment pipeline that p
           │        └─► Thresholds: 85+ performance, 90+ accessibility, 90+ SEO
           │        └─► Results: JSON report + temporary public URL
           │
-          ├─► Step 6: Configure AWS Credentials
+          ├─► Step 6: Configure AWS Credentials (OIDC)
           │        └─► aws-actions/configure-aws-credentials@v4
-          │        └─► Uses GitHub Secrets (AWS_ACCESS_KEY_ID, etc.)
+          │        └─► Assumes the Terraform-managed IAM role
           │
           ├─► Step 7: Deploy to S3
           │        └─► aws s3 sync frontend/dist s3://jeni-portfolio --delete
@@ -136,8 +136,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-to-assume: ${{ secrets.GH_ACTIONS_ROLE_ARN }}
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Deploy to S3
@@ -161,19 +160,18 @@ For the workflow to deploy successfully, add these secrets to your GitHub reposi
 
 | Secret Name | Description | Example |
 |---|---|---|
-| `AWS_ACCESS_KEY_ID` | AWS IAM user access key | `AKIA...` |
-| `AWS_SECRET_ACCESS_KEY` | AWS IAM user secret key | `wJal...` |
+| `GH_ACTIONS_ROLE_ARN` | ARN from `terraform output github_actions_role_arn` | `arn:aws:iam::...:role/github-actions-portfolio-deployer` |
 | `AWS_REGION` | AWS region where S3/CloudFront live | `us-east-1` |
 | `CLOUDFRONT_DISTRIBUTION_ID` | CloudFront distribution ID | `E1ABC...` |
 | `SNYK_TOKEN` | Snyk API token for security scanning | (from Snyk.io dashboard) |
 
 ### How to Get These Values:
 
-1. **AWS_ACCESS_KEY_ID & AWS_SECRET_ACCESS_KEY**:
-   - Go to AWS IAM Console > Users > Your user
-   - Security credentials tab > Create access key
-   - Copy the Access Key ID and Secret Access Key
-   - **Never commit these to git!**
+1. **GH_ACTIONS_ROLE_ARN**:
+   - Run `terraform output github_actions_role_arn` from the initialized `terraform/` directory.
+   - Add the returned IAM role ARN as a GitHub Actions secret named `GH_ACTIONS_ROLE_ARN`.
+   - The role trust policy is restricted to pushes from `jenidevops30/portfolio` on `main`.
+   - GitHub Actions receives short-lived AWS credentials through OIDC; do not create or store long-lived AWS access keys for this workflow.
 
 2. **AWS_REGION**:
    - Typically `us-east-1` for global resources
@@ -240,9 +238,10 @@ $ git push
 #### ❌ Deploy Fails: "AWS credentials invalid"
 ```
 Fix: Verify secrets in GitHub Settings
-- AWS_ACCESS_KEY_ID correct?
-- AWS_SECRET_ACCESS_KEY correct?
-- Keys still active in AWS IAM?
+- `GH_ACTIONS_ROLE_ARN` matches `terraform output github_actions_role_arn`?
+- GitHub OIDC provider `token.actions.githubusercontent.com` exists in the AWS account?
+- IAM role trust policy allows `repo:jenidevops30/portfolio:ref:refs/heads/main`?
+- Workflow has `id-token: write` permission?
 ```
 
 #### ❌ CloudFront Invalidation Fails
@@ -287,8 +286,7 @@ npm run build  # Build production app
 
 3. **Keep secrets secure**:
    - Never commit `.env` files
-   - Use GitHub Secrets, not environment variables in workflow
-   - Rotate AWS access keys every 90 days
+   - Use GitHub OIDC and short-lived role credentials; avoid long-lived AWS access keys
 
 4. **Use descriptive commit messages**:
    ```bash
