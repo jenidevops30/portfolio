@@ -72,7 +72,3 @@ resource "aws_iam_role_policy" "cloudfront_invalidate" {
   })
 }
 
-output "github_actions_role_arn" {
-  description = "ARN of the GitHub Actions OIDC deployment role"
-  value       = aws_iam_role.github_actions.arn
-}
