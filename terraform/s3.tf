@@ -41,8 +41,8 @@ resource "aws_s3_bucket_policy" "portfolio_cloudfront" {
     Version = "2012-10-17"
     Statement = [
       {
-        Sid       = "AllowCloudFrontOACReadOnly"
-        Effect    = "Allow"
+        Sid    = "AllowCloudFrontOACReadOnly"
+        Effect = "Allow"
         Principal = {
           Service = "cloudfront.amazonaws.com"
         }
@@ -87,6 +87,8 @@ resource "aws_s3_bucket_lifecycle_configuration" "portfolio" {
   rule {
     id     = "delete-old-versions"
     status = "Enabled"
+
+    filter {}
 
     noncurrent_version_expiration {
       noncurrent_days = 30
