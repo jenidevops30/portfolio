@@ -34,7 +34,7 @@ const Navbar = () => {
         <ul className="nav-links">
           {LINKS.map((link) => (
             <li key={link.id}>
-              <a href={`#${link.id}`} onClick={(event) => { event.preventDefault(); scrollTo(link.id); }}>
+              <a href={`#${link.id}`}>
                 {link.label}
               </a>
             </li>
@@ -63,7 +63,7 @@ const Navbar = () => {
           <a
             key={link.id}
             href={`#${link.id}`}
-            onClick={(event) => { event.preventDefault(); scrollTo(link.id); }}
+            onClick={() => setOpen(false)}
           >
             {link.label}
           </a>
