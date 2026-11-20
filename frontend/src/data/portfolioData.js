@@ -109,7 +109,13 @@ export const awards = [
 ];
 
 export const certifications = [
-  { title: "Red Hat Certified System Administrator (RHCSA)", issuer: "Red Hat" },
+  {
+    title: "Red Hat Certified System Administrator (RHCSA)",
+    issuer: "Red Hat",
+    exam: "EX200",
+    credentialId: "180-100-158",
+    verificationUrl: "https://rhtapps.redhat.com/verify?certId=180-100-158",
+  },
   { title: "DevOps Course", issuer: "Intellipaat Software Solutions Pvt Ltd." },
   { title: "Cloud Computing Expert Course", issuer: "Prakshal IT Academy" },
 ];
