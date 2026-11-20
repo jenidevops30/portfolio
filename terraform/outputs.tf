@@ -23,6 +23,11 @@ output "github_actions_role_arn" {
   value       = aws_iam_role.github_actions.arn
 }
 
+output "github_actions_terraform_plan_role_arn" {
+  description = "ARN of read-only IAM role for Terraform plan in pull requests"
+  value       = aws_iam_role.github_actions_terraform_plan.arn
+}
+
 output "infrastructure_summary" {
   description = "Summary of infrastructure"
   value = {
@@ -30,5 +35,6 @@ output "infrastructure_summary" {
     cloudfront_domain   = aws_cloudfront_distribution.portfolio.domain_name
     cloudfront_dist_id  = aws_cloudfront_distribution.portfolio.id
     github_actions_role = aws_iam_role.github_actions.arn
+    terraform_plan_role = aws_iam_role.github_actions_terraform_plan.arn
   }
 }
