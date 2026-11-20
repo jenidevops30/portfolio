@@ -31,10 +31,10 @@ output "github_actions_terraform_plan_role_arn" {
 output "infrastructure_summary" {
   description = "Summary of infrastructure"
   value = {
-    s3_bucket                  = aws_s3_bucket.portfolio.id
-    cloudfront_domain          = aws_cloudfront_distribution.portfolio.domain_name
-    cloudfront_dist_id         = aws_cloudfront_distribution.portfolio.id
-    github_actions_role        = aws_iam_role.github_actions.arn
-    terraform_plan_role        = aws_iam_role.github_actions_terraform_plan.arn
+    s3_bucket           = aws_s3_bucket.portfolio.id
+    cloudfront_domain   = aws_cloudfront_distribution.portfolio.domain_name
+    cloudfront_dist_id  = aws_cloudfront_distribution.portfolio.id
+    github_actions_role = aws_iam_role.github_actions.arn
+    terraform_plan_role = aws_iam_role.github_actions_terraform_plan.arn
   }
 }
