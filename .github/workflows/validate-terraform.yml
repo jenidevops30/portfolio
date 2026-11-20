@@ -52,8 +52,8 @@ jobs:
   plan:
     name: Terraform Plan
     needs: validate
-    # Fork PRs do not receive repository secrets or OIDC access. Same-repository
-    # PRs use a dedicated read-only role; pushes/dispatch use the plan role too.
+    # Fork PRs are excluded. The plan role trust policy separately restricts
+    # push/dispatch OIDC tokens to main and the feature foundation branch.
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
 
     runs-on: ubuntu-latest
