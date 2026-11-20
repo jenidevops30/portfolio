@@ -50,7 +50,7 @@ This document explains the automated build, test, and deployment pipeline that p
           │
           ├─► Step 6: Configure AWS Credentials
           │        └─► aws-actions/configure-aws-credentials@v4
-          │        └─► Uses GitHub Secrets (AWS_ACCESS_KEY_ID, etc.)
+          │        └─► Uses GitHub OIDC to assume a dedicated IAM role (temporary credentials)
           │
           ├─► Step 7: Deploy to S3
           │        └─► aws s3 sync frontend/dist s3://jeni-portfolio --delete
@@ -133,11 +133,11 @@ jobs:
           npm ci
           npm run build
 
-      - name: Configure AWS Credentials
+      - name: Configure AWS Credentials (GitHub OIDC)
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          role-session-name: GitHubActionsPortfolioDeploy
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Deploy to S3
@@ -153,43 +153,30 @@ jobs:
           echo "✅ CloudFront cache invalidated"
 ```
 
-## 🔐 Required GitHub Secrets
+## 🔐 GitHub Actions Configuration
 
-For the workflow to deploy successfully, add these secrets to your GitHub repository:
+Configure these values under **Repository → Settings → Secrets and variables → Actions**:
 
-**Settings > Secrets and variables > Actions**
+**Repository variable**
+| Name | Description |
+|---|---|
+| `AWS_ROLE_ARN` | ARN of the existing `github-actions-portfolio-deployer` IAM role (Terraform output: `github_actions_role_arn`) |
 
-| Secret Name | Description | Example |
-|---|---|---|
-| `AWS_ACCESS_KEY_ID` | AWS IAM user access key | `AKIA...` |
-| `AWS_SECRET_ACCESS_KEY` | AWS IAM user secret key | `wJal...` |
-| `AWS_REGION` | AWS region where S3/CloudFront live | `us-east-1` |
-| `CLOUDFRONT_DISTRIBUTION_ID` | CloudFront distribution ID | `E1ABC...` |
-| `SNYK_TOKEN` | Snyk API token for security scanning | (from Snyk.io dashboard) |
+**Repository secrets**
+| Name | Description |
+|---|---|
+| `AWS_REGION` | AWS region used for the S3 bucket, for example `us-east-1` |
+| `CLOUDFRONT_DISTRIBUTION_ID` | CloudFront distribution ID |
+| `SNYK_TOKEN` | Snyk API token for dependency scanning |
 
-### How to Get These Values:
+### One-time AWS OIDC prerequisites
 
-1. **AWS_ACCESS_KEY_ID & AWS_SECRET_ACCESS_KEY**:
-   - Go to AWS IAM Console > Users > Your user
-   - Security credentials tab > Create access key
-   - Copy the Access Key ID and Secret Access Key
-   - **Never commit these to git!**
+- The AWS account must have the GitHub OIDC provider `token.actions.githubusercontent.com` registered.
+- The IAM role `github-actions-portfolio-deployer` must trust audience `sts.amazonaws.com` and subject `repo:jenidevops30/portfolio:ref:refs/heads/main`.
+- The role must have the existing least-privilege S3 deployment and CloudFront invalidation policies.
+- The workflow now requests `id-token: write` and assumes this role; no long-lived AWS access keys are required.
 
-2. **AWS_REGION**:
-   - Typically `us-east-1` for global resources
-   - Must match where your S3 bucket and CloudFront distribution live
-
-3. **CLOUDFRONT_DISTRIBUTION_ID**:
-   - AWS CloudFront Console
-   - Find your distribution
-   - Copy the Distribution ID (e.g., `E1ABCD1234E5F6G`)
-
-4. **SNYK_TOKEN**:
-   - Go to [Snyk.io](https://snyk.io) and sign up (free tier available)
-   - Settings > API Token
-   - Copy the token
-   - Add to GitHub Secrets as `SNYK_TOKEN`
-   - **Note**: Snyk free tier allows scanning public repos
+Do not add or retain `AWS_ACCESS_KEY_ID` or `AWS_SECRET_ACCESS_KEY` for this deployment workflow. Once an OIDC deployment succeeds, deactivate and remove any old IAM access keys that were used only by the previous pipeline.
 
 ## 🚀 How to Deploy
 
@@ -240,9 +227,10 @@ $ git push
 #### ❌ Deploy Fails: "AWS credentials invalid"
 ```
 Fix: Verify secrets in GitHub Settings
-- AWS_ACCESS_KEY_ID correct?
-- AWS_SECRET_ACCESS_KEY correct?
-- Keys still active in AWS IAM?
+- Is the repository variable `AWS_ROLE_ARN` set to the deployment role ARN?
+- Does the IAM role trust the exact repository and `main` branch subject?
+- Is `id-token: write` present in workflow permissions?
+- Does the role include S3 sync and CloudFront invalidation permissions?
 ```
 
 #### ❌ CloudFront Invalidation Fails
@@ -287,8 +275,7 @@ npm run build  # Build production app
 
 3. **Keep secrets secure**:
    - Never commit `.env` files
-   - Use GitHub Secrets, not environment variables in workflow
-   - Rotate AWS access keys every 90 days
+   - Use GitHub OIDC and a narrowly scoped IAM role; avoid long-lived AWS access keys
 
 4. **Use descriptive commit messages**:
    ```bash
