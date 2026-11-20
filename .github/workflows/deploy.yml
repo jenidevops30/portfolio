@@ -8,6 +8,7 @@ on:
 permissions:
   contents: write
   issues: write
+  id-token: write
 
 jobs:
   deploy:
@@ -58,12 +59,12 @@ jobs:
           temporaryPublicStorage: true
         continue-on-error: true
 
-      # 4. Configure AWS credentials from GitHub Secrets
+      # 4. Authenticate to AWS using GitHub OIDC (temporary credentials)
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          role-session-name: GitHubActionsPortfolioDeploy
           aws-region: ${{ secrets.AWS_REGION }}
 
       # 5. Sync the built app (frontend/dist) to S3
