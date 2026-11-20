@@ -1,9 +1,9 @@
-# S3 Bucket for static portfolio site
+# Private S3 bucket for the static portfolio site.
 resource "aws_s3_bucket" "portfolio" {
   bucket = var.bucket_name
 }
 
-# Block public access at bucket level (CloudFront handles distribution)
+# Keep the bucket private. CloudFront OAC is the only read path.
 resource "aws_s3_bucket_public_access_block" "portfolio" {
   bucket = aws_s3_bucket.portfolio.id
 
@@ -13,7 +13,6 @@ resource "aws_s3_bucket_public_access_block" "portfolio" {
   restrict_public_buckets = true
 }
 
-# Enable versioning for safety (easy rollback)
 resource "aws_s3_bucket_versioning" "portfolio" {
   bucket = aws_s3_bucket.portfolio.id
 
@@ -22,7 +21,6 @@ resource "aws_s3_bucket_versioning" "portfolio" {
   }
 }
 
-# Server-side encryption by default
 resource "aws_s3_bucket_server_side_encryption_configuration" "portfolio" {
   bucket = aws_s3_bucket.portfolio.id
 
@@ -33,14 +31,9 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "portfolio" {
   }
 }
 
-# Block unencrypted uploads
-resource "aws_s3_bucket_public_access_block" "deny_unencrypted" {
-  bucket = aws_s3_bucket.portfolio.id
-
-  depends_on = [aws_s3_bucket_server_side_encryption_configuration.portfolio]
-}
-
-# Bucket policy: Allow CloudFront to read objects
+# CloudFront OAC signs origin requests with SigV4.
+# The policy references the distribution, so it is intentionally applied
+# after the distribution exists. The distribution must not depend on this policy.
 resource "aws_s3_bucket_policy" "portfolio_cloudfront" {
   bucket = aws_s3_bucket.portfolio.id
 
@@ -48,7 +41,7 @@ resource "aws_s3_bucket_policy" "portfolio_cloudfront" {
     Version = "2012-10-17"
     Statement = [
       {
-        Sid    = "AllowCloudFrontAccess"
+        Sid    = "AllowCloudFrontOACReadOnly"
         Effect = "Allow"
         Principal = {
           Service = "cloudfront.amazonaws.com"
@@ -57,7 +50,22 @@ resource "aws_s3_bucket_policy" "portfolio_cloudfront" {
         Resource = "${aws_s3_bucket.portfolio.arn}/*"
         Condition = {
           StringEquals = {
-            "AWS:SourceArn" = "arn:aws:cloudfront::${data.aws_caller_identity.current.account_id}:distribution/${aws_cloudfront_distribution.portfolio.id}"
+            "AWS:SourceArn" = aws_cloudfront_distribution.portfolio.arn
+          }
+        }
+      },
+      {
+        Sid       = "DenyInsecureTransport"
+        Effect    = "Deny"
+        Principal = "*"
+        Action    = "s3:*"
+        Resource = [
+          aws_s3_bucket.portfolio.arn,
+          "${aws_s3_bucket.portfolio.arn}/*"
+        ]
+        Condition = {
+          Bool = {
+            "aws:SecureTransport" = "false"
           }
         }
       }
@@ -65,17 +73,14 @@ resource "aws_s3_bucket_policy" "portfolio_cloudfront" {
   })
 }
 
-# Enable request logging to CloudWatch
 resource "aws_s3_bucket_logging" "portfolio" {
   count = var.enable_logging ? 1 : 0
 
-  bucket = aws_s3_bucket.portfolio.id
-
+  bucket        = aws_s3_bucket.portfolio.id
   target_bucket = aws_s3_bucket.logs[0].id
   target_prefix = "s3-access-logs/"
 }
 
-# Lifecycle policy: delete old versions after 30 days (cost optimization)
 resource "aws_s3_bucket_lifecycle_configuration" "portfolio" {
   bucket = aws_s3_bucket.portfolio.id
 
@@ -83,11 +88,12 @@ resource "aws_s3_bucket_lifecycle_configuration" "portfolio" {
     id     = "delete-old-versions"
     status = "Enabled"
 
+    filter {}
+
     noncurrent_version_expiration {
       noncurrent_days = 30
     }
   }
 }
 
-# Data source for current AWS account
 data "aws_caller_identity" "current" {}

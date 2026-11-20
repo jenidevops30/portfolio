@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer>
       <div className="footer-inner">
-        <p>&copy; {new Date().getFullYear()} Jeni Patel · Cloud &amp; DevOps Architect</p>
+        <p>&copy; {new Date().getFullYear()} Jeni Patel · DevOps Engineer &amp; AWS Cloud Specialist</p>
         <div className="footer-socials">
           <a href={contact.github} target="_blank" rel="noreferrer" aria-label="GitHub"><GithubIcon size={18} /></a>
           <a href={contact.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><LinkedinIcon size={18} /></a>
