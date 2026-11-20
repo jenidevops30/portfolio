@@ -140,6 +140,9 @@ function App() {
                       key={cert.title}
                       role={cert.title}
                       company={cert.issuer}
+                      credentialMeta={cert.exam}
+                      credentialId={cert.credentialId}
+                      credentialUrl={cert.verificationUrl}
                     />
                   ))}
                 </div>
