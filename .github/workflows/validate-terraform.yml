@@ -78,11 +78,22 @@ jobs:
           terraform_version: "1.17.2"
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
+      - name: Verify AWS role secret is available
+        env:
+          AWS_PLAN_ROLE_ARN: ${{ secrets.AWS_PLAN_ROLE_ARN }}
+        run: |
+          if [ -z "$AWS_PLAN_ROLE_ARN" ]; then
+            echo "::error::AWS_PLAN_ROLE_ARN is missing or unavailable to this workflow."
+            exit 1
+          fi
+          echo "AWS role secret is available."
+
       - name: Configure AWS credentials using GitHub OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.AWS_PLAN_ROLE_ARN }}
           aws-region: us-east-1
+          audience: sts.amazonaws.com
 
       - name: Verify AWS identity
         run: aws sts get-caller-identity
