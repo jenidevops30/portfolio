@@ -1542,3 +1542,265 @@ h1, h2, h3, .editorial-name { font-family: 'Manrope', 'DM Sans', sans-serif; }
   .editorial-name { font-size: clamp(3.8rem, 17vw, 5rem); }
   .editorial-proof { flex-wrap: wrap; }
 }
+
+
+/* RESPONSIVE QA FIXES — tablet and narrow-mobile layouts */
+/* Keep the fixed header compact and prevent the brand mark from overlapping content. */
+nav {
+  padding-inline: clamp(1rem, 3vw, 2rem);
+}
+
+.logo-container {
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.logo-container img {
+  width: auto;
+  height: 48px;
+  max-width: 100%;
+  margin: 0;
+  object-fit: contain;
+}
+
+.nav-inner {
+  min-width: 0;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.nav-links {
+  gap: clamp(0.8rem, 1.7vw, 1.5rem);
+}
+
+.nav-links a {
+  white-space: nowrap;
+  font-size: clamp(0.78rem, 0.9vw, 0.88rem);
+}
+
+.editorial-hero,
+.editorial-hero-inner,
+.editorial-copy,
+.editorial-portrait-wrap {
+  min-width: 0;
+}
+
+.editorial-hero {
+  position: relative;
+  scroll-margin-top: 64px;
+}
+
+.editorial-eyebrow {
+  max-width: 100%;
+  flex-wrap: wrap;
+  overflow-wrap: anywhere;
+}
+
+.editorial-name {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.editorial-summary {
+  overflow-wrap: anywhere;
+}
+
+.editorial-proof > div {
+  min-width: 0;
+}
+
+.editorial-portrait-wrap {
+  justify-self: end;
+}
+
+.portrait-frame {
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  /* Tablet navigation switches before the seven-link row becomes crowded. */
+  .nav-links {
+    display: none;
+  }
+
+  .nav-actions .btn-primary {
+    display: none;
+  }
+
+  .nav-toggle-btn {
+    display: inline-flex;
+    flex: 0 0 auto;
+  }
+
+  .nav-mobile-panel {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+    display: none;
+    flex-direction: column;
+    gap: 0.25rem;
+    max-height: calc(100dvh - 64px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 1rem clamp(1rem, 4vw, 2rem) 1.5rem;
+    background: rgba(10, 11, 13, 0.98);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-mobile-panel.open {
+    display: flex;
+  }
+
+  .nav-mobile-panel a {
+    display: block;
+    padding: 0.8rem 0.25rem;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+    font-size: 0.95rem;
+  }
+
+  .editorial-hero {
+    min-height: auto;
+    padding: 104px clamp(1.5rem, 4vw, 2.5rem) 3rem;
+  }
+
+  .editorial-hero-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.5rem;
+  }
+
+  .editorial-copy {
+    padding-block: 0;
+  }
+
+  .editorial-portrait-wrap {
+    justify-self: start;
+    width: min(100%, 420px);
+    max-width: 420px;
+  }
+
+  .portrait-index {
+    right: 0.5rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .editorial-hero {
+    padding: 88px 1.2rem 2.5rem;
+  }
+
+  .editorial-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    line-height: 1.5;
+    margin-bottom: 1.1rem;
+  }
+
+  .editorial-name {
+    font-size: clamp(3.5rem, 15.5vw, 5rem);
+    line-height: 0.94;
+    letter-spacing: -0.07em;
+    margin-bottom: 1.2rem;
+  }
+
+  .editorial-lead {
+    font-size: clamp(1.05rem, 4.8vw, 1.3rem);
+  }
+
+  .editorial-summary {
+    font-size: 0.96rem;
+    line-height: 1.7;
+  }
+
+  .editorial-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.7rem;
+  }
+
+  .editorial-actions button {
+    width: 100%;
+    min-width: 0;
+    justify-content: center;
+  }
+
+  .editorial-proof {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    justify-content: initial;
+  }
+
+  .editorial-proof div {
+    min-width: 0;
+  }
+
+  .editorial-proof strong {
+    font-size: 1.2rem;
+  }
+
+  .editorial-proof span {
+    font-size: 0.7rem;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+
+  .editorial-portrait-wrap {
+    width: 100%;
+  }
+
+  .portrait-caption {
+    flex-wrap: wrap;
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+  }
+
+  .portrait-index {
+    right: 0.5rem;
+  }
+}
+
+@media (max-width: 380px) {
+  nav {
+    padding-inline: 0.85rem;
+  }
+
+  .nav-inner {
+    height: 60px;
+  }
+
+  .nav-mobile-panel {
+    top: 60px;
+    max-height: calc(100dvh - 60px);
+  }
+
+  .editorial-hero {
+    padding: 82px 1rem 2rem;
+  }
+
+  .editorial-name {
+    font-size: clamp(3.25rem, 15vw, 3.8rem);
+    letter-spacing: -0.065em;
+  }
+
+  .editorial-proof {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem 0.75rem;
+  }
+
+  .editorial-portrait-wrap {
+    max-width: 100%;
+  }
+
+  .portrait-index {
+    right: 0.4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .editorial-copy > *,
+  .editorial-portrait-wrap {
+    animation: none !important;
+  }
+}
