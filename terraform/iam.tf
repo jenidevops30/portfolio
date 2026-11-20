@@ -24,7 +24,8 @@ resource "aws_iam_role" "github_actions" {
   description = "OIDC role for GitHub Actions to deploy the portfolio to S3 and invalidate CloudFront"
 }
 
-# Separate read-only role for Terraform plans on same-repository pull requests.
+# Separate read-only role for Terraform plans. Trust is limited to same-repository
+# pull requests and the two explicitly permitted branch refs for push/dispatch runs.
 # It cannot modify AWS resources and does not weaken the deployer's main-branch trust.
 resource "aws_iam_role" "github_actions_terraform_plan" {
   name = "github-actions-portfolio-terraform-plan"
@@ -41,14 +42,18 @@ resource "aws_iam_role" "github_actions_terraform_plan" {
         Condition = {
           StringEquals = {
             "token.actions.githubusercontent.com:aud" = "sts.amazonaws.com"
-            "token.actions.githubusercontent.com:sub" = "repo:jenidevops30/portfolio:pull_request"
+            "token.actions.githubusercontent.com:sub" = [
+              "repo:jenidevops30/portfolio:pull_request",
+              "repo:jenidevops30/portfolio:ref:refs/heads/main",
+              "repo:jenidevops30/portfolio:ref:refs/heads/feature/phase-1-portfolio-foundation"
+            ]
           }
         }
       }
     ]
   })
 
-  description = "Read-only OIDC role for Terraform plan on same-repository pull requests"
+  description = "Read-only OIDC role for Terraform plans on approved repository events"
 }
 
 resource "aws_iam_role_policy_attachment" "terraform_plan_read_only" {
