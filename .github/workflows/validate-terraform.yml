@@ -52,7 +52,9 @@ jobs:
   plan:
     name: Terraform Plan
     needs: validate
-    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    # Fork PRs do not receive repository secrets or OIDC access. Same-repository
+    # PRs use a dedicated read-only role; pushes/dispatch use the plan role too.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
 
     runs-on: ubuntu-latest
 
@@ -78,20 +80,20 @@ jobs:
           terraform_version: "1.17.2"
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-      - name: Verify AWS role secret is available
+      - name: Verify AWS Terraform plan role secret is available
         env:
-          AWS_PLAN_ROLE_ARN: ${{ secrets.AWS_PLAN_ROLE_ARN }}
+          AWS_TERRAFORM_PLAN_ROLE_ARN: ${{ secrets.AWS_TERRAFORM_PLAN_ROLE_ARN }}
         run: |
-          if [ -z "$AWS_PLAN_ROLE_ARN" ]; then
-            echo "::error::AWS_PLAN_ROLE_ARN is missing or unavailable to this workflow."
+          if [ -z "$AWS_TERRAFORM_PLAN_ROLE_ARN" ]; then
+            echo "::error::AWS_TERRAFORM_PLAN_ROLE_ARN is missing. Set it to the output github_actions_terraform_plan_role_arn."
             exit 1
           fi
-          echo "AWS role secret is available."
+          echo "AWS Terraform plan role secret is available."
 
       - name: Configure AWS credentials using GitHub OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ secrets.AWS_PLAN_ROLE_ARN }}
+          role-to-assume: ${{ secrets.AWS_TERRAFORM_PLAN_ROLE_ARN }}
           aws-region: us-east-1
           audience: sts.amazonaws.com
 
@@ -102,4 +104,4 @@ jobs:
         run: terraform init -input=false
 
       - name: Terraform Plan
-        run: terraform plan -input=false -no-color
+        run: terraform plan -input=false -no-color -lock-timeout=5m
