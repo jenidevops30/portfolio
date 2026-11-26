@@ -133,7 +133,7 @@ jobs:
           npm ci
           npm run build
 
-      - name: Configure AWS Credentials
+      - name: Configure AWS Credentials (GitHub OIDC)
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ vars.AWS_ROLE_ARN }}
@@ -157,7 +157,10 @@ jobs:
 
 For the workflow to deploy successfully, configure these values in your repository:
 
-**Settings > Secrets and variables > Actions**
+**Repository variable**
+| Name | Description |
+|---|---|
+| `AWS_ROLE_ARN` | ARN of the existing `github-actions-portfolio-deployer` IAM role (Terraform output: `github_actions_role_arn`) |
 
 | Secret Name | Description | Example |
 |---|---|---|
@@ -166,7 +169,7 @@ For the workflow to deploy successfully, configure these values in your reposito
 | `CLOUDFRONT_DISTRIBUTION_ID` | CloudFront distribution ID | `E1ABC...` |
 | `SNYK_TOKEN` | Snyk API token for security scanning | (from Snyk.io dashboard) |
 
-### How to Get These Values:
+### One-time AWS OIDC prerequisites
 
 1. **AWS_ROLE_ARN (repository variable)**:
    - Run `terraform output github_actions_role_arn` from the initialized `terraform/` directory.
@@ -174,21 +177,7 @@ For the workflow to deploy successfully, configure these values in your reposito
    - The role trust policy is restricted to pushes from `jenidevops30/portfolio` on `main`.
    - GitHub Actions receives short-lived AWS credentials through OIDC; do not create or store long-lived AWS access keys for this workflow.
 
-2. **AWS_REGION**:
-   - Typically `us-east-1` for global resources
-   - Must match where your S3 bucket and CloudFront distribution live
-
-3. **CLOUDFRONT_DISTRIBUTION_ID**:
-   - AWS CloudFront Console
-   - Find your distribution
-   - Copy the Distribution ID (e.g., `E1ABCD1234E5F6G`)
-
-4. **SNYK_TOKEN**:
-   - Go to [Snyk.io](https://snyk.io) and sign up (free tier available)
-   - Settings > API Token
-   - Copy the token
-   - Add to GitHub Secrets as `SNYK_TOKEN`
-   - **Note**: Snyk free tier allows scanning public repos
+Do not add or retain `AWS_ACCESS_KEY_ID` or `AWS_SECRET_ACCESS_KEY` for this deployment workflow. Once an OIDC deployment succeeds, deactivate and remove any old IAM access keys that were used only by the previous pipeline.
 
 ## 🚀 How to Deploy
 
