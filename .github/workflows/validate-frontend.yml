@@ -1,0 +1,84 @@
+name: Validate Portfolio Frontend
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/validate-frontend.yml'
+  push:
+    branches:
+      - feature/phase-1-portfolio-foundation
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/validate-frontend.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: frontend-validation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Lint and production build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Build production bundle
+        run: npm run build
+
+      - name: Report production asset sizes
+        run: |
+          node --input-type=module <<'NODE'
+          import { readdir, readFile, stat } from 'node:fs/promises';
+          import { gzipSync } from 'node:zlib';
+          import path from 'node:path';
+
+          const root = 'dist/assets';
+          const files = await readdir(root, { withFileTypes: true });
+          const assets = [];
+
+          for (const entry of files) {
+            if (!entry.isFile()) continue;
+            const file = path.join(root, entry.name);
+            const [buffer, metadata] = await Promise.all([readFile(file), stat(file)]);
+            assets.push({
+              name: entry.name,
+              bytes: metadata.size,
+              gzipBytes: gzipSync(buffer).length,
+            });
+          }
+
+          assets.sort((a, b) => b.bytes - a.bytes);
+          const format = (bytes) => `${(bytes / 1024).toFixed(1)} KiB`;
+          console.log('Production assets (largest first):');
+          for (const asset of assets) {
+            console.log(`- ${asset.name}: ${format(asset.bytes)} raw / ${format(asset.gzipBytes)} gzip`);
+          }
+
+          const total = assets.reduce((sum, asset) => sum + asset.bytes, 0);
+          const gzipTotal = assets.reduce((sum, asset) => sum + asset.gzipBytes, 0);
+          console.log(`TOTAL: ${format(total)} raw / ${format(gzipTotal)} gzip`);
+          NODE

@@ -1,5 +1,6 @@
 terraform {
-  required_version = ">= 1.0"
+  required_version = ">= 1.1"
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -7,13 +8,12 @@ terraform {
     }
   }
 
-  # Store state in S3 for team access + safety
-  backend "s3" {
-    bucket         = "jeni-portfolio-terraform-state"
-    key            = "portfolio/terraform.tfstate"
-    region         = "us-east-1"
-    encrypt        = true
-    dynamodb_table = "terraform-locks"
+  cloud {
+    organization = "jeni"
+
+    workspaces {
+      name = "portfolio"
+    }
   }
 }
 

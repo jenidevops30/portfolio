@@ -1,0 +1,105 @@
+name: Terraform CI
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "terraform/**"
+      - ".github/workflows/validate-terraform.yml"
+
+  push:
+    branches:
+      - main
+      - feature/phase-1-portfolio-foundation
+    paths:
+      - "terraform/**"
+      - ".github/workflows/validate-terraform.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: terraform-portfolio
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Format and Validate
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: terraform
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.17.2"
+
+      - name: Terraform Format
+        run: terraform fmt -check -recursive
+
+      - name: Terraform Init
+        run: terraform init -backend=false -input=false
+
+      - name: Terraform Validate
+        run: terraform validate
+
+  plan:
+    name: Terraform Plan
+    needs: validate
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
+    defaults:
+      run:
+        working-directory: terraform
+
+    env:
+      TF_IN_AUTOMATION: "true"
+      TF_INPUT: "false"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.17.2"
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+      - name: Verify AWS role secret is available
+        env:
+          AWS_PLAN_ROLE_ARN: ${{ secrets.AWS_PLAN_ROLE_ARN }}
+        run: |
+          if [ -z "$AWS_PLAN_ROLE_ARN" ]; then
+            echo "::error::AWS_PLAN_ROLE_ARN is missing or unavailable to this workflow."
+            exit 1
+          fi
+          echo "AWS role secret is available."
+
+      - name: Configure AWS credentials using GitHub OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_PLAN_ROLE_ARN }}
+          aws-region: us-east-1
+          audience: sts.amazonaws.com
+
+      - name: Verify AWS identity
+        run: aws sts get-caller-identity
+
+      - name: Terraform Init
+        run: terraform init -input=false
+
+      - name: Terraform Plan
+        run: terraform plan -input=false -no-color

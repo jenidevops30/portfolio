@@ -48,9 +48,9 @@ This document explains the automated build, test, and deployment pipeline that p
           │        └─► Thresholds: 85+ performance, 90+ accessibility, 90+ SEO
           │        └─► Results: JSON report + temporary public URL
           │
-          ├─► Step 6: Configure AWS Credentials
+          ├─► Step 6: Configure AWS Credentials (OIDC)
           │        └─► aws-actions/configure-aws-credentials@v4
-          │        └─► Uses GitHub OIDC to assume a dedicated IAM role (temporary credentials)
+          │        └─► Assumes the Terraform-managed IAM role
           │
           ├─► Step 7: Deploy to S3
           │        └─► aws s3 sync frontend/dist s3://jeni-portfolio --delete
@@ -153,28 +153,29 @@ jobs:
           echo "✅ CloudFront cache invalidated"
 ```
 
-## 🔐 GitHub Actions Configuration
+## 🔐 Required GitHub Actions Secrets and Variables
 
-Configure these values under **Repository → Settings → Secrets and variables → Actions**:
+For the workflow to deploy successfully, configure these values in your repository:
 
 **Repository variable**
 | Name | Description |
 |---|---|
 | `AWS_ROLE_ARN` | ARN of the existing `github-actions-portfolio-deployer` IAM role (Terraform output: `github_actions_role_arn`) |
 
-**Repository secrets**
-| Name | Description |
-|---|---|
-| `AWS_REGION` | AWS region used for the S3 bucket, for example `us-east-1` |
-| `CLOUDFRONT_DISTRIBUTION_ID` | CloudFront distribution ID |
-| `SNYK_TOKEN` | Snyk API token for dependency scanning |
+| Secret Name | Description | Example |
+|---|---|---|
+| `AWS_ROLE_ARN` (repository variable) | ARN from `terraform output github_actions_role_arn` | `arn:aws:iam::...:role/github-actions-portfolio-deployer` |
+| `AWS_REGION` | AWS region where S3/CloudFront live | `us-east-1` |
+| `CLOUDFRONT_DISTRIBUTION_ID` | CloudFront distribution ID | `E1ABC...` |
+| `SNYK_TOKEN` | Snyk API token for security scanning | (from Snyk.io dashboard) |
 
 ### One-time AWS OIDC prerequisites
 
-- The AWS account must have the GitHub OIDC provider `token.actions.githubusercontent.com` registered.
-- The IAM role `github-actions-portfolio-deployer` must trust audience `sts.amazonaws.com` and subject `repo:jenidevops30/portfolio:ref:refs/heads/main`.
-- The role must have the existing least-privilege S3 deployment and CloudFront invalidation policies.
-- The workflow now requests `id-token: write` and assumes this role; no long-lived AWS access keys are required.
+1. **AWS_ROLE_ARN (repository variable)**:
+   - Run `terraform output github_actions_role_arn` from the initialized `terraform/` directory.
+   - Add the returned IAM role ARN as a GitHub Actions repository variable named `AWS_ROLE_ARN` (not as a secret).
+   - The role trust policy is restricted to pushes from `jenidevops30/portfolio` on `main`.
+   - GitHub Actions receives short-lived AWS credentials through OIDC; do not create or store long-lived AWS access keys for this workflow.
 
 Do not add or retain `AWS_ACCESS_KEY_ID` or `AWS_SECRET_ACCESS_KEY` for this deployment workflow. Once an OIDC deployment succeeds, deactivate and remove any old IAM access keys that were used only by the previous pipeline.
 
@@ -227,10 +228,10 @@ $ git push
 #### ❌ Deploy Fails: "AWS credentials invalid"
 ```
 Fix: Verify secrets in GitHub Settings
-- Is the repository variable `AWS_ROLE_ARN` set to the deployment role ARN?
-- Does the IAM role trust the exact repository and `main` branch subject?
-- Is `id-token: write` present in workflow permissions?
-- Does the role include S3 sync and CloudFront invalidation permissions?
+- Repository variable `AWS_ROLE_ARN` matches `terraform output github_actions_role_arn`?
+- GitHub OIDC provider `token.actions.githubusercontent.com` exists in the AWS account?
+- IAM role trust policy allows `repo:jenidevops30/portfolio:ref:refs/heads/main`?
+- Workflow has `id-token: write` permission?
 ```
 
 #### ❌ CloudFront Invalidation Fails
@@ -275,7 +276,7 @@ npm run build  # Build production app
 
 3. **Keep secrets secure**:
    - Never commit `.env` files
-   - Use GitHub OIDC and a narrowly scoped IAM role; avoid long-lived AWS access keys
+   - Use GitHub OIDC and short-lived role credentials; avoid long-lived AWS access keys
 
 4. **Use descriptive commit messages**:
    ```bash
