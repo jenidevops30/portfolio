@@ -136,7 +136,8 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ secrets.GH_ACTIONS_ROLE_ARN }}
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          role-session-name: GitHubActionsPortfolioDeploy
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Deploy to S3
@@ -152,24 +153,24 @@ jobs:
           echo "✅ CloudFront cache invalidated"
 ```
 
-## 🔐 Required GitHub Secrets
+## 🔐 Required GitHub Actions Secrets and Variables
 
-For the workflow to deploy successfully, add these secrets to your GitHub repository:
+For the workflow to deploy successfully, configure these values in your repository:
 
 **Settings > Secrets and variables > Actions**
 
 | Secret Name | Description | Example |
 |---|---|---|
-| `GH_ACTIONS_ROLE_ARN` | ARN from `terraform output github_actions_role_arn` | `arn:aws:iam::...:role/github-actions-portfolio-deployer` |
+| `AWS_ROLE_ARN` (repository variable) | ARN from `terraform output github_actions_role_arn` | `arn:aws:iam::...:role/github-actions-portfolio-deployer` |
 | `AWS_REGION` | AWS region where S3/CloudFront live | `us-east-1` |
 | `CLOUDFRONT_DISTRIBUTION_ID` | CloudFront distribution ID | `E1ABC...` |
 | `SNYK_TOKEN` | Snyk API token for security scanning | (from Snyk.io dashboard) |
 
 ### How to Get These Values:
 
-1. **GH_ACTIONS_ROLE_ARN**:
+1. **AWS_ROLE_ARN (repository variable)**:
    - Run `terraform output github_actions_role_arn` from the initialized `terraform/` directory.
-   - Add the returned IAM role ARN as a GitHub Actions secret named `GH_ACTIONS_ROLE_ARN`.
+   - Add the returned IAM role ARN as a GitHub Actions repository variable named `AWS_ROLE_ARN` (not as a secret).
    - The role trust policy is restricted to pushes from `jenidevops30/portfolio` on `main`.
    - GitHub Actions receives short-lived AWS credentials through OIDC; do not create or store long-lived AWS access keys for this workflow.
 
@@ -238,7 +239,7 @@ $ git push
 #### ❌ Deploy Fails: "AWS credentials invalid"
 ```
 Fix: Verify secrets in GitHub Settings
-- `GH_ACTIONS_ROLE_ARN` matches `terraform output github_actions_role_arn`?
+- Repository variable `AWS_ROLE_ARN` matches `terraform output github_actions_role_arn`?
 - GitHub OIDC provider `token.actions.githubusercontent.com` exists in the AWS account?
 - IAM role trust policy allows `repo:jenidevops30/portfolio:ref:refs/heads/main`?
 - Workflow has `id-token: write` permission?
